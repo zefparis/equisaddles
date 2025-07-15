@@ -52,11 +52,11 @@ export default function Admin() {
     mutationFn: (data: ProductFormData) => apiRequest("POST", "/api/products", data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/products"] });
-      toast({ title: "Produit créé avec succès" });
+      toast({ title: t("admin.productCreated") });
       setShowProductDialog(false);
     },
     onError: (error) => {
-      toast({ title: "Erreur", description: error.message, variant: "destructive" });
+      toast({ title: t("admin.error"), description: error.message, variant: "destructive" });
     },
   });
 

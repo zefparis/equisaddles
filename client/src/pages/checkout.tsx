@@ -109,7 +109,7 @@ const CheckoutForm = () => {
 
       if (error) {
         toast({
-          title: "Erreur de paiement",
+          title: t("checkout.paymentError"),
           description: error.message,
           variant: "destructive",
         });
@@ -117,14 +117,14 @@ const CheckoutForm = () => {
         // Clear cart on successful payment
         clearCart();
         toast({
-          title: "Paiement réussi",
-          description: "Votre commande a été confirmée !",
+          title: t("checkout.paymentSuccess"),
+          description: t("checkout.paymentSuccessMessage"),
         });
       }
     } catch (error) {
       toast({
-        title: "Erreur",
-        description: "Une erreur est survenue lors du paiement",
+        title: t("checkout.error"),
+        description: t("checkout.errorMessage"),
         variant: "destructive",
       });
     } finally {
@@ -139,7 +139,7 @@ const CheckoutForm = () => {
       <div className="mb-8">
         <Link href="/cart" className="flex items-center text-gray-600 hover:text-primary mb-4">
           <ArrowLeft className="h-4 w-4 mr-2" />
-          Retour au panier
+          {t("checkout.backToCart")}
         </Link>
         <h1 className="text-3xl font-bold flex items-center gap-3">
           <CreditCard className="h-8 w-8" />

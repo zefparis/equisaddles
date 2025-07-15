@@ -33,10 +33,10 @@ export default function Confirmation() {
               <CheckCircle className="h-12 w-12 text-green-600" />
             </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              Commande confirmée !
+              {t("confirmation.title")}
             </h1>
             <p className="text-gray-600">
-              Merci pour votre achat. Nous avons bien reçu votre commande.
+              {t("confirmation.thankYou")}
             </p>
           </div>
 
@@ -45,13 +45,13 @@ export default function Confirmation() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Package className="h-5 w-5" />
-                Détails de la commande
+                {t("confirmation.orderDetails")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {sessionId && (
                 <div>
-                  <p className="text-sm text-gray-600">Numéro de commande</p>
+                  <p className="text-sm text-gray-600">{t("confirmation.orderNumber")}</p>
                   <p className="font-mono text-sm bg-gray-100 p-2 rounded">
                     {sessionId}
                   </p>
@@ -60,7 +60,7 @@ export default function Confirmation() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm text-gray-600">Date de commande</p>
+                  <p className="text-sm text-gray-600">{t("confirmation.orderDate")}</p>
                   <p className="font-semibold">
                     {new Date().toLocaleDateString('fr-FR', {
                       year: 'numeric',
@@ -71,8 +71,8 @@ export default function Confirmation() {
                 </div>
                 
                 <div>
-                  <p className="text-sm text-gray-600">Statut</p>
-                  <p className="font-semibold text-green-600">Confirmée</p>
+                  <p className="text-sm text-gray-600">{t("confirmation.status")}</p>
+                  <p className="font-semibold text-green-600">{t("confirmation.confirmed")}</p>
                 </div>
               </div>
             </CardContent>

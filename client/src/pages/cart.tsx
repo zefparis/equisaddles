@@ -40,11 +40,11 @@ export default function Cart() {
             <ShoppingCart className="h-24 w-24 mx-auto mb-6 text-gray-300" />
             <h2 className="text-2xl font-semibold mb-4">{t("cart.empty")}</h2>
             <p className="text-gray-600 mb-8">
-              Découvrez notre collection de selles d'équitation de qualité
+              {t("cart.emptyDescription")}
             </p>
             <Link href="/catalog">
               <Button className="btn-primary">
-                Voir le catalogue
+                {t("cart.backToCatalog")}
               </Button>
             </Link>
           </div>

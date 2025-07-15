@@ -41,8 +41,7 @@ export default function Gallery() {
             {t("nav.gallery")}
           </h1>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Découvrez notre collection en images. Chaque selle est soigneusement photographiée 
-            pour vous montrer la qualité et le savoir-faire artisanal.
+            {t("gallery.description")}
           </p>
         </div>
 
@@ -50,7 +49,7 @@ export default function Gallery() {
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-4">
             <Filter className="h-5 w-5 text-gray-600" />
-            <span className="font-semibold text-gray-700">Filtrer par catégorie :</span>
+            <span className="font-semibold text-gray-700">{t("gallery.filterBy")}</span>
           </div>
           <div className="flex flex-wrap gap-2">
             {categories.map((category) => (
@@ -84,17 +83,17 @@ export default function Gallery() {
           <>
             <div className="mb-6">
               <p className="text-gray-600">
-                {filteredImages?.length || 0} image{filteredImages?.length !== 1 ? 's' : ''} 
-                {selectedCategory !== "Toutes" && ` dans la catégorie ${selectedCategory}`}
+                {filteredImages?.length || 0} {filteredImages?.length !== 1 ? t("gallery.imagesCount") : t("gallery.imageCount")} 
+                {selectedCategory !== "Toutes" && ` ${t("gallery.inCategory")} ${selectedCategory}`}
               </p>
             </div>
 
             {filteredImages?.length === 0 ? (
               <div className="text-center py-16">
                 <Images className="h-24 w-24 mx-auto mb-6 text-gray-300" />
-                <h3 className="text-xl font-semibold mb-2">Aucune image trouvée</h3>
+                <h3 className="text-xl font-semibold mb-2">{t("gallery.noImages")}</h3>
                 <p className="text-gray-600">
-                  Aucune image n'est disponible pour cette catégorie.
+                  {t("gallery.noImagesDescription")}
                 </p>
               </div>
             ) : (

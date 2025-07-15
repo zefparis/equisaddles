@@ -173,7 +173,7 @@ export default function ProductPage() {
               disabled={!product.inStock}
             >
               <ShoppingCart className="h-5 w-5 mr-2" />
-              {product.inStock ? t("product.addToCart") : "Rupture de stock"}
+              {product.inStock ? t("product.addToCart") : t("product.outOfStock")}
             </Button>
 
             {/* Features */}
