@@ -53,10 +53,10 @@ export class MemStorage implements IStorage {
         price: "1290.00",
         originalPrice: null,
         description: "Selle de dressage haute qualité en cuir italien, siège profond pour un contact optimal.",
-        image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300",
+        image: "/attached_assets/WhatsApp Image 2025-07-15 à 15.42.39_1c96553b_1752587178868.jpg",
         images: [
-          "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-          "https://images.unsplash.com/photo-1560807707-8cc77767d783?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+          "/attached_assets/WhatsApp Image 2025-07-15 à 15.42.39_1c96553b_1752587178868.jpg",
+          "/attached_assets/a146e414-3e8f-4534-b890-582091793756_1752587183822.jpg"
         ],
         featured: true,
         inStock: true,
@@ -70,9 +70,10 @@ export class MemStorage implements IStorage {
         price: "1251.00",
         originalPrice: "1390.00",
         description: "Selle d'obstacle moderne avec quartiers avancés pour une position parfaite à l'abord.",
-        image: "https://images.unsplash.com/photo-1560807707-8cc77767d783?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300",
+        image: "/attached_assets/a146e414-3e8f-4534-b890-582091793756_1752587183822.jpg",
         images: [
-          "https://images.unsplash.com/photo-1560807707-8cc77767d783?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+          "/attached_assets/a146e414-3e8f-4534-b890-582091793756_1752587183822.jpg",
+          "/attached_assets/WhatsApp Image 2025-07-15 à 15.42.39_1c96553b_1752587178868.jpg"
         ],
         featured: true,
         inStock: true,
@@ -86,9 +87,10 @@ export class MemStorage implements IStorage {
         price: "890.00",
         originalPrice: null,
         description: "Selle polyvalente idéale pour la randonnée et l'équitation de loisir, très confortable.",
-        image: "https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300",
+        image: "/attached_assets/WhatsApp Image 2025-07-15 à 15.42.39_1c96553b_1752587178868.jpg",
         images: [
-          "https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+          "/attached_assets/WhatsApp Image 2025-07-15 à 15.42.39_1c96553b_1752587178868.jpg",
+          "/attached_assets/a146e414-3e8f-4534-b890-582091793756_1752587183822.jpg"
         ],
         featured: true,
         inStock: true,
@@ -102,9 +104,10 @@ export class MemStorage implements IStorage {
         price: "1150.00",
         originalPrice: null,
         description: "Selle robuste spécialement conçue pour le cross-country et les longues randonnées.",
-        image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300",
+        image: "/attached_assets/a146e414-3e8f-4534-b890-582091793756_1752587183822.jpg",
         images: [
-          "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+          "/attached_assets/a146e414-3e8f-4534-b890-582091793756_1752587183822.jpg",
+          "/attached_assets/WhatsApp Image 2025-07-15 à 15.42.39_1c96553b_1752587178868.jpg"
         ],
         featured: false,
         inStock: true,
@@ -118,9 +121,10 @@ export class MemStorage implements IStorage {
         price: "650.00",
         originalPrice: null,
         description: "Selle adaptée aux poneys et jeunes cavaliers, sécurisée et confortable.",
-        image: "https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300",
+        image: "/attached_assets/WhatsApp Image 2025-07-15 à 15.42.39_1c96553b_1752587178868.jpg",
         images: [
-          "https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+          "/attached_assets/WhatsApp Image 2025-07-15 à 15.42.39_1c96553b_1752587178868.jpg",
+          "/attached_assets/a146e414-3e8f-4534-b890-582091793756_1752587183822.jpg"
         ],
         featured: false,
         inStock: true,
@@ -137,30 +141,44 @@ export class MemStorage implements IStorage {
     const sampleGalleryImages: GalleryImage[] = [
       {
         id: 1,
-        url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-        alt: "Selle de dressage professionnelle",
+        url: "/attached_assets/WhatsApp Image 2025-07-15 à 15.42.39_1c96553b_1752587178868.jpg",
+        alt: "Selle de dressage professionnelle Equi Saddles",
         category: "Dressage",
         createdAt: new Date(),
       },
       {
         id: 2,
-        url: "https://images.unsplash.com/photo-1560807707-8cc77767d783?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-        alt: "Selle d'obstacle en cuir",
+        url: "/attached_assets/a146e414-3e8f-4534-b890-582091793756_1752587183822.jpg",
+        alt: "Selle d'obstacle en cuir Equi Saddles",
         category: "Obstacle",
         createdAt: new Date(),
       },
       {
         id: 3,
-        url: "https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-        alt: "Selle mixte confortable",
+        url: "/attached_assets/WhatsApp Image 2025-07-15 à 15.42.39_1c96553b_1752587178868.jpg",
+        alt: "Selle mixte confortable Equi Saddles",
         category: "Mixte",
         createdAt: new Date(),
       },
       {
         id: 4,
-        url: "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-        alt: "Selle de cross-country",
+        url: "/attached_assets/a146e414-3e8f-4534-b890-582091793756_1752587183822.jpg",
+        alt: "Selle de cross-country Equi Saddles",
         category: "Cross",
+        createdAt: new Date(),
+      },
+      {
+        id: 5,
+        url: "/attached_assets/WhatsApp Image 2025-07-15 à 15.42.39_1c96553b_1752587178868.jpg",
+        alt: "Selle pour poney Equi Saddles",
+        category: "Poney",
+        createdAt: new Date(),
+      },
+      {
+        id: 6,
+        url: "/attached_assets/a146e414-3e8f-4534-b890-582091793756_1752587183822.jpg",
+        alt: "Collection de selles Equi Saddles",
+        category: "Dressage",
         createdAt: new Date(),
       }
     ];
