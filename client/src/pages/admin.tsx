@@ -20,6 +20,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Settings, Package, Images, ShoppingCart, Plus, Edit, Trash2, Eye, FileText, Download, Truck, MapPin } from "lucide-react";
+import ProductImageManager from "../components/admin/product-image-manager";
 
 const categories = ["Obstacle", "Dressage", "Cross", "Mixte", "Poney"];
 const sizes = ["16", "16.5", "17", "17.5", "18", "18.5"];
@@ -230,10 +231,14 @@ export default function Admin() {
         </div>
 
         <Tabs defaultValue="products" className="space-y-8">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="products" className="flex items-center gap-2">
               <Package className="h-4 w-4" />
               {t("admin.products")}
+            </TabsTrigger>
+            <TabsTrigger value="product-images" className="flex items-center gap-2">
+              <Images className="h-4 w-4" />
+              Images Produits
             </TabsTrigger>
             <TabsTrigger value="gallery" className="flex items-center gap-2">
               <Images className="h-4 w-4" />
@@ -363,6 +368,39 @@ export default function Admin() {
                     </CardContent>
                   </Card>
                 ))}
+              </div>
+            )}
+          </TabsContent>
+
+          {/* Product Images Tab */}
+          <TabsContent value="product-images" className="space-y-6">
+            <h2 className="text-2xl font-semibold">Gestion des images de produits</h2>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {products?.map((product) => (
+                <Card key={product.id}>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Package className="h-5 w-5" />
+                      {product.name}
+                    </CardTitle>
+                    <div className="flex items-center gap-2">
+                      <Badge variant="secondary">{product.category}</Badge>
+                      <Badge variant="outline">{product.size}</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <ProductImageManager productId={product.id} />
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            
+            {!products || products.length === 0 && (
+              <div className="text-center py-16">
+                <Package className="h-24 w-24 mx-auto mb-6 text-gray-300" />
+                <h3 className="text-xl font-semibold mb-2">Aucun produit</h3>
+                <p className="text-gray-600">Créez des produits pour commencer à gérer leurs images.</p>
               </div>
             )}
           </TabsContent>

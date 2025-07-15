@@ -2,7 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import Stripe from "stripe";
 import { storage } from "./storage";
-import { insertProductSchema, insertGalleryImageSchema, insertOrderSchema } from "@shared/schema";
+import { insertProductSchema, insertGalleryImageSchema, insertProductImageSchema, insertOrderSchema } from "@shared/schema";
 import { dpdService, type ShippingCalculationRequest } from "./dpd-service";
 import { z } from "zod";
 
@@ -80,6 +80,81 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(204).send();
     } catch (error: any) {
       res.status(500).json({ message: "Error deleting product: " + error.message });
+    }
+  });
+
+  // Product Images API
+  app.get("/api/products/:id/images", async (req, res) => {
+    try {
+      const productId = parseInt(req.params.id);
+      const images = await storage.getProductImages(productId);
+      res.json(images);
+    } catch (error: any) {
+      res.status(500).json({ message: "Error fetching product images: " + error.message });
+    }
+  });
+
+  app.post("/api/products/:id/images", async (req, res) => {
+    try {
+      const productId = parseInt(req.params.id);
+      const validatedData = insertProductImageSchema.parse({
+        ...req.body,
+        productId
+      });
+      const image = await storage.createProductImage(validatedData);
+      res.status(201).json(image);
+    } catch (error: any) {
+      res.status(400).json({ message: "Error creating product image: " + error.message });
+    }
+  });
+
+  app.delete("/api/products/:productId/images/:imageId", async (req, res) => {
+    try {
+      const success = await storage.deleteProductImage(parseInt(req.params.imageId));
+      if (!success) {
+        return res.status(404).json({ message: "Product image not found" });
+      }
+      res.status(204).send();
+    } catch (error: any) {
+      res.status(500).json({ message: "Error deleting product image: " + error.message });
+    }
+  });
+
+  app.put("/api/products/:productId/images/:imageId/main", async (req, res) => {
+    try {
+      const productId = parseInt(req.params.productId);
+      const imageId = parseInt(req.params.imageId);
+      const success = await storage.setMainProductImage(productId, imageId);
+      if (!success) {
+        return res.status(404).json({ message: "Product image not found" });
+      }
+      res.json({ message: "Main image updated successfully" });
+    } catch (error: any) {
+      res.status(500).json({ message: "Error updating main image: " + error.message });
+    }
+  });
+
+  // Image Download API
+  app.get("/api/images/download/:filename", async (req, res) => {
+    try {
+      const filename = req.params.filename;
+      const path = require('path');
+      const fs = require('fs');
+      const imagePath = path.join(__dirname, '..', 'public', 'images', filename);
+      
+      // Check if file exists
+      if (!fs.existsSync(imagePath)) {
+        return res.status(404).json({ message: "Image not found" });
+      }
+
+      // Set headers for download
+      res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+      res.setHeader('Content-Type', 'application/octet-stream');
+      
+      // Send file
+      res.sendFile(imagePath);
+    } catch (error: any) {
+      res.status(500).json({ message: "Error downloading image: " + error.message });
     }
   });
 

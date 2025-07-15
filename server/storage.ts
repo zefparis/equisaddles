@@ -1,4 +1,4 @@
-import { products, galleryImages, orders, shippingRates, type Product, type InsertProduct, type GalleryImage, type InsertGalleryImage, type Order, type InsertOrder, type ShippingRate, type InsertShippingRate } from "@shared/schema";
+import { products, galleryImages, productImages, orders, shippingRates, type Product, type InsertProduct, type ProductImage, type InsertProductImage, type GalleryImage, type InsertGalleryImage, type Order, type InsertOrder, type ShippingRate, type InsertShippingRate } from "@shared/schema";
 
 export interface IStorage {
   // Products
@@ -9,6 +9,12 @@ export interface IStorage {
   createProduct(product: InsertProduct): Promise<Product>;
   updateProduct(id: number, product: Partial<InsertProduct>): Promise<Product | undefined>;
   deleteProduct(id: number): Promise<boolean>;
+
+  // Product Images
+  getProductImages(productId: number): Promise<ProductImage[]>;
+  createProductImage(image: InsertProductImage): Promise<ProductImage>;
+  deleteProductImage(id: number): Promise<boolean>;
+  setMainProductImage(productId: number, imageId: number): Promise<boolean>;
 
   // Gallery
   getGalleryImages(): Promise<GalleryImage[]>;
@@ -31,20 +37,24 @@ export interface IStorage {
 
 export class MemStorage implements IStorage {
   private products: Map<number, Product>;
+  private productImages: Map<number, ProductImage>;
   private galleryImages: Map<number, GalleryImage>;
   private orders: Map<number, Order>;
   private shippingRates: Map<number, ShippingRate>;
   private currentProductId: number;
+  private currentProductImageId: number;
   private currentGalleryId: number;
   private currentOrderId: number;
   private currentShippingRateId: number;
 
   constructor() {
     this.products = new Map();
+    this.productImages = new Map();
     this.galleryImages = new Map();
     this.orders = new Map();
     this.shippingRates = new Map();
     this.currentProductId = 1;
+    this.currentProductImageId = 1;
     this.currentGalleryId = 1;
     this.currentOrderId = 1;
     this.currentShippingRateId = 1;
@@ -200,6 +210,9 @@ export class MemStorage implements IStorage {
 
     // Initialize shipping rates
     this.initializeShippingRates();
+    
+    // Initialize sample product images
+    this.initializeProductImages();
   }
 
   private initializeShippingRates() {
@@ -335,6 +348,88 @@ export class MemStorage implements IStorage {
     this.currentShippingRateId = shippingRates.length + 1;
   }
 
+  private initializeProductImages() {
+    const sampleProductImages = [
+      {
+        id: 1,
+        productId: 1,
+        url: "/images/selle1.jpg",
+        alt: "Selle Dressage Pro - Vue principale",
+        filename: "selle1.jpg",
+        originalName: "selle-dressage-pro-main.jpg",
+        mimeType: "image/jpeg",
+        size: 245760,
+        isMain: true,
+        createdAt: new Date(),
+      },
+      {
+        id: 2,
+        productId: 1,
+        url: "/images/selle2.jpg",
+        alt: "Selle Dressage Pro - Vue de côté",
+        filename: "selle2.jpg",
+        originalName: "selle-dressage-pro-side.jpg",
+        mimeType: "image/jpeg",
+        size: 198432,
+        isMain: false,
+        createdAt: new Date(),
+      },
+      {
+        id: 3,
+        productId: 2,
+        url: "/images/cross.jpg",
+        alt: "Selle Cross Country - Vue principale",
+        filename: "cross.jpg",
+        originalName: "selle-cross-country-main.jpg",
+        mimeType: "image/jpeg",
+        size: 312544,
+        isMain: true,
+        createdAt: new Date(),
+      },
+      {
+        id: 4,
+        productId: 3,
+        url: "/images/obstacle.webp",
+        alt: "Selle Obstacle Elite - Vue principale",
+        filename: "obstacle.webp",
+        originalName: "selle-obstacle-elite-main.webp",
+        mimeType: "image/webp",
+        size: 156789,
+        isMain: true,
+        createdAt: new Date(),
+      },
+      {
+        id: 5,
+        productId: 4,
+        url: "/images/mixte.jpg",
+        alt: "Selle Mixte Confort - Vue principale",
+        filename: "mixte.jpg",
+        originalName: "selle-mixte-confort-main.jpg",
+        mimeType: "image/jpeg",
+        size: 287654,
+        isMain: true,
+        createdAt: new Date(),
+      },
+      {
+        id: 6,
+        productId: 5,
+        url: "/images/poney.jpg",
+        alt: "Selle Poney Junior - Vue principale",
+        filename: "poney.jpg",
+        originalName: "selle-poney-junior-main.jpg",
+        mimeType: "image/jpeg",
+        size: 234567,
+        isMain: true,
+        createdAt: new Date(),
+      }
+    ];
+
+    sampleProductImages.forEach(image => {
+      this.productImages.set(image.id, image);
+    });
+    this.currentProductImageId = sampleProductImages.length + 1;
+  }
+
   // Products
   async getProducts(): Promise<Product[]> {
     return Array.from(this.products.values());
@@ -380,7 +475,49 @@ export class MemStorage implements IStorage {
   }
 
   async deleteProduct(id: number): Promise<boolean> {
+    // Also delete all images associated with this product
+    const productImages = Array.from(this.productImages.values()).filter(img => img.productId === id);
+    productImages.forEach(img => this.productImages.delete(img.id));
+    
     return this.products.delete(id);
+  }
+
+  // Product Images
+  async getProductImages(productId: number): Promise<ProductImage[]> {
+    return Array.from(this.productImages.values()).filter(img => img.productId === productId);
+  }
+
+  async createProductImage(insertImage: InsertProductImage): Promise<ProductImage> {
+    const id = this.currentProductImageId++;
+    const image: ProductImage = {
+      ...insertImage,
+      id,
+      createdAt: new Date(),
+    };
+    this.productImages.set(id, image);
+    return image;
+  }
+
+  async deleteProductImage(id: number): Promise<boolean> {
+    return this.productImages.delete(id);
+  }
+
+  async setMainProductImage(productId: number, imageId: number): Promise<boolean> {
+    // First, remove main flag from all images of this product
+    const productImages = Array.from(this.productImages.values()).filter(img => img.productId === productId);
+    productImages.forEach(img => {
+      if (img.isMain) {
+        this.productImages.set(img.id, { ...img, isMain: false });
+      }
+    });
+
+    // Then set the new main image
+    const targetImage = this.productImages.get(imageId);
+    if (targetImage && targetImage.productId === productId) {
+      this.productImages.set(imageId, { ...targetImage, isMain: true });
+      return true;
+    }
+    return false;
   }
 
   // Gallery
