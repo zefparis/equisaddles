@@ -163,7 +163,8 @@ export default function ChatWidget({ isOpen, onToggle }: ChatWidgetProps) {
   if (!isOpen) return null;
 
   return (
-    <Card className={`fixed bottom-20 right-4 w-80 shadow-lg z-50 transition-all duration-300 ${isMinimized ? 'h-12' : 'h-96'}`}>
+    <div className="fixed bottom-20 right-4 z-50">
+      <Card className={`w-80 shadow-xl transition-all duration-300 ${isMinimized ? 'h-12' : 'h-96'} bg-white border-2 border-gray-200`}>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 cursor-pointer" onClick={() => setIsMinimized(!isMinimized)}>
         <CardTitle className="text-sm font-medium flex items-center gap-2">
           <Bot className="h-4 w-4" />
@@ -261,6 +262,7 @@ export default function ChatWidget({ isOpen, onToggle }: ChatWidgetProps) {
           </div>
         </CardContent>
       )}
-    </Card>
+      </Card>
+    </div>
   );
 }

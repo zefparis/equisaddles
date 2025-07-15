@@ -42,12 +42,7 @@ export default function Header() {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
-            <img 
-              src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=60" 
-              alt="Equi Saddles Logo" 
-              className="h-12 w-auto rounded-md"
-            />
+          <Link href="/" className="flex items-center">
             <span className="text-xl font-bold">Equi Saddles</span>
           </Link>
 
@@ -69,20 +64,20 @@ export default function Header() {
             {/* Language Selector */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center space-x-1 hover:text-accent">
+                <Button variant="ghost" className="flex items-center space-x-2 hover:text-accent text-white">
                   <Globe className="h-4 w-4" />
-                  <span>{currentLanguage?.flag}</span>
+                  <span className="text-lg">{currentLanguage?.flag}</span>
                   <span className="text-sm">{language.toUpperCase()}</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent className="bg-white border shadow-lg">
                 {languages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
                     onClick={() => setLanguage(lang.code)}
-                    className="cursor-pointer"
+                    className={`cursor-pointer text-black ${language === lang.code ? 'bg-accent' : ''}`}
                   >
-                    <span className="mr-2">{lang.flag}</span>
+                    <span className="mr-2 text-lg">{lang.flag}</span>
                     {lang.name}
                   </DropdownMenuItem>
                 ))}
