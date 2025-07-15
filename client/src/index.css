@@ -188,4 +188,117 @@
       transform: translateY(0);
     }
   }
+  
+  /* Mobile responsiveness improvements */
+  @media (max-width: 640px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    h1 {
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    
+    h3 {
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+    }
+    
+    .btn-primary, .btn-secondary, .btn-accent {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.875rem;
+    }
+    
+    /* Improve button spacing on mobile */
+    .flex.gap-2 {
+      gap: 0.5rem;
+    }
+    
+    .flex.gap-4 {
+      gap: 1rem;
+    }
+    
+    /* Better form field spacing */
+    .space-y-4 > * + * {
+      margin-top: 1rem;
+    }
+    
+    /* Optimize card padding for mobile */
+    .card {
+      padding: 0.75rem;
+    }
+    
+    /* Improve modal/sheet width on mobile */
+    .sheet-content {
+      width: 100% !important;
+      max-width: none !important;
+    }
+    
+    /* Hero section mobile adjustments */
+    .hero-section {
+      height: 400px;
+    }
+    
+    /* Product grid mobile spacing */
+    .product-grid {
+      gap: 1rem;
+    }
+    
+    /* Cart item mobile layout */
+    .cart-item-mobile {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    /* Navigation mobile improvements */
+    .nav-mobile {
+      padding: 0.5rem;
+    }
+  }
+  
+  /* Tablet improvements */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    
+    /* Better grid layouts for tablets */
+    .tablet-grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .tablet-grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  /* Touch device improvements */
+  @media (hover: none) and (pointer: coarse) {
+    .hover\:scale-105:hover {
+      transform: none;
+    }
+    
+    .hover\:shadow-lg:hover {
+      box-shadow: none;
+    }
+    
+    /* Larger touch targets */
+    button, .btn-primary, .btn-secondary, .btn-accent {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Better tap targets for mobile */
+    .tap-target {
+      padding: 0.75rem;
+    }
+  }
 }

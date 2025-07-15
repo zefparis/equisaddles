@@ -82,7 +82,7 @@ export default function ProductPage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12">
           {/* Product Images */}
           <div className="space-y-4">
             <div className="aspect-square rounded-lg overflow-hidden bg-white shadow-md">
@@ -95,7 +95,7 @@ export default function ProductPage() {
             </div>
             
             {product.images && product.images.length > 0 && (
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
                 {product.images.map((image, index) => (
                   <div
                     key={index}

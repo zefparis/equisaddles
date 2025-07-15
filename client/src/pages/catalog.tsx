@@ -84,7 +84,7 @@ export default function Catalog() {
           <h1 className="text-3xl font-bold mb-4">{t("nav.catalog")}</h1>
           
           {/* Search and Controls */}
-          <div className="flex flex-col md:flex-row gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row gap-4 mb-6">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <Input
@@ -96,7 +96,7 @@ export default function Catalog() {
             </div>
             
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-full md:w-48">
+              <SelectTrigger className="w-full sm:w-48">
                 <SelectValue placeholder="Trier par" />
               </SelectTrigger>
               <SelectContent>
@@ -110,7 +110,7 @@ export default function Catalog() {
               <Button
                 variant={showFilters ? "default" : "outline"}
                 onClick={() => setShowFilters(!showFilters)}
-                className="md:hidden"
+                className="lg:hidden"
               >
                 <Filter className="h-4 w-4" />
               </Button>

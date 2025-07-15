@@ -80,7 +80,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center mb-12">
             {t("categories.title")}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {categories.map((category) => (
               <Link 
                 key={category.name}
@@ -117,7 +117,7 @@ export default function Home() {
           </h2>
           
           {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {[1, 2, 3].map((i) => (
                 <div key={i} className="animate-pulse">
                   <div className="bg-gray-300 h-64 rounded-lg mb-4"></div>
@@ -127,7 +127,7 @@ export default function Home() {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {featuredProducts?.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
@@ -142,7 +142,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center mb-12">
             {t("why.title")}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="text-white h-8 w-8" />
