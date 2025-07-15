@@ -1,7 +1,7 @@
 import { useCart } from "../../hooks/use-cart";
 import { useLanguage } from "../../hooks/use-language";
 import { Button } from "../ui/button";
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "../ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "../ui/sheet";
 import { Badge } from "../ui/badge";
 import { ShoppingCart, X } from "lucide-react";
 import { Link } from "wouter";
@@ -27,6 +27,9 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
               <Badge variant="secondary">{totalItems}</Badge>
             )}
           </SheetTitle>
+          <SheetDescription>
+            {t("cart.description")}
+          </SheetDescription>
         </SheetHeader>
 
         <div className="flex flex-col h-full">
