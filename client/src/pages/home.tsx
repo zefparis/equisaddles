@@ -149,7 +149,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold mb-2">{t("why.quality")}</h3>
               <p className="text-gray-600">
-                Cuirs italiens sélectionnés et artisanat traditionnel pour une durabilité exceptionnelle.
+                {t("why.qualityDescription")}
               </p>
             </div>
             <div className="text-center">
@@ -158,7 +158,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold mb-2">{t("why.shipping")}</h3>
               <p className="text-gray-600">
-                Expédition sous 24h avec suivi DPD pour une réception en toute sécurité.
+                {t("why.shippingDescription")}
               </p>
             </div>
             <div className="text-center">
@@ -167,7 +167,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold mb-2">{t("why.custom")}</h3>
               <p className="text-gray-600">
-                Adaptation personnalisée selon votre morphologie et celle de votre cheval.
+                {t("why.customDescription")}
               </p>
             </div>
             <div className="text-center">
@@ -176,7 +176,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold mb-2">{t("why.support")}</h3>
               <p className="text-gray-600">
-                Conseils d'experts cavaliers pour vous aider à choisir la selle parfaite.
+                {t("why.supportDescription")}
               </p>
             </div>
           </div>

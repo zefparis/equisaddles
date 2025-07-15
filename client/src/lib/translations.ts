@@ -116,7 +116,11 @@ export const translations: Record<string, Record<string, string>> = {
     "product.description.2": "Selle d'obstacle technique avec arçon renforcé, parfaite pour les concours de saut.",
     "product.description.3": "Selle mixte polyvalente idéale pour tous types d'équitation, confort et performance.",
     "product.description.4": "Selle de cross-country robuste et légère, résistante aux conditions extrêmes.",
-    "product.description.5": "Selle adaptée aux poneys et jeunes cavaliers, sécurisée et confortable."
+    "product.description.5": "Selle adaptée aux poneys et jeunes cavaliers, sécurisée et confortable.",
+    "why.qualityDescription": "Cuirs italiens sélectionnés et artisanat traditionnel pour une durabilité exceptionnelle.",
+    "why.shippingDescription": "Expédition sous 24h avec suivi DPD pour une réception en toute sécurité.",
+    "why.customDescription": "Personnalisation selon vos besoins spécifiques et morphologie.",
+    "why.supportDescription": "Équipe d'experts passionnés pour vous conseiller dans votre choix."
   },
   en: {
     "nav.home": "Home",
@@ -235,7 +239,11 @@ export const translations: Record<string, Record<string, string>> = {
     "product.description.2": "Technical jumping saddle with reinforced tree, perfect for show jumping competitions.",
     "product.description.3": "Versatile all-purpose saddle ideal for all types of riding, comfort and performance.",
     "product.description.4": "Robust and lightweight cross-country saddle, resistant to extreme conditions.",
-    "product.description.5": "Saddle adapted for ponies and young riders, secure and comfortable."
+    "product.description.5": "Saddle adapted for ponies and young riders, secure and comfortable.",
+    "why.qualityDescription": "Selected Italian leathers and traditional craftsmanship for exceptional durability.",
+    "why.shippingDescription": "24h shipping with DPD tracking for secure delivery.",
+    "why.customDescription": "Customization according to your specific needs and morphology.",
+    "why.supportDescription": "Team of passionate experts to advise you in your choice."
   },
   nl: {
     "nav.home": "Home",
@@ -329,7 +337,11 @@ export const translations: Record<string, Record<string, string>> = {
     "product.description.2": "Technisch springzadel met verstevigde boom, perfect voor springwedstrijden.",
     "product.description.3": "Veelzijdig universeel zadel ideaal voor alle rijdisciplines, comfort en prestatie.",
     "product.description.4": "Robuust en licht cross-country zadel, bestand tegen extreme omstandigheden.",
-    "product.description.5": "Zadel aangepast voor pony's en jonge ruiters, veilig en comfortabel."
+    "product.description.5": "Zadel aangepast voor pony's en jonge ruiters, veilig en comfortabel.",
+    "why.qualityDescription": "Geselecteerd Italiaans leer en traditioneel vakmanschap voor uitzonderlijke duurzaamheid.",
+    "why.shippingDescription": "24-uurs verzending met DPD tracking voor veilige levering.",
+    "why.customDescription": "Aanpassing volgens uw specifieke behoeften en morfologie.",
+    "why.supportDescription": "Team van gepassioneerde experts om u te adviseren in uw keuze."
   },
   es: {
     "nav.home": "Inicio",
@@ -423,7 +435,11 @@ export const translations: Record<string, Record<string, string>> = {
     "product.description.2": "Montura técnica de salto con fuste reforzado, perfecta para competiciones de salto.",
     "product.description.3": "Montura versátil polivalente ideal para todos los tipos de equitación, comodidad y rendimiento.",
     "product.description.4": "Montura de cross-country robusta y ligera, resistente a condiciones extremas.",
-    "product.description.5": "Montura adaptada para ponis y jinetes jóvenes, segura y cómoda."
+    "product.description.5": "Montura adaptada para ponis y jinetes jóvenes, segura y cómoda.",
+    "why.qualityDescription": "Cueros italianos seleccionados y artesanía tradicional para una durabilidad excepcional.",
+    "why.shippingDescription": "Envío en 24h con seguimiento DPD para una entrega segura.",
+    "why.customDescription": "Personalización según sus necesidades específicas y morfología.",
+    "why.supportDescription": "Equipo de expertos apasionados para asesorarle en su elección."
   },
   de: {
     "nav.home": "Startseite",
@@ -517,6 +533,10 @@ export const translations: Record<string, Record<string, string>> = {
     "product.description.2": "Technischer Springsattel mit verstärktem Baum, perfekt für Springwettbewerbe.",
     "product.description.3": "Vielseitiger Allzwecksattel ideal für alle Reitdisziplinen, Komfort und Leistung.",
     "product.description.4": "Robuster und leichter Vielseitigkeitssattel, widerstandsfähig gegen extreme Bedingungen.",
-    "product.description.5": "Für Ponys und junge Reiter angepasster Sattel, sicher und komfortabel."
+    "product.description.5": "Für Ponys und junge Reiter angepasster Sattel, sicher und komfortabel.",
+    "why.qualityDescription": "Ausgewählte italienische Leder und traditionelle Handwerkskunst für außergewöhnliche Haltbarkeit.",
+    "why.shippingDescription": "24h Versand mit DPD Tracking für sichere Lieferung.",
+    "why.customDescription": "Anpassung nach Ihren spezifischen Bedürfnissen und Morphologie.",
+    "why.supportDescription": "Team leidenschaftlicher Experten, um Sie bei Ihrer Wahl zu beraten."
   }
 };
