@@ -100,12 +100,12 @@ export default function DPDShippingOptions({
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Truck className="h-5 w-5" />
-            Options de livraison DPD
+            {t("shipping.dpd.title")}
           </CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-gray-600 text-center py-4">
-            Veuillez saisir votre adresse de livraison pour voir les options disponibles.
+            {t("shipping.dpd.addressRequired")}
           </p>
         </CardContent>
       </Card>
@@ -117,7 +117,7 @@ export default function DPDShippingOptions({
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Truck className="h-5 w-5" />
-          Options de livraison DPD
+          {t("shipping.dpd.title")}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -137,7 +137,7 @@ export default function DPDShippingOptions({
           </div>
         ) : shippingOptions?.length === 0 ? (
           <p className="text-gray-600 text-center py-4">
-            Aucune option de livraison disponible pour cette destination.
+            {t("shipping.dpd.noOptions")}
           </p>
         ) : (
           <div className="space-y-3">
@@ -189,7 +189,7 @@ export default function DPDShippingOptions({
                 onClick={() => setIsExpanded(!isExpanded)}
                 className="w-full"
               >
-                {isExpanded ? "Voir moins d'options" : `Voir ${shippingOptions.length - 2} options de plus`}
+                {isExpanded ? t("shipping.dpd.showLess") : t("shipping.dpd.showMore")}
               </Button>
             )}
           </div>
@@ -198,7 +198,7 @@ export default function DPDShippingOptions({
         {selectedOption && (
           <div className="mt-4 pt-4 border-t">
             <div className="flex items-center justify-between">
-              <span className="font-medium">Option sélectionnée:</span>
+              <span className="font-medium">{t("shipping.dpd.selected")}:</span>
               <div className="flex items-center gap-2">
                 <span>{selectedOption.serviceName}</span>
                 <Badge variant="secondary">

@@ -54,16 +54,16 @@ export default function Admin() {
     onSuccess: async (response) => {
       const data = await response.json();
       toast({
-        title: "Étiquette générée",
-        description: `Étiquette DPD générée: ${data.trackingNumber}`,
+        title: t("admin.dpd.labelGenerated"),
+        description: `${t("admin.dpd.labelGeneratedDesc")}: ${data.trackingNumber}`,
       });
       // Ouvrir automatiquement l'étiquette dans un nouvel onglet
       window.open(data.labelUrl, '_blank');
     },
     onError: (error) => {
       toast({
-        title: "Erreur",
-        description: "Impossible de générer l'étiquette DPD",
+        title: t("admin.error"),
+        description: t("admin.dpd.labelError"),
         variant: "destructive",
       });
     },
@@ -75,14 +75,14 @@ export default function Admin() {
     onSuccess: async (response) => {
       const data = await response.json();
       toast({
-        title: "Suivi du colis",
-        description: `Statut: ${data.status} - ${data.location}`,
+        title: t("admin.dpd.trackingInfo"),
+        description: `${t("admin.dpd.trackingStatus")}: ${data.status} - ${data.location}`,
       });
     },
     onError: (error) => {
       toast({
-        title: "Erreur",
-        description: "Impossible de suivre le colis",
+        title: t("admin.error"),
+        description: t("admin.dpd.trackingError"),
         variant: "destructive",
       });
     },
@@ -432,7 +432,7 @@ export default function Admin() {
 
                       {/* DPD Shipping Actions */}
                       <div className="mt-4">
-                        <h4 className="font-semibold mb-2">Actions de livraison DPD</h4>
+                        <h4 className="font-semibold mb-2">{t("admin.dpd.title")}</h4>
                         <div className="flex flex-wrap gap-2">
                           <Button
                             variant="outline"
@@ -452,7 +452,7 @@ export default function Admin() {
                             disabled={generateLabelMutation.isPending}
                           >
                             <FileText className="h-4 w-4 mr-2" />
-                            {generateLabelMutation.isPending ? 'Génération...' : 'Générer étiquette'}
+                            {generateLabelMutation.isPending ? t("shipping.dpd.generating") : t("admin.dpd.generateLabel")}
                           </Button>
                           
                           {order.stripeSessionId && (
@@ -463,7 +463,7 @@ export default function Admin() {
                               disabled={trackPackageMutation.isPending}
                             >
                               <Truck className="h-4 w-4 mr-2" />
-                              {trackPackageMutation.isPending ? 'Suivi...' : 'Suivre colis'}
+                              {trackPackageMutation.isPending ? t("shipping.dpd.tracking") : t("admin.dpd.trackPackage")}
                             </Button>
                           )}
                           
@@ -473,7 +473,7 @@ export default function Admin() {
                             onClick={() => window.open(`https://www.dpd.fr/suivi_colis`, '_blank')}
                           >
                             <MapPin className="h-4 w-4 mr-2" />
-                            Ouvrir DPD
+                            {t("admin.dpd.openDPD")}
                           </Button>
                         </div>
                       </div>
