@@ -4,19 +4,19 @@
 
 :root {
   --background: hsl(40, 60%, 98%); /* ivoire chaud */
-  --foreground: hsl(20, 25%, 10%); /* brun charbon */
+  --foreground: hsl(20, 25%, 15%); /* brun charbon plus sombre */
   --muted: hsl(39, 20%, 90%);
-  --muted-foreground: hsl(30, 10%, 40%);
+  --muted-foreground: hsl(30, 10%, 35%); /* plus sombre pour contraste */
   --popover: hsl(40, 60%, 98%);
-  --popover-foreground: hsl(20, 25%, 10%);
+  --popover-foreground: hsl(20, 25%, 15%);
   --card: hsl(40, 60%, 98%);
-  --card-foreground: hsl(20, 25%, 10%);
-  --border: hsl(36, 20%, 85%);
+  --card-foreground: hsl(20, 25%, 15%);
+  --border: hsl(36, 20%, 75%); /* bordure plus visible */
   --input: hsl(36, 20%, 85%);
   --primary: hsl(25, 35%, 25%); /* brun sellier profond */
   --primary-foreground: hsl(0, 0%, 100%);
   --secondary: hsl(38, 30%, 88%); /* sable clair */
-  --secondary-foreground: hsl(20, 25%, 15%);
+  --secondary-foreground: hsl(20, 25%, 20%); /* plus sombre */
   --accent: hsl(42, 90%, 38%); /* or raffiné */
   --accent-foreground: hsl(0, 0%, 100%);
   --destructive: hsl(0, 70%, 55%);
@@ -54,7 +54,40 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased bg-background;
+    color: hsl(20, 25%, 15%);
+  }
+  
+  /* Force proper text colors with high specificity */
+  h1, h2, h3, h4, h5, h6 {
+    color: hsl(20, 25%, 15%) !important;
+  }
+  
+  p, span, div:not([class*="text-white"]):not([class*="text-primary"]) {
+    color: hsl(20, 25%, 15%) !important;
+  }
+  
+  /* Ensure buttons have proper contrast */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground;
+  }
+  
+  /* Main content area text colors */
+  main {
+    color: hsl(20, 25%, 15%);
+  }
+  
+  /* Dark mode overrides */
+  .dark body {
+    color: hsl(0, 0%, 95%);
+  }
+  
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    color: hsl(0, 0%, 95%) !important;
+  }
+  
+  .dark p, .dark span, .dark div:not([class*="text-white"]):not([class*="text-primary"]) {
+    color: hsl(0, 0%, 95%) !important;
   }
 }
 
