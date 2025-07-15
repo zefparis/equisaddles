@@ -33,7 +33,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           />
           {product.featured && (
             <Badge className="absolute top-4 right-4 bg-accent">
-              Nouveauté
+              {t("product.featured")}
             </Badge>
           )}
           {hasDiscount && (
@@ -56,7 +56,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             {product.name}
           </h3>
         </Link>
-        <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
+        <p className="text-gray-600 mb-4 line-clamp-2">{t(`product.description.${product.id}`) || product.description}</p>
         
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">

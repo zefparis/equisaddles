@@ -110,7 +110,13 @@ export const translations: Record<string, Record<string, string>> = {
     "admin.productUpdated": "Produit modifié avec succès",
     "admin.productDeleted": "Produit supprimé avec succès",
     "admin.imageAdded": "Image ajoutée avec succès",
-    "admin.imageDeleted": "Image supprimée avec succès"
+    "admin.imageDeleted": "Image supprimée avec succès",
+    "product.featured": "Nouveauté",
+    "product.description.1": "Selle de dressage haute qualité en cuir italien, siège profond pour un contact optimal.",
+    "product.description.2": "Selle d'obstacle technique avec arçon renforcé, parfaite pour les concours de saut.",
+    "product.description.3": "Selle mixte polyvalente idéale pour tous types d'équitation, confort et performance.",
+    "product.description.4": "Selle de cross-country robuste et légère, résistante aux conditions extrêmes.",
+    "product.description.5": "Selle adaptée aux poneys et jeunes cavaliers, sécurisée et confortable."
   },
   en: {
     "nav.home": "Home",
@@ -223,7 +229,13 @@ export const translations: Record<string, Record<string, string>> = {
     "admin.productUpdated": "Product updated successfully",
     "admin.productDeleted": "Product deleted successfully",
     "admin.imageAdded": "Image added successfully",
-    "admin.imageDeleted": "Image deleted successfully"
+    "admin.imageDeleted": "Image deleted successfully",
+    "product.featured": "New",
+    "product.description.1": "High quality dressage saddle in Italian leather, deep seat for optimal contact.",
+    "product.description.2": "Technical jumping saddle with reinforced tree, perfect for show jumping competitions.",
+    "product.description.3": "Versatile all-purpose saddle ideal for all types of riding, comfort and performance.",
+    "product.description.4": "Robust and lightweight cross-country saddle, resistant to extreme conditions.",
+    "product.description.5": "Saddle adapted for ponies and young riders, secure and comfortable."
   },
   nl: {
     "nav.home": "Home",
@@ -311,7 +323,13 @@ export const translations: Record<string, Record<string, string>> = {
     "checkout.shipping": "Verzending",
     "checkout.shippingFree": "Gratis",
     "checkout.total": "Totaal",
-    "checkout.paymentInfo": "Betaalinformatie"
+    "checkout.paymentInfo": "Betaalinformatie",
+    "product.featured": "Nieuw",
+    "product.description.1": "Hoogwaardige dressuurzadel in Italiaans leer, diepe zitting voor optimaal contact.",
+    "product.description.2": "Technisch springzadel met verstevigde boom, perfect voor springwedstrijden.",
+    "product.description.3": "Veelzijdig universeel zadel ideaal voor alle rijdisciplines, comfort en prestatie.",
+    "product.description.4": "Robuust en licht cross-country zadel, bestand tegen extreme omstandigheden.",
+    "product.description.5": "Zadel aangepast voor pony's en jonge ruiters, veilig en comfortabel."
   },
   es: {
     "nav.home": "Inicio",
@@ -399,7 +417,13 @@ export const translations: Record<string, Record<string, string>> = {
     "checkout.shipping": "Envío",
     "checkout.shippingFree": "Gratis",
     "checkout.total": "Total",
-    "checkout.paymentInfo": "Información de pago"
+    "checkout.paymentInfo": "Información de pago",
+    "product.featured": "Nuevo",
+    "product.description.1": "Montura de doma de alta calidad en cuero italiano, asiento profundo para contacto óptimo.",
+    "product.description.2": "Montura técnica de salto con fuste reforzado, perfecta para competiciones de salto.",
+    "product.description.3": "Montura versátil polivalente ideal para todos los tipos de equitación, comodidad y rendimiento.",
+    "product.description.4": "Montura de cross-country robusta y ligera, resistente a condiciones extremas.",
+    "product.description.5": "Montura adaptada para ponis y jinetes jóvenes, segura y cómoda."
   },
   de: {
     "nav.home": "Startseite",
@@ -487,6 +511,12 @@ export const translations: Record<string, Record<string, string>> = {
     "checkout.shipping": "Versand",
     "checkout.shippingFree": "Kostenlos",
     "checkout.total": "Gesamt",
-    "checkout.paymentInfo": "Zahlungsinformationen"
+    "checkout.paymentInfo": "Zahlungsinformationen",
+    "product.featured": "Neu",
+    "product.description.1": "Hochwertiger Dressursattel aus italienischem Leder, tiefer Sitz für optimalen Kontakt.",
+    "product.description.2": "Technischer Springsattel mit verstärktem Baum, perfekt für Springwettbewerbe.",
+    "product.description.3": "Vielseitiger Allzwecksattel ideal für alle Reitdisziplinen, Komfort und Leistung.",
+    "product.description.4": "Robuster und leichter Vielseitigkeitssattel, widerstandsfähig gegen extreme Bedingungen.",
+    "product.description.5": "Für Ponys und junge Reiter angepasster Sattel, sicher und komfortabel."
   }
 };
