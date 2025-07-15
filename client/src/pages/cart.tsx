@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import { Link } from "wouter";
 import { useCart } from "../hooks/use-cart";
 import { useLanguage } from "../hooks/use-language";
+import { scrollToTop } from "../lib/utils";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
@@ -11,6 +13,11 @@ import { ShoppingCart, ArrowLeft, Truck } from "lucide-react";
 export default function Cart() {
   const { items, totalAmount, totalItems, clearCart } = useCart();
   const { t } = useLanguage();
+
+  // Scroll to top when page loads
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   const shippingCost = totalAmount >= 100 ? 0 : 12.90;
   const finalTotal = totalAmount + shippingCost;

@@ -5,6 +5,7 @@ import { useCart } from "../hooks/use-cart";
 import { useLanguage } from "../hooks/use-language";
 import { useToast } from "../hooks/use-toast";
 import { apiRequest } from "../lib/queryClient";
+import { scrollToTop } from "../lib/utils";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Input } from "../components/ui/input";
@@ -361,6 +362,11 @@ const CheckoutForm = () => {
 export default function Checkout() {
   const { items } = useCart();
   const [clientSecret, setClientSecret] = useState("");
+
+  // Scroll to top when page loads
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   useEffect(() => {
     if (items.length > 0) {

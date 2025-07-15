@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLanguage } from "../hooks/use-language";
+import { scrollToTop } from "../lib/utils";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Input } from "../components/ui/input";
@@ -26,6 +27,11 @@ export default function Contact() {
     subject: "",
     message: ""
   });
+
+  // Scroll to top when page loads
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams, Link } from "wouter";
 import { useCart } from "../hooks/use-cart";
 import { useLanguage } from "../hooks/use-language";
+import { scrollToTop } from "../lib/utils";
 import { Product } from "@shared/schema";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
@@ -17,6 +18,11 @@ export default function ProductPage() {
   const { addItem } = useCart();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+
+  // Scroll to top when page loads
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   const { data: product, isLoading } = useQuery<Product>({
     queryKey: [`/api/products/${id}`],

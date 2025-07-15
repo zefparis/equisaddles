@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { useCart } from "../hooks/use-cart";
 import { useLanguage } from "../hooks/use-language";
+import { scrollToTop } from "../lib/utils";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { CheckCircle, Package, Truck, Mail } from "lucide-react";
@@ -11,6 +12,11 @@ export default function Confirmation() {
   const { t } = useLanguage();
   const [location] = useLocation();
   const [sessionId, setSessionId] = useState<string | null>(null);
+
+  // Scroll to top when page loads
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   useEffect(() => {
     const params = new URLSearchParams(location.split('?')[1] || '');

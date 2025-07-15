@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { useLanguage } from "../hooks/use-language";
+import { scrollToTop } from "../lib/utils";
 import { Product } from "@shared/schema";
 import ProductCard from "../components/product/product-card";
 import ProductFilters from "../components/product/product-filters";
@@ -22,6 +23,11 @@ export default function Catalog() {
     sizes: [] as string[],
     priceRange: [0, 2000] as [number, number],
   });
+
+  // Scroll to top when page loads
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   // Parse URL parameters
   useEffect(() => {

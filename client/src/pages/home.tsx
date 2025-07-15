@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import { useLanguage } from "../hooks/use-language";
 import { useCart } from "../hooks/use-cart";
+import { scrollToTop, scrollToSection } from "../lib/utils";
 import { Product } from "@shared/schema";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
@@ -40,6 +42,11 @@ const categories = [
 export default function Home() {
   const { t } = useLanguage();
   const { addItem } = useCart();
+
+  // Scroll to top when page loads
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   const { data: featuredProducts, isLoading } = useQuery<Product[]>({
     queryKey: ["/api/products?featured=true"],

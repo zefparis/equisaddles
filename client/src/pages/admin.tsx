@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLanguage } from "../hooks/use-language";
 import { useToast } from "../hooks/use-toast";
+import { scrollToTop } from "../lib/utils";
 import { apiRequest } from "../lib/queryClient";
 import { Product, GalleryImage, Order, insertProductSchema, insertGalleryImageSchema } from "@shared/schema";
 import { Button } from "../components/ui/button";
@@ -33,6 +34,11 @@ export default function Admin() {
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [showProductDialog, setShowProductDialog] = useState(false);
   const [showGalleryDialog, setShowGalleryDialog] = useState(false);
+
+  // Scroll to top when page loads
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   // Queries
   const { data: products, isLoading: productsLoading } = useQuery<Product[]>({

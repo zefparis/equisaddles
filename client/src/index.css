@@ -53,6 +53,10 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply font-sans antialiased bg-background;
     color: hsl(20, 25%, 15%);
