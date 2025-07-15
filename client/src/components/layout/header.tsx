@@ -15,11 +15,11 @@ import {
 import CartModal from "../cart/cart-modal";
 
 const languages = [
-  { code: "fr", name: "Français", flag: "🇫🇷" },
-  { code: "en", name: "English", flag: "🇬🇧" },
-  { code: "nl", name: "Nederlands", flag: "🇳🇱" },
-  { code: "es", name: "Español", flag: "🇪🇸" },
-  { code: "de", name: "Deutsch", flag: "🇩🇪" },
+  { code: "fr", name: "Français", flag: <svg className="w-4 h-4" viewBox="0 0 24 16"><rect width="8" height="16" fill="#002654"/><rect x="8" width="8" height="16" fill="#ffffff"/><rect x="16" width="8" height="16" fill="#ce1126"/></svg> },
+  { code: "en", name: "English", flag: <svg className="w-4 h-4" viewBox="0 0 24 16"><rect width="24" height="16" fill="#012169"/><path d="M0 0l24 16M24 0L0 16" stroke="#ffffff" strokeWidth="2"/><path d="M0 0l24 16M24 0L0 16" stroke="#c8102e" strokeWidth="1"/><path d="M12 0v16M0 8h24" stroke="#ffffff" strokeWidth="3"/><path d="M12 0v16M0 8h24" stroke="#c8102e" strokeWidth="1.5"/></svg> },
+  { code: "nl", name: "Nederlands", flag: <svg className="w-4 h-4" viewBox="0 0 24 16"><rect width="24" height="5.33" fill="#ae1c28"/><rect width="24" height="5.33" y="5.33" fill="#ffffff"/><rect width="24" height="5.33" y="10.67" fill="#21468b"/></svg> },
+  { code: "es", name: "Español", flag: <svg className="w-4 h-4" viewBox="0 0 24 16"><rect width="24" height="4" fill="#aa151b"/><rect width="24" height="8" y="4" fill="#f1bf00"/><rect width="24" height="4" y="12" fill="#aa151b"/></svg> },
+  { code: "de", name: "Deutsch", flag: <svg className="w-4 h-4" viewBox="0 0 24 16"><rect width="24" height="5.33" fill="#000000"/><rect width="24" height="5.33" y="5.33" fill="#dd0000"/><rect width="24" height="5.33" y="10.67" fill="#ffce00"/></svg> },
 ];
 
 export default function Header() {
@@ -66,7 +66,7 @@ export default function Header() {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="flex items-center space-x-2 hover:text-accent text-white">
                   <Globe className="h-4 w-4" />
-                  <span className="text-lg">{currentLanguage?.flag}</span>
+                  <span className="flex items-center">{currentLanguage?.flag}</span>
                   <span className="text-sm">{language.toUpperCase()}</span>
                 </Button>
               </DropdownMenuTrigger>
@@ -77,7 +77,7 @@ export default function Header() {
                     onClick={() => setLanguage(lang.code)}
                     className={`cursor-pointer text-black ${language === lang.code ? 'bg-accent' : ''}`}
                   >
-                    <span className="mr-2 text-lg">{lang.flag}</span>
+                    <span className="mr-2 flex items-center">{lang.flag}</span>
                     {lang.name}
                   </DropdownMenuItem>
                 ))}
