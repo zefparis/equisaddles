@@ -53,7 +53,11 @@ export const translations: Record<string, Record<string, string>> = {
     "filter.all": "Toutes",
     "filter.category": "Catégorie",
     "filter.size": "Taille",
-    "filter.price": "Prix"
+    "filter.price": "Prix",
+    "chat.title": "Assistant Equi Saddles",
+    "chat.placeholder": "Tapez votre message...",
+    "chat.welcome": "Bonjour ! Je suis votre assistant Equi Saddles. Comment puis-je vous aider aujourd'hui ?",
+    "chat.unread": "Messages non lus"
   },
   en: {
     "nav.home": "Home",
@@ -109,7 +113,11 @@ export const translations: Record<string, Record<string, string>> = {
     "filter.all": "All",
     "filter.category": "Category",
     "filter.size": "Size",
-    "filter.price": "Price"
+    "filter.price": "Price",
+    "chat.title": "Equi Saddles Assistant",
+    "chat.placeholder": "Type your message...",
+    "chat.welcome": "Hello! I'm your Equi Saddles assistant. How can I help you today?",
+    "chat.unread": "Unread messages"
   },
   nl: {
     "nav.home": "Home",
@@ -165,7 +173,11 @@ export const translations: Record<string, Record<string, string>> = {
     "filter.all": "Alle",
     "filter.category": "Categorie",
     "filter.size": "Maat",
-    "filter.price": "Prijs"
+    "filter.price": "Prijs",
+    "chat.title": "Equi Saddles Assistent",
+    "chat.placeholder": "Typ je bericht...",
+    "chat.welcome": "Hallo! Ik ben je Equi Saddles assistent. Hoe kan ik je vandaag helpen?",
+    "chat.unread": "Ongelezen berichten"
   },
   es: {
     "nav.home": "Inicio",
@@ -221,7 +233,11 @@ export const translations: Record<string, Record<string, string>> = {
     "filter.all": "Todos",
     "filter.category": "Categoría",
     "filter.size": "Talla",
-    "filter.price": "Precio"
+    "filter.price": "Precio",
+    "chat.title": "Asistente Equi Saddles",
+    "chat.placeholder": "Escribe tu mensaje...",
+    "chat.welcome": "¡Hola! Soy tu asistente de Equi Saddles. ¿Cómo puedo ayudarte hoy?",
+    "chat.unread": "Mensajes no leídos"
   },
   de: {
     "nav.home": "Startseite",
@@ -277,6 +293,10 @@ export const translations: Record<string, Record<string, string>> = {
     "filter.all": "Alle",
     "filter.category": "Kategorie",
     "filter.size": "Größe",
-    "filter.price": "Preis"
+    "filter.price": "Preis",
+    "chat.title": "Equi Saddles Assistent",
+    "chat.placeholder": "Geben Sie Ihre Nachricht ein...",
+    "chat.welcome": "Hallo! Ich bin Ihr Equi Saddles Assistent. Wie kann ich Ihnen heute helfen?",
+    "chat.unread": "Ungelesene Nachrichten"
   }
 };
