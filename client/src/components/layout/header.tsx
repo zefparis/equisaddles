@@ -34,7 +34,7 @@ export default function Header() {
     { name: t("nav.home"), href: "/" },
     { name: t("nav.catalog"), href: "/catalog" },
     { name: t("nav.gallery"), href: "/gallery" },
-    { name: t("nav.contact"), href: "#contact" },
+    { name: t("nav.contact"), href: "/contact" },
   ];
 
   return (

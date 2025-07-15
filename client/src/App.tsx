@@ -17,6 +17,7 @@ import Cart from "./pages/cart";
 import Checkout from "./pages/checkout";
 import Confirmation from "./pages/confirmation";
 import Gallery from "./pages/gallery";
+import Contact from "./pages/contact";
 import Admin from "./pages/admin";
 import NotFound from "@/pages/not-found";
 
@@ -30,6 +31,7 @@ function Router() {
       <Route path="/checkout" component={Checkout} />
       <Route path="/confirmation" component={Confirmation} />
       <Route path="/gallery" component={Gallery} />
+      <Route path="/contact" component={Contact} />
       <Route path="/admin" component={Admin} />
       <Route component={NotFound} />
     </Switch>
