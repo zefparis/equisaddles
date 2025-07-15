@@ -14,7 +14,7 @@ import { Checkbox } from "../components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import { Badge } from "../components/ui/badge";
 import { Separator } from "../components/ui/separator";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "../components/ui/dialog";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -403,6 +403,9 @@ export default function Admin() {
               <DialogTitle>
                 {editingProduct ? "Modifier le produit" : "Nouveau produit"}
               </DialogTitle>
+              <DialogDescription>
+                {editingProduct ? "Modifiez les détails du produit ci-dessous." : "Ajoutez un nouveau produit à votre catalogue."}
+              </DialogDescription>
             </DialogHeader>
             <form onSubmit={productForm.handleSubmit(handleProductSubmit)} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -530,6 +533,9 @@ export default function Admin() {
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Nouvelle image</DialogTitle>
+              <DialogDescription>
+                Ajoutez une nouvelle image à la galerie en remplissant les informations ci-dessous.
+              </DialogDescription>
             </DialogHeader>
             <form onSubmit={galleryForm.handleSubmit(handleGallerySubmit)} className="space-y-4">
               <div>
