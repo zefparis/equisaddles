@@ -1,0 +1,74 @@
+Crée une application e-commerce statique nommée Equi Saddles, dédiée uniquement à la vente de selles équestres. L'application doit être développée en HTML5, CSS3, JavaScript (vanilla). Elle doit être responsive, multilingue, sans authentification, mais avec une page d'administration locale. Le paiement doit se faire via Stripe Checkout. Le panier est géré en localStorage.
+
+✅ Fonctionnalités principales à implémenter :
+Pages à créer :
+
+index.html : page d’accueil avec image hero, navigation, sélection des catégories (Obstacle, Dressage, Cross, Mixte, Poney), 3 produits en vedette.
+
+catalog.html : catalogue complet avec filtres dynamiques (catégorie, taille : 16 → 18,5, prix).
+
+product.html : fiche produit détaillée (nom, description, taille, prix, photos multiples, bouton “Ajouter au panier”).
+
+cart.html : page panier avec liste des produits, possibilité de modifier/supprimer les articles, total TTC.
+
+checkout.html : formulaire de commande (nom, adresse, téléphone) + bouton "Payer avec Stripe".
+
+confirmation.html : page de remerciement après paiement.
+
+gallery.html : galerie d’images avec filtres par catégorie.
+
+admin.html : interface admin (sans auth) pour :
+
+Ajouter/modifier des produits
+
+Gérer les photos de la galerie
+
+Générer des annonces dynamiques
+
+Système multilingue (FR, EN, NL, ES, DE) :
+
+Fichiers de traduction JSON (fr.json, en.json, etc.)
+
+Script i18n.js pour charger dynamiquement les textes
+
+Sélecteur de langue dans le header
+
+Langue mémorisée dans localStorage
+
+Design moderne, responsive et accessible
+
+Palette : Brun foncé #3e2723, Beige clair #d7ccc8, Blanc #ffffff, Noir #000000
+
+Typographie élégante (Inter, Segoe UI, etc.)
+
+Icônes SVG (panier, étoile, filtre, langue, etc.)
+
+Animation légère au survol, lazy loading sur images
+
+Lightbox pour zoom sur images produits
+
+Panier en JavaScript
+
+Stocké en localStorage
+
+Compteur d’articles visible dans le header
+
+Fonction “vider le panier”
+
+Paiement Stripe
+
+Backend Node.js minimal avec /create-checkout-session
+
+Appelle Stripe Checkout avec les articles du panier
+
+Redirection automatique vers confirmation.html
+
+Clé publique Stripe utilisée côté client, clé privée uniquement côté serveur
+
+Cotation transporteur DPD (préparé)
+
+Formulaire dans checkout.html avec code postal + pays
+
+Bloc dynamique prévu pour afficher les frais de port (actuellement simulé)
+
+Structure prête à être connectée à l’API DPD plus tard
