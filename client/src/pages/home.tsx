@@ -12,31 +12,26 @@ import { ArrowRight, Award, Headphones, FastForward, Star, Gavel } from "lucide-
 const categories = [
   {
     name: "Obstacle",
-    icon: "🏇",
     image: "/images/obstacle.webp",
     description: "categories.obstacle"
   },
   {
     name: "Dressage",
-    icon: "🏆",
     image: "/images/dressage.jpg",
     description: "categories.dressage"
   },
   {
     name: "Cross",
-    icon: "⛰️",
     image: "/images/cross.jpg",
     description: "categories.cross"
   },
   {
     name: "Mixte",
-    icon: "⭐",
     image: "/images/mixte.jpg",
     description: "categories.mixte"
   },
   {
     name: "Poney",
-    icon: "💖",
     image: "/images/poney.jpg",
     description: "categories.poney"
   }
@@ -98,8 +93,7 @@ export default function Home() {
                   >
                     <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                       <div className="text-white text-center">
-                        <div className="text-3xl mb-2">{category.icon}</div>
-                        <h3 className="font-semibold text-lg">{category.name}</h3>
+                        <h3 className="font-semibold text-xl">{category.name}</h3>
                       </div>
                     </div>
                   </div>
