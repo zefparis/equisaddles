@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import Stripe from "stripe";
 import { storage } from "./storage";
 import { insertProductSchema, insertGalleryImageSchema, insertOrderSchema } from "@shared/schema";
+import { dpdService, type ShippingCalculationRequest } from "./dpd-service";
 import { z } from "zod";
 
 if (!process.env.STRIPE_SECRET_KEY) {
@@ -264,36 +265,98 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Shipping calculation (DPD placeholder)
+  // DPD Shipping API
+  app.post("/api/shipping/calculate", async (req, res) => {
+    try {
+      const shippingRequest: ShippingCalculationRequest = {
+        weight: req.body.weight,
+        country: req.body.country,
+        postalCode: req.body.postalCode,
+        city: req.body.city,
+        value: req.body.value
+      };
+
+      const options = await dpdService.calculateShipping(shippingRequest);
+      res.json(options);
+    } catch (error: any) {
+      res.status(500).json({ message: "Error calculating shipping: " + error.message });
+    }
+  });
+
+  app.get("/api/shipping/rates", async (req, res) => {
+    try {
+      const { zone } = req.query;
+      let rates;
+      
+      if (zone) {
+        rates = await storage.getShippingRatesByZone(zone as string);
+      } else {
+        rates = await storage.getShippingRates();
+      }
+      
+      res.json(rates);
+    } catch (error: any) {
+      res.status(500).json({ message: "Error fetching shipping rates: " + error.message });
+    }
+  });
+
+  app.post("/api/shipping/generate-label", async (req, res) => {
+    try {
+      const { orderId, shippingData } = req.body;
+      
+      const label = await dpdService.generateShippingLabel(orderId, shippingData);
+      res.json(label);
+    } catch (error: any) {
+      res.status(500).json({ message: "Error generating shipping label: " + error.message });
+    }
+  });
+
+  app.get("/api/shipping/track/:trackingNumber", async (req, res) => {
+    try {
+      const trackingNumber = req.params.trackingNumber;
+      const tracking = await dpdService.trackPackage(trackingNumber);
+      res.json(tracking);
+    } catch (error: any) {
+      res.status(500).json({ message: "Error tracking package: " + error.message });
+    }
+  });
+
+  // Legacy endpoint for backward compatibility
   app.post("/api/calculate-shipping", async (req, res) => {
     try {
       const { postalCode, country, items } = req.body;
       
-      // Placeholder shipping calculation
-      // In a real implementation, this would call DPD API
-      let shippingCost = 0;
-      
-      if (country === "FR") {
-        shippingCost = 12.90;
-      } else if (["BE", "NL", "DE", "ES"].includes(country)) {
-        shippingCost = 19.90;
-      } else {
-        shippingCost = 29.90;
-      }
+      // Calculate weight based on items
+      const totalWeight = items.reduce((weight: number, item: any) => {
+        const itemWeight = 4.0; // Default weight per saddle
+        return weight + (itemWeight * item.quantity);
+      }, 0);
 
-      // Free shipping over 100€
-      const totalAmount = items.reduce((sum: number, item: any) => 
+      // Calculate total value
+      const totalValue = items.reduce((sum: number, item: any) => 
         sum + (parseFloat(item.price) * item.quantity), 0);
-      
-      if (totalAmount >= 100) {
-        shippingCost = 0;
-      }
 
-      res.json({ 
-        shippingCost: shippingCost.toFixed(2),
-        estimatedDelivery: "2-3 jours ouvrés",
-        carrier: "DPD"
-      });
+      const shippingRequest: ShippingCalculationRequest = {
+        weight: totalWeight,
+        country: country,
+        postalCode: postalCode,
+        city: "",
+        value: totalValue
+      };
+
+      const options = await dpdService.calculateShipping(shippingRequest);
+      const cheapestOption = options.length > 0 ? options[0] : null;
+
+      if (cheapestOption) {
+        res.json({ 
+          shippingCost: cheapestOption.price.toFixed(2),
+          estimatedDelivery: cheapestOption.deliveryTime,
+          carrier: "DPD",
+          service: cheapestOption.serviceName
+        });
+      } else {
+        res.status(400).json({ message: "No shipping options available" });
+      }
     } catch (error: any) {
       res.status(500).json({ message: "Error calculating shipping: " + error.message });
     }

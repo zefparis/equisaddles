@@ -37,9 +37,28 @@ export const orders = pgTable("orders", {
   items: text("items").notNull(), // JSON string
   totalAmount: decimal("total_amount", { precision: 10, scale: 2 }).notNull(),
   shippingCost: decimal("shipping_cost", { precision: 10, scale: 2 }).default("0"),
+  shippingService: text("shipping_service").notNull().default("DPD_CLASSIC"),
+  shippingZone: text("shipping_zone").notNull().default("domestic"),
+  trackingNumber: text("tracking_number"),
+  shippingLabelUrl: text("shipping_label_url"),
+  estimatedDelivery: text("estimated_delivery"),
+  dpdReference: text("dpd_reference"),
   status: text("status").notNull().default("pending"), // "pending", "paid", "shipped", "delivered"
   stripeSessionId: text("stripe_session_id"),
   createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const shippingRates = pgTable("shipping_rates", {
+  id: serial("id").primaryKey(),
+  zone: text("zone").notNull(),
+  service: text("service").notNull(),
+  minWeight: decimal("min_weight", { precision: 5, scale: 2 }).notNull().default("0"),
+  maxWeight: decimal("max_weight", { precision: 5, scale: 2 }).notNull().default("30"),
+  baseRate: decimal("base_rate", { precision: 10, scale: 2 }).notNull(),
+  perKgRate: decimal("per_kg_rate", { precision: 10, scale: 2 }).notNull().default("0"),
+  deliveryTime: text("delivery_time").notNull(),
+  description: text("description"),
+  active: boolean("active").notNull().default(true),
 });
 
 export const insertProductSchema = createInsertSchema(products).omit({
@@ -57,9 +76,15 @@ export const insertOrderSchema = createInsertSchema(orders).omit({
   createdAt: true,
 });
 
+export const insertShippingRateSchema = createInsertSchema(shippingRates).omit({
+  id: true,
+});
+
 export type Product = typeof products.$inferSelect;
 export type InsertProduct = z.infer<typeof insertProductSchema>;
 export type GalleryImage = typeof galleryImages.$inferSelect;
 export type InsertGalleryImage = z.infer<typeof insertGalleryImageSchema>;
 export type Order = typeof orders.$inferSelect;
 export type InsertOrder = z.infer<typeof insertOrderSchema>;
+export type ShippingRate = typeof shippingRates.$inferSelect;
+export type InsertShippingRate = z.infer<typeof insertShippingRateSchema>;

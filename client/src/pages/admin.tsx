@@ -18,7 +18,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Settings, Package, Images, ShoppingCart, Plus, Edit, Trash2, Eye } from "lucide-react";
+import { Settings, Package, Images, ShoppingCart, Plus, Edit, Trash2, Eye, FileText, Download, Truck, MapPin } from "lucide-react";
 
 const categories = ["Obstacle", "Dressage", "Cross", "Mixte", "Poney"];
 const sizes = ["16", "16.5", "17", "17.5", "18", "18.5"];
@@ -45,6 +45,47 @@ export default function Admin() {
 
   const { data: orders, isLoading: ordersLoading } = useQuery<Order[]>({
     queryKey: ["/api/orders"],
+  });
+
+  // Shipping management
+  const generateLabelMutation = useMutation({
+    mutationFn: ({ orderId, shippingData }: { orderId: number; shippingData: any }) =>
+      apiRequest("POST", "/api/shipping/generate-label", { orderId, shippingData }),
+    onSuccess: async (response) => {
+      const data = await response.json();
+      toast({
+        title: "Étiquette générée",
+        description: `Étiquette DPD générée: ${data.trackingNumber}`,
+      });
+      // Ouvrir automatiquement l'étiquette dans un nouvel onglet
+      window.open(data.labelUrl, '_blank');
+    },
+    onError: (error) => {
+      toast({
+        title: "Erreur",
+        description: "Impossible de générer l'étiquette DPD",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const trackPackageMutation = useMutation({
+    mutationFn: (trackingNumber: string) =>
+      apiRequest("GET", `/api/shipping/track/${trackingNumber}`),
+    onSuccess: async (response) => {
+      const data = await response.json();
+      toast({
+        title: "Suivi du colis",
+        description: `Statut: ${data.status} - ${data.location}`,
+      });
+    },
+    onError: (error) => {
+      toast({
+        title: "Erreur",
+        description: "Impossible de suivre le colis",
+        variant: "destructive",
+      });
+    },
   });
 
   // Mutations
@@ -386,6 +427,54 @@ export default function Admin() {
                               minute: '2-digit'
                             })}
                           </p>
+                        </div>
+                      </div>
+
+                      {/* DPD Shipping Actions */}
+                      <div className="mt-4">
+                        <h4 className="font-semibold mb-2">Actions de livraison DPD</h4>
+                        <div className="flex flex-wrap gap-2">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => generateLabelMutation.mutate({ 
+                              orderId: order.id, 
+                              shippingData: {
+                                customerName: order.customerName,
+                                customerAddress: order.customerAddress,
+                                customerCity: order.customerCity,
+                                customerPostalCode: order.customerPostalCode,
+                                customerCountry: order.customerCountry,
+                                weight: 4.0,
+                                value: parseFloat(order.totalAmount)
+                              }
+                            })}
+                            disabled={generateLabelMutation.isPending}
+                          >
+                            <FileText className="h-4 w-4 mr-2" />
+                            {generateLabelMutation.isPending ? 'Génération...' : 'Générer étiquette'}
+                          </Button>
+                          
+                          {order.stripeSessionId && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => trackPackageMutation.mutate(order.stripeSessionId)}
+                              disabled={trackPackageMutation.isPending}
+                            >
+                              <Truck className="h-4 w-4 mr-2" />
+                              {trackPackageMutation.isPending ? 'Suivi...' : 'Suivre colis'}
+                            </Button>
+                          )}
+                          
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => window.open(`https://www.dpd.fr/suivi_colis`, '_blank')}
+                          >
+                            <MapPin className="h-4 w-4 mr-2" />
+                            Ouvrir DPD
+                          </Button>
                         </div>
                       </div>
                     </CardContent>

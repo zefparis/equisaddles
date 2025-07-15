@@ -16,6 +16,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Link } from "wouter";
 import { ArrowLeft, CreditCard, Truck } from "lucide-react";
+import DPDShippingOptions from "../components/shipping/dpd-shipping-options";
 
 if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
   throw new Error('Missing required Stripe key: VITE_STRIPE_PUBLIC_KEY');
@@ -53,6 +54,7 @@ const CheckoutForm = () => {
   const { t } = useLanguage();
   const [isProcessing, setIsProcessing] = useState(false);
   const [shippingInfo, setShippingInfo] = useState({ cost: 0, carrier: "DPD" });
+  const [selectedShippingOption, setSelectedShippingOption] = useState<any>(null);
 
   const {
     register,
@@ -90,6 +92,14 @@ const CheckoutForm = () => {
     } catch (error) {
       console.error("Error calculating shipping:", error);
     }
+  };
+
+  const handleShippingOptionSelect = (option: any) => {
+    setSelectedShippingOption(option);
+    setShippingInfo({
+      cost: option.price,
+      carrier: option.serviceName,
+    });
   };
 
   const onSubmit = async (data: CheckoutFormData) => {
@@ -132,7 +142,7 @@ const CheckoutForm = () => {
     }
   };
 
-  const finalTotal = totalAmount + shippingInfo.cost;
+  const finalTotal = totalAmount + (selectedShippingOption ? selectedShippingOption.price : shippingInfo.cost);
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -251,6 +261,20 @@ const CheckoutForm = () => {
                     <p className="text-red-500 text-sm mt-1">{errors.country.message}</p>
                   )}
                 </div>
+              </div>
+
+              <Separator className="my-6" />
+
+              {/* DPD Shipping Options */}
+              <div className="mb-6">
+                <DPDShippingOptions
+                  items={items}
+                  country={watchedCountry}
+                  postalCode={watchedPostalCode}
+                  city={watch("city")}
+                  onOptionSelect={handleShippingOptionSelect}
+                  selectedOption={selectedShippingOption}
+                />
               </div>
 
               <Separator className="my-6" />
