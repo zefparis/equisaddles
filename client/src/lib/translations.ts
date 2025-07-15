@@ -135,7 +135,17 @@ export const translations: Record<string, Record<string, string>> = {
     "footer.maintenance": "Entretien",
     "footer.warranty": "Garantie",
     "footer.faq": "FAQ",
-    "footer.opening": "Lun-Ven: 9h-18h"
+    "footer.opening": "Lun-Ven: 9h-18h",
+    "admin.newProduct": "Nouveau produit",
+    "admin.editProduct": "Modifier le produit",
+    "admin.newProductDesc": "Ajoutez un nouveau produit à votre catalogue.",
+    "admin.editProductDesc": "Modifiez les détails du produit ci-dessous.",
+    "admin.newImage": "Nouvelle image",
+    "admin.newImageDesc": "Ajoutez une nouvelle image à la galerie en remplissant les informations ci-dessous.",
+    "admin.cancel": "Annuler",
+    "admin.create": "Créer",
+    "admin.modify": "Modifier",
+    "admin.add": "Ajouter"
   },
   en: {
     "nav.home": "Home",
@@ -273,7 +283,17 @@ export const translations: Record<string, Record<string, string>> = {
     "footer.maintenance": "Maintenance",
     "footer.warranty": "Warranty",
     "footer.faq": "FAQ",
-    "footer.opening": "Mon-Fri: 9am-6pm"
+    "footer.opening": "Mon-Fri: 9am-6pm",
+    "admin.newProduct": "New Product",
+    "admin.editProduct": "Edit Product",
+    "admin.newProductDesc": "Add a new product to your catalog.",
+    "admin.editProductDesc": "Edit the product details below.",
+    "admin.newImage": "New Image",
+    "admin.newImageDesc": "Add a new image to the gallery by filling in the information below.",
+    "admin.cancel": "Cancel",
+    "admin.create": "Create",
+    "admin.modify": "Modify",
+    "admin.add": "Add"
   },
   nl: {
     "nav.home": "Home",
@@ -386,7 +406,17 @@ export const translations: Record<string, Record<string, string>> = {
     "footer.maintenance": "Onderhoud",
     "footer.warranty": "Garantie",
     "footer.faq": "FAQ",
-    "footer.opening": "Ma-Vr: 9u-18u"
+    "footer.opening": "Ma-Vr: 9u-18u",
+    "admin.newProduct": "Nieuw product",
+    "admin.editProduct": "Product bewerken",
+    "admin.newProductDesc": "Voeg een nieuw product toe aan uw catalogus.",
+    "admin.editProductDesc": "Bewerk de productdetails hieronder.",
+    "admin.newImage": "Nieuwe afbeelding",
+    "admin.newImageDesc": "Voeg een nieuwe afbeelding toe aan de galerij door de onderstaande informatie in te vullen.",
+    "admin.cancel": "Annuleren",
+    "admin.create": "Aanmaken",
+    "admin.modify": "Wijzigen",
+    "admin.add": "Toevoegen"
   },
   es: {
     "nav.home": "Inicio",
@@ -499,7 +529,17 @@ export const translations: Record<string, Record<string, string>> = {
     "footer.maintenance": "Mantenimiento",
     "footer.warranty": "Garantía",
     "footer.faq": "FAQ",
-    "footer.opening": "Lun-Vie: 9h-18h"
+    "footer.opening": "Lun-Vie: 9h-18h",
+    "admin.newProduct": "Nuevo producto",
+    "admin.editProduct": "Editar producto",
+    "admin.newProductDesc": "Agregue un nuevo producto a su catálogo.",
+    "admin.editProductDesc": "Edite los detalles del producto a continuación.",
+    "admin.newImage": "Nueva imagen",
+    "admin.newImageDesc": "Agregue una nueva imagen a la galería completando la información a continuación.",
+    "admin.cancel": "Cancelar",
+    "admin.create": "Crear",
+    "admin.modify": "Modificar",
+    "admin.add": "Agregar"
   },
   de: {
     "nav.home": "Startseite",
@@ -612,6 +652,16 @@ export const translations: Record<string, Record<string, string>> = {
     "footer.maintenance": "Wartung",
     "footer.warranty": "Garantie",
     "footer.faq": "FAQ",
-    "footer.opening": "Mo-Fr: 9-18 Uhr"
+    "footer.opening": "Mo-Fr: 9-18 Uhr",
+    "admin.newProduct": "Neues Produkt",
+    "admin.editProduct": "Produkt bearbeiten",
+    "admin.newProductDesc": "Fügen Sie ein neues Produkt zu Ihrem Katalog hinzu.",
+    "admin.editProductDesc": "Bearbeiten Sie die Produktdetails unten.",
+    "admin.newImage": "Neues Bild",
+    "admin.newImageDesc": "Fügen Sie ein neues Bild zur Galerie hinzu, indem Sie die untenstehenden Informationen ausfüllen.",
+    "admin.cancel": "Abbrechen",
+    "admin.create": "Erstellen",
+    "admin.modify": "Ändern",
+    "admin.add": "Hinzufügen"
   }
 };

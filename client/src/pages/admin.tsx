@@ -401,10 +401,10 @@ export default function Admin() {
           <DialogContent className="max-w-2xl">
             <DialogHeader>
               <DialogTitle>
-                {editingProduct ? "Modifier le produit" : "Nouveau produit"}
+                {editingProduct ? t("admin.editProduct") : t("admin.newProduct")}
               </DialogTitle>
               <DialogDescription>
-                {editingProduct ? "Modifiez les détails du produit ci-dessous." : "Ajoutez un nouveau produit à votre catalogue."}
+                {editingProduct ? t("admin.editProductDesc") : t("admin.newProductDesc")}
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={productForm.handleSubmit(handleProductSubmit)} className="space-y-4">
@@ -518,10 +518,10 @@ export default function Admin() {
 
               <div className="flex justify-end space-x-2">
                 <Button type="button" variant="outline" onClick={() => setShowProductDialog(false)}>
-                  Annuler
+                  {t("admin.cancel")}
                 </Button>
                 <Button type="submit" className="btn-primary">
-                  {editingProduct ? "Modifier" : "Créer"}
+                  {editingProduct ? t("admin.modify") : t("admin.create")}
                 </Button>
               </div>
             </form>
@@ -532,9 +532,9 @@ export default function Admin() {
         <Dialog open={showGalleryDialog} onOpenChange={setShowGalleryDialog}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Nouvelle image</DialogTitle>
+              <DialogTitle>{t("admin.newImage")}</DialogTitle>
               <DialogDescription>
-                Ajoutez une nouvelle image à la galerie en remplissant les informations ci-dessous.
+                {t("admin.newImageDesc")}
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={galleryForm.handleSubmit(handleGallerySubmit)} className="space-y-4">
@@ -577,10 +577,10 @@ export default function Admin() {
 
               <div className="flex justify-end space-x-2">
                 <Button type="button" variant="outline" onClick={() => setShowGalleryDialog(false)}>
-                  Annuler
+                  {t("admin.cancel")}
                 </Button>
                 <Button type="submit" className="btn-primary">
-                  Ajouter
+                  {t("admin.add")}
                 </Button>
               </div>
             </form>
