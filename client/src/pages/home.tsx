@@ -13,31 +13,31 @@ const categories = [
   {
     name: "Obstacle",
     icon: "🏇",
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300",
+    image: "/images/obstacle.webp",
     description: "categories.obstacle"
   },
   {
     name: "Dressage",
     icon: "🏆",
-    image: "https://images.unsplash.com/photo-1560807707-8cc77767d783?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300",
+    image: "/images/dressage.jpg",
     description: "categories.dressage"
   },
   {
     name: "Cross",
     icon: "⛰️",
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300",
+    image: "/images/cross.jpg",
     description: "categories.cross"
   },
   {
     name: "Mixte",
     icon: "⭐",
-    image: "https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300",
+    image: "/images/mixte.jpg",
     description: "categories.mixte"
   },
   {
     name: "Poney",
     icon: "💖",
-    image: "https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300",
+    image: "/images/poney.jpg",
     description: "categories.poney"
   }
 ];
