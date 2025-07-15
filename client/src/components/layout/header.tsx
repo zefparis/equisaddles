@@ -65,9 +65,9 @@ export default function Header() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="flex items-center space-x-2 hover:text-accent text-white">
-                  <Globe className="h-4 w-4" />
+                  <Globe className="h-4 w-4 text-white" />
                   <span className="flex items-center">{currentLanguage?.flag}</span>
-                  <span className="text-sm">{language.toUpperCase()}</span>
+                  <span className="text-sm text-white">{language.toUpperCase()}</span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-white border shadow-lg">
@@ -88,9 +88,9 @@ export default function Header() {
             <Button
               variant="ghost"
               onClick={() => setIsCartOpen(true)}
-              className="relative hover:text-accent"
+              className="relative hover:text-accent text-white"
             >
-              <ShoppingCart className="h-5 w-5" />
+              <ShoppingCart className="h-5 w-5 text-white" />
               {totalItems > 0 && (
                 <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-accent text-xs">
                   {totalItems}
@@ -101,8 +101,8 @@ export default function Header() {
             {/* Mobile Menu Toggle */}
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" className="md:hidden">
-                  <Menu className="h-5 w-5" />
+                <Button variant="ghost" className="md:hidden text-white">
+                  <Menu className="h-5 w-5 text-white" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px]">
