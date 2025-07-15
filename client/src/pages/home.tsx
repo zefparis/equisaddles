@@ -52,10 +52,10 @@ export default function Home() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-gray-900"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080')"
+            backgroundImage: "url('/images/hero-excellence.webp')"
           }}
         >
-          <div className="absolute inset-0 hero-gradient"></div>
+          <div className="absolute inset-0 bg-yellow-800 bg-opacity-30"></div>
         </div>
         
         <div className="relative z-10 text-center px-4 fade-in">
