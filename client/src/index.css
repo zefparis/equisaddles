@@ -77,6 +77,23 @@
     color: hsl(20, 25%, 15%);
   }
   
+  /* Header and navigation should have white text */
+  header {
+    color: white !important;
+  }
+  
+  header h1, header h2, header h3, header h4, header h5, header h6,
+  header p, header span, header div, header a {
+    color: white !important;
+  }
+  
+  /* Hero section should have white text */
+  .text-white,
+  .text-white h1, .text-white h2, .text-white h3, .text-white h4, .text-white h5, .text-white h6,
+  .text-white p, .text-white span, .text-white div {
+    color: white !important;
+  }
+  
   /* Dark mode overrides */
   .dark body {
     color: hsl(0, 0%, 95%);

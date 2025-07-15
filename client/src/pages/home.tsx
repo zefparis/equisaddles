@@ -58,11 +58,11 @@ export default function Home() {
           <div className="absolute inset-0 bg-yellow-800 bg-opacity-30"></div>
         </div>
         
-        <div className="relative z-10 text-center px-4 fade-in">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+        <div className="relative z-10 text-center px-4 fade-in text-white">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
             {t("hero.title")}
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-white">
             {t("hero.subtitle")}
           </p>
           <Link href="/catalog">
