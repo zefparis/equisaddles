@@ -1,18 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es2020",
+    "moduleResolution": "nodenext",
     "module": "es2022",
+    "target": "es2020",
     "outDir": "dist/server",
-    "rootDir": ".",
-    "esModuleInterop": true,
+    "rootDir": "server",
     "strict": true,
+    "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
-    "paths": {
-      "@shared/*": ["shared/*"]
-    }
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["server/**/*", "shared/**/*"],
-  "exclude": ["node_modules", "client", "vite.config.ts"]
+  "exclude": ["node_modules"]
 }
