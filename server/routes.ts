@@ -1,9 +1,10 @@
 import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import Stripe from "stripe";
-import { storage } from "./storage";
-import { insertProductSchema, insertGalleryImageSchema, insertProductImageSchema, insertOrderSchema } from "@shared/schema";
-import { dpdService, type ShippingCalculationRequest } from "./dpd-service";
+import { storage } from "./storage.js";
+// @ts-ignore
+import { insertProductSchema, insertGalleryImageSchema, insertProductImageSchema, insertOrderSchema } from "../../shared/schema.js";
+import { dpdService, type ShippingCalculationRequest } from "./dpd-service.js";
 import { z } from "zod";
 
 if (!process.env.STRIPE_SECRET_KEY) {

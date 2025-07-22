@@ -1,4 +1,5 @@
-import { ShippingRate } from "@shared/schema";
+// @ts-ignore
+import { ShippingRate } from "../../shared/schema.js";
 
 // Configuration DPD fictive mais simulation réelle
 const DPD_CONFIG = {

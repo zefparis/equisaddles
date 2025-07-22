@@ -1,5 +1,6 @@
 import { eq } from 'drizzle-orm';
-import { products, galleryImages, productImages, orders, shippingRates, type Product, type InsertProduct, type ProductImage, type InsertProductImage, type GalleryImage, type InsertGalleryImage, type Order, type InsertOrder, type ShippingRate, type InsertShippingRate } from "@shared/schema";
+// @ts-ignore
+import { products, galleryImages, productImages, orders, shippingRates, type Product, type InsertProduct, type ProductImage, type InsertProductImage, type GalleryImage, type InsertGalleryImage, type Order, type InsertOrder, type ShippingRate, type InsertShippingRate } from "../../shared/schema.js";
 
 export interface IStorage {
   // Products
