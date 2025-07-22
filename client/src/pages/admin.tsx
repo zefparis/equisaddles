@@ -503,7 +503,7 @@ export default function Admin() {
                             <Button
                               variant="outline"
                               size="sm"
-                              onClick={() => trackPackageMutation.mutate(order.stripeSessionId)}
+                              onClick={() => trackPackageMutation.mutate(order.stripeSessionId ?? "") }
                               disabled={trackPackageMutation.isPending}
                             >
                               <Truck className="h-4 w-4 mr-2" />
@@ -634,16 +634,16 @@ export default function Admin() {
                 <div className="flex items-center space-x-2">
                   <Checkbox
                     id="featured"
-                    checked={productForm.watch("featured")}
-                    onCheckedChange={(checked) => productForm.setValue("featured", checked as boolean)}
+                    checked={productForm.watch("featured") ?? false}
+                    onCheckedChange={(checked) => productForm.setValue("featured", !!checked)}
                   />
                   <Label htmlFor="featured">Produit vedette</Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Checkbox
                     id="inStock"
-                    checked={productForm.watch("inStock")}
-                    onCheckedChange={(checked) => productForm.setValue("inStock", checked as boolean)}
+                    checked={productForm.watch("inStock") ?? false}
+                    onCheckedChange={(checked) => productForm.setValue("inStock", !!checked)}
                   />
                   <Label htmlFor="inStock">En stock</Label>
                 </div>
