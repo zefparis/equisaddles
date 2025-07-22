@@ -237,7 +237,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/orders", async (req, res) => {
     try {
       const validatedData = insertOrderSchema.parse(req.body);
-      const order = await storage.createOrder(validatedData);
+      const shippingZone = validatedData.customerCountry ? dpdService.getShippingZone(validatedData.customerCountry) : "domestic";
+const order = await storage.createOrder({ ...validatedData, shippingZone });
       res.status(201).json(order);
     } catch (error: any) {
       res.status(400).json({ message: "Error creating order: " + error.message });
@@ -330,20 +331,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
         // Create order record
         const customerInfo = session.metadata?.customerInfo ? JSON.parse(session.metadata.customerInfo) : {};
         
-        const orderData = {
-          customerName: customerInfo.name || "Unknown",
-          customerEmail: session.customer_email || customerInfo.email || "",
-          customerPhone: customerInfo.phone || "",
-          customerAddress: customerInfo.address || "",
-          customerCity: customerInfo.city || "",
-          customerPostalCode: customerInfo.postalCode || "",
-          customerCountry: customerInfo.country || "",
-          items: JSON.stringify(customerInfo.items || []),
-          totalAmount: (session.amount_total / 100).toString(),
-          shippingCost: "0",
-          status: "paid",
-          stripeSessionId: session.id,
-        };
+        const shippingZone = customerInfo.country ? dpdService.getShippingZone(customerInfo.country) : "domestic";
+const orderData = {
+  customerName: customerInfo.name || "Unknown",
+  customerEmail: session.customer_email || customerInfo.email || "",
+  customerPhone: customerInfo.phone || "",
+  customerAddress: customerInfo.address || "",
+  customerCity: customerInfo.city || "",
+  customerPostalCode: customerInfo.postalCode || "",
+  customerCountry: customerInfo.country || "",
+  items: JSON.stringify(customerInfo.items || []),
+  totalAmount: (session.amount_total / 100).toString(),
+  shippingCost: "0",
+  status: "paid",
+  stripeSessionId: session.id,
+  shippingZone,
+};
 
         await storage.createOrder(orderData);
       }

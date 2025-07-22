@@ -1,3 +1,4 @@
+import { eq } from 'drizzle-orm';
 import { products, galleryImages, productImages, orders, shippingRates, type Product, type InsertProduct, type ProductImage, type InsertProductImage, type GalleryImage, type InsertGalleryImage, type Order, type InsertOrder, type ShippingRate, type InsertShippingRate } from "@shared/schema";
 
 export interface IStorage {
@@ -493,6 +494,7 @@ export class MemStorage implements IStorage {
       ...insertImage,
       id,
       createdAt: new Date(),
+      isMain: typeof insertImage.isMain === "undefined" ? false : insertImage.isMain,
     };
     this.productImages.set(id, image);
     return image;
@@ -551,18 +553,30 @@ export class MemStorage implements IStorage {
 
   async getOrder(id: number): Promise<Order | undefined> {
     return this.orders.get(id);
-  }
+}
 
   async createOrder(insertOrder: InsertOrder): Promise<Order> {
     const id = this.currentOrderId++;
     const order: Order = {
       ...insertOrder,
+      shippingZone: insertOrder.shippingZone ?? "domestic",
       id,
       createdAt: new Date(),
       status: insertOrder.status ?? "pending",
       customerPhone: insertOrder.customerPhone ?? null,
-      stripeSessionId: insertOrder.stripeSessionId ?? null,
+      customerAddress: insertOrder.customerAddress ?? "",
+      customerCity: insertOrder.customerCity ?? "",
+      customerPostalCode: insertOrder.customerPostalCode ?? "",
+      customerCountry: insertOrder.customerCountry ?? "",
+      items: insertOrder.items ?? "[]",
+      totalAmount: insertOrder.totalAmount ?? "0",
       shippingCost: insertOrder.shippingCost ?? null,
+      shippingService: insertOrder.shippingService ?? "DPD_CLASSIC",
+      trackingNumber: insertOrder.trackingNumber ?? null,
+      shippingLabelUrl: insertOrder.shippingLabelUrl ?? null,
+      estimatedDelivery: insertOrder.estimatedDelivery ?? null,
+      dpdReference: insertOrder.dpdReference ?? null,
+      stripeSessionId: insertOrder.stripeSessionId ?? null,
     };
     this.orders.set(id, order);
     return order;
@@ -571,10 +585,10 @@ export class MemStorage implements IStorage {
   async updateOrder(id: number, updateOrder: Partial<InsertOrder>): Promise<Order | undefined> {
     const existing = this.orders.get(id);
     if (!existing) return undefined;
-
     const updated: Order = {
       ...existing,
       ...updateOrder,
+      shippingZone: updateOrder.shippingZone ?? existing.shippingZone ?? "domestic",
     };
     this.orders.set(id, updated);
     return updated;
@@ -594,6 +608,13 @@ export class MemStorage implements IStorage {
     const rate: ShippingRate = {
       ...insertRate,
       id,
+      description: insertRate.description ?? null,
+      minWeight: insertRate.minWeight ?? "0",
+      maxWeight: insertRate.maxWeight ?? "30",
+      baseRate: insertRate.baseRate,
+      perKgRate: insertRate.perKgRate ?? "2.50",
+      deliveryTime: insertRate.deliveryTime ?? "",
+      active: insertRate.active ?? true,
     };
     this.shippingRates.set(id, rate);
     return rate;
@@ -606,6 +627,13 @@ export class MemStorage implements IStorage {
     const updated: ShippingRate = {
       ...existing,
       ...updateRate,
+      description: updateRate.description ?? existing.description ?? null,
+      minWeight: updateRate.minWeight ?? existing.minWeight ?? "0",
+      maxWeight: updateRate.maxWeight ?? existing.maxWeight ?? "30",
+      baseRate: updateRate.baseRate ?? existing.baseRate,
+      perKgRate: updateRate.perKgRate ?? existing.perKgRate ?? "2.50",
+      deliveryTime: updateRate.deliveryTime ?? existing.deliveryTime ?? "",
+      active: updateRate.active ?? existing.active ?? true,
     };
     this.shippingRates.set(id, updated);
     return updated;
@@ -628,42 +656,42 @@ class DrizzleStorage implements IStorage {
     return await this.db.select().from(products);
   }
   async getProduct(id: number): Promise<Product | undefined> {
-    const result = await this.db.select().from(products).where(products.id.eq(id));
+    const result = await this.db.select().from(products).where(eq(products.id, id));
     return result[0];
   }
   async getFeaturedProducts(): Promise<Product[]> {
-    return await this.db.select().from(products).where(products.featured.eq(true));
+    return await this.db.select().from(products).where(eq(products.featured, true));
   }
   async getProductsByCategory(category: string): Promise<Product[]> {
-    return await this.db.select().from(products).where(products.category.eq(category));
+    return await this.db.select().from(products).where(eq(products.category, category));
   }
   async createProduct(product: InsertProduct): Promise<Product> {
     const [inserted] = await this.db.insert(products).values(product).returning();
     return inserted;
   }
   async updateProduct(id: number, product: Partial<InsertProduct>): Promise<Product | undefined> {
-    const [updated] = await this.db.update(products).set(product).where(products.id.eq(id)).returning();
+    const [updated] = await this.db.update(products).set(product).where(eq(products.id, id)).returning();
     return updated;
   }
   async deleteProduct(id: number): Promise<boolean> {
-    const result = await this.db.delete(products).where(products.id.eq(id)).returning();
+    const result = await this.db.delete(products).where(eq(products.id, id)).returning();
     return !!result.length;
   }
   // --- PRODUCT IMAGES ---
   async getProductImages(productId: number): Promise<ProductImage[]> {
-    return await this.db.select().from(productImages).where(productImages.productId.eq(productId));
+    return await this.db.select().from(productImages).where(eq(productImages.productId, productId));
   }
   async createProductImage(image: InsertProductImage): Promise<ProductImage> {
     const [inserted] = await this.db.insert(productImages).values(image).returning();
     return inserted;
   }
   async deleteProductImage(id: number): Promise<boolean> {
-    const result = await this.db.delete(productImages).where(productImages.id.eq(id)).returning();
+    const result = await this.db.delete(productImages).where(eq(productImages.id, id)).returning();
     return !!result.length;
   }
   async setMainProductImage(productId: number, imageId: number): Promise<boolean> {
-    await this.db.update(productImages).set({ isMain: false }).where(productImages.productId.eq(productId));
-    const [updated] = await this.db.update(productImages).set({ isMain: true }).where(productImages.id.eq(imageId)).returning();
+    await this.db.update(productImages).set({ isMain: false }).where(eq(productImages.productId, productId));
+    const [updated] = await this.db.update(productImages).set({ isMain: true }).where(eq(productImages.id, imageId)).returning();
     return !!updated;
   }
   // --- GALLERY ---
@@ -671,14 +699,14 @@ class DrizzleStorage implements IStorage {
     return await this.db.select().from(galleryImages);
   }
   async getGalleryImagesByCategory(category: string): Promise<GalleryImage[]> {
-    return await this.db.select().from(galleryImages).where(galleryImages.category.eq(category));
+    return await this.db.select().from(galleryImages).where(eq(galleryImages.category, category));
   }
   async createGalleryImage(image: InsertGalleryImage): Promise<GalleryImage> {
     const [inserted] = await this.db.insert(galleryImages).values(image).returning();
     return inserted;
   }
   async deleteGalleryImage(id: number): Promise<boolean> {
-    const result = await this.db.delete(galleryImages).where(galleryImages.id.eq(id)).returning();
+    const result = await this.db.delete(galleryImages).where(eq(galleryImages.id, id)).returning();
     return !!result.length;
   }
   // --- ORDERS ---
@@ -686,7 +714,7 @@ class DrizzleStorage implements IStorage {
     return await this.db.select().from(orders);
   }
   async getOrder(id: number): Promise<Order | undefined> {
-    const result = await this.db.select().from(orders).where(orders.id.eq(id));
+    const result = await this.db.select().from(orders).where(eq(orders.id, id));
     return result[0];
   }
   async createOrder(order: InsertOrder): Promise<Order> {
@@ -694,7 +722,7 @@ class DrizzleStorage implements IStorage {
     return inserted;
   }
   async updateOrder(id: number, order: Partial<InsertOrder>): Promise<Order | undefined> {
-    const [updated] = await this.db.update(orders).set(order).where(orders.id.eq(id)).returning();
+    const [updated] = await this.db.update(orders).set(order).where(eq(orders.id, id)).returning();
     return updated;
   }
   // --- SHIPPING RATES ---
@@ -702,14 +730,14 @@ class DrizzleStorage implements IStorage {
     return await this.db.select().from(shippingRates);
   }
   async getShippingRatesByZone(zone: string): Promise<ShippingRate[]> {
-    return await this.db.select().from(shippingRates).where(shippingRates.zone.eq(zone));
+    return await this.db.select().from(shippingRates).where(eq(shippingRates.zone, zone));
   }
   async createShippingRate(rate: InsertShippingRate): Promise<ShippingRate> {
     const [inserted] = await this.db.insert(shippingRates).values(rate).returning();
     return inserted;
   }
   async updateShippingRate(id: number, rate: Partial<InsertShippingRate>): Promise<ShippingRate | undefined> {
-    const [updated] = await this.db.update(shippingRates).set(rate).where(shippingRates.id.eq(id)).returning();
+    const [updated] = await this.db.update(shippingRates).set(rate).where(eq(shippingRates.id, id)).returning();
     return updated;
   }
 }

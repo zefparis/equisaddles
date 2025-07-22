@@ -85,7 +85,7 @@ export class DPDService {
   /**
    * Détermine la zone de livraison basée sur le pays
    */
-  private getShippingZone(country: string): string {
+  public getShippingZone(country: string): string {
     const countryCode = country.toUpperCase();
     
     if (DPDService.ZONES.domestic.includes(countryCode)) {
