@@ -1,4 +1,4 @@
-import type { Express } from "express";
+import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import Stripe from "stripe";
 import { storage } from "./storage";
@@ -14,7 +14,7 @@ const stripe = process.env.STRIPE_SECRET_KEY ? new Stripe(process.env.STRIPE_SEC
   apiVersion: "2025-06-30.basil",
 }) : null;
 
-function requireAdminToken(req, res, next) {
+function requireAdminToken(req: Request, res: Response, next: NextFunction) {
   const expected = process.env.ADMIN_TOKEN;
   if (!expected) return res.status(500).json({ message: 'ADMIN_TOKEN not set in env.' });
   const auth = req.headers.authorization;
