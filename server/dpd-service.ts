@@ -127,7 +127,7 @@ export class DPDService {
     await new Promise(resolve => setTimeout(resolve, 200));
 
     for (const [serviceCode, serviceData] of Object.entries(DPDService.SERVICES)) {
-      const zoneConfig = serviceData[zone as keyof typeof serviceData];
+      const zoneConfig = serviceData[zone as keyof typeof serviceData] as { baseRate: number; deliveryTime: string } | null;
       
       if (!zoneConfig) continue;
 
@@ -222,7 +222,7 @@ export class DPDService {
 
     for (const [serviceCode, serviceData] of Object.entries(DPDService.SERVICES)) {
       for (const [zone, config] of Object.entries(serviceData)) {
-        if (zone === "name" || zone === "description" || !config) continue;
+        if (zone === "name" || zone === "description" || !config || typeof config === "string") continue;
 
         rates.push({
           id: 0, // Sera assigné par la base de données
