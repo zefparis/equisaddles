@@ -10,9 +10,9 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@shared/*": ["../shared/*"]
+      "@shared/*": ["shared/*"]
     }
   },
-  "include": ["server/**/*", "../shared/**/*"],
-  "exclude": ["node_modules", "../client", "../vite.config.ts"]
+  "include": ["server/**/*", "shared/**/*"],
+  "exclude": ["node_modules", "client", "vite.config.ts"]
 }
