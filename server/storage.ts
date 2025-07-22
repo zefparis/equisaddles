@@ -612,4 +612,106 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+import { drizzle } from 'drizzle-orm/node-postgres';
+import { Pool } from 'pg';
+import * as dotenv from 'dotenv';
+dotenv.config();
+
+class DrizzleStorage implements IStorage {
+  private db;
+  constructor() {
+    const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+    this.db = drizzle(pool);
+  }
+  // --- PRODUITS ---
+  async getProducts(): Promise<Product[]> {
+    return await this.db.select().from(products);
+  }
+  async getProduct(id: number): Promise<Product | undefined> {
+    const result = await this.db.select().from(products).where(products.id.eq(id));
+    return result[0];
+  }
+  async getFeaturedProducts(): Promise<Product[]> {
+    return await this.db.select().from(products).where(products.featured.eq(true));
+  }
+  async getProductsByCategory(category: string): Promise<Product[]> {
+    return await this.db.select().from(products).where(products.category.eq(category));
+  }
+  async createProduct(product: InsertProduct): Promise<Product> {
+    const [inserted] = await this.db.insert(products).values(product).returning();
+    return inserted;
+  }
+  async updateProduct(id: number, product: Partial<InsertProduct>): Promise<Product | undefined> {
+    const [updated] = await this.db.update(products).set(product).where(products.id.eq(id)).returning();
+    return updated;
+  }
+  async deleteProduct(id: number): Promise<boolean> {
+    const result = await this.db.delete(products).where(products.id.eq(id)).returning();
+    return !!result.length;
+  }
+  // --- PRODUCT IMAGES ---
+  async getProductImages(productId: number): Promise<ProductImage[]> {
+    return await this.db.select().from(productImages).where(productImages.productId.eq(productId));
+  }
+  async createProductImage(image: InsertProductImage): Promise<ProductImage> {
+    const [inserted] = await this.db.insert(productImages).values(image).returning();
+    return inserted;
+  }
+  async deleteProductImage(id: number): Promise<boolean> {
+    const result = await this.db.delete(productImages).where(productImages.id.eq(id)).returning();
+    return !!result.length;
+  }
+  async setMainProductImage(productId: number, imageId: number): Promise<boolean> {
+    await this.db.update(productImages).set({ isMain: false }).where(productImages.productId.eq(productId));
+    const [updated] = await this.db.update(productImages).set({ isMain: true }).where(productImages.id.eq(imageId)).returning();
+    return !!updated;
+  }
+  // --- GALLERY ---
+  async getGalleryImages(): Promise<GalleryImage[]> {
+    return await this.db.select().from(galleryImages);
+  }
+  async getGalleryImagesByCategory(category: string): Promise<GalleryImage[]> {
+    return await this.db.select().from(galleryImages).where(galleryImages.category.eq(category));
+  }
+  async createGalleryImage(image: InsertGalleryImage): Promise<GalleryImage> {
+    const [inserted] = await this.db.insert(galleryImages).values(image).returning();
+    return inserted;
+  }
+  async deleteGalleryImage(id: number): Promise<boolean> {
+    const result = await this.db.delete(galleryImages).where(galleryImages.id.eq(id)).returning();
+    return !!result.length;
+  }
+  // --- ORDERS ---
+  async getOrders(): Promise<Order[]> {
+    return await this.db.select().from(orders);
+  }
+  async getOrder(id: number): Promise<Order | undefined> {
+    const result = await this.db.select().from(orders).where(orders.id.eq(id));
+    return result[0];
+  }
+  async createOrder(order: InsertOrder): Promise<Order> {
+    const [inserted] = await this.db.insert(orders).values(order).returning();
+    return inserted;
+  }
+  async updateOrder(id: number, order: Partial<InsertOrder>): Promise<Order | undefined> {
+    const [updated] = await this.db.update(orders).set(order).where(orders.id.eq(id)).returning();
+    return updated;
+  }
+  // --- SHIPPING RATES ---
+  async getShippingRates(): Promise<ShippingRate[]> {
+    return await this.db.select().from(shippingRates);
+  }
+  async getShippingRatesByZone(zone: string): Promise<ShippingRate[]> {
+    return await this.db.select().from(shippingRates).where(shippingRates.zone.eq(zone));
+  }
+  async createShippingRate(rate: InsertShippingRate): Promise<ShippingRate> {
+    const [inserted] = await this.db.insert(shippingRates).values(rate).returning();
+    return inserted;
+  }
+  async updateShippingRate(id: number, rate: Partial<InsertShippingRate>): Promise<ShippingRate | undefined> {
+    const [updated] = await this.db.update(shippingRates).set(rate).where(shippingRates.id.eq(id)).returning();
+    return updated;
+  }
+}
+
+export const storage: IStorage = process.env.DATABASE_URL ? new DrizzleStorage() : new MemStorage();

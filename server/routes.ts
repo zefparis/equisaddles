@@ -14,7 +14,21 @@ const stripe = process.env.STRIPE_SECRET_KEY ? new Stripe(process.env.STRIPE_SEC
   apiVersion: "2025-06-30.basil",
 }) : null;
 
+function requireAdminToken(req, res, next) {
+  const expected = process.env.ADMIN_TOKEN;
+  if (!expected) return res.status(500).json({ message: 'ADMIN_TOKEN not set in env.' });
+  const auth = req.headers.authorization;
+  if (!auth || !auth.startsWith('Bearer ')) return res.status(401).json({ message: 'Missing admin token.' });
+  const token = auth.slice(7);
+  if (token !== expected) return res.status(401).json({ message: 'Invalid admin token.' });
+  next();
+}
+
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Exemple route admin protégée
+  app.get('/admin/test', requireAdminToken, (req, res) => {
+    res.json({ message: 'Admin access granted.' });
+  });
   
   // Products API
   app.get("/api/products", async (req, res) => {
