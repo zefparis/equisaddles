@@ -76,7 +76,7 @@ npx drizzle-kit push:pg
 
 ## Structure principale
 
-```
+```sh
 client/           # Frontend React
 server/           # Backend Express
 shared/schema.ts  # Drizzle ORM schema
