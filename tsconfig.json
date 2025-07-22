@@ -1,27 +1,18 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "module": "commonjs",
+    "module": "ESNext",
     "rootDir": "./",
     "outDir": "dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "strict": true
-  },
-  "include": ["server", "client"],
-  "exclude": ["node_modules", "build", "dist", "**/*.test.ts"]
-}
-    "forceConsistentCasingInFileNames": true,
+    "strict": true,
     "incremental": true,
     "tsBuildInfoFile": "./node_modules/typescript/tsbuildinfo",
     "noEmit": true,
-    "module": "ESNext",
-    "strict": true,
     "lib": ["esnext", "dom", "dom.iterable"],
     "jsx": "preserve",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
     "allowImportingTsExtensions": true,
     "moduleResolution": "bundler",
     "baseUrl": ".",
@@ -30,5 +21,7 @@
       "@/*": ["./client/src/*"],
       "@shared/*": ["./shared/*"]
     }
-  }
+  },
+  "include": ["server", "client"],
+  "exclude": ["node_modules", "build", "dist", "**/*.test.ts"]
 }
