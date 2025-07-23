@@ -232,8 +232,8 @@ export default function Admin() {
       setSelectedImageFile(null);
     } catch (error) {
       toast({
-        title: "Erreur",
-        description: "Erreur lors de l'upload de l'image",
+        title: t("admin.errorTitle"),
+        description: t("admin.uploadError"),
         variant: "destructive",
       });
     } finally {
@@ -259,8 +259,8 @@ export default function Admin() {
       setSelectedImageFile(null);
     } catch (error) {
       toast({
-        title: "Erreur",
-        description: "Erreur lors de l'upload de l'image",
+        title: t("admin.errorTitle"),
+        description: t("admin.uploadError"),
         variant: "destructive",
       });
     } finally {
@@ -756,7 +756,7 @@ export default function Admin() {
                   <Input
                     id="name"
                     {...productForm.register("name")}
-                    placeholder="Nom du produit"
+                    placeholder={t("admin.productName")}
                   />
                 </div>
                 <div>
@@ -772,7 +772,7 @@ export default function Admin() {
                     }}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="Sélectionner une catégorie" />
+                      <SelectValue placeholder={t("admin.selectCategory")} />
                     </SelectTrigger>
                     <SelectContent>
                       {categories.map((category) => (
@@ -794,7 +794,7 @@ export default function Admin() {
                     onValueChange={(value) => productForm.setValue("subcategory", value)}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="Sélectionner une sous-catégorie" />
+                      <SelectValue placeholder={t("admin.selectSubcategory")} />
                     </SelectTrigger>
                     <SelectContent>
                       {accessorySubcategories.map((subcategory) => (
@@ -815,7 +815,7 @@ export default function Admin() {
                     onValueChange={(value) => productForm.setValue("size", value)}
                   >
                     <SelectTrigger>
-                      <SelectValue placeholder="Taille" />
+                      <SelectValue placeholder={t("admin.selectSize")} />
                     </SelectTrigger>
                     <SelectContent>
                       {(productForm.watch("category") === "Accessoires" ? accessorySizes : saddleSizes).map((size) => (
@@ -833,7 +833,7 @@ export default function Admin() {
                     type="number"
                     step="0.01"
                     {...productForm.register("price")}
-                    placeholder="Prix"
+                    placeholder={t("admin.price")}
                   />
                 </div>
                 <div>
@@ -843,7 +843,7 @@ export default function Admin() {
                     type="number"
                     step="0.01"
                     {...productForm.register("originalPrice")}
-                    placeholder="Prix original"
+                    placeholder={t("admin.originalPrice")}
                   />
                 </div>
               </div>
@@ -853,7 +853,7 @@ export default function Admin() {
                 <Textarea
                   id="description"
                   {...productForm.register("description")}
-                  placeholder="Description du produit"
+                  placeholder={t("admin.productDescription")}
                   rows={3}
                 />
               </div>
@@ -864,7 +864,7 @@ export default function Admin() {
                   setSelectedImageFile(file);
                 }}
                 currentImage={productForm.watch("image")}
-                placeholder="Sélectionner l'image principale du produit"
+                placeholder={t("admin.selectMainImage")}
               />
 
               <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
@@ -914,7 +914,7 @@ export default function Admin() {
                   setSelectedImageFile(file);
                 }}
                 currentImage={galleryForm.watch("url")}
-                placeholder="Sélectionner une image pour la galerie"
+                placeholder={t("admin.selectGalleryImage")}
               />
 
               <div>
@@ -922,7 +922,7 @@ export default function Admin() {
                 <Input
                   id="alt"
                   {...galleryForm.register("alt")}
-                  placeholder="Description de l'image"
+                  placeholder={t("admin.imageDescription")}
                 />
               </div>
 
@@ -933,7 +933,7 @@ export default function Admin() {
                   onValueChange={(value) => galleryForm.setValue("category", value)}
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Sélectionner une catégorie" />
+                    <SelectValue placeholder={t("admin.selectCategory")} />
                   </SelectTrigger>
                   <SelectContent>
                     {categories.map((category) => (

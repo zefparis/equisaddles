@@ -272,7 +272,7 @@ export default function Delivery() {
                     <li>• Film plastique étanche</li>
                     <li>• Calage sur mesure en mousse</li>
                     <li>• Carton renforcé double épaisseur</li>
-                    <li>• Marquage "FRAGILE" visible</li>
+                    <li>• {t("delivery.packagingFragile")}</li>
                   </ul>
                 </div>
                 

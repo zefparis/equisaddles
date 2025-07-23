@@ -143,6 +143,39 @@ export const translations: Record<string, Record<string, string>> = {
     "contact.weekdays": "Lundi - Vendredi",
     "contact.saturday": "Samedi",
     "contact.sunday": "Dimanche",
+    
+    // 404 Not Found Page
+    "notFound.title": "404 Page Introuvable",
+    "notFound.message": "La page que vous recherchez n'existe pas.",
+    
+    // Admin page translations
+    "admin.productName": "Nom du produit",
+    "admin.selectCategory": "Sélectionner une catégorie",
+    "admin.selectSubcategory": "Sélectionner une sous-catégorie", 
+    "admin.selectSize": "Taille",
+    "admin.price": "Prix",
+    "admin.originalPrice": "Prix original",
+    "admin.productDescription": "Description du produit",
+    "admin.selectMainImage": "Sélectionner l'image principale du produit",
+    "admin.selectGalleryImage": "Sélectionner une image pour la galerie",
+    "admin.imageDescription": "Description de l'image",
+    "admin.uploadError": "Erreur lors de l'upload de l'image",
+    "admin.errorTitle": "Erreur",
+    
+    // Catalog page translations
+    "catalog.sortBy": "Trier par",
+    
+    // Checkout page translations  
+    "checkout.fullName": "Jean Dupont",
+    "checkout.emailPlaceholder": "jean.dupont@email.com",
+    "checkout.phonePlaceholder": "+32 496 94 41 25",
+    "checkout.addressPlaceholder": "Rue du Vicinal 9",
+    "checkout.cityPlaceholder": "Paris",
+    "checkout.postalCodePlaceholder": "75000",
+    "checkout.selectCountry": "Sélectionnez un pays",
+    
+    // Delivery specific
+    "delivery.packagingFragile": "Marquage \"FRAGILE\" visible",
     "contact.closed": "Fermé",
     "contact.followUs": "Suivez-nous",
     "contact.formTitle": "Envoyez-nous un message",
@@ -727,6 +760,39 @@ export const translations: Record<string, Record<string, string>> = {
     "contact.weekdays": "Monday - Friday",
     "contact.saturday": "Saturday",
     "contact.sunday": "Sunday",
+    
+    // 404 Not Found Page
+    "notFound.title": "404 Page Not Found",
+    "notFound.message": "The page you are looking for does not exist.",
+    
+    // Admin page translations
+    "admin.productName": "Product name",
+    "admin.selectCategory": "Select a category",
+    "admin.selectSubcategory": "Select a subcategory", 
+    "admin.selectSize": "Size",
+    "admin.price": "Price",
+    "admin.originalPrice": "Original price",
+    "admin.productDescription": "Product description",
+    "admin.selectMainImage": "Select main product image",
+    "admin.selectGalleryImage": "Select gallery image",
+    "admin.imageDescription": "Image description",
+    "admin.uploadError": "Image upload error",
+    "admin.errorTitle": "Error",
+    
+    // Catalog page translations
+    "catalog.sortBy": "Sort by",
+    
+    // Checkout page translations  
+    "checkout.fullName": "John Smith",
+    "checkout.emailPlaceholder": "john.smith@email.com",
+    "checkout.phonePlaceholder": "+32 496 94 41 25",
+    "checkout.addressPlaceholder": "Main Street 9",
+    "checkout.cityPlaceholder": "London",
+    "checkout.postalCodePlaceholder": "SW1A 1AA",
+    "checkout.selectCountry": "Select a country",
+    
+    // Delivery specific
+    "delivery.packagingFragile": "\"FRAGILE\" marking visible",
     "contact.closed": "Closed",
     "contact.followUs": "Follow Us",
     "contact.formTitle": "Send us a message",
@@ -1496,6 +1562,39 @@ export const translations: Record<string, Record<string, string>> = {
     "contact.weekdays": "Maandag - Vrijdag",
     "contact.saturday": "Zaterdag",
     "contact.sunday": "Zondag",
+
+    // 404 Not Found Page
+    "notFound.title": "404 Pagina Niet Gevonden",
+    "notFound.message": "De pagina die u zoekt bestaat niet.",
+
+    // Admin page translations
+    "admin.productName": "Productnaam",
+    "admin.selectCategory": "Selecteer een categorie",
+    "admin.selectSubcategory": "Selecteer een subcategorie",
+    "admin.selectSize": "Maat",
+    "admin.price": "Prijs",
+    "admin.originalPrice": "Oorspronkelijke prijs",
+    "admin.productDescription": "Productomschrijving",
+    "admin.selectMainImage": "Selecteer hoofdafbeelding van product",
+    "admin.selectGalleryImage": "Selecteer galerij afbeelding",
+    "admin.imageDescription": "Afbeeldingsbeschrijving",
+    "admin.uploadError": "Fout bij het uploaden van afbeelding",
+    "admin.errorTitle": "Fout",
+
+    // Catalog page translations
+    "catalog.sortBy": "Sorteren op",
+
+    // Checkout page translations
+    "checkout.fullName": "Jan Janssen",
+    "checkout.emailPlaceholder": "jan.janssen@email.com",
+    "checkout.phonePlaceholder": "+32 496 94 41 25",
+    "checkout.addressPlaceholder": "Hoofdstraat 9",
+    "checkout.cityPlaceholder": "Brussel",
+    "checkout.postalCodePlaceholder": "1000",
+    "checkout.selectCountry": "Selecteer een land",
+    
+    // Delivery specific
+    "delivery.packagingFragile": "\"FRAGILE\" markering zichtbaar",
     "contact.closed": "Gesloten",
     "contact.followUs": "Volg ons",
     "contact.formTitle": "Stuur ons een bericht",
@@ -1964,6 +2063,39 @@ export const translations: Record<string, Record<string, string>> = {
     "contact.weekdays": "Lunes - Viernes",
     "contact.saturday": "Sábado",
     "contact.sunday": "Domingo",
+
+    // 404 Not Found Page
+    "notFound.title": "404 Página No Encontrada",
+    "notFound.message": "La página que busca no existe.",
+
+    // Admin page translations
+    "admin.productName": "Nombre del producto",
+    "admin.selectCategory": "Seleccionar una categoría",
+    "admin.selectSubcategory": "Seleccionar una subcategoría",
+    "admin.selectSize": "Talla",
+    "admin.price": "Precio",
+    "admin.originalPrice": "Precio original",
+    "admin.productDescription": "Descripción del producto",
+    "admin.selectMainImage": "Seleccionar imagen principal del producto",
+    "admin.selectGalleryImage": "Seleccionar imagen de galería",
+    "admin.imageDescription": "Descripción de la imagen",
+    "admin.uploadError": "Error al subir la imagen",
+    "admin.errorTitle": "Error",
+
+    // Catalog page translations
+    "catalog.sortBy": "Ordenar por",
+
+    // Checkout page translations
+    "checkout.fullName": "Juan Pérez",
+    "checkout.emailPlaceholder": "juan.perez@email.com",
+    "checkout.phonePlaceholder": "+32 496 94 41 25",
+    "checkout.addressPlaceholder": "Calle Principal 9",
+    "checkout.cityPlaceholder": "Madrid",
+    "checkout.postalCodePlaceholder": "28001",
+    "checkout.selectCountry": "Seleccionar un país",
+
+    // Delivery specific
+    "delivery.packagingFragile": "Marcado \"FRÁGIL\" visible",
     "contact.closed": "Cerrado",
     "contact.followUs": "Síguenos",
     "contact.formTitle": "Envíanos un mensaje",
@@ -2165,6 +2297,39 @@ export const translations: Record<string, Record<string, string>> = {
     "contact.weekdays": "Montag - Freitag",
     "contact.saturday": "Samstag",
     "contact.sunday": "Sonntag",
+
+    // 404 Not Found Page
+    "notFound.title": "404 Seite Nicht Gefunden",
+    "notFound.message": "Die Seite, die Sie suchen, existiert nicht.",
+
+    // Admin page translations
+    "admin.productName": "Produktname",
+    "admin.selectCategory": "Kategorie auswählen",
+    "admin.selectSubcategory": "Unterkategorie auswählen",
+    "admin.selectSize": "Größe",
+    "admin.price": "Preis",
+    "admin.originalPrice": "Ursprünglicher Preis",
+    "admin.productDescription": "Produktbeschreibung",
+    "admin.selectMainImage": "Hauptbild des Produkts auswählen",
+    "admin.selectGalleryImage": "Galeriebild auswählen",
+    "admin.imageDescription": "Bildbeschreibung",
+    "admin.uploadError": "Fehler beim Hochladen des Bildes",
+    "admin.errorTitle": "Fehler",
+
+    // Catalog page translations
+    "catalog.sortBy": "Sortieren nach",
+
+    // Checkout page translations
+    "checkout.fullName": "Hans Müller",
+    "checkout.emailPlaceholder": "hans.mueller@email.com",
+    "checkout.phonePlaceholder": "+32 496 94 41 25",
+    "checkout.addressPlaceholder": "Hauptstraße 9",
+    "checkout.cityPlaceholder": "Berlin",
+    "checkout.postalCodePlaceholder": "10115",
+    "checkout.selectCountry": "Land auswählen",
+
+    // Delivery specific
+    "delivery.packagingFragile": "\"FRAGILE\" Markierung sichtbar",
     "contact.closed": "Geschlossen",
     "contact.followUs": "Folgen Sie uns",
     "contact.formTitle": "Senden Sie uns eine Nachricht",

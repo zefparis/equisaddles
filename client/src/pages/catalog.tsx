@@ -175,7 +175,7 @@ export default function Catalog() {
             
             <Select value={sortBy} onValueChange={setSortBy}>
               <SelectTrigger className="w-full sm:w-48">
-                <SelectValue placeholder="Trier par" />
+                <SelectValue placeholder={t("catalog.sortBy")} />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="name">Nom A-Z</SelectItem>

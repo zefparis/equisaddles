@@ -172,7 +172,7 @@ const CheckoutForm = () => {
                   <Input
                     id="name"
                     {...register("name")}
-                    placeholder="Jean Dupont"
+                    placeholder={t("checkout.fullName")}
                     className={errors.name ? "border-red-500" : ""}
                   />
                   {errors.name && (
@@ -186,7 +186,7 @@ const CheckoutForm = () => {
                     id="email"
                     type="email"
                     {...register("email")}
-                    placeholder="jean.dupont@email.com"
+                    placeholder={t("checkout.emailPlaceholder")}
                     className={errors.email ? "border-red-500" : ""}
                   />
                   {errors.email && (
@@ -200,7 +200,7 @@ const CheckoutForm = () => {
                 <Input
                   id="phone"
                   {...register("phone")}
-                  placeholder="+32 496 94 41 25"
+                  placeholder={t("checkout.phonePlaceholder")}
                 />
               </div>
 
@@ -209,7 +209,7 @@ const CheckoutForm = () => {
                 <Input
                   id="address"
                   {...register("address")}
-                  placeholder="Rue du Vicinal 9"
+                  placeholder={t("checkout.addressPlaceholder")}
                   className={errors.address ? "border-red-500" : ""}
                 />
                 {errors.address && (
@@ -223,7 +223,7 @@ const CheckoutForm = () => {
                   <Input
                     id="city"
                     {...register("city")}
-                    placeholder="Paris"
+                    placeholder={t("checkout.cityPlaceholder")}
                     className={errors.city ? "border-red-500" : ""}
                   />
                   {errors.city && (
@@ -236,7 +236,7 @@ const CheckoutForm = () => {
                   <Input
                     id="postalCode"
                     {...register("postalCode")}
-                    placeholder="75000"
+                    placeholder={t("checkout.postalCodePlaceholder")}
                     className={errors.postalCode ? "border-red-500" : ""}
                   />
                   {errors.postalCode && (
@@ -248,7 +248,7 @@ const CheckoutForm = () => {
                   <Label htmlFor="country">{t("checkout.country")} *</Label>
                   <Select value={watchedCountry} onValueChange={(value) => register("country").onChange({ target: { value } })}>
                     <SelectTrigger className={errors.country ? "border-red-500" : ""}>
-                      <SelectValue placeholder="Sélectionnez un pays" />
+                      <SelectValue placeholder={t("checkout.selectCountry")} />
                     </SelectTrigger>
                     <SelectContent>
                       {countries.map((country) => (
