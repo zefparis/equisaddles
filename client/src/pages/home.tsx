@@ -62,7 +62,7 @@ export default function Home() {
             backgroundImage: "url('/images/hero-excellence.webp')"
           }}
         >
-          <div className="absolute inset-0 bg-yellow-800 bg-opacity-30"></div>
+          <div className="absolute inset-0 bg-yellow-800 bg-opacity-20"></div>
         </div>
         
         <div className="relative z-10 text-center px-4 fade-in text-white">
