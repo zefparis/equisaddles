@@ -23,7 +23,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const hasDiscount = product.originalPrice && parseFloat(product.originalPrice) > parseFloat(product.price);
 
   return (
-    <Card className="product-card overflow-hidden">
+    <Card className="product-card overflow-hidden bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
       <Link href={`/product/${product.id}`}>
         <div className="relative overflow-hidden">
           <img
@@ -52,11 +52,11 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       <CardContent className="p-6">
         <Link href={`/product/${product.id}`}>
-          <h3 className="text-xl font-semibold mb-2 hover:text-primary transition-colors">
+          <h3 className="text-xl font-semibold mb-2 hover:text-primary transition-colors text-gray-900 dark:text-gray-100">
             {product.name}
           </h3>
         </Link>
-        <p className="text-gray-600 mb-4 line-clamp-2">{t(`product.description.${product.id}`) || product.description}</p>
+        <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">{t(`product.description.${product.id}`) || product.description}</p>
         
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">

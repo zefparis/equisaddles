@@ -82,9 +82,9 @@ export default function Home() {
       </section>
 
       {/* Categories Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-gray-100">
             {t("categories.title")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
@@ -93,19 +93,19 @@ export default function Home() {
                 key={category.name}
                 href={`/catalog?category=${category.name.toLowerCase()}`}
               >
-                <Card className="category-hover overflow-hidden cursor-pointer">
+                <Card className="category-hover overflow-hidden cursor-pointer bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600">
                   <div
                     className="h-48 bg-cover bg-center relative"
                     style={{ backgroundImage: `url('${category.image}')` }}
                   >
-                    <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-black bg-opacity-30 dark:bg-opacity-20 flex items-center justify-center">
                       <div className="text-white text-center">
-                        <h3 className="font-semibold text-xl">{category.name}</h3>
+                        <h3 className="font-semibold text-xl drop-shadow-lg">{category.name}</h3>
                       </div>
                     </div>
                   </div>
                   <CardContent className="p-4">
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
                       {t(category.description)}
                     </p>
                   </CardContent>
@@ -117,9 +117,9 @@ export default function Home() {
       </section>
 
       {/* Featured Products */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-gray-100">
             {t("featured.title")}
           </h2>
           
@@ -144,9 +144,9 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16 bg-secondary">
+      <section className="py-16 bg-secondary dark:bg-gray-800">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-gray-100">
             {t("why.title")}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -154,8 +154,8 @@ export default function Home() {
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="text-white h-8 w-8" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">{t("why.quality")}</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">{t("why.quality")}</h3>
+              <p className="text-gray-600 dark:text-gray-300">
                 {t("why.qualityDescription")}
               </p>
             </div>
@@ -163,8 +163,8 @@ export default function Home() {
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
                 <FastForward className="text-white h-8 w-8" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">{t("why.shipping")}</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">{t("why.shipping")}</h3>
+              <p className="text-gray-600 dark:text-gray-300">
                 {t("why.shippingDescription")}
               </p>
             </div>
@@ -172,8 +172,8 @@ export default function Home() {
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
                 <Gavel className="text-white h-8 w-8" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">{t("why.custom")}</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">{t("why.custom")}</h3>
+              <p className="text-gray-600 dark:text-gray-300">
                 {t("why.customDescription")}
               </p>
             </div>
@@ -181,8 +181,8 @@ export default function Home() {
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
                 <Headphones className="text-white h-8 w-8" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">{t("why.support")}</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">{t("why.support")}</h3>
+              <p className="text-gray-600 dark:text-gray-300">
                 {t("why.supportDescription")}
               </p>
             </div>

@@ -38,33 +38,33 @@
 
 .dark {
   --base-hue: 25;
-  --base-saturation: 15%;
-  --base-lightness: 8%;
+  --base-saturation: 12%;
+  --base-lightness: 12%; /* Moins sombre pour meilleure lisibilité */
   --border-hue: 25;
-  --border-lightness: 25%;
+  --border-lightness: 30%; /* Bordures plus claires */
   --primary-hue: 25;
   --secondary-hue: 30;
   --accent-hue: 45;
 
   --background: hsl(var(--base-hue), var(--base-saturation), var(--base-lightness));
-  --foreground: hsl(0, 0%, 95%);
-  --muted: hsl(var(--secondary-hue), 10%, 18%);
-  --muted-foreground: hsl(var(--secondary-hue), 5%, 65%);
-  --popover: var(--background);
+  --foreground: hsl(0, 0%, 92%); /* Texte plus clair */
+  --muted: hsl(var(--secondary-hue), 8%, 22%); /* Zones atténuées plus claires */
+  --muted-foreground: hsl(var(--secondary-hue), 5%, 70%); /* Texte atténué plus visible */
+  --popover: hsl(var(--base-hue), var(--base-saturation), 15%); /* Popover plus clair */
   --popover-foreground: var(--foreground);
-  --card: hsl(var(--base-hue), var(--base-saturation), 10%);
+  --card: hsl(var(--base-hue), var(--base-saturation), 15%); /* Cartes plus claires */
   --card-foreground: var(--foreground);
-  --border: hsl(var(--border-hue), 10%, var(--border-lightness));
-  --input: var(--border);
-  --primary: hsl(var(--primary-hue), 35%, 18%);
+  --border: hsl(var(--border-hue), 8%, var(--border-lightness));
+  --input: hsl(var(--border-hue), 8%, 25%); /* Inputs plus visibles */
+  --primary: hsl(var(--primary-hue), 30%, 25%); /* Primary plus clair */
   --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(var(--secondary-hue), 15%, 30%);
+  --secondary: hsl(var(--secondary-hue), 12%, 35%); /* Secondary plus clair */
   --secondary-foreground: var(--foreground);
-  --accent: hsl(var(--accent-hue), 90%, 40%);
+  --accent: hsl(var(--accent-hue), 85%, 45%); /* Accent plus visible */
   --accent-foreground: hsl(0, 0%, 100%);
-  --destructive: hsl(0, 60%, 35%);
+  --destructive: hsl(0, 55%, 40%);
   --destructive-foreground: hsl(0, 0%, 98%);
-  --ring: hsl(0, 0%, 70%);
+  --ring: hsl(0, 0%, 75%);
 }
 
 @layer base {
@@ -114,9 +114,17 @@
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
   }
 
+  .dark .category-hover:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  }
+
   .product-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dark .product-card:hover {
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
   }
 
   .btn-primary {
