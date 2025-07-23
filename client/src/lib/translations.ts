@@ -73,6 +73,16 @@ export const translations: Record<string, Record<string, string>> = {
     "catalog.saddles": "Selles",
     "catalog.accessories": "Accessoires",
     "catalog.searchSaddle": "Rechercher une selle...",
+    
+    // Product names for accessories
+    "products.sangleCuirPremium": "Sangle en cuir premium",
+    "products.etrivieresAjustables": "Étrivières ajustables", 
+    "products.etriersAcierInoxydable": "Étriers en acier inoxydable",
+    "products.amortisseurGelProfessionnel": "Amortisseur gel professionnel",
+    "products.tapisSelleRespirant": "Tapis de selle respirant",
+    "products.bridonCuirFrancais": "Bridon cuir français",
+    "products.couvertureImpermeabile": "Couverture imperméable",
+    "products.protectionsTransport": "Protections de transport",
     "chat.title": "Assistant Equi Saddles",
     "chat.placeholder": "Tapez votre message...",
     "chat.welcome": "Bonjour ! Je suis votre assistant Equi Saddles. Comment puis-je vous aider aujourd'hui ?",
@@ -638,6 +648,16 @@ export const translations: Record<string, Record<string, string>> = {
     "catalog.accessories": "Accessories", 
     "catalog.searchSaddle": "Search for a saddle...",
     
+    // Product names for accessories
+    "products.sangleCuirPremium": "Premium leather girth",
+    "products.etrivieresAjustables": "Adjustable stirrup leathers", 
+    "products.etriersAcierInoxydable": "Stainless steel stirrups",
+    "products.amortisseurGelProfessionnel": "Professional gel shock absorber",
+    "products.tapisSelleRespirant": "Breathable saddle pad",
+    "products.bridonCuirFrancais": "French leather bridle",
+    "products.couvertureImpermeabile": "Waterproof blanket",
+    "products.protectionsTransport": "Transport protections",
+    
     // Accessory subcategories
     "subcategories.sangles": "Girths",
     "subcategories.etrivieres": "Stirrup Leathers",
@@ -1124,6 +1144,16 @@ export const translations: Record<string, Record<string, string>> = {
     "catalog.saddles": "Zadels",
     "catalog.accessories": "Accessoires",
     "catalog.searchSaddle": "Zoek een zadel...",
+    
+    // Product names for accessories
+    "products.sangleCuirPremium": "Premium leren singel",
+    "products.etrivieresAjustables": "Verstelbare stijgbeugelriemen", 
+    "products.etriersAcierInoxydable": "Roestvrijstalen stijgbeugels",
+    "products.amortisseurGelProfessionnel": "Professionele gel schokdemper",
+    "products.tapisSelleRespirant": "Ademend zadelkussen",
+    "products.bridonCuirFrancais": "Frans leren hoofdstel",
+    "products.couvertureImpermeabile": "Waterdichte deken",
+    "products.protectionsTransport": "Transport beschermers",
     "chat.title": "Equi Saddles Assistent",
     "chat.placeholder": "Typ je bericht...",
     "chat.welcome": "Hallo! Ik ben je Equi Saddles assistent. Hoe kan ik je vandaag helpen?",
@@ -1582,6 +1612,16 @@ export const translations: Record<string, Record<string, string>> = {
     "catalog.saddles": "Sillas", 
     "catalog.accessories": "Accesorios",
     "catalog.searchSaddle": "Buscar una silla...",
+    
+    // Product names for accessories
+    "products.sangleCuirPremium": "Cincha de cuero premium",
+    "products.etrivieresAjustables": "Estriberas ajustables", 
+    "products.etriersAcierInoxydable": "Estribos de acero inoxidable",
+    "products.amortisseurGelProfessionnel": "Amortiguador gel profesional",
+    "products.tapisSelleRespirant": "Manta de silla transpirable",
+    "products.bridonCuirFrancais": "Cabezada cuero francés",
+    "products.couvertureImpermeabile": "Manta impermeable",
+    "products.protectionsTransport": "Protecciones de transporte",
     "chat.title": "Asistente Equi Saddles",
     "chat.placeholder": "Escribe tu mensaje...",
     "chat.welcome": "¡Hola! Soy tu asistente de Equi Saddles. ¿Cómo puedo ayudarte hoy?",
@@ -2040,6 +2080,16 @@ export const translations: Record<string, Record<string, string>> = {
     "catalog.saddles": "Sättel",
     "catalog.accessories": "Zubehör",
     "catalog.searchSaddle": "Sattel suchen...",
+    
+    // Product names for accessories
+    "products.sangleCuirPremium": "Premium Ledergurt",
+    "products.etrivieresAjustables": "Verstellbare Steigbügelriemen", 
+    "products.etriersAcierInoxydable": "Edelstahl-Steigbügel",
+    "products.amortisseurGelProfessionnel": "Professioneller Gel-Stoßdämpfer",
+    "products.tapisSelleRespirant": "Atmungsaktive Sattelunterlage",
+    "products.bridonCuirFrancais": "Französisches Lederzaumzeug",
+    "products.couvertureImpermeabile": "Wasserdichte Decke",
+    "products.protectionsTransport": "Transportschutz",
     "chat.title": "Equi Saddles Assistent",
     "chat.placeholder": "Geben Sie Ihre Nachricht ein...",
     "chat.welcome": "Hallo! Ich bin Ihr Equi Saddles Assistent. Wie kann ich Ihnen heute helfen?",

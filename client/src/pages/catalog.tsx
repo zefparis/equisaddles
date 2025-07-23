@@ -14,6 +14,23 @@ import { Search, Grid, List, Filter } from "lucide-react";
 
 export default function Catalog() {
   const { t } = useLanguage();
+
+  // Fonction pour obtenir les noms de produits traduits
+  const getTranslatedProductName = (productName: string) => {
+    // Mapping direct des noms de produits vers leurs clés de traduction
+    const productTranslationMap: { [key: string]: string } = {
+      'Sangle en cuir premium': 'products.sangleCuirPremium',
+      'Étrivières ajustables': 'products.etrivieresAjustables',
+      'Étriers en acier inoxydable': 'products.etriersAcierInoxydable',
+      'Amortisseur gel professionnel': 'products.amortisseurGelProfessionnel',
+      'Tapis de selle respirant': 'products.tapisSelleRespirant',
+      'Bridon cuir français': 'products.bridonCuirFrancais',
+      'Couverture imperméable': 'products.couvertureImpermeabile',
+      'Protections de transport': 'products.protectionsTransport'
+    };
+    
+    return productTranslationMap[productName] ? t(productTranslationMap[productName]) : productName;
+  };
   const [location] = useLocation();
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("name");
@@ -148,7 +165,7 @@ export default function Catalog() {
                     <SelectItem value="tous">{t("catalog.allAccessories")}</SelectItem>
                     {accessoires.map((accessoire) => (
                       <SelectItem key={accessoire.id} value={accessoire.name}>
-                        {accessoire.name}
+                        {getTranslatedProductName(accessoire.name)}
                       </SelectItem>
                     ))}
                   </SelectContent>
