@@ -121,8 +121,8 @@ export default function Catalog() {
             setSearchTerm(value === "accessoires" ? "tous" : ""); // Réinitialiser la recherche quand on change d'onglet
           }} className="mb-6">
             <TabsList className="grid w-full grid-cols-2 max-w-md">
-              <TabsTrigger value="selles">Selles ({selles.length})</TabsTrigger>
-              <TabsTrigger value="accessoires">Accessoires ({accessoires.length})</TabsTrigger>
+              <TabsTrigger value="selles">{t("catalog.saddles")} ({selles.length})</TabsTrigger>
+              <TabsTrigger value="accessoires">{t("catalog.accessories")} ({accessoires.length})</TabsTrigger>
             </TabsList>
           </Tabs>
           
@@ -132,7 +132,7 @@ export default function Catalog() {
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                 <Input
-                  placeholder="Rechercher une selle..."
+                  placeholder={t("catalog.searchSaddle")}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
