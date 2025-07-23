@@ -2,27 +2,38 @@
 [phases.setup]
 cmds = ["corepack enable"]
 
+# Installation des dépendances de développement en premier
 [phases.install]
 cmds = [
-    "npm install -g typescript",
-    "npm ci"
+    "npm install --include=dev",  # Installer d'abord les devDependencies
+    "npm install"                  # Puis les dépendances normales
 ]
 
+# Construction de l'application
 [phases.build]
 cmds = [
     "npm run build:server",
     "npm run build:client"
 ]
 
+# Configuration requise
 [phases.install.requires]
 node = "18"
 
+# Commande de démarrage
 [start]
-cmd = "npm run start"
+cmd = "node dist/server/index.js"  # Chez Railway, on pointe directement vers le fichier compilé
 
+# Variables d'environnement
 [build.environment]
 NODE_ENV = "production"
 NPM_CONFIG_PRODUCTION = "false"
 
+# Arguments de build
 [build.args]
 NODE_VERSION = "18"
+
+# Configuration spécifique à Railway
+[build.builder]
+name = "nixpacks"
+version = "1.0.0"
