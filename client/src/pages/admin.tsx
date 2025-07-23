@@ -337,28 +337,23 @@ export default function Admin() {
             </TabsTrigger>
             <TabsTrigger value="accessories" className="admin-tab-trigger">
               <Package className="admin-tab-icon" />
-              <span className="hidden sm:inline">Accessoires</span>
-              <span className="sm:hidden">Access.</span>
+              <span>Access</span>
             </TabsTrigger>
             <TabsTrigger value="product-images" className="admin-tab-trigger">
               <Images className="admin-tab-icon" />
-              <span className="hidden sm:inline">Images Produits</span>
-              <span className="sm:hidden">Images</span>
+              <span>Img</span>
             </TabsTrigger>
             <TabsTrigger value="gallery" className="admin-tab-trigger">
               <Images className="admin-tab-icon" />
-              <span className="hidden sm:inline">{t("admin.gallery")}</span>
-              <span className="sm:hidden">Galerie</span>
+              <span>Gal</span>
             </TabsTrigger>
             <TabsTrigger value="orders" className="admin-tab-trigger">
               <ShoppingCart className="admin-tab-icon" />
-              <span className="hidden sm:inline">{t("admin.orders")}</span>
-              <span className="sm:hidden">Commandes</span>
+              <span>Cmd</span>
             </TabsTrigger>
             <TabsTrigger value="chat" className="admin-tab-trigger">
               <MessageCircle className="admin-tab-icon" />
-              <span className="hidden sm:inline">Chat Support</span>
-              <span className="sm:hidden">Chat</span>
+              <span>Chat</span>
             </TabsTrigger>
           </TabsList>
 
