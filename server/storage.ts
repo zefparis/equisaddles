@@ -579,6 +579,7 @@ export class MemStorage implements IStorage {
       ...insertProduct,
       id,
       createdAt: new Date(),
+      subcategory: insertProduct.subcategory ?? null,
       featured: insertProduct.featured ?? null,
       originalPrice: insertProduct.originalPrice ?? null,
       images: insertProduct.images ?? null,
@@ -619,6 +620,7 @@ export class MemStorage implements IStorage {
       ...insertImage,
       id,
       createdAt: new Date(),
+      isMain: insertImage.isMain ?? null,
     };
     this.productImages.set(id, image);
     return image;
@@ -689,6 +691,12 @@ export class MemStorage implements IStorage {
       customerPhone: insertOrder.customerPhone ?? null,
       stripeSessionId: insertOrder.stripeSessionId ?? null,
       shippingCost: insertOrder.shippingCost ?? null,
+      shippingService: insertOrder.shippingService ?? "standard",
+      shippingZone: insertOrder.shippingZone ?? "Belgium",
+      dpdReference: insertOrder.dpdReference ?? null,
+      estimatedDelivery: insertOrder.estimatedDelivery ?? null,
+      trackingNumber: insertOrder.trackingNumber ?? null,
+      shippingLabelUrl: insertOrder.shippingLabelUrl ?? null,
     };
     this.orders.set(id, order);
     return order;
@@ -718,8 +726,16 @@ export class MemStorage implements IStorage {
   async createShippingRate(insertRate: InsertShippingRate): Promise<ShippingRate> {
     const id = this.currentShippingRateId++;
     const rate: ShippingRate = {
-      ...insertRate,
       id,
+      zone: insertRate.zone,
+      service: insertRate.service,
+      baseRate: insertRate.baseRate,
+      deliveryTime: insertRate.deliveryTime,
+      description: insertRate.description ?? null,
+      minWeight: insertRate.minWeight ?? "0",
+      maxWeight: insertRate.maxWeight ?? "30",
+      perKgRate: insertRate.perKgRate ?? "0",
+      active: insertRate.active ?? true,
     };
     this.shippingRates.set(id, rate);
     return rate;
