@@ -9,6 +9,7 @@ import ProductFilters from "../components/product/product-filters";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 import { Search, Grid, List, Filter } from "lucide-react";
 
 export default function Catalog() {
@@ -18,8 +19,10 @@ export default function Catalog() {
   const [sortBy, setSortBy] = useState("name");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [showFilters, setShowFilters] = useState(false);
+  const [activeTab, setActiveTab] = useState("selles");
   const [filters, setFilters] = useState({
     categories: [] as string[],
+    subcategories: [] as string[],
     sizes: [] as string[],
     priceRange: [0, 2000] as [number, number],
   });
@@ -45,14 +48,23 @@ export default function Catalog() {
     queryKey: ["/api/products"],
   });
 
-  const filteredProducts = products?.filter(product => {
+  // Séparer les selles et les accessoires
+  const selles = products?.filter(product => product.category !== "Accessoires") || [];
+  const accessoires = products?.filter(product => product.category === "Accessoires") || [];
+
+  const filteredProducts = (activeTab === "selles" ? selles : accessoires).filter(product => {
     // Search filter
     if (searchTerm && !product.name.toLowerCase().includes(searchTerm.toLowerCase())) {
       return false;
     }
 
-    // Category filter
-    if (filters.categories.length > 0 && !filters.categories.includes(product.category)) {
+    // Category filter pour les selles uniquement
+    if (activeTab === "selles" && filters.categories.length > 0 && !filters.categories.includes(product.category)) {
+      return false;
+    }
+
+    // Subcategory filter pour les accessoires uniquement
+    if (activeTab === "accessoires" && filters.subcategories.length > 0 && !filters.subcategories.includes(product.subcategory || "")) {
       return false;
     }
 
@@ -89,12 +101,20 @@ export default function Catalog() {
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-4">{t("nav.catalog")}</h1>
           
+          {/* Onglets Selles / Accessoires */}
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
+            <TabsList className="grid w-full grid-cols-2 max-w-md">
+              <TabsTrigger value="selles">Selles ({selles.length})</TabsTrigger>
+              <TabsTrigger value="accessoires">Accessoires ({accessoires.length})</TabsTrigger>
+            </TabsList>
+          </Tabs>
+          
           {/* Search and Controls */}
           <div className="flex flex-col sm:flex-row gap-4 mb-6">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <Input
-                placeholder="Rechercher une selle..."
+                placeholder={activeTab === "selles" ? "Rechercher une selle..." : "Rechercher un accessoire..."}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10"
@@ -143,7 +163,7 @@ export default function Catalog() {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Filters Sidebar */}
           <div className={`w-full lg:w-80 ${showFilters ? 'block' : 'hidden lg:block'}`}>
-            <ProductFilters onFiltersChange={setFilters} />
+            <ProductFilters activeTab={activeTab} onFiltersChange={setFilters} />
           </div>
 
           {/* Products Grid */}

@@ -67,6 +67,7 @@ export const translations: Record<string, Record<string, string>> = {
     "subcategories.briderie": "Briderie",
     "subcategories.couvertures": "Couvertures",
     "subcategories.protections": "Protections",
+    "filter.subcategory": "Type d'accessoire",
     "chat.title": "Assistant Equi Saddles",
     "chat.placeholder": "Tapez votre message...",
     "chat.welcome": "Bonjour ! Je suis votre assistant Equi Saddles. Comment puis-je vous aider aujourd'hui ?",
@@ -625,6 +626,7 @@ export const translations: Record<string, Record<string, string>> = {
     "filter.category": "Category",
     "filter.size": "Size",
     "filter.price": "Price",
+    "filter.subcategory": "Accessory Type",
     
     // Accessory subcategories
     "subcategories.sangles": "Girths",

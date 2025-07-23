@@ -8,19 +8,23 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Filter, X } from "lucide-react";
 
 interface ProductFiltersProps {
+  activeTab: "selles" | "accessoires";
   onFiltersChange: (filters: {
     categories: string[];
+    subcategories: string[];
     sizes: string[];
     priceRange: [number, number];
   }) => void;
 }
 
 const categories = ["Obstacle", "Dressage", "Cross", "Mixte", "Poney"];
+const subcategories = ["Sangles", "Etrivieres", "Etriers", "Amortisseurs", "Tapis", "Briderie", "Couvertures", "Protections"];
 const sizes = ["16", "16.5", "17", "17.5", "18", "18.5"];
 
-export default function ProductFilters({ onFiltersChange }: ProductFiltersProps) {
+export default function ProductFilters({ activeTab, onFiltersChange }: ProductFiltersProps) {
   const { t } = useLanguage();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>([]);
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 2000]);
 
@@ -32,6 +36,7 @@ export default function ProductFilters({ onFiltersChange }: ProductFiltersProps)
     setSelectedCategories(newCategories);
     onFiltersChange({
       categories: newCategories,
+      subcategories: selectedSubcategories,
       sizes: selectedSizes,
       priceRange
     });
@@ -45,6 +50,7 @@ export default function ProductFilters({ onFiltersChange }: ProductFiltersProps)
     setSelectedSizes(newSizes);
     onFiltersChange({
       categories: selectedCategories,
+      subcategories: selectedSubcategories,
       sizes: newSizes,
       priceRange
     });
@@ -54,17 +60,34 @@ export default function ProductFilters({ onFiltersChange }: ProductFiltersProps)
     setPriceRange(newRange);
     onFiltersChange({
       categories: selectedCategories,
+      subcategories: selectedSubcategories,
       sizes: selectedSizes,
       priceRange: newRange
     });
   };
 
+  const handleSubcategoryChange = (subcategory: string, checked: boolean) => {
+    const newSubcategories = checked
+      ? [...selectedSubcategories, subcategory]
+      : selectedSubcategories.filter(sc => sc !== subcategory);
+    
+    setSelectedSubcategories(newSubcategories);
+    onFiltersChange({
+      categories: selectedCategories,
+      subcategories: newSubcategories,
+      sizes: selectedSizes,
+      priceRange
+    });
+  };
+
   const clearFilters = () => {
     setSelectedCategories([]);
+    setSelectedSubcategories([]);
     setSelectedSizes([]);
     setPriceRange([0, 2000]);
     onFiltersChange({
       categories: [],
+      subcategories: [],
       sizes: [],
       priceRange: [0, 2000]
     });
@@ -84,51 +107,80 @@ export default function ProductFilters({ onFiltersChange }: ProductFiltersProps)
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
-        {/* Categories */}
-        <div>
-          <Label className="text-sm font-medium mb-3 block">
-            {t("filter.category")}
-          </Label>
-          <div className="space-y-2">
-            {categories.map(category => (
-              <div key={category} className="flex items-center space-x-2">
-                <Checkbox
-                  id={category}
-                  checked={selectedCategories.includes(category)}
-                  onCheckedChange={(checked) => 
-                    handleCategoryChange(category, checked as boolean)
-                  }
-                />
-                <Label htmlFor={category} className="text-sm">
-                  {category}
-                </Label>
-              </div>
-            ))}
+        {/* Categories pour les selles */}
+        {activeTab === "selles" && (
+          <div>
+            <Label className="text-sm font-medium mb-3 block">
+              {t("filter.category")}
+            </Label>
+            <div className="space-y-2">
+              {categories.map(category => (
+                <div key={category} className="flex items-center space-x-2">
+                  <Checkbox
+                    id={category}
+                    checked={selectedCategories.includes(category)}
+                    onCheckedChange={(checked) => 
+                      handleCategoryChange(category, checked as boolean)
+                    }
+                  />
+                  <Label htmlFor={category} className="text-sm">
+                    {category}
+                  </Label>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* Sizes */}
-        <div>
-          <Label className="text-sm font-medium mb-3 block">
-            {t("filter.size")}
-          </Label>
-          <div className="grid grid-cols-3 gap-2">
-            {sizes.map(size => (
-              <div key={size} className="flex items-center space-x-2">
-                <Checkbox
-                  id={size}
-                  checked={selectedSizes.includes(size)}
-                  onCheckedChange={(checked) => 
-                    handleSizeChange(size, checked as boolean)
-                  }
-                />
-                <Label htmlFor={size} className="text-sm">
-                  {size}
-                </Label>
-              </div>
-            ))}
+        {/* Sous-catégories pour les accessoires */}
+        {activeTab === "accessoires" && (
+          <div>
+            <Label className="text-sm font-medium mb-3 block">
+              {t("filter.subcategory")}
+            </Label>
+            <div className="space-y-2">
+              {subcategories.map(subcategory => (
+                <div key={subcategory} className="flex items-center space-x-2">
+                  <Checkbox
+                    id={subcategory}
+                    checked={selectedSubcategories.includes(subcategory)}
+                    onCheckedChange={(checked) => 
+                      handleSubcategoryChange(subcategory, checked as boolean)
+                    }
+                  />
+                  <Label htmlFor={subcategory} className="text-sm">
+                    {t(`subcategories.${subcategory.toLowerCase()}`)}
+                  </Label>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
+
+        {/* Sizes - uniquement pour les selles */}
+        {activeTab === "selles" && (
+          <div>
+            <Label className="text-sm font-medium mb-3 block">
+              {t("filter.size")}
+            </Label>
+            <div className="grid grid-cols-3 gap-2">
+              {sizes.map(size => (
+                <div key={size} className="flex items-center space-x-2">
+                  <Checkbox
+                    id={size}
+                    checked={selectedSizes.includes(size)}
+                    onCheckedChange={(checked) => 
+                      handleSizeChange(size, checked as boolean)
+                    }
+                  />
+                  <Label htmlFor={size} className="text-sm">
+                    {size}
+                  </Label>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Price Range */}
         <div>
