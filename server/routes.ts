@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import Stripe from "stripe";
 import { storage } from "./storage";
+import { registerUploadRoutes } from "./routes/upload";
 import { insertProductSchema, insertGalleryImageSchema, insertProductImageSchema, insertOrderSchema } from "@shared/schema";
 import { dpdService, type ShippingCalculationRequest } from "./dpd-service";
 import { z } from "zod";
@@ -15,6 +16,8 @@ const stripe = process.env.STRIPE_SECRET_KEY ? new Stripe(process.env.STRIPE_SEC
 }) : null;
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Register upload routes
+  registerUploadRoutes(app);
   
   // Products API
   app.get("/api/products", async (req, res) => {

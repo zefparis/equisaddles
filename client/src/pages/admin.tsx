@@ -21,6 +21,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Settings, Package, Images, ShoppingCart, Plus, Edit, Trash2, Eye, FileText, Download, Truck, MapPin } from "lucide-react";
 import ProductImageManager from "../components/admin/product-image-manager";
+import ImageUpload from "../components/admin/image-upload";
 
 const categories = ["Obstacle", "Dressage", "Cross", "Mixte", "Poney", "Accessoires"];
 const saddleSizes = ["16", "16.5", "17", "17.5", "18", "18.5"];
@@ -37,6 +38,8 @@ export default function Admin() {
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [showProductDialog, setShowProductDialog] = useState(false);
   const [showGalleryDialog, setShowGalleryDialog] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const [selectedImageFile, setSelectedImageFile] = useState<File | null>(null);
 
   // Scroll to top when page loads
   useEffect(() => {
@@ -184,16 +187,80 @@ export default function Admin() {
     },
   });
 
-  const handleProductSubmit = (data: ProductFormData) => {
-    if (editingProduct) {
-      updateProductMutation.mutate({ id: editingProduct.id, data });
-    } else {
-      createProductMutation.mutate(data);
+  // Upload image function
+  const uploadImage = async (file: File): Promise<string> => {
+    const formData = new FormData();
+    formData.append('image', file);
+    
+    const response = await fetch('/api/upload/image', {
+      method: 'POST',
+      body: formData,
+    });
+    
+    if (!response.ok) {
+      throw new Error('Erreur lors de l\'upload de l\'image');
+    }
+    
+    const result = await response.json();
+    return result.url;
+  };
+
+  const handleProductSubmit = async (data: ProductFormData) => {
+    setUploadingImage(true);
+    
+    try {
+      let imageUrl = data.image;
+      
+      // Si un fichier d'image a été sélectionné, l'uploader d'abord
+      if (selectedImageFile) {
+        imageUrl = await uploadImage(selectedImageFile);
+        data.image = imageUrl;
+      }
+      
+      if (editingProduct) {
+        updateProductMutation.mutate({ id: editingProduct.id, data });
+      } else {
+        createProductMutation.mutate(data);
+      }
+      
+      // Reset l'état du fichier après soumission
+      setSelectedImageFile(null);
+    } catch (error) {
+      toast({
+        title: "Erreur",
+        description: "Erreur lors de l'upload de l'image",
+        variant: "destructive",
+      });
+    } finally {
+      setUploadingImage(false);
     }
   };
 
-  const handleGallerySubmit = (data: GalleryFormData) => {
-    createGalleryImageMutation.mutate(data);
+  const handleGallerySubmit = async (data: GalleryFormData) => {
+    setUploadingImage(true);
+    
+    try {
+      let imageUrl = data.url;
+      
+      // Si un fichier d'image a été sélectionné, l'uploader d'abord
+      if (selectedImageFile) {
+        imageUrl = await uploadImage(selectedImageFile);
+        data.url = imageUrl;
+      }
+      
+      createGalleryImageMutation.mutate(data);
+      
+      // Reset l'état du fichier après soumission
+      setSelectedImageFile(null);
+    } catch (error) {
+      toast({
+        title: "Erreur",
+        description: "Erreur lors de l'upload de l'image",
+        variant: "destructive",
+      });
+    } finally {
+      setUploadingImage(false);
+    }
   };
 
   const handleEditProduct = (product: Product) => {
@@ -754,14 +821,14 @@ export default function Admin() {
                 />
               </div>
 
-              <div>
-                <Label htmlFor="image">URL de l'image principale *</Label>
-                <Input
-                  id="image"
-                  {...productForm.register("image")}
-                  placeholder="https://example.com/image.jpg"
-                />
-              </div>
+              <ImageUpload
+                onImageSelect={({ url, file }) => {
+                  productForm.setValue("image", url);
+                  setSelectedImageFile(file);
+                }}
+                currentImage={productForm.watch("image")}
+                placeholder="Sélectionner l'image principale du produit"
+              />
 
               <div className="flex items-center space-x-6">
                 <div className="flex items-center space-x-2">
@@ -786,8 +853,8 @@ export default function Admin() {
                 <Button type="button" variant="outline" onClick={() => setShowProductDialog(false)}>
                   {t("admin.cancel")}
                 </Button>
-                <Button type="submit" className="btn-primary">
-                  {editingProduct ? t("admin.modify") : t("admin.create")}
+                <Button type="submit" className="btn-primary" disabled={uploadingImage}>
+                  {uploadingImage ? "Upload en cours..." : (editingProduct ? t("admin.modify") : t("admin.create"))}
                 </Button>
               </div>
             </form>
@@ -804,14 +871,14 @@ export default function Admin() {
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={galleryForm.handleSubmit(handleGallerySubmit)} className="space-y-4">
-              <div>
-                <Label htmlFor="url">URL de l'image *</Label>
-                <Input
-                  id="url"
-                  {...galleryForm.register("url")}
-                  placeholder="https://example.com/image.jpg"
-                />
-              </div>
+              <ImageUpload
+                onImageSelect={({ url, file }) => {
+                  galleryForm.setValue("url", url);
+                  setSelectedImageFile(file);
+                }}
+                currentImage={galleryForm.watch("url")}
+                placeholder="Sélectionner une image pour la galerie"
+              />
 
               <div>
                 <Label htmlFor="alt">Texte alternatif *</Label>
