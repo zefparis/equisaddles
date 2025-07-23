@@ -87,7 +87,7 @@ export default function CustomerService() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <MessageCircle className="h-5 w-5" />
-                Nous Contacter
+{t("service.contact.title")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -96,15 +96,15 @@ export default function CustomerService() {
                   <div className="flex items-start gap-3">
                     <Mail className="h-6 w-6 text-blue-600 mt-1" />
                     <div>
-                      <h4 className="font-semibold text-blue-800 mb-2">Email Prioritaire</h4>
+                      <h4 className="font-semibold text-blue-800 mb-2">{t("service.email.title")}</h4>
                       <p className="text-sm text-blue-700 mb-2">
                         <strong>support@equisaddles.com</strong>
                       </p>
                       <ul className="text-sm text-blue-600 space-y-1">
-                        <li>• Réponse garantie sous 24h</li>
-                        <li>• Équipe dédiée 7j/7</li>
-                        <li>• Suivi personnalisé de votre demande</li>
-                        <li>• Archive de tous nos échanges</li>
+                        <li>• {t("service.email.response")}</li>
+                        <li>• {t("service.email.team")}</li>
+                        <li>• {t("service.email.tracking")}</li>
+                        <li>• {t("service.email.archive")}</li>
                       </ul>
                     </div>
                   </div>
@@ -114,15 +114,15 @@ export default function CustomerService() {
                   <div className="flex items-start gap-3">
                     <Phone className="h-6 w-6 text-green-600 mt-1" />
                     <div>
-                      <h4 className="font-semibold text-green-800 mb-2">Téléphone Direct</h4>
+                      <h4 className="font-semibold text-green-800 mb-2">{t("service.phone.title")}</h4>
                       <p className="text-sm text-green-700 mb-2">
                         <strong>+33 1 23 45 67 89</strong>
                       </p>
                       <ul className="text-sm text-green-600 space-y-1">
-                        <li>• Lun-Ven : 9h00 - 18h00</li>
-                        <li>• Samedi : 10h00 - 16h00</li>
-                        <li>• Conseiller expert immédiat</li>
-                        <li>• Urgences : extension 1</li>
+                        <li>• {t("service.phone.hours")}</li>
+                        <li>• {t("service.phone.saturday")}</li>
+                        <li>• {t("service.phone.expert")}</li>
+                        <li>• {t("service.phone.emergency")}</li>
                       </ul>
                     </div>
                   </div>
@@ -132,9 +132,7 @@ export default function CustomerService() {
               <Alert className="bg-orange-50 border-orange-200">
                 <Zap className="h-4 w-4" />
                 <AlertDescription className="text-orange-800">
-                  <strong>Service Express :</strong> Pour les demandes urgentes (problème de livraison, 
-                  commande expédiée), appelez directement notre ligne prioritaire. 
-                  Un conseiller prendra immédiatement en charge votre dossier.
+                  <strong>{t("service.express.title")} :</strong> {t("service.express.description")}
                 </AlertDescription>
               </Alert>
             </CardContent>
@@ -145,29 +143,29 @@ export default function CustomerService() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Star className="h-5 w-5" />
-                Standards de Service
+{t("service.standards.title")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-semibold mb-3">Temps de Réponse Garantis</h4>
+                  <h4 className="font-semibold mb-3">{t("service.response.title")}</h4>
                   <div className="space-y-3">
                     <div className="flex justify-between items-center p-3 bg-green-50 rounded">
-                      <span className="text-sm font-medium">Demandes générales</span>
-                      <Badge variant="outline" className="bg-green-100">24h max</Badge>
+                      <span className="text-sm font-medium">{t("service.response.general")}</span>
+                      <Badge variant="outline" className="bg-green-100">{t("service.response.24h")}</Badge>
                     </div>
                     <div className="flex justify-between items-center p-3 bg-blue-50 rounded">
-                      <span className="text-sm font-medium">Questions techniques</span>
-                      <Badge variant="outline" className="bg-blue-100">12h max</Badge>
+                      <span className="text-sm font-medium">{t("service.response.technical")}</span>
+                      <Badge variant="outline" className="bg-blue-100">{t("service.response.12h")}</Badge>
                     </div>
                     <div className="flex justify-between items-center p-3 bg-orange-50 rounded">
-                      <span className="text-sm font-medium">Problèmes urgents</span>
-                      <Badge variant="outline" className="bg-orange-100">2h max</Badge>
+                      <span className="text-sm font-medium">{t("service.response.urgent")}</span>
+                      <Badge variant="outline" className="bg-orange-100">{t("service.response.2h")}</Badge>
                     </div>
                     <div className="flex justify-between items-center p-3 bg-red-50 rounded">
-                      <span className="text-sm font-medium">Urgences critiques</span>
-                      <Badge variant="outline" className="bg-red-100">Immédiat</Badge>
+                      <span className="text-sm font-medium">{t("service.response.critical")}</span>
+                      <Badge variant="outline" className="bg-red-100">{t("service.response.immediate")}</Badge>
                     </div>
                   </div>
                 </div>
