@@ -1,12 +1,15 @@
 # Railway/Nixpacks: configuration optimisée pour build et démarrage
 [phases.setup]
-cmds = ["corepack enable"]
+cmds = [
+    "corepack enable",
+    "npm install -g typescript"  # Installation globale de TypeScript
+]
 
-# Installation des dépendances de développement en premier
+# Installation des dépendances
 [phases.install]
 cmds = [
-    "npm install --include=dev",  # Installer d'abord les devDependencies
-    "npm install"                  # Puis les dépendances normales
+    "npm install --include=dev",  # Installer toutes les dépendances
+    "npm install typescript --no-save"  # S'assurer que TypeScript est disponible
 ]
 
 # Construction de l'application
@@ -28,6 +31,7 @@ cmd = "node dist/server/index.js"  # Chez Railway, on pointe directement vers le
 [build.environment]
 NODE_ENV = "production"
 NPM_CONFIG_PRODUCTION = "false"
+NODE_OPTIONS = "--max-old-space-size=4096"  # Augmenter la mémoire allouée à Node
 
 # Arguments de build
 [build.args]
