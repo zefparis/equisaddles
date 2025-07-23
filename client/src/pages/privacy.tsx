@@ -42,7 +42,7 @@ export default function Privacy() {
             <CardContent className="space-y-4">
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-semibold mb-2">{t("privacy.dataWeCollect")}</h3>
+                  <h3 className="font-semibold mb-2">{t("privacy.dataCollected")}</h3>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
@@ -97,7 +97,7 @@ export default function Privacy() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Lock className="h-5 w-5" />
-{t("privacy.protection.title")}
+                {t("privacy.protection.title")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">

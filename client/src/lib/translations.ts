@@ -204,6 +204,7 @@ export const translations: Record<string, Record<string, string>> = {
     "service.response.2h": "2h max",
     "service.response.critical": "Urgences critiques",
     "service.response.immediate": "Immédiat",
+    "service.reactivity": "Réactivité",
     "service.reactivityDesc": "Réponse rapide à toutes vos questions",
     "service.listening": "Écoute",
     "service.listeningDesc": "Écoute attentive de vos besoins",
@@ -252,11 +253,7 @@ export const translations: Record<string, Record<string, string>> = {
     "support.response.title": "Temps de Réponse",
     "support.expertise.title": "Expertise Équestre",
     
-    // Privacy Page Content
-    "privacy.collection.title": "Collecte des Données",
-    "privacy.usage.title": "Utilisation des Données",
-    "privacy.security.title": "Sécurité des Données",
-    "privacy.rights.title": "Vos Droits",
+    // Privacy Page Content - REMOVED DUPLICATE SECTION
     
     // Terms Page Content
     "terms.company.title": "Identification de l'Entreprise",
@@ -346,23 +343,22 @@ export const translations: Record<string, Record<string, string>> = {
     "support.categories.orders": "Commandes & Paiements",
     "support.categories.delivery": "Livraison & Retours",
     
-    // Privacy page translations
-    "privacy.subtitle": "Equi Saddles is committed to protecting your personal data.",
-    "privacy.lastUpdated": "Last updated: January 2025",
-    "privacy.dataCollection.title": "Data Collection",
-    "privacy.dataWeCollect": "Data we collect:",
-    "privacy.personalInfo": "Personal information",
-    "privacy.personalInfoDesc": "Name, first name, email address, phone number, delivery address",
-    "privacy.orderData": "Order data",
-    "privacy.orderDataDesc": "Purchase history, product preferences, payment information (encrypted)",
-    "privacy.technicalData": "Technical data",
-    "privacy.technicalDataDesc": "IP address, browser type, pages visited, time spent on site",
-    "privacy.collectionPurposes": "Collection purposes:",
-    "privacy.purpose1": "Processing and delivery of your orders",
-    "privacy.purpose2": "Customer service and technical support",
-    "privacy.purpose3": "Improvement of our products and services",
-    "privacy.purpose4": "Marketing communications (with your consent)",
-    "privacy.protection.title": "Data Protection",
+    // Privacy page translations - REMOVED DUPLICATES - Complete implementation
+    "privacy.subtitle": "Equi Saddles s'engage à protéger vos données personnelles.",
+    "privacy.lastUpdated": "Dernière mise à jour : Janvier 2025",
+    "privacy.collection.title": "Collecte des Données",
+    "privacy.personalInfo": "Informations personnelles",
+    "privacy.personalInfoDesc": "Nom, prénom, adresse email, numéro de téléphone, adresse de livraison",
+    "privacy.orderData": "Données de commande",
+    "privacy.orderDataDesc": "Historique des achats, préférences produits, informations de paiement (cryptées)",
+    "privacy.technicalData": "Données techniques",
+    "privacy.technicalDataDesc": "Adresse IP, type de navigateur, pages visitées, temps passé sur le site",
+    "privacy.collectionPurposes": "Finalités de la collecte :",
+    "privacy.purpose1": "Traitement et livraison de vos commandes",
+    "privacy.purpose2": "Service client et support technique",
+    "privacy.purpose3": "Amélioration de nos produits et services",
+    "privacy.purpose4": "Communications marketing (avec votre consentement)",
+    "privacy.protection.title": "Protection des Données",
 
     
     // Additional Returns Content
@@ -2012,8 +2008,7 @@ export const translations: Record<string, Record<string, string>> = {
     "service.satisfaction.title": "Zufriedenheitsgarantie",
     "service.support.title": "Technischer Support",
     "service.warranty.title": "Kundendienst",
-    "service.reactivity": "Reaktivität",
-    "service.reactivityDesc": "Antwort garantiert innerhalb 24h, oft viel schneller",
+    // REMOVED DUPLICATE - already exists later
     "service.listening": "Zuhören",
     "service.listeningDesc": "Jeder Kunde ist einzigartig, wir passen unsere Lösungen an",
     "service.expertise": "Fachwissen",
@@ -2148,11 +2143,8 @@ export const translations: Record<string, Record<string, string>> = {
     "service.response.2h": "2h max",
     "service.response.critical": "Kritische Notfälle",
     "service.response.immediate": "Sofort",
+    "service.reactivity": "Reaktivität",
     "service.reactivityDesc": "Schnelle Antwort auf alle Ihre Fragen",
-    "service.listening": "Zuhören",
-    "service.listeningDesc": "Aufmerksames Zuhören zu Ihren Bedürfnissen",
-    "service.expertise": "Expertise",
-    "service.expertiseDesc": "Experten-Sattlerberatung",
     "service.quality.title": "Unsere Qualitätsverpflichtungen",
     "service.quality.dedicated": "Engagierter Berater für jede Anfrage",
     "service.quality.followup": "Nachverfolgung bis zur vollständigen Lösung",
