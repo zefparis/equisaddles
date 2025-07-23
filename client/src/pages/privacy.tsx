@@ -20,11 +20,10 @@ export default function Privacy() {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4 flex items-center justify-center gap-3">
             <Shield className="h-10 w-10 text-primary" />
-            Politique de Confidentialité
+            {t("legal.privacy.title")}
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Equi Saddles s'engage à protéger vos données personnelles. 
-            Cette politique explique comment nous collectons, utilisons et protégeons vos informations.
+            {t("legal.privacy.subtitle")}
           </p>
           <Badge variant="secondary" className="mt-4">
             Dernière mise à jour : Janvier 2025

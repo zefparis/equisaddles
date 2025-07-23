@@ -36,11 +36,10 @@ export default function Delivery() {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4 flex items-center justify-center gap-3">
             <Truck className="h-10 w-10 text-primary" />
-            Livraison et Expédition
+            {t("legal.delivery.title")}
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Expédition sécurisée de vos selles équestres partout en Europe. 
-            Partenariat avec DPD pour une livraison fiable et rapide.
+            {t("legal.delivery.subtitle")}
           </p>
         </div>
 

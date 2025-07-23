@@ -34,11 +34,10 @@ export default function Returns() {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4 flex items-center justify-center gap-3">
             <RotateCcw className="h-10 w-10 text-primary" />
-            Retours et Échanges
+            {t("legal.returns.title")}
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Politique de retour flexible d'Equi Saddles. Votre satisfaction est notre priorité, 
-            nous facilitons vos retours et échanges.
+            {t("legal.returns.subtitle")}
           </p>
         </div>
 

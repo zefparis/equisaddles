@@ -37,11 +37,10 @@ export default function CustomerService() {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4 flex items-center justify-center gap-3">
             <Headphones className="h-10 w-10 text-primary" />
-            Service Client Excellence
+            {t("legal.customerService.title")}
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Chez Equi Saddles, votre satisfaction est notre mission. Découvrez notre engagement 
-            pour un service client d'exception, disponible et personnalisé.
+            {t("legal.customerService.subtitle")}
           </p>
           <Badge variant="default" className="mt-4 text-lg px-4 py-2">
             ⭐ Note client : 4.9/5 - Plus de 2000 avis

@@ -32,11 +32,10 @@ export default function Support() {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4 flex items-center justify-center gap-3">
             <Headphones className="h-10 w-10 text-primary" />
-            Support Client - Equi Saddles
+            {t("legal.support.title")}
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Notre équipe dédiée est là pour vous accompagner dans votre expérience équestre. 
-            Nous nous engageons à vous offrir un service client d'exception.
+            {t("legal.support.subtitle")}
           </p>
         </div>
 

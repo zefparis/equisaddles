@@ -30,10 +30,10 @@ export default function Terms() {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4 flex items-center justify-center gap-3">
             <FileText className="h-10 w-10 text-primary" />
-            Conditions Générales de Vente
+            {t("legal.terms.title")}
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Conditions régissant l'utilisation du site Equi Saddles et l'achat de nos produits équestres.
+            {t("legal.terms.subtitle")}
           </p>
           <Badge variant="secondary" className="mt-4">
             Version en vigueur : Janvier 2025
