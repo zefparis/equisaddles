@@ -6,6 +6,7 @@ import { registerUploadRoutes } from "./routes/upload";
 import { setupChatWebSocket } from "./routes/chat";
 import { insertProductSchema, insertGalleryImageSchema, insertProductImageSchema, insertOrderSchema } from "@shared/schema";
 import { dpdService, type ShippingCalculationRequest } from "./dpd-service";
+import { sendChatNotificationToAdmin } from "./services/brevo";
 import { z } from "zod";
 
 if (!process.env.STRIPE_SECRET_KEY) {
@@ -359,6 +360,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(options);
     } catch (error: any) {
       res.status(500).json({ message: "Error calculating shipping: " + error.message });
+    }
+  });
+
+  // Route de test temporaire pour vérifier l'envoi d'emails Brevo
+  app.post("/api/test-email", async (req, res) => {
+    try {
+      const { customerName, customerEmail, message, sessionId } = req.body;
+      
+      const result = await sendChatNotificationToAdmin(
+        customerName || "Test Client",
+        customerEmail || "test@example.com", 
+        message || "Message de test pour vérifier les notifications email",
+        sessionId || "test-session-123"
+      );
+      
+      res.json({ 
+        success: result,
+        message: result ? "Email envoyé avec succès" : "Échec de l'envoi d'email"
+      });
+    } catch (error: any) {
+      res.status(500).json({ message: "Erreur lors du test d'email: " + error.message });
     }
   });
 
