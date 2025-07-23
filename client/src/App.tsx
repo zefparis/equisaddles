@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "./hooks/use-language";
 import { CartProvider } from "./hooks/use-cart";
+import { AdminAuthProvider } from "./contexts/AdminAuthContext";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
 import ChatWidget from "./components/chat/chat-widget";
@@ -58,6 +59,7 @@ function App() {
       <TooltipProvider>
         <LanguageProvider>
           <CartProvider>
+            <AdminAuthProvider>
             <div className="min-h-screen flex flex-col">
               <Header />
               <main className="flex-1">
@@ -77,6 +79,7 @@ function App() {
                 onClick={() => setIsChatOpen(true)} 
               />
             )}
+            </AdminAuthProvider>
           </CartProvider>
         </LanguageProvider>
       </TooltipProvider>

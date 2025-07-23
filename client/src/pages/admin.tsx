@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLanguage } from "../hooks/use-language";
+import { useAdminAuth } from "../contexts/AdminAuthContext";
+import AdminLogin from "../components/admin/AdminLogin";
 import "../styles/admin-responsive.css";
 import { useToast } from "../hooks/use-toast";
 import { scrollToTop } from "../lib/utils";
@@ -37,6 +39,12 @@ export default function Admin() {
   const { t } = useLanguage();
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const { isAuthenticated, logout } = useAdminAuth();
+
+  // Si l'utilisateur n'est pas authentifié, afficher la page de connexion
+  if (!isAuthenticated) {
+    return <AdminLogin />;
+  }
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [showProductDialog, setShowProductDialog] = useState(false);
   const [showGalleryDialog, setShowGalleryDialog] = useState(false);
@@ -319,14 +327,23 @@ export default function Admin() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 admin-container">
       <div className="container mx-auto">
         {/* Header */}
-        <div className="admin-header">
-          <h1 className="admin-header-title text-gray-900 dark:text-gray-100">
-            <Settings className="admin-header-icon" />
-            <span>{t("admin.title")}</span>
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2 text-sm sm:text-base">
-            Interface d'administration pour gérer les produits, la galerie et les commandes.
-          </p>
+        <div className="admin-header flex justify-between items-start">
+          <div>
+            <h1 className="admin-header-title text-gray-900 dark:text-gray-100">
+              <Settings className="admin-header-icon" />
+              <span>{t("admin.title")}</span>
+            </h1>
+            <p className="text-gray-600 dark:text-gray-400 mt-2 text-sm sm:text-base">
+              Interface d'administration pour gérer les produits, la galerie et les commandes.
+            </p>
+          </div>
+          <Button 
+            variant="outline" 
+            onClick={logout}
+            className="text-sm mt-1"
+          >
+            Déconnexion
+          </Button>
         </div>
 
         <Tabs defaultValue="saddles" className="space-y-6 sm:space-y-8">
