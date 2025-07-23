@@ -22,8 +22,10 @@ import { z } from "zod";
 import { Settings, Package, Images, ShoppingCart, Plus, Edit, Trash2, Eye, FileText, Download, Truck, MapPin } from "lucide-react";
 import ProductImageManager from "../components/admin/product-image-manager";
 
-const categories = ["Obstacle", "Dressage", "Cross", "Mixte", "Poney"];
-const sizes = ["16", "16.5", "17", "17.5", "18", "18.5"];
+const categories = ["Obstacle", "Dressage", "Cross", "Mixte", "Poney", "Accessoires"];
+const saddleSizes = ["16", "16.5", "17", "17.5", "18", "18.5"];
+const accessorySubcategories = ["Sangles", "Etrivieres", "Etriers", "Amortisseurs", "Tapis", "Briderie", "Couvertures", "Protections"];
+const accessorySizes = ["S", "M", "L", "XL", "XXL", "Unique", "Poney", "Cheval", "Double Poney", "Full"];
 
 type ProductFormData = z.infer<typeof insertProductSchema>;
 type GalleryFormData = z.infer<typeof insertGalleryImageSchema>;
@@ -162,6 +164,7 @@ export default function Admin() {
     defaultValues: {
       name: "",
       category: "Obstacle",
+      subcategory: "",
       size: "17",
       price: "0",
       description: "",
@@ -198,6 +201,7 @@ export default function Admin() {
     productForm.reset({
       name: product.name,
       category: product.category,
+      subcategory: product.subcategory || "",
       size: product.size,
       price: product.price,
       originalPrice: product.originalPrice || undefined,
@@ -288,7 +292,10 @@ export default function Admin() {
                     </div>
                     <CardContent className="p-4">
                       <h3 className="font-semibold mb-2">{product.name}</h3>
-                      <p className="text-sm text-gray-600 mb-2">{product.category} - {product.size}</p>
+                      <p className="text-sm text-gray-600 mb-2">
+                        {product.category}
+                        {product.subcategory && ` - ${product.subcategory}`} - {product.size}
+                      </p>
                       <p className="text-lg font-bold text-primary mb-4">
                         {parseFloat(product.price).toFixed(2)} €
                       </p>
@@ -386,6 +393,7 @@ export default function Admin() {
                     </CardTitle>
                     <div className="flex items-center gap-2">
                       <Badge variant="secondary">{product.category}</Badge>
+                      {product.subcategory && <Badge variant="outline">{product.subcategory}</Badge>}
                       <Badge variant="outline">{product.size}</Badge>
                     </div>
                   </CardHeader>
@@ -503,7 +511,7 @@ export default function Admin() {
                             <Button
                               variant="outline"
                               size="sm"
-                              onClick={() => trackPackageMutation.mutate(order.stripeSessionId)}
+                              onClick={() => trackPackageMutation.mutate(order.stripeSessionId || "")}
                               disabled={trackPackageMutation.isPending}
                             >
                               <Truck className="h-4 w-4 mr-2" />
@@ -554,7 +562,13 @@ export default function Admin() {
                   <Label htmlFor="category">Catégorie *</Label>
                   <Select
                     value={productForm.watch("category")}
-                    onValueChange={(value) => productForm.setValue("category", value)}
+                    onValueChange={(value) => {
+                      productForm.setValue("category", value);
+                      // Reset subcategory when category changes
+                      if (value !== "Accessoires") {
+                        productForm.setValue("subcategory", "");
+                      }
+                    }}
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Sélectionner une catégorie" />
@@ -570,6 +584,28 @@ export default function Admin() {
                 </div>
               </div>
 
+              {/* Sous-catégorie pour les accessoires */}
+              {productForm.watch("category") === "Accessoires" && (
+                <div>
+                  <Label htmlFor="subcategory">Sous-catégorie *</Label>
+                  <Select
+                    value={productForm.watch("subcategory") || ""}
+                    onValueChange={(value) => productForm.setValue("subcategory", value)}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Sélectionner une sous-catégorie" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {accessorySubcategories.map((subcategory) => (
+                        <SelectItem key={subcategory} value={subcategory}>
+                          {subcategory}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <Label htmlFor="size">Taille *</Label>
@@ -581,7 +617,7 @@ export default function Admin() {
                       <SelectValue placeholder="Taille" />
                     </SelectTrigger>
                     <SelectContent>
-                      {sizes.map((size) => (
+                      {(productForm.watch("category") === "Accessoires" ? accessorySizes : saddleSizes).map((size) => (
                         <SelectItem key={size} value={size}>
                           {size}
                         </SelectItem>
@@ -634,16 +670,16 @@ export default function Admin() {
                 <div className="flex items-center space-x-2">
                   <Checkbox
                     id="featured"
-                    checked={productForm.watch("featured")}
-                    onCheckedChange={(checked) => productForm.setValue("featured", checked as boolean)}
+                    checked={productForm.watch("featured") || false}
+                    onCheckedChange={(checked) => productForm.setValue("featured", !!checked)}
                   />
                   <Label htmlFor="featured">Produit vedette</Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Checkbox
                     id="inStock"
-                    checked={productForm.watch("inStock")}
-                    onCheckedChange={(checked) => productForm.setValue("inStock", checked as boolean)}
+                    checked={productForm.watch("inStock") || false}
+                    onCheckedChange={(checked) => productForm.setValue("inStock", !!checked)}
                   />
                   <Label htmlFor="inStock">En stock</Label>
                 </div>
