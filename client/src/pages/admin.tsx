@@ -19,9 +19,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Settings, Package, Images, ShoppingCart, Plus, Edit, Trash2, Eye, FileText, Download, Truck, MapPin } from "lucide-react";
+import { Settings, Package, Images, ShoppingCart, Plus, Edit, Trash2, Eye, FileText, Download, Truck, MapPin, MessageCircle } from "lucide-react";
 import ProductImageManager from "../components/admin/product-image-manager";
 import ImageUpload from "../components/admin/image-upload";
+import ChatAdmin from "../components/admin/chat-admin";
 
 const categories = ["Obstacle", "Dressage", "Cross", "Mixte", "Poney", "Accessoires"];
 const saddleSizes = ["16", "16.5", "17", "17.5", "18", "18.5"];
@@ -328,7 +329,7 @@ export default function Admin() {
         </div>
 
         <Tabs defaultValue="saddles" className="space-y-8">
-          <TabsList className="grid w-full grid-cols-5">
+          <TabsList className="grid w-full grid-cols-6">
             <TabsTrigger value="saddles" className="flex items-center gap-2">
               <Package className="h-4 w-4" />
               Selles
@@ -348,6 +349,10 @@ export default function Admin() {
             <TabsTrigger value="orders" className="flex items-center gap-2">
               <ShoppingCart className="h-4 w-4" />
               {t("admin.orders")}
+            </TabsTrigger>
+            <TabsTrigger value="chat" className="flex items-center gap-2">
+              <MessageCircle className="h-4 w-4" />
+              Chat Support
             </TabsTrigger>
           </TabsList>
 
@@ -698,6 +703,11 @@ export default function Admin() {
                 ))}
               </div>
             )}
+          </TabsContent>
+
+          {/* Chat Support Tab */}
+          <TabsContent value="chat" className="space-y-6">
+            <ChatAdmin />
           </TabsContent>
         </Tabs>
 

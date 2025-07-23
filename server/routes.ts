@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import Stripe from "stripe";
 import { storage } from "./storage";
 import { registerUploadRoutes } from "./routes/upload";
+import { setupChatWebSocket } from "./routes/chat";
 import { insertProductSchema, insertGalleryImageSchema, insertProductImageSchema, insertOrderSchema } from "@shared/schema";
 import { dpdService, type ShippingCalculationRequest } from "./dpd-service";
 import { z } from "zod";
@@ -441,5 +442,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   const httpServer = createServer(app);
+
+  // Setup WebSocket for chat
+  setupChatWebSocket(httpServer, app);
+
   return httpServer;
 }
