@@ -3,7 +3,10 @@
 cmds = ["corepack enable"]
 
 [phases.install]
-cmds = ["npm ci --ignore-scripts"]
+cmds = [
+    "npm install -g typescript",
+    "npm ci"
+]
 
 [phases.build]
 cmds = [
