@@ -103,30 +103,30 @@ export default function Privacy() {
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-green-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-green-800 mb-2">Chiffrement SSL</h4>
+                  <h4 className="font-semibold text-green-800 mb-2">{t("privacy.protection.ssl")}</h4>
                   <p className="text-sm text-green-700">
-                    Toutes les données sont cryptées en transit avec un certificat SSL 256-bit
+                    {t("privacy.protection.sslDesc")}
                   </p>
                 </div>
                 
                 <div className="bg-blue-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-blue-800 mb-2">Stockage Sécurisé</h4>
+                  <h4 className="font-semibold text-blue-800 mb-2">{t("privacy.protection.storage")}</h4>
                   <p className="text-sm text-blue-700">
-                    Données stockées sur des serveurs sécurisés avec accès restreint
+                    {t("privacy.protection.storageDesc")}
                   </p>
                 </div>
                 
                 <div className="bg-purple-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-purple-800 mb-2">Conformité RGPD</h4>
+                  <h4 className="font-semibold text-purple-800 mb-2">{t("privacy.protection.gdpr")}</h4>
                   <p className="text-sm text-purple-700">
-                    Respect total du Règlement Général sur la Protection des Données
+                    {t("privacy.protection.gdprDesc")}
                   </p>
                 </div>
                 
                 <div className="bg-orange-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-orange-800 mb-2">Accès Limité</h4>
+                  <h4 className="font-semibold text-orange-800 mb-2">{t("privacy.protection.access")}</h4>
                   <p className="text-sm text-orange-700">
-                    Seul le personnel autorisé peut accéder à vos données personnelles
+                    {t("privacy.protection.accessDesc")}
                   </p>
                 </div>
               </div>
@@ -138,7 +138,7 @@ export default function Privacy() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <UserCheck className="h-5 w-5" />
-                Vos Droits
+                {t("privacy.rights.title")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -148,30 +148,30 @@ export default function Privacy() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="border-l-4 border-blue-500 pl-4">
-                  <h4 className="font-semibold mb-1">Droit d'Accès</h4>
+                  <h4 className="font-semibold mb-1">{t("privacy.rights.access")}</h4>
                   <p className="text-sm text-gray-600">
-                    Vous pouvez demander l'accès à toutes vos données personnelles
+                    {t("privacy.rights.accessDesc")}
                   </p>
                 </div>
                 
                 <div className="border-l-4 border-green-500 pl-4">
-                  <h4 className="font-semibold mb-1">Droit de Rectification</h4>
+                  <h4 className="font-semibold mb-1">{t("privacy.rights.correction")}</h4>
                   <p className="text-sm text-gray-600">
-                    Vous pouvez corriger ou mettre à jour vos informations
+                    {t("privacy.rights.correctionDesc")}
                   </p>
                 </div>
                 
                 <div className="border-l-4 border-red-500 pl-4">
-                  <h4 className="font-semibold mb-1">Droit à l'Effacement</h4>
+                  <h4 className="font-semibold mb-1">{t("privacy.rights.deletion")}</h4>
                   <p className="text-sm text-gray-600">
-                    Vous pouvez demander la suppression de vos données
+                    {t("privacy.rights.deletionDesc")}
                   </p>
                 </div>
                 
                 <div className="border-l-4 border-purple-500 pl-4">
-                  <h4 className="font-semibold mb-1">Droit à la Portabilité</h4>
+                  <h4 className="font-semibold mb-1">{t("privacy.rights.portability")}</h4>
                   <p className="text-sm text-gray-600">
-                    Vous pouvez récupérer vos données dans un format structuré
+                    {t("privacy.rights.portabilityDesc")}
                   </p>
                 </div>
               </div>
@@ -192,34 +192,32 @@ export default function Privacy() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Eye className="h-5 w-5" />
-                Partage des Données
+                {t("privacy.sharing.title")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="bg-red-50 border border-red-200 p-4 rounded-lg">
                 <h4 className="font-semibold text-red-800 mb-2">
-                  🚫 Nous ne vendons JAMAIS vos données personnelles
+                  🚫 {t("privacy.sharing.never")}
                 </h4>
                 <p className="text-sm text-red-700">
-                  Equi Saddles s'engage à ne jamais vendre, louer ou échanger 
-                  vos informations personnelles avec des tiers à des fins commerciales.
+                  {t("privacy.sharing.neverDesc")}
                 </p>
               </div>
               
               <div>
-                <h4 className="font-semibold mb-2">Partage limité avec :</h4>
+                <h4 className="font-semibold mb-2">{t("privacy.sharing.limited")}</h4>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-start gap-2">
                     <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
                     <div>
-                      <strong>Transporteurs :</strong> DPD pour la livraison de vos commandes 
-                      (nom, adresse de livraison uniquement)
+                      <strong>{t("privacy.sharing.carriers")} :</strong> {t("privacy.sharing.carriersDesc")}
                     </div>
                   </li>
                   <li className="flex items-start gap-2">
                     <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
                     <div>
-                      <strong>Processeurs de paiement :</strong> Stripe pour le traitement sécurisé des paiements
+                      <strong>{t("privacy.sharing.payments")} :</strong> {t("privacy.sharing.paymentsDesc")}
                     </div>
                   </li>
                   <li className="flex items-start gap-2">
