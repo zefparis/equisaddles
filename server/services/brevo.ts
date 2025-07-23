@@ -1,23 +1,35 @@
-// Configuration Brevo - Simplifiée pour le développement
-let brevoAPI: any = null;
-
+// Configuration Brevo avec fetch direct
 async function initializeBrevo() {
   if (!process.env.BREVO_API_KEY) {
     console.log('BREVO_API_KEY not configured - email notifications disabled');
     return null;
   }
 
-  try {
-    const brevo = await import('@getbrevo/brevo');
-    // Configuration directe sans ApiClient
-    brevoAPI = new brevo.TransactionalEmailsApi();
-    brevoAPI.setApiKey('api-key', process.env.BREVO_API_KEY);
-    console.log('Brevo API initialized successfully');
-    return brevoAPI;
-  } catch (error) {
-    console.warn('Brevo API initialization failed:', error);
-    return null;
-  }
+  // Utiliser fetch directement pour contourner les problèmes d'API
+  return {
+    sendEmail: async (emailData: any) => {
+      const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'api-key': process.env.BREVO_API_KEY!
+        },
+        body: JSON.stringify({
+          sender: emailData.sender,
+          to: emailData.to,
+          subject: emailData.subject,
+          htmlContent: emailData.htmlContent,
+          textContent: emailData.textContent
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Brevo API error: ${response.status} ${response.statusText}`);
+      }
+      
+      return await response.json();
+    }
+  };
 }
 
 export interface EmailData {
@@ -31,29 +43,30 @@ export interface EmailData {
 
 export async function sendEmail(emailData: EmailData): Promise<boolean> {
   try {
-    if (!brevoAPI) {
-      brevoAPI = await initializeBrevo();
-    }
-
-    if (!brevoAPI) {
-      console.log('Email sending skipped - Brevo not configured');
+    if (!process.env.BREVO_API_KEY) {
+      console.log('Email sending skipped - Brevo API key not configured');
       return false;
     }
 
-    const brevo = await import('@getbrevo/brevo');
-    const sendSmtpEmail = new brevo.SendSmtpEmail();
-    
-    sendSmtpEmail.subject = emailData.subject;
-    sendSmtpEmail.htmlContent = emailData.htmlContent;
-    sendSmtpEmail.textContent = emailData.textContent || emailData.htmlContent.replace(/<[^>]*>/g, '');
-    sendSmtpEmail.sender = {
-      name: emailData.senderName || "Equi Saddles - Chat Support",
-      email: emailData.senderEmail || "contact@equisaddles.com"
-    };
-    sendSmtpEmail.to = [{ email: emailData.to }];
+    const brevoService = await initializeBrevo();
+    if (!brevoService) {
+      console.log('Email sending skipped - Brevo service initialization failed');
+      return false;
+    }
 
-    const response = await brevoAPI.sendTransacEmail(sendSmtpEmail);
-    console.log('Email sent successfully:', response.body);
+    const emailPayload = {
+      sender: {
+        name: emailData.senderName || "Equi Saddles - Chat Support",
+        email: emailData.senderEmail || "contact@equisaddles.com"
+      },
+      to: [{ email: emailData.to }],
+      subject: emailData.subject,
+      htmlContent: emailData.htmlContent,
+      textContent: emailData.textContent || emailData.htmlContent.replace(/<[^>]*>/g, '')
+    };
+
+    const response = await brevoService.sendEmail(emailPayload);
+    console.log('Email sent successfully via Brevo API:', response);
     return true;
   } catch (error) {
     console.error('Error sending email:', error);
