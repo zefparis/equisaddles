@@ -283,10 +283,10 @@ export default function Privacy() {
               <div className="bg-primary/5 p-6 rounded-lg">
                 <h4 className="font-semibold mb-3">Délégué à la Protection des Données</h4>
                 <div className="space-y-2 text-sm">
-                  <p><strong>Email :</strong> privacy@equisaddles.com</p>
+                  <p><strong>Email :</strong> contact@equisaddles.com</p>
                   <p><strong>Adresse :</strong> Equi Saddles - Service DPO<br />
-                  123 Rue de l'Équitation<br />
-                  75001 Paris, France</p>
+                  Rue du Vicinal 9<br />
+                  4141 Louveigné, Belgique</p>
                   <p><strong>Téléphone :</strong> +32 496 94 41 25</p>
                 </div>
                 

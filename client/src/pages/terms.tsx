@@ -356,10 +356,10 @@ export default function Terms() {
                   Notre équipe juridique est à votre disposition pour toute clarification
                 </p>
                 <div className="space-y-2 text-sm">
-                  <p><strong>Email :</strong> legal@equisaddles.com</p>
+                  <p><strong>Email :</strong> contact@equisaddles.com</p>
                   <p><strong>Téléphone :</strong> +32 496 94 41 25</p>
-                  <p><strong>Courrier :</strong> Equi Saddles - Service Juridique<br />
-                  123 Rue de l'Équitation, 75001 Paris</p>
+                  <p><strong>Courrier :</strong> Equi Saddles<br />
+                  Rue du Vicinal 9, 4141 Louveigné, Belgique</p>
                 </div>
               </div>
             </CardContent>

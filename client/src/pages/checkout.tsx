@@ -209,7 +209,7 @@ const CheckoutForm = () => {
                 <Input
                   id="address"
                   {...register("address")}
-                  placeholder="123 Rue de l'Équitation"
+                  placeholder="Rue du Vicinal 9"
                   className={errors.address ? "border-red-500" : ""}
                 />
                 {errors.address && (
