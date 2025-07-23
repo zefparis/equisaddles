@@ -44,11 +44,11 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">{t("footer.support")}</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="#" className="hover:text-white transition-colors">{t("footer.privacy")}</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">{t("footer.terms")}</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">{t("footer.returns")}</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">{t("footer.shipping")}</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">{t("footer.customerService")}</a></li>
+              <li><Link href="/privacy" className="hover:text-white transition-colors">Confidentialité</Link></li>
+              <li><Link href="/terms" className="hover:text-white transition-colors">Conditions Générales</Link></li>
+              <li><Link href="/returns" className="hover:text-white transition-colors">Retours & Échanges</Link></li>
+              <li><Link href="/delivery" className="hover:text-white transition-colors">Livraison</Link></li>
+              <li><Link href="/customer-service" className="hover:text-white transition-colors">Service Client</Link></li>
             </ul>
           </div>
 
