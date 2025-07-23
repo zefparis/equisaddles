@@ -28,7 +28,7 @@ Preferred communication style: Simple, everyday language.
 - **COMPLETED**: Système de breakpoints avancé (320px, 375px, 480px, 640px+) pour adaptation parfaite
 - **COMPLETED**: Cartes de produits et boutons d'action redimensionnés intelligemment selon la taille d'écran
 - Système de chat opérationnel permettant communication temps réel entre clients et admins
-- Notifications automatiques envoyées à contact@equisaddles.com lors de nouveaux messages client
+- Notifications automatiques envoyées à lecoinrdc@gmail.com lors de nouveaux messages client (adresse email vérifiée Brevo)
 - Interface admin centralisée pour répondre aux conversations avec compteur de messages non lus
 - Interface admin parfaitement adaptée à tous les écrans avec navigation ultra-compacte sur mobile
 - Respect total des standards d'accessibilité WCAG pour les lecteurs d'écran

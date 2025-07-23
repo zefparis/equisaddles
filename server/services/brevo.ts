@@ -57,7 +57,7 @@ export async function sendEmail(emailData: EmailData): Promise<boolean> {
     const emailPayload = {
       sender: {
         name: emailData.senderName || "Equi Saddles - Chat Support",
-        email: emailData.senderEmail || "contact@equisaddles.com"
+        email: emailData.senderEmail || "lecoinrdc@gmail.com"
       },
       to: [{ email: emailData.to }],
       subject: emailData.subject,
@@ -75,7 +75,7 @@ export async function sendEmail(emailData: EmailData): Promise<boolean> {
 }
 
 export async function sendChatNotificationToAdmin(customerName: string, customerEmail: string, message: string, sessionId: string): Promise<boolean> {
-  const adminEmail = "contact@equisaddles.com"; // Email de l'admin
+  const adminEmail = "lecoinrdc@gmail.com"; // Email de l'admin vérifié dans Brevo
   
   const emailData: EmailData = {
     to: adminEmail,
@@ -112,7 +112,7 @@ export async function sendChatNotificationToAdmin(customerName: string, customer
       </div>
     `,
     senderName: "Equi Saddles - Système de Chat",
-    senderEmail: "contact@equisaddles.com"
+    senderEmail: "lecoinrdc@gmail.com"
   };
 
   return await sendEmail(emailData);
@@ -157,7 +157,7 @@ export async function sendChatResponseToCustomer(customerEmail: string, customer
       </div>
     `,
     senderName: "Equi Saddles",
-    senderEmail: "contact@equisaddles.com"
+    senderEmail: "lecoinrdc@gmail.com"
   };
 
   return await sendEmail(emailData);
