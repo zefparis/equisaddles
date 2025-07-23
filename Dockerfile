@@ -16,6 +16,9 @@ COPY . .
 # Compile TypeScript and build the client
 RUN npm run build
 
+# Debug: list backend output
+RUN ls -l dist/server
+
 # Expose the port your app runs on
 EXPOSE 3000
 
