@@ -152,7 +152,7 @@ export default function Returns() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Package className="h-5 w-5" />
-                Procédure de Retour
+                {t("returns.process.title")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">

@@ -36,7 +36,7 @@ export default function Privacy() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Database className="h-5 w-5" />
-                Collecte des Données
+                {t("privacy.collection.title")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">

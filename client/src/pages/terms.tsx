@@ -55,7 +55,7 @@ export default function Terms() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <ShieldCheck className="h-5 w-5" />
-                Identification de l'Entreprise
+                {t("terms.company.title")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">

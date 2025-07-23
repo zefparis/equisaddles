@@ -46,7 +46,7 @@ export default function Support() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <MessageCircle className="h-5 w-5" />
-                  Nous Contacter
+                  {t("support.contact.title")}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">

@@ -52,7 +52,7 @@ export default function CustomerService() {
           <Card className="bg-gradient-to-r from-primary/10 to-blue-50 border-primary/20">
             <CardContent className="p-8">
               <div className="text-center">
-                <h2 className="text-2xl font-bold mb-4">Notre Promesse Service</h2>
+                <h2 className="text-2xl font-bold mb-4">{t("service.promise.title")}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
                   <div className="flex flex-col items-center">
                     <div className="bg-green-100 p-3 rounded-full mb-3">

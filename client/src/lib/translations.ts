@@ -178,6 +178,40 @@ export const translations: Record<string, Record<string, string>> = {
     "returns.days30desc": "pour un échange si inadéquation",
     "returns.refund": "Remboursement",
     "returns.refundDesc": "intégral sous 14 jours",
+    "returns.process.title": "Procédure de Retour",
+    "returns.contact.title": "Contact pour Retours",
+    "returns.shipping.title": "Expédition de Retour",
+    "returns.warranty.title": "Garantie Qualité",
+    
+    // Support Page Content
+    "support.contact.title": "Nous Contacter",
+    "support.hours.title": "Horaires d'Ouverture",
+    "support.response.title": "Temps de Réponse",
+    "support.expertise.title": "Expertise Équestre",
+    
+    // Privacy Page Content
+    "privacy.collection.title": "Collecte des Données",
+    "privacy.usage.title": "Utilisation des Données",
+    "privacy.security.title": "Sécurité des Données",
+    "privacy.rights.title": "Vos Droits",
+    
+    // Terms Page Content
+    "terms.company.title": "Identification de l'Entreprise",
+    "terms.payment.title": "Modalités de Paiement",
+    "terms.liability.title": "Limitation de Responsabilité",
+    "terms.disputes.title": "Résolution des Litiges",
+    
+    // Delivery Page Content
+    "delivery.options.title": "Options de Livraison",
+    "delivery.zones.title": "Zones de Livraison",
+    "delivery.tracking.title": "Suivi de Commande",
+    "delivery.liability.title": "Responsabilité Transport",
+    
+    // Customer Service Page Content
+    "service.promise.title": "Notre Promesse Service",
+    "service.satisfaction.title": "Garantie Satisfaction",
+    "service.support.title": "Support Technique",
+    "service.warranty.title": "Service Après-Vente",
     
     "footer.warranty": "Garantie",
     "footer.faq": "FAQ",
@@ -404,6 +438,40 @@ export const translations: Record<string, Record<string, string>> = {
     "returns.days30desc": "for exchange if unsuitable",
     "returns.refund": "Refund",
     "returns.refundDesc": "full refund within 14 days",
+    "returns.process.title": "Return Process",
+    "returns.contact.title": "Return Contact",
+    "returns.shipping.title": "Return Shipping",
+    "returns.warranty.title": "Quality Warranty",
+    
+    // Support Page Content
+    "support.contact.title": "Contact Us",
+    "support.hours.title": "Opening Hours",
+    "support.response.title": "Response Time",
+    "support.expertise.title": "Equestrian Expertise",
+    
+    // Privacy Page Content
+    "privacy.collection.title": "Data Collection",
+    "privacy.usage.title": "Data Usage",
+    "privacy.security.title": "Data Security",
+    "privacy.rights.title": "Your Rights",
+    
+    // Terms Page Content
+    "terms.company.title": "Company Information",
+    "terms.payment.title": "Payment Terms",
+    "terms.liability.title": "Limitation of Liability",
+    "terms.disputes.title": "Dispute Resolution",
+    
+    // Delivery Page Content
+    "delivery.options.title": "Delivery Options",
+    "delivery.zones.title": "Delivery Zones",
+    "delivery.tracking.title": "Order Tracking",
+    "delivery.liability.title": "Transport Liability",
+    
+    // Customer Service Page Content
+    "service.promise.title": "Our Service Promise",
+    "service.satisfaction.title": "Satisfaction Guarantee",
+    "service.support.title": "Technical Support",
+    "service.warranty.title": "After-Sales Service",
     
     "footer.warranty": "Warranty",
     "footer.faq": "FAQ",
@@ -592,6 +660,40 @@ export const translations: Record<string, Record<string, string>> = {
     "returns.days30desc": "voor ruil bij ongeschiktheid",
     "returns.refund": "Terugbetaling",
     "returns.refundDesc": "volledige terugbetaling binnen 14 dagen",
+    "returns.process.title": "Retourprocedure",
+    "returns.contact.title": "Contact voor Retouren",
+    "returns.shipping.title": "Retourverzending",
+    "returns.warranty.title": "Kwaliteitsgarantie",
+    
+    // Support Page Content
+    "support.contact.title": "Contact Opnemen",
+    "support.hours.title": "Openingstijden",
+    "support.response.title": "Reactietijd",
+    "support.expertise.title": "Paardrijexpertise",
+    
+    // Privacy Page Content
+    "privacy.collection.title": "Gegevensverzameling",
+    "privacy.usage.title": "Gegevensgebruik",
+    "privacy.security.title": "Gegevensbeveiliging",
+    "privacy.rights.title": "Uw Rechten",
+    
+    // Terms Page Content
+    "terms.company.title": "Bedrijfsinformatie",
+    "terms.payment.title": "Betalingsvoorwaarden",
+    "terms.liability.title": "Beperking van Aansprakelijkheid",
+    "terms.disputes.title": "Geschillenbeslechting",
+    
+    // Delivery Page Content
+    "delivery.options.title": "Leveringsopties",
+    "delivery.zones.title": "Leveringszones",
+    "delivery.tracking.title": "Bestelling Volgen",
+    "delivery.liability.title": "Transportaansprakelijkheid",
+    
+    // Customer Service Page Content
+    "service.promise.title": "Onze Servicebelofte",
+    "service.satisfaction.title": "Tevredenheidsgarantie",
+    "service.support.title": "Technische Ondersteuning",
+    "service.warranty.title": "Klantenservice",
     
     "footer.warranty": "Garantie",
     "footer.faq": "FAQ",
@@ -799,6 +901,40 @@ export const translations: Record<string, Record<string, string>> = {
     "returns.days30desc": "para intercambio si inadecuación",
     "returns.refund": "Reembolso",
     "returns.refundDesc": "reembolso completo en 14 días",
+    "returns.process.title": "Proceso de Devolución",
+    "returns.contact.title": "Contacto para Devoluciones",
+    "returns.shipping.title": "Envío de Devolución",
+    "returns.warranty.title": "Garantía de Calidad",
+    
+    // Support Page Content
+    "support.contact.title": "Contáctanos",
+    "support.hours.title": "Horarios de Apertura",
+    "support.response.title": "Tiempo de Respuesta",
+    "support.expertise.title": "Experiencia Ecuestre",
+    
+    // Privacy Page Content
+    "privacy.collection.title": "Recopilación de Datos",
+    "privacy.usage.title": "Uso de Datos",
+    "privacy.security.title": "Seguridad de Datos",
+    "privacy.rights.title": "Sus Derechos",
+    
+    // Terms Page Content
+    "terms.company.title": "Información de la Empresa",
+    "terms.payment.title": "Términos de Pago",
+    "terms.liability.title": "Limitación de Responsabilidad",
+    "terms.disputes.title": "Resolución de Disputas",
+    
+    // Delivery Page Content
+    "delivery.options.title": "Opciones de Entrega",
+    "delivery.zones.title": "Zonas de Entrega",
+    "delivery.tracking.title": "Seguimiento de Pedido",
+    "delivery.liability.title": "Responsabilidad de Transporte",
+    
+    // Customer Service Page Content
+    "service.promise.title": "Nuestra Promesa de Servicio",
+    "service.satisfaction.title": "Garantía de Satisfacción",
+    "service.support.title": "Soporte Técnico",
+    "service.warranty.title": "Servicio Postventa",
     
     "footer.warranty": "Garantía",
     "footer.faq": "FAQ",
@@ -1069,6 +1205,40 @@ export const translations: Record<string, Record<string, string>> = {
     "returns.days30": "30 Tage",
     "returns.days30desc": "für Umtausch bei Ungeeignetheit",
     "returns.refund": "Rückerstattung",
-    "returns.refundDesc": "vollständige Rückerstattung innerhalb von 14 Tagen"
+    "returns.refundDesc": "vollständige Rückerstattung innerhalb von 14 Tagen",
+    "returns.process.title": "Rückgabeverfahren",
+    "returns.contact.title": "Kontakt für Rückgaben",
+    "returns.shipping.title": "Rücksendeversand",
+    "returns.warranty.title": "Qualitätsgarantie",
+    
+    // Support Page Content
+    "support.contact.title": "Kontaktieren Sie uns",
+    "support.hours.title": "Öffnungszeiten",
+    "support.response.title": "Antwortzeit",
+    "support.expertise.title": "Reitsport-Expertise",
+    
+    // Privacy Page Content
+    "privacy.collection.title": "Datenerfassung",
+    "privacy.usage.title": "Datenverwendung",
+    "privacy.security.title": "Datensicherheit",
+    "privacy.rights.title": "Ihre Rechte",
+    
+    // Terms Page Content
+    "terms.company.title": "Unternehmensinformationen",
+    "terms.payment.title": "Zahlungsbedingungen",
+    "terms.liability.title": "Haftungsbeschränkung",
+    "terms.disputes.title": "Streitbeilegung",
+    
+    // Delivery Page Content
+    "delivery.options.title": "Lieferoptionen",
+    "delivery.zones.title": "Lieferzonen",
+    "delivery.tracking.title": "Bestellverfolgung",
+    "delivery.liability.title": "Transporthaftung",
+    
+    // Customer Service Page Content
+    "service.promise.title": "Unser Serviceversprechen",
+    "service.satisfaction.title": "Zufriedenheitsgarantie",
+    "service.support.title": "Technischer Support",
+    "service.warranty.title": "Kundendienst"
   }
 };
