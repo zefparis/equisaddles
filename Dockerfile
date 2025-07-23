@@ -13,8 +13,12 @@ COPY tsconfig*.json ./
 # Install all dependencies including devDependencies
 RUN npm install
 
-# Copy source code
+# Copy source code - assurez-vous que tous les fichiers nécessaires sont copiés
 COPY . .
+
+# Vérifiez que les fichiers sont bien présents
+RUN ls -la /app/server && \
+    ls -la /app/shared
 
 # Build the application
 RUN npm run build
@@ -28,12 +32,13 @@ WORKDIR /app
 COPY --from=builder /app/package*.json ./
 RUN npm ci --only=production
 
-# Copy built files
+# Copy built files and necessary assets
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/public ./public
 
 # Set environment to production
-ENV NODE_ENV=production
+ENV NODE_ENV=production \
+    PORT=3000
 
 # Expose the port the app runs on
 EXPOSE 3000
