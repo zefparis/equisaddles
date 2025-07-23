@@ -212,6 +212,20 @@ export const translations: Record<string, Record<string, string>> = {
     "service.satisfaction.title": "Garantie Satisfaction",
     "service.support.title": "Support Technique",
     "service.warranty.title": "Service Après-Vente",
+    "service.reactivity": "Réactivité",
+    "service.reactivityDesc": "Réponse garantie sous 24h, souvent bien plus rapide",
+    "service.listening": "Écoute",
+    "service.listeningDesc": "Chaque client est unique, nous adaptons nos solutions",
+    "service.expertise": "Expertise",
+    "service.expertiseDesc": "Conseillers formés par des professionnels de l'équitation",
+    
+    // Additional Returns Content
+    "returns.orderError": "Erreur de commande de notre part",
+    "returns.withdrawal": "Droit de rétractation (14 jours)",
+    "returns.nonCompliant": "Produit non conforme à la description",
+    "returns.originalPackaging": "Emballage d'origine détérioré",
+    "returns.timeExpired": "Délai de 14 jours dépassé",
+    "returns.customProducts": "Produits personnalisés",
     
     "footer.warranty": "Garantie",
     "footer.faq": "FAQ",
@@ -472,6 +486,20 @@ export const translations: Record<string, Record<string, string>> = {
     "service.satisfaction.title": "Satisfaction Guarantee",
     "service.support.title": "Technical Support",
     "service.warranty.title": "After-Sales Service",
+    "service.reactivity": "Responsiveness",
+    "service.reactivityDesc": "Response guaranteed within 24h, often much faster",
+    "service.listening": "Listening",
+    "service.listeningDesc": "Each customer is unique, we adapt our solutions",
+    "service.expertise": "Expertise",
+    "service.expertiseDesc": "Advisors trained by equestrian professionals",
+    
+    // Additional Returns Content
+    "returns.orderError": "Order error on our part",
+    "returns.withdrawal": "Right of withdrawal (14 days)",
+    "returns.nonCompliant": "Product not as described",
+    "returns.originalPackaging": "Original packaging deteriorated",
+    "returns.timeExpired": "14-day deadline exceeded",
+    "returns.customProducts": "Custom products",
     
     "footer.warranty": "Warranty",
     "footer.faq": "FAQ",
@@ -694,6 +722,20 @@ export const translations: Record<string, Record<string, string>> = {
     "service.satisfaction.title": "Tevredenheidsgarantie",
     "service.support.title": "Technische Ondersteuning",
     "service.warranty.title": "Klantenservice",
+    "service.reactivity": "Reactiviteit",
+    "service.reactivityDesc": "Reactie gegarandeerd binnen 24u, vaak veel sneller",
+    "service.listening": "Luisteren",
+    "service.listeningDesc": "Elke klant is uniek, wij passen onze oplossingen aan",
+    "service.expertise": "Expertise",
+    "service.expertiseDesc": "Adviseurs opgeleid door paardrijprofessionals",
+    
+    // Additional Returns Content
+    "returns.orderError": "Bestelfout van onze kant",
+    "returns.withdrawal": "Herroepingsrecht (14 dagen)",
+    "returns.nonCompliant": "Product niet conform beschrijving",
+    "returns.originalPackaging": "Originele verpakking beschadigd",
+    "returns.timeExpired": "14-dagen termijn verstreken",
+    "returns.customProducts": "Aangepaste producten",
     
     "footer.warranty": "Garantie",
     "footer.faq": "FAQ",
@@ -935,6 +977,20 @@ export const translations: Record<string, Record<string, string>> = {
     "service.satisfaction.title": "Garantía de Satisfacción",
     "service.support.title": "Soporte Técnico",
     "service.warranty.title": "Servicio Postventa",
+    "service.reactivity": "Reactividad",
+    "service.reactivityDesc": "Respuesta garantizada en 24h, a menudo mucho más rápido",
+    "service.listening": "Escucha",
+    "service.listeningDesc": "Cada cliente es único, adaptamos nuestras soluciones",
+    "service.expertise": "Experiencia",
+    "service.expertiseDesc": "Asesores formados por profesionales ecuestres",
+    
+    // Additional Returns Content
+    "returns.orderError": "Error de pedido de nuestra parte",
+    "returns.withdrawal": "Derecho de desistimiento (14 días)",
+    "returns.nonCompliant": "Producto no conforme a la descripción",
+    "returns.originalPackaging": "Embalaje original deteriorado",
+    "returns.timeExpired": "Plazo de 14 días superado",
+    "returns.customProducts": "Productos personalizados",
     
     "footer.warranty": "Garantía",
     "footer.faq": "FAQ",
@@ -1239,6 +1295,20 @@ export const translations: Record<string, Record<string, string>> = {
     "service.promise.title": "Unser Serviceversprechen",
     "service.satisfaction.title": "Zufriedenheitsgarantie",
     "service.support.title": "Technischer Support",
-    "service.warranty.title": "Kundendienst"
+    "service.warranty.title": "Kundendienst",
+    "service.reactivity": "Reaktivität",
+    "service.reactivityDesc": "Antwort garantiert innerhalb 24h, oft viel schneller",
+    "service.listening": "Zuhören",
+    "service.listeningDesc": "Jeder Kunde ist einzigartig, wir passen unsere Lösungen an",
+    "service.expertise": "Fachwissen",
+    "service.expertiseDesc": "Berater ausgebildet von Reitsportprofis",
+    
+    // Additional Returns Content
+    "returns.orderError": "Bestellfehler unsererseits",
+    "returns.withdrawal": "Widerrufsrecht (14 Tage)",
+    "returns.nonCompliant": "Produkt nicht beschreibungskonform",
+    "returns.originalPackaging": "Originalverpackung beschädigt",
+    "returns.timeExpired": "14-Tage-Frist überschritten",
+    "returns.customProducts": "Individuelle Produkte"
   }
 };

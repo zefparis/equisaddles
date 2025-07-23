@@ -58,24 +58,24 @@ export default function CustomerService() {
                     <div className="bg-green-100 p-3 rounded-full mb-3">
                       <Clock className="h-6 w-6 text-green-600" />
                     </div>
-                    <h3 className="font-semibold">Réactivité</h3>
-                    <p className="text-sm text-gray-600 text-center">Réponse garantie sous 24h, souvent bien plus rapide</p>
+                    <h3 className="font-semibold">{t("service.reactivity")}</h3>
+                    <p className="text-sm text-gray-600 text-center">{t("service.reactivityDesc")}</p>
                   </div>
                   
                   <div className="flex flex-col items-center">
                     <div className="bg-blue-100 p-3 rounded-full mb-3">
                       <Heart className="h-6 w-6 text-blue-600" />
                     </div>
-                    <h3 className="font-semibold">Écoute</h3>
-                    <p className="text-sm text-gray-600 text-center">Chaque client est unique, nous adaptons nos solutions</p>
+                    <h3 className="font-semibold">{t("service.listening")}</h3>
+                    <p className="text-sm text-gray-600 text-center">{t("service.listeningDesc")}</p>
                   </div>
                   
                   <div className="flex flex-col items-center">
                     <div className="bg-purple-100 p-3 rounded-full mb-3">
                       <Award className="h-6 w-6 text-purple-600" />
                     </div>
-                    <h3 className="font-semibold">Expertise</h3>
-                    <p className="text-sm text-gray-600 text-center">Conseillers formés par des professionnels de l'équitation</p>
+                    <h3 className="font-semibold">{t("service.expertise")}</h3>
+                    <p className="text-sm text-gray-600 text-center">{t("service.expertiseDesc")}</p>
                   </div>
                 </div>
               </div>

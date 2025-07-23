@@ -102,15 +102,15 @@ export default function Returns() {
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                      <span>Erreur de commande de notre part</span>
+                      <span>{t("returns.orderError")}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                      <span>Droit de rétractation (14 jours)</span>
+                      <span>{t("returns.withdrawal")}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                      <span>Produit non conforme à la description</span>
+                      <span>{t("returns.nonCompliant")}</span>
                     </li>
                   </ul>
                 </div>
@@ -131,15 +131,15 @@ export default function Returns() {
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
-                      <span>Emballage d'origine détérioré</span>
+                      <span>{t("returns.originalPackaging")}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
-                      <span>Délai de 14 jours dépassé</span>
+                      <span>{t("returns.timeExpired")}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
-                      <span>Produits personnalisés</span>
+                      <span>{t("returns.customProducts")}</span>
                     </li>
                   </ul>
                 </div>
