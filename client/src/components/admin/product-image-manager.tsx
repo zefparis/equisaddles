@@ -8,7 +8,7 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "../ui/dialog";
 import { Upload, Download, Trash2, Star, StarOff, Image as ImageIcon } from "lucide-react";
 
 interface ProductImageManagerProps {
@@ -153,6 +153,9 @@ export default function ProductImageManager({ productId }: ProductImageManagerPr
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Ajouter une nouvelle image</DialogTitle>
+              <DialogDescription>
+                Ajoutez une nouvelle image pour ce produit en renseignant l'URL et les informations requises.
+              </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
