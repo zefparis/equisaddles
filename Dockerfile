@@ -6,12 +6,12 @@ WORKDIR /app
 # Install system dependencies
 RUN apk add --no-cache git python3 make g++
 
-# Copy package files
+# Copy package files first for better caching
 COPY package*.json ./
 COPY tsconfig*.json ./
 
-# Install dependencies
-RUN npm ci --ignore-scripts
+# Install all dependencies including devDependencies
+RUN npm install
 
 # Copy source code
 COPY . .
@@ -24,16 +24,19 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Install runtime dependencies only
+# Install production dependencies only
 COPY --from=builder /app/package*.json ./
-RUN npm ci --only=production --ignore-scripts
+RUN npm ci --only=production
 
 # Copy built files
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/public ./public
 
+# Set environment to production
+ENV NODE_ENV=production
+
 # Expose the port the app runs on
 EXPOSE 3000
 
-# Start the application
-CMD ["npm", "start"]
+# Start the application directly with node to avoid npm issues
+CMD ["node", "dist/server/index.js"]
