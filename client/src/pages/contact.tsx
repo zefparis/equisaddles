@@ -108,7 +108,7 @@ export default function Contact() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">contact@equi-saddles.com</p>
+                <p className="text-gray-600">contact@equisaddles.com</p>
               </CardContent>
             </Card>
 
