@@ -40,11 +40,6 @@ export default function Admin() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const { isAuthenticated, logout } = useAdminAuth();
-
-  // Si l'utilisateur n'est pas authentifié, afficher la page de connexion
-  if (!isAuthenticated) {
-    return <AdminLogin />;
-  }
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [showProductDialog, setShowProductDialog] = useState(false);
   const [showGalleryDialog, setShowGalleryDialog] = useState(false);
@@ -322,6 +317,11 @@ export default function Admin() {
     }
     setShowProductDialog(true);
   };
+
+  // Si l'utilisateur n'est pas authentifié, afficher la page de connexion
+  if (!isAuthenticated) {
+    return <AdminLogin />;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 admin-container">
