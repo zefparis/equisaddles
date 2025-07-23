@@ -47,24 +47,24 @@ export default function Returns() {
             <Card className="bg-green-50 border-green-200">
               <CardContent className="p-4 text-center">
                 <Clock className="h-8 w-8 text-green-600 mx-auto mb-2" />
-                <h3 className="font-semibold text-green-800">14 Jours</h3>
-                <p className="text-sm text-green-700">pour exercer votre droit de rétractation</p>
+                <h3 className="font-semibold text-green-800">{t("returns.days14")}</h3>
+                <p className="text-sm text-green-700">{t("returns.days14desc")}</p>
               </CardContent>
             </Card>
             
             <Card className="bg-blue-50 border-blue-200">
               <CardContent className="p-4 text-center">
                 <Package className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-                <h3 className="font-semibold text-blue-800">30 Jours</h3>
-                <p className="text-sm text-blue-700">pour un échange si inadéquation</p>
+                <h3 className="font-semibold text-blue-800">{t("returns.days30")}</h3>
+                <p className="text-sm text-blue-700">{t("returns.days30desc")}</p>
               </CardContent>
             </Card>
             
             <Card className="bg-purple-50 border-purple-200">
               <CardContent className="p-4 text-center">
                 <CreditCard className="h-8 w-8 text-purple-600 mx-auto mb-2" />
-                <h3 className="font-semibold text-purple-800">Remboursement</h3>
-                <p className="text-sm text-purple-700">intégral sous 14 jours</p>
+                <h3 className="font-semibold text-purple-800">{t("returns.refund")}</h3>
+                <p className="text-sm text-purple-700">{t("returns.refundDesc")}</p>
               </CardContent>
             </Card>
           </div>
@@ -74,15 +74,14 @@ export default function Returns() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <FileText className="h-5 w-5" />
-                Politique de Retour
+                {t("returns.policy.title")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <Alert className="bg-blue-50 border-blue-200">
                 <CheckCircle className="h-4 w-4" />
                 <AlertDescription className="text-blue-800">
-                  <strong>Satisfait ou Remboursé :</strong> Nous nous engageons à ce que votre selle 
-                  vous convienne parfaitement. Si ce n'est pas le cas, nous facilitons votre retour.
+                  <strong>{t("returns.policy.satisfaction")} :</strong> {t("returns.policy.satisfactionDesc")}
                 </AlertDescription>
               </Alert>
               
@@ -90,16 +89,16 @@ export default function Returns() {
                 <div>
                   <h4 className="font-semibold mb-3 flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-green-600" />
-                    Retours Acceptés
+                    {t("returns.accepted.title")}
                   </h4>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                      <span>Selle inadaptée à votre cheval</span>
+                      <span>{t("returns.accepted.unsuitable")}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                      <span>Produit défectueux ou endommagé</span>
+                      <span>{t("returns.accepted.defective")}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
@@ -119,16 +118,16 @@ export default function Returns() {
                 <div>
                   <h4 className="font-semibold mb-3 flex items-center gap-2">
                     <XCircle className="h-4 w-4 text-red-600" />
-                    Retours Refusés
+                    {t("returns.refused.title")}
                   </h4>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
-                      <span>Selle utilisée ou montée</span>
+                      <span>{t("returns.refused.used")}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
-                      <span>Étiquettes retirées ou endommagées</span>
+                      <span>{t("returns.refused.damaged")}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2"></div>
