@@ -165,7 +165,7 @@ export default function Delivery() {
                         <ul className="text-sm text-orange-700 space-y-1">
                           <li>• Livraison avant 10h</li>
                           <li>• Jour ouvré suivant</li>
-                          <li>• France métropolitaine</li>
+                          <li>• Belgique et pays limitrophes</li>
                           <li>• Signature obligatoire</li>
                         </ul>
                         <div className="mt-3">
@@ -191,8 +191,8 @@ export default function Delivery() {
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-                  <h4 className="font-semibold text-green-800 mb-2">Zone France</h4>
-                  <p className="text-sm text-green-700 mb-3">France métropolitaine et DOM-TOM</p>
+                  <h4 className="font-semibold text-green-800 mb-2">Zone Belgique</h4>
+                  <p className="text-sm text-green-700 mb-3">Belgique et pays limitrophes</p>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span>Délai :</span>

@@ -342,7 +342,7 @@ export const translations: Record<string, Record<string, string>> = {
     "delivery.home.attempts": "Tentatives multiples",
     "delivery.home.sms": "SMS de notification",
     "delivery.relay.title": "Point Relais DPD",
-    "delivery.relay.points": "Plus de 8 000 points en France",
+    "delivery.relay.points": "Plus de 8 000 points en Belgique et Europe",
     "delivery.relay.hours": "Horaires étendus",
     "delivery.relay.pickup": "Retrait sous 8 jours",
     "delivery.relay.notification": "Notification SMS/email",
