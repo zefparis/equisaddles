@@ -160,13 +160,12 @@ export default function Returns() {
                 <div className="flex items-start gap-4">
                   <Badge className="min-w-8 h-8 rounded-full flex items-center justify-center">1</Badge>
                   <div>
-                    <h4 className="font-semibold mb-1">Contactez notre Service Client</h4>
+                    <h4 className="font-semibold mb-1">{t("returns.process.step1")}</h4>
                     <p className="text-sm text-gray-600 mb-2">
-                      Envoyez-nous un email à <strong>returns@equisaddles.com</strong> ou appelez-nous 
-                      au <strong>+33 1 23 45 67 89</strong> dans les 14 jours suivant la réception.
+                      {t("returns.process.step1desc")}
                     </p>
                     <p className="text-sm text-gray-500">
-                      Informations à fournir : numéro de commande, motif du retour, photos si défaut.
+                      {t("returns.process.step1info")}
                     </p>
                   </div>
                 </div>
@@ -174,13 +173,12 @@ export default function Returns() {
                 <div className="flex items-start gap-4">
                   <Badge className="min-w-8 h-8 rounded-full flex items-center justify-center">2</Badge>
                   <div>
-                    <h4 className="font-semibold mb-1">Autorisation de Retour</h4>
+                    <h4 className="font-semibold mb-1">{t("returns.process.step2")}</h4>
                     <p className="text-sm text-gray-600 mb-2">
-                      Nous vous envoyons par email un numéro RMA (Return Merchandise Authorization) 
-                      et une étiquette de retour prépayée.
+                      {t("returns.process.step2desc")}
                     </p>
                     <p className="text-sm text-gray-500">
-                      Délai de traitement : 24h ouvrées maximum.
+                      {t("returns.process.step2delay")}
                     </p>
                   </div>
                 </div>
@@ -188,13 +186,12 @@ export default function Returns() {
                 <div className="flex items-start gap-4">
                   <Badge className="min-w-8 h-8 rounded-full flex items-center justify-center">3</Badge>
                   <div>
-                    <h4 className="font-semibold mb-1">Préparation du Colis</h4>
+                    <h4 className="font-semibold mb-1">{t("returns.process.step3")}</h4>
                     <p className="text-sm text-gray-600 mb-2">
-                      Remballez soigneusement la selle dans son emballage d'origine avec 
-                      toutes les protections. Incluez le numéro RMA dans le colis.
+                      {t("returns.process.step3desc")}
                     </p>
                     <p className="text-sm text-gray-500">
-                      Conseil : Photographiez l'emballage avant envoi.
+                      {t("returns.process.step3advice")}
                     </p>
                   </div>
                 </div>
@@ -202,13 +199,12 @@ export default function Returns() {
                 <div className="flex items-start gap-4">
                   <Badge className="min-w-8 h-8 rounded-full flex items-center justify-center">4</Badge>
                   <div>
-                    <h4 className="font-semibold mb-1">Expédition</h4>
+                    <h4 className="font-semibold mb-1">{t("returns.process.step4")}</h4>
                     <p className="text-sm text-gray-600 mb-2">
-                      Collez l'étiquette de retour et déposez le colis dans un point DPD ou 
-                      programmez un enlèvement à domicile.
+                      {t("returns.process.step4desc")}
                     </p>
                     <p className="text-sm text-gray-500">
-                      Conservez le récépissé de dépôt comme preuve d'envoi.
+                      {t("returns.process.step4receipt")}
                     </p>
                   </div>
                 </div>
@@ -216,7 +212,7 @@ export default function Returns() {
                 <div className="flex items-start gap-4">
                   <Badge className="min-w-8 h-8 rounded-full flex items-center justify-center">5</Badge>
                   <div>
-                    <h4 className="font-semibold mb-1">Traitement et Remboursement</h4>
+                    <h4 className="font-semibold mb-1">{t("returns.process.step5")}</h4>
                     <p className="text-sm text-gray-600 mb-2">
                       Dès réception, nous vérifions l'état du produit. Si conforme, 
                       remboursement sous 14 jours sur votre moyen de paiement initial.
@@ -235,14 +231,14 @@ export default function Returns() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <RotateCcw className="h-5 w-5" />
-                Politique d'Échange
+{t("exchange.policy.title")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="bg-green-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-green-800 mb-2">Échange Gratuit Spécial</h4>
+                <h4 className="font-semibold text-green-800 mb-2">{t("exchange.free.title")}</h4>
                 <p className="text-sm text-green-700">
-                  <strong>Selle inadaptée :</strong> Si après expertise, votre selle s'avère inadaptée 
+                  <strong>{t("exchange.free.subtitle")} :</strong> {t("exchange.free.desc")} 
                   à votre cheval, nous proposons un échange gratuit vers un modèle plus approprié 
                   dans les 30 jours suivant l'achat.
                 </p>

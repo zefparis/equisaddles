@@ -227,6 +227,41 @@ export const translations: Record<string, Record<string, string>> = {
     "returns.timeExpired": "Délai de 14 jours dépassé",
     "returns.customProducts": "Produits personnalisés",
     
+    // Return Process Content
+    "returns.process.step1": "Contactez notre Service Client",
+    "returns.process.step1desc": "Envoyez-nous un email à returns@equisaddles.com ou appelez-nous au +33 1 23 45 67 89 dans les 14 jours suivant la réception.",
+    "returns.process.step1info": "Informations à fournir : numéro de commande, motif du retour, photos si défaut.",
+    "returns.process.step2": "Autorisation de Retour",
+    "returns.process.step2desc": "Nous vous envoyons par email un numéro RMA (Return Merchandise Authorization) et une étiquette de retour prépayée.",
+    "returns.process.step2delay": "Délai de traitement : 24h ouvrées maximum.",
+    "returns.process.step3": "Préparation du Colis",
+    "returns.process.step3desc": "Remballez soigneusement la selle dans son emballage d'origine avec toutes les protections. Incluez le numéro RMA dans le colis.",
+    "returns.process.step3advice": "Conseil : Photographiez l'emballage avant envoi.",
+    "returns.process.step4": "Expédition",
+    "returns.process.step4desc": "Collez l'étiquette de retour et déposez le colis dans un point DPD ou programmez un enlèvement à domicile.",
+    "returns.process.step4receipt": "Conservez le récépissé de dépôt comme preuve d'envoi.",
+    "returns.process.step5": "Traitement et Remboursement",
+    
+    // Exchange Policy Content
+    "exchange.policy.title": "Politique d'Échange",
+    "exchange.free.title": "Échange Gratuit Spécial",
+    "exchange.free.subtitle": "Selle inadaptée",
+    "exchange.free.desc": "Si après expertise, votre selle s'avère inadaptée à votre cheval, nous proposons un échange gratuit vers un modèle plus approprié dans les 30 jours suivant l'achat.",
+    "exchange.conditions.title": "Conditions d'Échange",
+    "exchange.condition1": "Selle en parfait état, non utilisée",
+    "exchange.condition2": "Expertise par notre sellier partenaire (recommandé)",
+    "exchange.condition3": "Différence de prix éventuelle à régler",
+    "exchange.condition4": "Un seul échange autorisé par commande",
+    "exchange.condition5": "Frais de port pris en charge par Equi Saddles",
+    "exchange.types.title": "Types d'Échanges",
+    "exchange.size.title": "Changement de Taille",
+    "exchange.size.desc": "Même modèle, taille différente - Échange gratuit",
+    "exchange.model.title": "Changement de Modèle",
+    "exchange.model.desc": "Modèle différent - Différence de prix appliquée",
+    
+    // Costs and Refunds
+    "costs.refunds.title": "Frais et Remboursements",
+    
     "footer.warranty": "Garantie",
     "footer.faq": "FAQ",
     "footer.opening": "Lun-Ven: 9h-18h",
@@ -501,6 +536,41 @@ export const translations: Record<string, Record<string, string>> = {
     "returns.timeExpired": "14-day deadline exceeded",
     "returns.customProducts": "Custom products",
     
+    // Return Process Content
+    "returns.process.step1": "Contact our Customer Service",
+    "returns.process.step1desc": "Send us an email at returns@equisaddles.com or call us at +33 1 23 45 67 89 within 14 days of receipt.",
+    "returns.process.step1info": "Information to provide: order number, reason for return, photos if defective.",
+    "returns.process.step2": "Return Authorization",
+    "returns.process.step2desc": "We will email you an RMA (Return Merchandise Authorization) number and a prepaid return label.",
+    "returns.process.step2delay": "Processing time: 24h business days maximum.",
+    "returns.process.step3": "Package Preparation",
+    "returns.process.step3desc": "Carefully repack the saddle in its original packaging with all protections. Include the RMA number in the package.",
+    "returns.process.step3advice": "Tip: Photograph the packaging before shipping.",
+    "returns.process.step4": "Shipping",
+    "returns.process.step4desc": "Attach the return label and drop the package at a DPD point or schedule home pickup.",
+    "returns.process.step4receipt": "Keep the deposit receipt as proof of shipment.",
+    "returns.process.step5": "Processing and Refund",
+    
+    // Exchange Policy Content
+    "exchange.policy.title": "Exchange Policy",
+    "exchange.free.title": "Special Free Exchange",
+    "exchange.free.subtitle": "Unsuitable saddle",
+    "exchange.free.desc": "If after expert assessment, your saddle proves unsuitable for your horse, we offer a free exchange for a more appropriate model within 30 days of purchase.",
+    "exchange.conditions.title": "Exchange Conditions",
+    "exchange.condition1": "Saddle in perfect condition, unused",
+    "exchange.condition2": "Assessment by our partner saddler (recommended)",
+    "exchange.condition3": "Possible price difference to be settled",
+    "exchange.condition4": "Only one exchange authorized per order",
+    "exchange.condition5": "Shipping costs covered by Equi Saddles",
+    "exchange.types.title": "Types of Exchanges",
+    "exchange.size.title": "Size Change",
+    "exchange.size.desc": "Same model, different size - Free exchange",
+    "exchange.model.title": "Model Change",
+    "exchange.model.desc": "Different model - Price difference applied",
+    
+    // Costs and Refunds
+    "costs.refunds.title": "Costs and Refunds",
+    
     "footer.warranty": "Warranty",
     "footer.faq": "FAQ",
     "footer.opening": "Mon-Fri: 9am-6pm",
@@ -736,6 +806,41 @@ export const translations: Record<string, Record<string, string>> = {
     "returns.originalPackaging": "Originele verpakking beschadigd",
     "returns.timeExpired": "14-dagen termijn verstreken",
     "returns.customProducts": "Aangepaste producten",
+    
+    // Return Process Content
+    "returns.process.step1": "Contacteer onze Klantenservice",
+    "returns.process.step1desc": "Stuur ons een email naar returns@equisaddles.com of bel ons op +33 1 23 45 67 89 binnen 14 dagen na ontvangst.",
+    "returns.process.step1info": "Te verstrekken informatie: bestelnummer, reden voor retour, foto's bij gebreken.",
+    "returns.process.step2": "Retour Autorisatie",
+    "returns.process.step2desc": "Wij sturen u per email een RMA-nummer (Return Merchandise Authorization) en een vooruitbetaald retouretiket.",
+    "returns.process.step2delay": "Verwerkingstijd: maximaal 24 werkuren.",
+    "returns.process.step3": "Pakket Voorbereiding",
+    "returns.process.step3desc": "Pak het zadel zorgvuldig opnieuw in de originele verpakking met alle beschermingen. Voeg het RMA-nummer toe aan het pakket.",
+    "returns.process.step3advice": "Tip: Fotografeer de verpakking voor verzending.",
+    "returns.process.step4": "Verzending",
+    "returns.process.step4desc": "Plak het retouretiket en breng het pakket naar een DPD-punt of plan een thuisophaling.",
+    "returns.process.step4receipt": "Bewaar het bewijs van afgifte als verzendingsbewijs.",
+    "returns.process.step5": "Verwerking en Terugbetaling",
+    
+    // Exchange Policy Content
+    "exchange.policy.title": "Ruilbeleid",
+    "exchange.free.title": "Speciale Gratis Ruil",
+    "exchange.free.subtitle": "Ongeschikt zadel",
+    "exchange.free.desc": "Als na expertise uw zadel ongeschikt blijkt voor uw paard, bieden wij een gratis ruil naar een geschikter model binnen 30 dagen na aankoop.",
+    "exchange.conditions.title": "Ruilvoorwaarden",
+    "exchange.condition1": "Zadel in perfecte staat, ongebruikt",
+    "exchange.condition2": "Expertise door onze partnerzadelmaker (aanbevolen)",
+    "exchange.condition3": "Eventueel prijsverschil te regelen",
+    "exchange.condition4": "Slechts één ruil toegestaan per bestelling",
+    "exchange.condition5": "Verzendkosten gedragen door Equi Saddles",
+    "exchange.types.title": "Types Ruilen",
+    "exchange.size.title": "Maat Wijziging",
+    "exchange.size.desc": "Zelfde model, andere maat - Gratis ruil",
+    "exchange.model.title": "Model Wijziging",
+    "exchange.model.desc": "Ander model - Prijsverschil toegepast",
+    
+    // Costs and Refunds
+    "costs.refunds.title": "Kosten en Terugbetalingen",
     
     "footer.warranty": "Garantie",
     "footer.faq": "FAQ",
@@ -991,6 +1096,41 @@ export const translations: Record<string, Record<string, string>> = {
     "returns.originalPackaging": "Embalaje original deteriorado",
     "returns.timeExpired": "Plazo de 14 días superado",
     "returns.customProducts": "Productos personalizados",
+    
+    // Return Process Content
+    "returns.process.step1": "Contacte nuestro Servicio al Cliente",
+    "returns.process.step1desc": "Envíenos un email a returns@equisaddles.com o llámenos al +33 1 23 45 67 89 dentro de los 14 días siguientes a la recepción.",
+    "returns.process.step1info": "Información a proporcionar: número de pedido, motivo de devolución, fotos si hay defecto.",
+    "returns.process.step2": "Autorización de Devolución",
+    "returns.process.step2desc": "Le enviaremos por email un número RMA (Return Merchandise Authorization) y una etiqueta de devolución prepagada.",
+    "returns.process.step2delay": "Tiempo de procesamiento: máximo 24h laborables.",
+    "returns.process.step3": "Preparación del Paquete",
+    "returns.process.step3desc": "Reembale cuidadosamente la silla en su embalaje original con todas las protecciones. Incluya el número RMA en el paquete.",
+    "returns.process.step3advice": "Consejo: Fotografíe el embalaje antes del envío.",
+    "returns.process.step4": "Envío",
+    "returns.process.step4desc": "Pegue la etiqueta de devolución y deposite el paquete en un punto DPD o programe una recogida a domicilio.",
+    "returns.process.step4receipt": "Conserve el recibo de depósito como prueba de envío.",
+    "returns.process.step5": "Procesamiento y Reembolso",
+    
+    // Exchange Policy Content
+    "exchange.policy.title": "Política de Intercambio",
+    "exchange.free.title": "Intercambio Gratuito Especial",
+    "exchange.free.subtitle": "Silla inadecuada",
+    "exchange.free.desc": "Si después de la evaluación, su silla resulta inadecuada para su caballo, ofrecemos un intercambio gratuito por un modelo más apropiado dentro de los 30 días de la compra.",
+    "exchange.conditions.title": "Condiciones de Intercambio",
+    "exchange.condition1": "Silla en perfecto estado, sin usar",
+    "exchange.condition2": "Evaluación por nuestro talabartero asociado (recomendado)",
+    "exchange.condition3": "Posible diferencia de precio a ajustar",
+    "exchange.condition4": "Solo un intercambio autorizado por pedido",
+    "exchange.condition5": "Gastos de envío cubiertos por Equi Saddles",
+    "exchange.types.title": "Tipos de Intercambios",
+    "exchange.size.title": "Cambio de Talla",
+    "exchange.size.desc": "Mismo modelo, talla diferente - Intercambio gratuito",
+    "exchange.model.title": "Cambio de Modelo",
+    "exchange.model.desc": "Modelo diferente - Diferencia de precio aplicada",
+    
+    // Costs and Refunds
+    "costs.refunds.title": "Costos y Reembolsos",
     
     "footer.warranty": "Garantía",
     "footer.faq": "FAQ",
@@ -1309,6 +1449,41 @@ export const translations: Record<string, Record<string, string>> = {
     "returns.nonCompliant": "Produkt nicht beschreibungskonform",
     "returns.originalPackaging": "Originalverpackung beschädigt",
     "returns.timeExpired": "14-Tage-Frist überschritten",
-    "returns.customProducts": "Individuelle Produkte"
+    "returns.customProducts": "Individuelle Produkte",
+    
+    // Return Process Content
+    "returns.process.step1": "Kontaktieren Sie unseren Kundenservice",
+    "returns.process.step1desc": "Senden Sie uns eine E-Mail an returns@equisaddles.com oder rufen Sie uns unter +33 1 23 45 67 89 innerhalb von 14 Tagen nach Erhalt an.",
+    "returns.process.step1info": "Anzugebende Informationen: Bestellnummer, Rückgabegrund, Fotos bei Mängeln.",
+    "returns.process.step2": "Rückgabe-Autorisierung",
+    "returns.process.step2desc": "Wir senden Ihnen per E-Mail eine RMA-Nummer (Return Merchandise Authorization) und ein vorausbezahltes Rücksendeetikett.",
+    "returns.process.step2delay": "Bearbeitungszeit: maximal 24 Werktage.",
+    "returns.process.step3": "Paket-Vorbereitung",
+    "returns.process.step3desc": "Verpacken Sie den Sattel sorgfältig in der Originalverpackung mit allen Schutzvorrichtungen. Fügen Sie die RMA-Nummer in das Paket ein.",
+    "returns.process.step3advice": "Tipp: Fotografieren Sie die Verpackung vor dem Versand.",
+    "returns.process.step4": "Versand",
+    "returns.process.step4desc": "Kleben Sie das Rücksendeetikett auf und geben Sie das Paket an einem DPD-Punkt ab oder vereinbaren Sie eine Abholung zu Hause.",
+    "returns.process.step4receipt": "Bewahren Sie den Einlieferungsbeleg als Versandnachweis auf.",
+    "returns.process.step5": "Bearbeitung und Rückerstattung",
+    
+    // Exchange Policy Content
+    "exchange.policy.title": "Umtauschrichtlinie",
+    "exchange.free.title": "Spezieller Kostenloser Umtausch",
+    "exchange.free.subtitle": "Ungeeigneter Sattel",
+    "exchange.free.desc": "Wenn sich nach Begutachtung Ihr Sattel als ungeeignet für Ihr Pferd erweist, bieten wir einen kostenlosen Umtausch zu einem geeigneteren Modell innerhalb von 30 Tagen nach Kauf.",
+    "exchange.conditions.title": "Umtauschbedingungen",
+    "exchange.condition1": "Sattel in perfektem Zustand, unbenutzt",
+    "exchange.condition2": "Begutachtung durch unseren Partner-Sattler (empfohlen)",
+    "exchange.condition3": "Eventueller Preisunterschied zu regeln",
+    "exchange.condition4": "Nur ein Umtausch pro Bestellung autorisiert",
+    "exchange.condition5": "Versandkosten von Equi Saddles übernommen",
+    "exchange.types.title": "Umtauscharten",
+    "exchange.size.title": "Größenänderung",
+    "exchange.size.desc": "Gleiches Modell, andere Größe - Kostenloser Umtausch",
+    "exchange.model.title": "Modelländerung",
+    "exchange.model.desc": "Anderes Modell - Preisunterschied angewandt",
+    
+    // Costs and Refunds
+    "costs.refunds.title": "Kosten und Rückerstattungen"
   }
 };
