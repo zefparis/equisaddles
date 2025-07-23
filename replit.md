@@ -10,6 +10,22 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+### July 23, 2025 - Legal Pages Belgian Law Compliance & Dialog Accessibility Fixes
+- **COMPLETED**: Comprehensive update of all legal pages to reference Belgian laws instead of French laws
+- **COMPLETED**: Updated translation system across all 5 languages (FR, EN, NL, ES, DE) for Belgian law compliance
+- **COMPLETED**: Modified legal page subtitles and content to explicitly indicate compliance with Belgian legislation
+- **COMPLETED**: Enhanced privacy policy references to Belgian law and GDPR compliance
+- **COMPLETED**: Updated terms and conditions to clearly state compliance with Belgian law
+- **COMPLETED**: Modified returns policy to reference Belgian consumer protection legislation
+- **COMPLETED**: Updated delivery information to indicate shipment from Belgium throughout Europe
+- **COMPLETED**: Enhanced customer service pages to reference Belgian standards
+- **COMPLETED**: Fixed critical Dialog accessibility issues by adding proper DialogTitle and DialogDescription components
+- **COMPLETED**: Enhanced CommandDialog component with proper accessibility attributes using VisuallyHidden
+- **COMPLETED**: Systematically corrected Dialog components throughout the application for WCAG compliance
+- All legal framework now properly reflects Belgian business operations and regulatory compliance
+- Enhanced accessibility compliance for screen readers and assistive technologies
+- Complete legal protection under Belgian jurisdiction while maintaining professional presentation
+
 ### July 23, 2025 - Admin Authentication Security Implementation
 - **COMPLETED**: Système d'authentification sécurisé pour la page admin avec identifiants locaux
 - **COMPLETED**: Page de connexion admin dédiée avec interface utilisateur moderne et animations
