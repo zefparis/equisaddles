@@ -347,20 +347,18 @@ export default function Returns() {
               <Alert className="bg-yellow-100 border-yellow-300">
                 <AlertTriangle className="h-4 w-4" />
                 <AlertDescription className="text-yellow-800">
-                  <strong>Important :</strong> Equi Saddles n'est pas responsable des dommages, 
-                  pertes ou retards causés par le transporteur pendant le retour. 
-                  Nous recommandons fortement d'assurer vos envois de valeur.
+                  <strong>{t("transport.important")}</strong> {t("transport.disclaimer")}
                 </AlertDescription>
               </Alert>
               
               <div className="mt-4 space-y-2 text-sm">
-                <h5 className="font-semibold">Nos Recommandations :</h5>
+                <h5 className="font-semibold">{t("transport.recommendations")}</h5>
                 <ul className="space-y-1">
-                  <li>• Emballez soigneusement avec protection renforcée</li>
-                  <li>• Photographiez l'emballage avant envoi</li>
-                  <li>• Conservez tous les récépissés de transport</li>
-                  <li>• Déclarez la valeur réelle du produit</li>
-                  <li>• Utilisez l'étiquette de retour fournie par nos soins</li>
+                  <li>• {t("transport.rec1")}</li>
+                  <li>• {t("transport.rec2")}</li>
+                  <li>• {t("transport.rec3")}</li>
+                  <li>• {t("transport.rec4")}</li>
+                  <li>• {t("transport.rec5")}</li>
                 </ul>
               </div>
             </CardContent>
@@ -370,20 +368,20 @@ export default function Returns() {
           <Card className="bg-primary/5">
             <CardContent className="p-6">
               <div className="text-center">
-                <h3 className="text-lg font-semibold mb-4">Une Question sur votre Retour ?</h3>
+                <h3 className="text-lg font-semibold mb-4">{t("returns.contact.question.title")}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <Button variant="outline" className="flex items-center gap-2">
                     <Mail className="h-4 w-4" />
-                    returns@equisaddles.com
+                    {t("returns.contact.email")}
                   </Button>
                   <Button variant="outline" className="flex items-center gap-2">
                     <Phone className="h-4 w-4" />
-                    +33 1 23 45 67 89
+                    {t("returns.contact.phone")}
                   </Button>
                 </div>
                 <p className="text-sm text-gray-600 mt-4">
-                  Service client disponible du lundi au vendredi, 9h-18h<br />
-                  Réponse garantie sous 24h ouvrées
+                  {t("returns.contact.availability")}<br />
+                  {t("returns.contact.response")}
                 </p>
               </div>
             </CardContent>

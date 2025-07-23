@@ -289,6 +289,21 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Transport Responsibility
     "transport.responsibility.title": "Responsabilité Transport",
+    "transport.important": "Important :",
+    "transport.disclaimer": "Equi Saddles n'est pas responsable des dommages, pertes ou retards causés par le transporteur pendant le retour. Nous recommandons fortement d'assurer vos envois de valeur.",
+    "transport.recommendations": "Nos Recommandations :",
+    "transport.rec1": "Emballez soigneusement avec protection renforcée",
+    "transport.rec2": "Photographiez l'emballage avant envoi",
+    "transport.rec3": "Conservez tous les récépissés de transport",
+    "transport.rec4": "Déclarez la valeur réelle du produit",
+    "transport.rec5": "Utilisez l'étiquette de retour fournie par nos soins",
+    
+    // Returns Contact Section
+    "returns.contact.question.title": "Une Question sur votre Retour ?",
+    "returns.contact.email": "returns@equisaddles.com",
+    "returns.contact.phone": "+33 1 23 45 67 89",
+    "returns.contact.availability": "Service client disponible du lundi au vendredi, 9h-18h",
+    "returns.contact.response": "Réponse garantie sous 24h ouvrées",
     
     "footer.warranty": "Garantie",
     "footer.faq": "FAQ",
@@ -626,6 +641,21 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Transport Responsibility
     "transport.responsibility.title": "Transport Responsibility",
+    "transport.important": "Important:",
+    "transport.disclaimer": "Equi Saddles is not responsible for damages, losses or delays caused by the carrier during return. We strongly recommend insuring your valuable shipments.",
+    "transport.recommendations": "Our Recommendations:",
+    "transport.rec1": "Pack carefully with reinforced protection",
+    "transport.rec2": "Photograph packaging before shipping",
+    "transport.rec3": "Keep all transport receipts",
+    "transport.rec4": "Declare the real value of the product",
+    "transport.rec5": "Use the return label provided by us",
+    
+    // Returns Contact Section
+    "returns.contact.question.title": "A Question about your Return?",
+    "returns.contact.email": "returns@equisaddles.com",
+    "returns.contact.phone": "+33 1 23 45 67 89",
+    "returns.contact.availability": "Customer service available Monday to Friday, 9am-6pm",
+    "returns.contact.response": "Response guaranteed within 24 business hours",
     
     "footer.warranty": "Warranty",
     "footer.faq": "FAQ",
@@ -925,6 +955,21 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Transport Responsibility
     "transport.responsibility.title": "Transportverantwoordelijkheid",
+    "transport.important": "Belangrijk:",
+    "transport.disclaimer": "Equi Saddles is niet verantwoordelijk voor schade, verlies of vertragingen veroorzaakt door de vervoerder tijdens de retour. Wij bevelen sterk aan uw waardevolle zendingen te verzekeren.",
+    "transport.recommendations": "Onze Aanbevelingen:",
+    "transport.rec1": "Verpak zorgvuldig met versterkte bescherming",
+    "transport.rec2": "Fotografeer verpakking voor verzending",
+    "transport.rec3": "Bewaar alle transportbonnen",
+    "transport.rec4": "Geef de werkelijke waarde van het product aan",
+    "transport.rec5": "Gebruik het door ons verstrekte retouretiket",
+    
+    // Returns Contact Section
+    "returns.contact.question.title": "Een Vraag over uw Retour?",
+    "returns.contact.email": "returns@equisaddles.com",
+    "returns.contact.phone": "+33 1 23 45 67 89",
+    "returns.contact.availability": "Klantenservice beschikbaar maandag tot vrijdag, 9u-18u",
+    "returns.contact.response": "Respons gegarandeerd binnen 24 werkuren",
     
     "footer.warranty": "Garantie",
     "footer.faq": "FAQ",
@@ -1243,6 +1288,21 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Transport Responsibility
     "transport.responsibility.title": "Responsabilidad de Transporte",
+    "transport.important": "Importante:",
+    "transport.disclaimer": "Equi Saddles no es responsable de daños, pérdidas o retrasos causados por el transportista durante la devolución. Recomendamos encarecidamente asegurar sus envíos de valor.",
+    "transport.recommendations": "Nuestras Recomendaciones:",
+    "transport.rec1": "Embale cuidadosamente con protección reforzada",
+    "transport.rec2": "Fotografíe el embalaje antes del envío",
+    "transport.rec3": "Conserve todos los recibos de transporte",
+    "transport.rec4": "Declare el valor real del producto",
+    "transport.rec5": "Use la etiqueta de devolución proporcionada por nosotros",
+    
+    // Returns Contact Section
+    "returns.contact.question.title": "¿Una Pregunta sobre su Devolución?",
+    "returns.contact.email": "returns@equisaddles.com",
+    "returns.contact.phone": "+33 1 23 45 67 89",
+    "returns.contact.availability": "Servicio al cliente disponible de lunes a viernes, 9h-18h",
+    "returns.contact.response": "Respuesta garantizada en 24 horas laborables",
     
     "footer.warranty": "Garantía",
     "footer.faq": "FAQ",
@@ -1624,6 +1684,21 @@ export const translations: Record<string, Record<string, string>> = {
     "refund.delivery.note": "*Außer bei Defekt oder unserem Fehler",
     
     // Transport Responsibility
-    "transport.responsibility.title": "Transportverantwortung"
+    "transport.responsibility.title": "Transportverantwortung",
+    "transport.important": "Wichtig:",
+    "transport.disclaimer": "Equi Saddles ist nicht verantwortlich für Schäden, Verluste oder Verzögerungen, die vom Transportunternehmen während der Rücksendung verursacht werden. Wir empfehlen dringend, Ihre wertvollen Sendungen zu versichern.",
+    "transport.recommendations": "Unsere Empfehlungen:",
+    "transport.rec1": "Sorgfältig mit verstärktem Schutz verpacken",
+    "transport.rec2": "Verpackung vor Versand fotografieren",
+    "transport.rec3": "Alle Transportbelege aufbewahren",
+    "transport.rec4": "Den tatsächlichen Wert des Produkts angeben",
+    "transport.rec5": "Das von uns bereitgestellte Rücksendeetikett verwenden",
+    
+    // Returns Contact Section
+    "returns.contact.question.title": "Eine Frage zu Ihrer Rücksendung?",
+    "returns.contact.email": "returns@equisaddles.com",
+    "returns.contact.phone": "+33 1 23 45 67 89",
+    "returns.contact.availability": "Kundenservice verfügbar Montag bis Freitag, 9-18 Uhr",
+    "returns.contact.response": "Antwort garantiert innerhalb von 24 Stunden"
   }
 };
