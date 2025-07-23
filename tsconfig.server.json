@@ -1,15 +1,20 @@
 {
   "compilerOptions": {
+    "target": "ES2020",
+    "module": "es2022",
     "moduleResolution": "nodenext",
-    "module": "NodeNext",
-    "target": "es2020",
     "outDir": "dist/server",
-    "rootDir": ".",
+    "rootDir": "server",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "typeRoots": ["./shared", "./node_modules/@types"]
+    "typeRoots": ["./shared", "./node_modules/@types"],
+    "paths": {
+      "*": ["./node_modules/*"]
+    },
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true
   },
   "include": ["server/**/*", "shared/**/*"],
   "exclude": ["node_modules"]

@@ -1,26 +1,39 @@
-# Use a Node.js base image
-FROM node:18-alpine
+# Build stage
+FROM node:18-alpine AS builder
 
-# Set the working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json first to leverage Docker's caching
-COPY package.json package-lock.json ./
+# Install system dependencies
+RUN apk add --no-cache git python3 make g++
+
+# Copy package files
+COPY package*.json ./
+COPY tsconfig*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN npm ci --ignore-scripts
 
-# Copy the rest of the application source code
+# Copy source code
 COPY . .
 
-# Compile TypeScript and build the client
+# Build the application
 RUN npm run build
 
-# Debug: list backend output
-RUN ls -l dist/server
+# Production stage
+FROM node:18-alpine
 
-# Expose the port your app runs on
+WORKDIR /app
+
+# Install runtime dependencies only
+COPY --from=builder /app/package*.json ./
+RUN npm ci --only=production --ignore-scripts
+
+# Copy built files
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/public ./public
+
+# Expose the port the app runs on
 EXPOSE 3000
 
 # Start the application
-CMD ["npm", "run", "start"]
+CMD ["npm", "start"]

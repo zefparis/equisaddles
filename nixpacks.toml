@@ -1,9 +1,25 @@
-# Railway/Nixpacks: build backend TS puis start
+# Railway/Nixpacks: configuration optimisée pour build et démarrage
+[phases.setup]
+cmds = ["corepack enable"]
+
 [phases.install]
-cmds = ["npm install"]
+cmds = ["npm ci --ignore-scripts"]
 
 [phases.build]
-cmds = ["npm run build"]
+cmds = [
+    "npm run build:server",
+    "npm run build:client"
+]
+
+[phases.install.requires]
+node = "18"
 
 [start]
 cmd = "npm run start"
+
+[build.environment]
+NODE_ENV = "production"
+NPM_CONFIG_PRODUCTION = "false"
+
+[build.args]
+NODE_VERSION = "18"
