@@ -10,6 +10,22 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+### July 23, 2025 - Enhanced Dark Mode for Smartphone Optimization
+- **COMPLETED**: Comprehensive dark mode improvements specifically optimized for smartphone users
+- **COMPLETED**: Adjusted background colors from very dark (8% lightness) to more readable (12% lightness)
+- **COMPLETED**: Enhanced text contrast with lighter foreground colors (92% vs 95% lightness)
+- **COMPLETED**: Improved category image visibility by reducing overlay opacity from 40% to 30% in dark mode
+- **COMPLETED**: Enhanced product cards with better contrast and visibility in dark mode
+- **COMPLETED**: Optimized all color variables for better smartphone readability:
+  - Cards and popovers now use 15% lightness instead of 8-10%
+  - Muted areas improved from 18% to 22% lightness
+  - Border visibility enhanced with 30% lightness
+  - Input fields made more visible with improved contrast
+- **COMPLETED**: Added dark mode specific hover effects and shadows for better depth perception
+- **COMPLETED**: Updated all major pages (home, catalog, product cards) with smartphone-friendly dark mode colors
+- User confirmed improvements are working well - images and text now properly visible on smartphones in dark mode
+- Significant enhancement to user experience for mobile users with dark mode system preferences
+
 ### July 23, 2025 - Advanced Catalog Separation & Navigation System
 - **COMPLETED**: Complete separation between saddles and accessories with tabbed interface
 - **COMPLETED**: Advanced navigation system with adaptive search/selection controls:
