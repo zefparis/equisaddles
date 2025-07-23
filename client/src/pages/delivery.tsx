@@ -419,7 +419,7 @@ export default function Delivery() {
                   </Button>
                   <Button variant="outline" className="flex items-center gap-2">
                     <Phone className="h-4 w-4" />
-                    +33 1 23 45 67 89
+                    +32 496 94 41 25
                   </Button>
                 </div>
                 <p className="text-xs text-gray-500 mt-3">

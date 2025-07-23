@@ -64,7 +64,7 @@ export default function Support() {
                     <Phone className="h-6 w-6 text-green-600" />
                     <div>
                       <h3 className="font-semibold">Téléphone</h3>
-                      <p className="text-sm text-gray-600">+33 1 23 45 67 89</p>
+                      <p className="text-sm text-gray-600">+32 496 94 41 25</p>
                       <Badge variant="secondary" className="mt-1">{t("support.phone.hours")}</Badge>
                     </div>
                   </div>

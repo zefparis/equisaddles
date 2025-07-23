@@ -200,7 +200,7 @@ const CheckoutForm = () => {
                 <Input
                   id="phone"
                   {...register("phone")}
-                  placeholder="+33 1 23 45 67 89"
+                  placeholder="+32 496 94 41 25"
                 />
               </div>
 

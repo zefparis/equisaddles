@@ -384,8 +384,8 @@ export const translations: Record<string, Record<string, string>> = {
     "privacy.rights.portability": "Droit à la Portabilité",
     "privacy.rights.portabilityDesc": "Vous pouvez récupérer vos données dans un format structuré",
     "privacy.contact.title": "Contact Data Protection",
-    "privacy.contact.email": "privacy@equisaddles.com",
-    "privacy.contact.phone": "+33 1 23 45 67 89",
+    "privacy.contact.email": "contact@equisaddles.com",
+    "privacy.contact.phone": "+32 496 94 41 25",
     "privacy.contact.address": "123 Rue de la Sellerie, 75000 Paris, France",
     "privacy.sharing.title": "Partage des Données",
     "privacy.sharing.never": "Nous ne vendons JAMAIS vos données personnelles",
@@ -413,7 +413,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Return Process Content
     "returns.process.step1": "Contactez notre Service Client",
-    "returns.process.step1desc": "Envoyez-nous un email à returns@equisaddles.com ou appelez-nous au +33 1 23 45 67 89 dans les 14 jours suivant la réception.",
+    "returns.process.step1desc": "Envoyez-nous un email à contact@equisaddles.com ou appelez-nous au +32 496 94 41 25 dans les 14 jours suivant la réception.",
     "returns.process.step1info": "Informations à fournir : numéro de commande, motif du retour, photos si défaut.",
     "returns.process.step2": "Autorisation de Retour",
     "returns.process.step2desc": "Nous vous envoyons par email un numéro RMA (Return Merchandise Authorization) et une étiquette de retour prépayée.",
@@ -484,8 +484,8 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Returns Contact Section
     "returns.contact.question.title": "Une Question sur votre Retour ?",
-    "returns.contact.email": "returns@equisaddles.com",
-    "returns.contact.phone": "+33 1 23 45 67 89",
+    "returns.contact.email": "contact@equisaddles.com",
+    "returns.contact.phone": "+32 496 94 41 25",
     "returns.contact.availability": "Service client disponible du lundi au vendredi, 9h-18h",
     "returns.contact.response": "Réponse garantie sous 24h ouvrées",
     
@@ -509,9 +509,9 @@ export const translations: Record<string, Record<string, string>> = {
     "footer.support.delivery": "Livraison",
     "footer.support.service": "Service Client",
     "footer.contact.title": "Contact",
-    "footer.contact.address": "123 Rue de l'Équitation, 75000 Paris",
-    "footer.contact.phone": "+33 1 23 45 67 89",
-    "footer.contact.email": "contact@equi-saddles.com",
+    "footer.contact.address": "Rue du Vicinal 9, 4141 Louveigné, Belgique",
+    "footer.contact.phone": "+32 496 94 41 25",
+    "footer.contact.email": "contact@equisaddles.com",
     "footer.contact.hours": "Lun-Vie: 9h-18h",
     "admin.newProduct": "Nouveau produit",
     "admin.editProduct": "Modifier le produit",
@@ -874,7 +874,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Return Process Content
     "returns.process.step1": "Contact our Customer Service",
-    "returns.process.step1desc": "Send us an email at returns@equisaddles.com or call us at +33 1 23 45 67 89 within 14 days of receipt.",
+    "returns.process.step1desc": "Send us an email at contact@equisaddles.com or call us at +32 496 94 41 25 within 14 days of receipt.",
     "returns.process.step1info": "Information to provide: order number, reason for return, photos if defective.",
     "returns.process.step2": "Return Authorization",
     "returns.process.step2desc": "We will email you an RMA (Return Merchandise Authorization) number and a prepaid return label.",
@@ -945,8 +945,8 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Returns Contact Section
     "returns.contact.question.title": "A Question about your Return?",
-    "returns.contact.email": "returns@equisaddles.com",
-    "returns.contact.phone": "+33 1 23 45 67 89",
+    "returns.contact.email": "contact@equisaddles.com",
+    "returns.contact.phone": "+32 496 94 41 25",
     "returns.contact.availability": "Customer service available Monday to Friday, 9am-6pm",
     "returns.contact.response": "Response guaranteed within 24 business hours",
     
@@ -970,9 +970,9 @@ export const translations: Record<string, Record<string, string>> = {
     "footer.support.delivery": "Delivery",
     "footer.support.service": "Customer Service",
     "footer.contact.title": "Contact",
-    "footer.contact.address": "123 Rue de l'Équitation, 75000 Paris",
-    "footer.contact.phone": "+33 1 23 45 67 89",
-    "footer.contact.email": "contact@equi-saddles.com",
+    "footer.contact.address": "Rue du Vicinal 9, 4141 Louveigné, Belgique",
+    "footer.contact.phone": "+32 496 94 41 25",
+    "footer.contact.email": "contact@equisaddles.com",
     "footer.contact.hours": "Mon-Fri: 9am-6pm",
     "admin.newProduct": "New Product",
     "admin.editProduct": "Edit Product",
@@ -1297,7 +1297,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Return Process Content
     "returns.process.step1": "Contacteer onze Klantenservice",
-    "returns.process.step1desc": "Stuur ons een email naar returns@equisaddles.com of bel ons op +33 1 23 45 67 89 binnen 14 dagen na ontvangst.",
+    "returns.process.step1desc": "Stuur ons een email naar contact@equisaddles.com of bel ons op +32 496 94 41 25 binnen 14 dagen na ontvangst.",
     "returns.process.step1info": "Te verstrekken informatie: bestelnummer, reden voor retour, foto's bij gebreken.",
     "returns.process.step2": "Retour Autorisatie",
     "returns.process.step2desc": "Wij sturen u per email een RMA-nummer (Return Merchandise Authorization) en een vooruitbetaald retouretiket.",
@@ -1368,8 +1368,8 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Returns Contact Section
     "returns.contact.question.title": "Een Vraag over uw Retour?",
-    "returns.contact.email": "returns@equisaddles.com",
-    "returns.contact.phone": "+33 1 23 45 67 89",
+    "returns.contact.email": "contact@equisaddles.com",
+    "returns.contact.phone": "+32 496 94 41 25",
     "returns.contact.availability": "Klantenservice beschikbaar maandag tot vrijdag, 9u-18u",
     "returns.contact.response": "Respons gegarandeerd binnen 24 werkuren",
     
@@ -1393,9 +1393,9 @@ export const translations: Record<string, Record<string, string>> = {
     "footer.support.delivery": "Levering",
     "footer.support.service": "Klantenservice",
     "footer.contact.title": "Contact",
-    "footer.contact.address": "123 Rue de l'Équitation, 75000 Paris",
-    "footer.contact.phone": "+33 1 23 45 67 89",
-    "footer.contact.email": "contact@equi-saddles.com",
+    "footer.contact.address": "Rue du Vicinal 9, 4141 Louveigné, Belgique",
+    "footer.contact.phone": "+32 496 94 41 25",
+    "footer.contact.email": "contact@equisaddles.com",
     "footer.contact.hours": "Ma-Vr: 9u-18u",
     "admin.newProduct": "Nieuw product",
     "admin.editProduct": "Product bewerken",
@@ -1739,7 +1739,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Return Process Content
     "returns.process.step1": "Contacte nuestro Servicio al Cliente",
-    "returns.process.step1desc": "Envíenos un email a returns@equisaddles.com o llámenos al +33 1 23 45 67 89 dentro de los 14 días siguientes a la recepción.",
+    "returns.process.step1desc": "Envíenos un email a contact@equisaddles.com o llámenos al +32 496 94 41 25 dentro de los 14 días siguientes a la recepción.",
     "returns.process.step1info": "Información a proporcionar: número de pedido, motivo de devolución, fotos si hay defecto.",
     "returns.process.step2": "Autorización de Devolución",
     "returns.process.step2desc": "Le enviaremos por email un número RMA (Return Merchandise Authorization) y una etiqueta de devolución prepagada.",
@@ -1810,8 +1810,8 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Returns Contact Section
     "returns.contact.question.title": "¿Una Pregunta sobre su Devolución?",
-    "returns.contact.email": "returns@equisaddles.com",
-    "returns.contact.phone": "+33 1 23 45 67 89",
+    "returns.contact.email": "contact@equisaddles.com",
+    "returns.contact.phone": "+32 496 94 41 25",
     "returns.contact.availability": "Servicio al cliente disponible de lunes a viernes, 9h-18h",
     "returns.contact.response": "Respuesta garantizada en 24 horas laborables",
     
@@ -1836,8 +1836,8 @@ export const translations: Record<string, Record<string, string>> = {
     "footer.support.service": "Servicio al Cliente",
     "footer.contact.title": "Contacto",
     "footer.contact.address": "123 Rue de l'Équitation, 75000 París",
-    "footer.contact.phone": "+33 1 23 45 67 89",
-    "footer.contact.email": "contact@equi-saddles.com",
+    "footer.contact.phone": "+32 496 94 41 25",
+    "footer.contact.email": "contact@equisaddles.com",
     "footer.contact.hours": "Lun-Vie: 9h-18h",
     "admin.newProduct": "Nuevo producto",
     "admin.editProduct": "Editar producto",
@@ -2186,7 +2186,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Return Process Content
     "returns.process.step1": "Kontaktieren Sie unseren Kundenservice",
-    "returns.process.step1desc": "Senden Sie uns eine E-Mail an returns@equisaddles.com oder rufen Sie uns unter +33 1 23 45 67 89 innerhalb von 14 Tagen nach Erhalt an.",
+    "returns.process.step1desc": "Senden Sie uns eine E-Mail an contact@equisaddles.com oder rufen Sie uns unter +32 496 94 41 25 innerhalb von 14 Tagen nach Erhalt an.",
     "returns.process.step1info": "Anzugebende Informationen: Bestellnummer, Rückgabegrund, Fotos bei Mängeln.",
     "returns.process.step2": "Rückgabe-Autorisierung",
     "returns.process.step2desc": "Wir senden Ihnen per E-Mail eine RMA-Nummer (Return Merchandise Authorization) und ein vorausbezahltes Rücksendeetikett.",
@@ -2257,8 +2257,8 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Returns Contact Section
     "returns.contact.question.title": "Eine Frage zu Ihrer Rücksendung?",
-    "returns.contact.email": "returns@equisaddles.com",
-    "returns.contact.phone": "+33 1 23 45 67 89",
+    "returns.contact.email": "contact@equisaddles.com",
+    "returns.contact.phone": "+32 496 94 41 25",
     "returns.contact.availability": "Kundenservice verfügbar Montag bis Freitag, 9-18 Uhr",
     "returns.contact.response": "Antwort garantiert innerhalb von 24 Stunden",
     
@@ -2339,9 +2339,9 @@ export const translations: Record<string, Record<string, string>> = {
     "footer.support.delivery": "Lieferung",
     "footer.support.service": "Kundendienst",
     "footer.contact.title": "Kontakt",
-    "footer.contact.address": "123 Rue de l'Équitation, 75000 Paris",
-    "footer.contact.phone": "+33 1 23 45 67 89",
-    "footer.contact.email": "contact@equi-saddles.com",
+    "footer.contact.address": "Rue du Vicinal 9, 4141 Louveigné, Belgique",
+    "footer.contact.phone": "+32 496 94 41 25",
+    "footer.contact.email": "contact@equisaddles.com",
     "footer.contact.hours": "Mo-Fr: 9-18 Uhr"
   }
 };

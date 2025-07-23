@@ -146,7 +146,7 @@ export default function Confirmation() {
                 </p>
                 <p className="flex items-center gap-2">
                   <span>📞</span>
-                  <span>+33 1 23 45 67 89</span>
+                  <span>+32 496 94 41 25</span>
                 </p>
                 <p className="text-sm text-gray-600">
                   Horaires : Lundi-Vendredi 9h-18h

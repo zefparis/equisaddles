@@ -59,14 +59,12 @@ export default function Terms() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="bg-primary/5 p-4 rounded-lg">
-                <h4 className="font-semibold mb-2">Equi Saddles SARL</h4>
+                <h4 className="font-semibold mb-2">Equi Saddles</h4>
                 <div className="text-sm space-y-1">
-                  <p><strong>Siège social :</strong> 123 Rue de l'Équitation, 75001 Paris, France</p>
-                  <p><strong>SIRET :</strong> 123 456 789 00012</p>
-                  <p><strong>RCS :</strong> Paris B 123 456 789</p>
-                  <p><strong>TVA Intracommunautaire :</strong> FR 12 123456789</p>
-                  <p><strong>Capital social :</strong> 50 000 €</p>
-                  <p><strong>Téléphone :</strong> +33 1 23 45 67 89</p>
+                  <p><strong>Adresse :</strong> Rue du Vicinal 9, 4141 Louveigné, Belgique</p>
+                  <p><strong>Représentant légal :</strong> Justine Bogaerts</p>
+                  <p><strong>Numéro de TVA :</strong> BE0542650464</p>
+                  <p><strong>Téléphone :</strong> +32 496 94 41 25</p>
                   <p><strong>Email :</strong> contact@equisaddles.com</p>
                 </div>
               </div>
@@ -359,7 +357,7 @@ export default function Terms() {
                 </p>
                 <div className="space-y-2 text-sm">
                   <p><strong>Email :</strong> legal@equisaddles.com</p>
-                  <p><strong>Téléphone :</strong> +33 1 23 45 67 89</p>
+                  <p><strong>Téléphone :</strong> +32 496 94 41 25</p>
                   <p><strong>Courrier :</strong> Equi Saddles - Service Juridique<br />
                   123 Rue de l'Équitation, 75001 Paris</p>
                 </div>

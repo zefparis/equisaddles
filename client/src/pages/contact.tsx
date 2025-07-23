@@ -82,8 +82,8 @@ export default function Contact() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600">
-                  123 Rue de l'Équitation<br />
-                  75000 Paris, France
+                  Rue du Vicinal 9<br />
+                  4141 Louveigné, Belgique
                 </p>
               </CardContent>
             </Card>
@@ -96,7 +96,7 @@ export default function Contact() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">+33 1 23 45 67 89</p>
+                <p className="text-gray-600">+32 496 94 41 25</p>
               </CardContent>
             </Card>
 

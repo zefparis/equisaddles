@@ -116,7 +116,7 @@ export default function CustomerService() {
                     <div>
                       <h4 className="font-semibold text-green-800 mb-2">{t("service.phone.title")}</h4>
                       <p className="text-sm text-green-700 mb-2">
-                        <strong>+33 1 23 45 67 89</strong>
+                        <strong>+32 496 94 41 25</strong>
                       </p>
                       <ul className="text-sm text-green-600 space-y-1">
                         <li>• {t("service.phone.hours")}</li>
@@ -346,7 +346,7 @@ export default function CustomerService() {
                 </p>
                 <Button variant="destructive" size="lg">
                   <Phone className="h-4 w-4 mr-2" />
-                  Ligne d'Urgence : +33 1 23 45 67 89
+                  Ligne d'Urgence : +32 496 94 41 25
                 </Button>
                 <p className="text-xs text-red-600 mt-2">
                   Disponible 24h/24 - 7j/7 - Réponse immédiate garantie

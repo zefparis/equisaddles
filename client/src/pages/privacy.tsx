@@ -287,7 +287,7 @@ export default function Privacy() {
                   <p><strong>Adresse :</strong> Equi Saddles - Service DPO<br />
                   123 Rue de l'Équitation<br />
                   75001 Paris, France</p>
-                  <p><strong>Téléphone :</strong> +33 1 23 45 67 89</p>
+                  <p><strong>Téléphone :</strong> +32 496 94 41 25</p>
                 </div>
                 
                 <Separator className="my-4" />
