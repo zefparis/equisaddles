@@ -65,7 +65,10 @@ export default function ChatWidget({ isAdmin = false, sessionId: adminSessionId,
 
   const connectWebSocket = () => {
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-    const wsUrl = `${protocol}//${window.location.host}/ws/chat`;
+    // Utiliser le port 5000 directement pour les WebSockets en développement
+    const host = window.location.hostname;
+    const port = window.location.hostname === 'localhost' ? '5000' : window.location.port;
+    const wsUrl = `${protocol}//${host}:${port}/ws/chat`;
     
     wsRef.current = new WebSocket(wsUrl);
     
