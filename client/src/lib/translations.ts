@@ -398,18 +398,14 @@ export const translations: Record<string, Record<string, string>> = {
     "privacy.sharing.legal": "Autorités légales",
     "privacy.sharing.legalDesc": "Si requis par la loi française ou européenne",
 
-    // Terms & Conditions Complete Translations
-    "legal.terms.title": "Conditions Générales de Vente",
-    "legal.terms.subtitle": "Nos conditions régissent votre utilisation de nos services et vos achats sur notre site.",
-    "legal.terms.acceptance": "En passant commande, vous acceptez sans réserve nos conditions générales.",
-    "legal.version": "Version 2.1",
-    "legal.date": "15 Janvier 2025",
-    "legal.important": "Important",
-    "terms.company.title": "Identification de l'Entreprise",
+
+
+
+    // Terms Page Content - French
     "terms.products.title": "Nos Produits",
     "terms.products.our": "Nos produits",
     "terms.products.list1": "Selles d'obstacle professionnelles et sur-mesure",
-    "terms.products.list2": "Selles de dressage classique et compétition",  
+    "terms.products.list2": "Selles de dressage classique et compétition",
     "terms.products.list3": "Selles mixtes polyvalentes pour toutes disciplines",
     "terms.pricing.title": "Tarification et Disponibilité",
     "terms.pricing.list1": "Tous nos prix sont indiqués en euros TTC",
@@ -425,7 +421,17 @@ export const translations: Record<string, Record<string, string>> = {
     "terms.orders.step4": "Choix du mode de paiement",
     "terms.orders.step5": "Validation et confirmation de commande",
     "terms.orders.step6": "Réception du numéro de commande par email",
-
+    "terms.payment.methods": "Moyens de paiement acceptés",
+    "terms.payment.list1": "Carte bancaire (Visa, MasterCard, American Express)",
+    "terms.payment.list2": "Paiement sécurisé via Stripe",
+    "terms.payment.list3": "Chèque bancaire (sur demande pour montants élevés)",
+    "terms.payment.list4": "Virement bancaire (commandes professionnelles)",
+    "terms.payment.list5": "PayPal (disponible selon les montants)",
+    "terms.payment.security": "Sécurité des paiements",
+    "terms.payment.securityDesc": "Tous les paiements sont cryptés et sécurisés via notre partenaire Stripe, certifié PCI DSS niveau 1.",
+    "terms.delivery.title": "Livraison et Transport",
+    "terms.delivery.warning": "⚠️ Limitation de Responsabilité - Transport",
+    "terms.delivery.liability": "Equi Saddles n'est pas responsable des dommages, pertes, vols ou retards causés par le transporteur. Nous confions vos colis à DPD, transporteur professionnel, mais ne pouvons être tenus responsables des incidents pendant le transport.",
 
     // Additional Returns Content
     "returns.orderError": "Erreur de commande de notre part",
@@ -729,7 +735,7 @@ export const translations: Record<string, Record<string, string>> = {
     "footer.sizeGuide": "Size Guide",
     "footer.maintenance": "Maintenance",
     
-    // Legal Pages
+    // Legal Pages - English
     "legal.support.title": "Customer Support - Equi Saddles",
     "legal.support.subtitle": "Our dedicated team is here to support you in your equestrian experience.",
     "legal.privacy.title": "Privacy Policy",
