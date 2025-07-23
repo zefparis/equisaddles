@@ -5,7 +5,8 @@ import { z } from "zod";
 export const products = pgTable("products", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
-  category: text("category").notNull(), // "Obstacle", "Dressage", "Cross", "Mixte", "Poney"
+  category: text("category").notNull(), // "Obstacle", "Dressage", "Cross", "Mixte", "Poney", "Accessoires"
+  subcategory: text("subcategory"), // For "Accessoires": "Sangles", "Etrivieres", "Etriers", "Amortisseurs", "Tapis", "Briderie", "Couvertures", "Protections"
   size: text("size").notNull(), // "16", "16.5", "17", "17.5", "18", "18.5"
   price: decimal("price", { precision: 10, scale: 2 }).notNull(),
   originalPrice: decimal("original_price", { precision: 10, scale: 2 }),
