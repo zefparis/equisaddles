@@ -19,7 +19,14 @@ export default function Catalog() {
   const [sortBy, setSortBy] = useState("name");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [showFilters, setShowFilters] = useState(false);
-  const [activeTab, setActiveTab] = useState("selles");
+  const [activeTab, setActiveTab] = useState<"selles" | "accessoires">("selles");
+  
+  // Initialiser searchTerm avec la bonne valeur par défaut selon l'onglet
+  useEffect(() => {
+    if (activeTab === "accessoires" && searchTerm === "") {
+      setSearchTerm("tous");
+    }
+  }, [activeTab, searchTerm]);
   const [filters, setFilters] = useState({
     categories: [] as string[],
     subcategories: [] as string[],
@@ -54,8 +61,15 @@ export default function Catalog() {
 
   const filteredProducts = (activeTab === "selles" ? selles : accessoires).filter(product => {
     // Search filter
-    if (searchTerm && !product.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-      return false;
+    if (activeTab === "selles") {
+      if (searchTerm && !product.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+        return false;
+      }
+    } else {
+      // Pour les accessoires, filtrer par nom exact sauf si "tous" est sélectionné
+      if (searchTerm && searchTerm !== "tous" && product.name !== searchTerm) {
+        return false;
+      }
     }
 
     // Category filter pour les selles uniquement
@@ -102,7 +116,10 @@ export default function Catalog() {
           <h1 className="text-3xl font-bold mb-4">{t("nav.catalog")}</h1>
           
           {/* Onglets Selles / Accessoires */}
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
+          <Tabs value={activeTab} onValueChange={(value) => {
+            setActiveTab(value as "selles" | "accessoires");
+            setSearchTerm(value === "accessoires" ? "tous" : ""); // Réinitialiser la recherche quand on change d'onglet
+          }} className="mb-6">
             <TabsList className="grid w-full grid-cols-2 max-w-md">
               <TabsTrigger value="selles">Selles ({selles.length})</TabsTrigger>
               <TabsTrigger value="accessoires">Accessoires ({accessoires.length})</TabsTrigger>
@@ -111,15 +128,33 @@ export default function Catalog() {
           
           {/* Search and Controls */}
           <div className="flex flex-col sm:flex-row gap-4 mb-6">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-              <Input
-                placeholder={activeTab === "selles" ? "Rechercher une selle..." : "Rechercher un accessoire..."}
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
-              />
-            </div>
+            {activeTab === "selles" ? (
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                <Input
+                  placeholder="Rechercher une selle..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+            ) : (
+              <div className="flex-1">
+                <Select value={searchTerm} onValueChange={setSearchTerm}>
+                  <SelectTrigger>
+                    <SelectValue placeholder={t("catalog.selectAccessory")} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="tous">{t("catalog.allAccessories")}</SelectItem>
+                    {accessoires.map((accessoire) => (
+                      <SelectItem key={accessoire.id} value={accessoire.name}>
+                        {accessoire.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
             
             <Select value={sortBy} onValueChange={setSortBy}>
               <SelectTrigger className="w-full sm:w-48">
