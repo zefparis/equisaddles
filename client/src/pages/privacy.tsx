@@ -26,7 +26,7 @@ export default function Privacy() {
             {t("legal.privacy.subtitle")}
           </p>
           <Badge variant="secondary" className="mt-4">
-            Dernière mise à jour : Janvier 2025
+            {t("legal.lastUpdate")} : {t("legal.date")}
           </Badge>
         </div>
 
@@ -42,7 +42,7 @@ export default function Privacy() {
             <CardContent className="space-y-4">
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-semibold mb-2">Données que nous collectons :</h3>
+                  <h3 className="font-semibold mb-2">{t("privacy.dataCollected")} :</h3>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>

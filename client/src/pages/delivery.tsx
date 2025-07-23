@@ -49,24 +49,24 @@ export default function Delivery() {
             <Card className="bg-blue-50 border-blue-200">
               <CardContent className="p-4 text-center">
                 <Globe className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-                <h3 className="font-semibold text-blue-800">Europe</h3>
-                <p className="text-sm text-blue-700">Livraison dans toute l'Europe</p>
+                <h3 className="font-semibold text-blue-800">{t("delivery.europe")}</h3>
+                <p className="text-sm text-blue-700">{t("delivery.europeDesc")}</p>
               </CardContent>
             </Card>
             
             <Card className="bg-green-50 border-green-200">
               <CardContent className="p-4 text-center">
                 <Clock className="h-8 w-8 text-green-600 mx-auto mb-2" />
-                <h3 className="font-semibold text-green-800">2-3 Jours</h3>
-                <p className="text-sm text-green-700">France métropolitaine</p>
+                <h3 className="font-semibold text-green-800">{t("delivery.fastShipping")}</h3>
+                <p className="text-sm text-green-700">{t("delivery.franceShipping")}</p>
               </CardContent>
             </Card>
             
             <Card className="bg-purple-50 border-purple-200">
               <CardContent className="p-4 text-center">
                 <Package className="h-8 w-8 text-purple-600 mx-auto mb-2" />
-                <h3 className="font-semibold text-purple-800">Emballage</h3>
-                <p className="text-sm text-purple-700">Professionnel et sécurisé</p>
+                <h3 className="font-semibold text-purple-800">{t("delivery.packaging")}</h3>
+                <p className="text-sm text-purple-700">{t("delivery.packagingDesc")}</p>
               </CardContent>
             </Card>
             

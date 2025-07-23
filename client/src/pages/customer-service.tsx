@@ -43,7 +43,7 @@ export default function CustomerService() {
             {t("legal.customerService.subtitle")}
           </p>
           <Badge variant="default" className="mt-4 text-lg px-4 py-2">
-            ⭐ Note client : 4.9/5 - Plus de 2000 avis
+            ⭐ {t("service.rating")} : 4.9/5 - {t("service.reviews")}
           </Badge>
         </div>
 

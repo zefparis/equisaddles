@@ -36,7 +36,7 @@ export default function Terms() {
             {t("legal.terms.subtitle")}
           </p>
           <Badge variant="secondary" className="mt-4">
-            Version en vigueur : Janvier 2025
+            {t("legal.version")} : {t("legal.date")}
           </Badge>
         </div>
 
@@ -45,8 +45,7 @@ export default function Terms() {
           <Alert className="border-amber-200 bg-amber-50">
             <AlertTriangle className="h-4 w-4" />
             <AlertDescription className="text-amber-800">
-              <strong>Information importante :</strong> En passant commande sur notre site, 
-              vous acceptez pleinement et sans réserve les présentes conditions générales de vente.
+              <strong>{t("legal.important")} :</strong> {t("legal.terms.acceptance")}
             </AlertDescription>
           </Alert>
 

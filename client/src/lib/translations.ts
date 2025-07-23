@@ -161,6 +161,26 @@ export const translations: Record<string, Record<string, string>> = {
     "legal.delivery.subtitle": "Expédition sécurisée de vos selles équestres partout en Europe.",
     "legal.customerService.title": "Service Client Excellence",
     "legal.customerService.subtitle": "Chez Equi Saddles, votre satisfaction est notre mission.",
+    "legal.version": "Version en vigueur",
+    "legal.date": "Janvier 2025",
+    "legal.lastUpdate": "Dernière mise à jour",
+    "legal.important": "Information importante",
+    "legal.terms.acceptance": "En passant commande sur notre site, vous acceptez pleinement et sans réserve les présentes conditions générales de vente.",
+    
+    // Privacy specific
+    "privacy.dataCollected": "Données que nous collectons",
+    
+    // Delivery specific  
+    "delivery.europe": "Europe",
+    "delivery.europeDesc": "Livraison dans toute l'Europe",
+    "delivery.fastShipping": "2-3 Jours",
+    "delivery.franceShipping": "France métropolitaine",
+    "delivery.packaging": "Emballage",
+    "delivery.packagingDesc": "Professionnel et sécurisé",
+    
+    // Customer Service specific
+    "service.rating": "Note client",
+    "service.reviews": "Plus de 2000 avis",
     
     // Returns Page Content
     "returns.policy.title": "Politique de Retour",
@@ -534,6 +554,26 @@ export const translations: Record<string, Record<string, string>> = {
     "legal.delivery.subtitle": "Secure shipping of your equestrian saddles throughout Europe.",
     "legal.customerService.title": "Customer Service Excellence",
     "legal.customerService.subtitle": "At Equi Saddles, your satisfaction is our mission.",
+    "legal.version": "Current version",
+    "legal.date": "January 2025",
+    "legal.lastUpdate": "Last updated",
+    "legal.important": "Important information",
+    "legal.terms.acceptance": "By placing an order on our site, you fully and unreservedly accept these general terms and conditions of sale.",
+    
+    // Privacy specific
+    "privacy.dataCollected": "Data we collect",
+    
+    // Delivery specific  
+    "delivery.europe": "Europe",
+    "delivery.europeDesc": "Delivery throughout Europe",
+    "delivery.fastShipping": "2-3 Days",
+    "delivery.franceShipping": "Metropolitan France",
+    "delivery.packaging": "Packaging",
+    "delivery.packagingDesc": "Professional and secure",
+    
+    // Customer Service specific
+    "service.rating": "Customer rating",
+    "service.reviews": "Over 2000 reviews",
     
     // Returns Page Content
     "returns.policy.title": "Return Policy",
@@ -869,6 +909,26 @@ export const translations: Record<string, Record<string, string>> = {
     "legal.delivery.subtitle": "Veilige verzending van uw paardrijzadels door heel Europa.",
     "legal.customerService.title": "Uitstekende Klantenservice",
     "legal.customerService.subtitle": "Bij Equi Saddles is uw tevredenheid onze missie.",
+    "legal.version": "Huidige versie",
+    "legal.date": "Januari 2025",
+    "legal.lastUpdate": "Laatst bijgewerkt",
+    "legal.important": "Belangrijke informatie",
+    "legal.terms.acceptance": "Door een bestelling te plaatsen op onze site, accepteert u volledig en zonder voorbehoud deze algemene verkoopvoorwaarden.",
+    
+    // Privacy specific
+    "privacy.dataCollected": "Gegevens die wij verzamelen",
+    
+    // Delivery specific  
+    "delivery.europe": "Europa",
+    "delivery.europeDesc": "Levering door heel Europa",
+    "delivery.fastShipping": "2-3 Dagen",
+    "delivery.franceShipping": "Metropolitaans Frankrijk",
+    "delivery.packaging": "Verpakking",
+    "delivery.packagingDesc": "Professioneel en veilig",
+    
+    // Customer Service specific
+    "service.rating": "Klantbeoordeling",
+    "service.reviews": "Meer dan 2000 beoordelingen",
     
     // Returns Page Content
     "returns.policy.title": "Retourbeleid",
@@ -1223,6 +1283,26 @@ export const translations: Record<string, Record<string, string>> = {
     "legal.delivery.subtitle": "Envío seguro de sus sillas de montar por toda Europa.",
     "legal.customerService.title": "Excelencia en Servicio al Cliente",
     "legal.customerService.subtitle": "En Equi Saddles, su satisfacción es nuestra misión.",
+    "legal.version": "Versión actual",
+    "legal.date": "Enero 2025",
+    "legal.lastUpdate": "Última actualización",
+    "legal.important": "Información importante",
+    "legal.terms.acceptance": "Al realizar un pedido en nuestro sitio, acepta completa e incondicionalmente estos términos y condiciones generales de venta.",
+    
+    // Privacy specific
+    "privacy.dataCollected": "Datos que recopilamos",
+    
+    // Delivery specific  
+    "delivery.europe": "Europa",
+    "delivery.europeDesc": "Entrega en toda Europa",
+    "delivery.fastShipping": "2-3 Días",
+    "delivery.franceShipping": "Francia metropolitana",
+    "delivery.packaging": "Embalaje",
+    "delivery.packagingDesc": "Profesional y seguro",
+    
+    // Customer Service specific
+    "service.rating": "Calificación del cliente",
+    "service.reviews": "Más de 2000 reseñas",
     
     // Returns Page Content
     "returns.policy.title": "Política de Devolución",
@@ -1785,6 +1865,27 @@ export const translations: Record<string, Record<string, string>> = {
     "returns.contact.availability": "Kundenservice verfügbar Montag bis Freitag, 9-18 Uhr",
     "returns.contact.response": "Antwort garantiert innerhalb von 24 Stunden",
     
+    "legal.version": "Aktuelle Version",
+    "legal.date": "Januar 2025",
+    "legal.lastUpdate": "Zuletzt aktualisiert",
+    "legal.important": "Wichtige Information",
+    "legal.terms.acceptance": "Durch das Aufgeben einer Bestellung auf unserer Website akzeptieren Sie vollständig und uneingeschränkt diese allgemeinen Verkaufsbedingungen.",
+    
+    // Privacy specific
+    "privacy.dataCollected": "Daten, die wir sammeln",
+    
+    // Delivery specific  
+    "delivery.europe": "Europa",
+    "delivery.europeDesc": "Lieferung in ganz Europa",
+    "delivery.fastShipping": "2-3 Tage",
+    "delivery.franceShipping": "Kontinental Frankreich",
+    "delivery.packaging": "Verpackung",
+    "delivery.packagingDesc": "Professionell und sicher",
+    
+    // Customer Service specific
+    "service.rating": "Kundenbewertung",
+    "service.reviews": "Über 2000 Bewertungen",
+
     // Footer Content
     "footer.company.name": "Equi Saddles",
     "footer.company.description": "Equi Saddles spezialisiert sich seit über 20 Jahren auf die Herstellung hochwertiger Reitsättel.",
