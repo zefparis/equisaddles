@@ -572,7 +572,7 @@ export const translations: Record<string, Record<string, string>> = {
     "footer.contact.address": "Rue du Vicinal 9, 4141 Louveigné, Belgique",
     "footer.contact.phone": "+32 496 94 41 25",
     "footer.contact.email": "contact@equisaddles.com",
-    "footer.contact.hours": "Lun-Vie: 9h-18h",
+    "footer.contact.hours": "Lun-Ven: 9h-18h",
     "admin.newProduct": "Nouveau produit",
     "admin.editProduct": "Modifier le produit",
     "admin.newProductDesc": "Ajoutez un nouveau produit à votre catalogue.",
@@ -1815,7 +1815,7 @@ export const translations: Record<string, Record<string, string>> = {
     "service.email.tracking": "Seguimiento personalizado de su solicitud",
     "service.email.archive": "Archivo de todos nuestros intercambios",
     "service.phone.title": "Teléfono Directo",
-    "service.phone.hours": "Lun-Vie: 9:00 - 18:00",
+    "service.phone.hours": "Lun-Ven: 9:00 - 18:00",
     "service.phone.saturday": "Sábado: 10:00 - 16:00",
     "service.phone.expert": "Asesor experto inmediato",
     "service.phone.emergency": "Emergencias: extensión 1",
@@ -2022,7 +2022,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     "footer.warranty": "Garantía",
     "footer.faq": "FAQ",
-    "footer.opening": "Lun-Vie: 9h-18h",
+    "footer.opening": "Lun-Ven: 9h-18h",
     
     // Footer Content
     "footer.company.name": "Equi Saddles",
@@ -2043,7 +2043,7 @@ export const translations: Record<string, Record<string, string>> = {
     "footer.contact.address": "Rue du Vicinal 9, 4141 Louveigné",
     "footer.contact.phone": "+32 496 94 41 25",
     "footer.contact.email": "contact@equisaddles.com",
-    "footer.contact.hours": "Lun-Vie: 9h-18h",
+    "footer.contact.hours": "Lun-Ven: 9h-18h",
     "admin.newProduct": "Nuevo producto",
     "admin.editProduct": "Editar producto",
     "admin.newProductDesc": "Agregue un nuevo producto a su catálogo.",
