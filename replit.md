@@ -10,6 +10,22 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+### July 23, 2025 - Advanced Catalog Separation & Navigation System
+- **COMPLETED**: Complete separation between saddles and accessories with tabbed interface
+- **COMPLETED**: Advanced navigation system with adaptive search/selection controls:
+  - Traditional search bar for saddles with text-based filtering
+  - Dropdown menu for accessories with direct product selection
+  - Smart filtering system adapting to product type (categories for saddles, subcategories for accessories)
+- **COMPLETED**: Enhanced user experience with product counters per tab (Selles: 5, Accessoires: 8)
+- **COMPLETED**: Comprehensive filtering system with context-aware options:
+  - Saddle filtering: by category (Obstacle, Dressage, Cross, Mixte, Poney) and size
+  - Accessory filtering: by subcategory (Sangles, Etrivieres, Etriers, Amortisseurs, Tapis, Briderie, Couvertures, Protections)
+- **COMPLETED**: Multilingual dropdown interface with complete translations across all 5 languages
+- **COMPLETED**: Automatic state management with proper tab switching and filter reset functionality
+- Significantly improved product discovery and user navigation experience
+- Clear product type separation eliminates confusion between saddles and accessories
+- Enhanced accessibility with intuitive interface design adapted to different product types
+
 ### July 23, 2025 - Real Company Information Implementation  
 - **COMPLETED**: Comprehensive update of all company information with authentic data for Justine Bogaerts
 - **COMPLETED**: Updated contact details throughout the entire application:
