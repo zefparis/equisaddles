@@ -406,6 +406,7 @@ export default function Admin() {
                           variant="outline"
                           size="sm"
                           onClick={() => handleEditProduct(product)}
+                          className="admin-action-button"
                         >
                           <Edit className="h-4 w-4" />
                         </Button>
@@ -413,7 +414,7 @@ export default function Admin() {
                           variant="outline"
                           size="sm"
                           onClick={() => deleteProductMutation.mutate(product.id)}
-                          className="text-red-500 hover:text-red-700"
+                          className="admin-action-button text-red-500 hover:text-red-700"
                         >
                           <Trash2 className="h-4 w-4" />
                         </Button>
@@ -448,32 +449,33 @@ export default function Admin() {
             ) : (
               <div className="admin-product-grid">
                 {products?.filter(product => product.category === "Accessoires").map((product) => (
-                  <Card key={product.id}>
+                  <Card key={product.id} className="admin-product-card">
                     <div className="relative">
                       <img
                         src={product.image}
                         alt={product.name}
-                        className="w-full h-48 object-cover"
+                        className="admin-product-image"
                       />
                       {product.featured && (
-                        <Badge className="absolute top-2 right-2 bg-accent">
+                        <Badge className="absolute top-2 right-2 bg-accent text-xs">
                           Vedette
                         </Badge>
                       )}
                     </div>
-                    <CardContent className="p-4">
-                      <h3 className="font-semibold mb-2">{product.name}</h3>
-                      <p className="text-sm text-gray-600 mb-2">
+                    <CardContent className="admin-product-content">
+                      <h3 className="admin-product-title">{product.name}</h3>
+                      <p className="admin-product-meta">
                         {product.subcategory} - {product.size}
                       </p>
-                      <p className="text-lg font-bold text-primary mb-4">
+                      <p className="admin-product-price text-primary">
                         {parseFloat(product.price).toFixed(2)} €
                       </p>
-                      <div className="flex gap-2">
+                      <div className="admin-product-actions">
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => handleEditProduct(product)}
+                          className="admin-action-button"
                         >
                           <Edit className="h-4 w-4" />
                         </Button>
@@ -481,7 +483,7 @@ export default function Admin() {
                           variant="outline"
                           size="sm"
                           onClick={() => deleteProductMutation.mutate(product.id)}
-                          className="text-red-500 hover:text-red-700"
+                          className="admin-action-button text-red-500 hover:text-red-700"
                         >
                           <Trash2 className="h-4 w-4" />
                         </Button>
@@ -494,29 +496,29 @@ export default function Admin() {
           </TabsContent>
 
           {/* Gallery Tab */}
-          <TabsContent value="gallery" className="space-y-6">
-            <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-semibold">Gestion de la galerie</h2>
-              <Button onClick={() => setShowGalleryDialog(true)} className="btn-primary">
+          <TabsContent value="gallery" className="space-y-4 sm:space-y-6">
+            <div className="admin-section-header">
+              <h2 className="admin-section-title text-gray-900 dark:text-gray-100">Gestion de la galerie</h2>
+              <Button onClick={() => setShowGalleryDialog(true)} className="btn-primary admin-add-button">
                 <Plus className="h-4 w-4 mr-2" />
                 Nouvelle image
               </Button>
             </div>
 
             {galleryLoading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="admin-product-grid">
                 {[...Array(8)].map((_, i) => (
                   <div key={i} className="animate-pulse">
-                    <div className="bg-gray-300 aspect-square rounded-lg mb-2"></div>
-                    <div className="bg-gray-300 h-4 rounded mb-1"></div>
-                    <div className="bg-gray-300 h-3 rounded w-20"></div>
+                    <div className="bg-gray-300 dark:bg-gray-700 aspect-square rounded-lg mb-2"></div>
+                    <div className="bg-gray-300 dark:bg-gray-700 h-4 rounded mb-1"></div>
+                    <div className="bg-gray-300 dark:bg-gray-700 h-3 rounded w-20"></div>
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="admin-product-grid">
                 {galleryImages?.map((image) => (
-                  <Card key={image.id}>
+                  <Card key={image.id} className="admin-product-card">
                     <div className="relative aspect-square overflow-hidden">
                       <img
                         src={image.url}
@@ -524,22 +526,22 @@ export default function Admin() {
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute top-2 right-2">
-                        <Badge className="bg-black bg-opacity-70 text-white">
+                        <Badge className="bg-black bg-opacity-70 text-white text-xs">
                           {image.category}
                         </Badge>
                       </div>
                     </div>
-                    <CardContent className="p-3">
-                      <p className="text-sm font-medium mb-1">{image.alt}</p>
-                      <div className="flex justify-between items-center">
-                        <span className="text-xs text-gray-500">{image.category}</span>
+                    <CardContent className="admin-product-content">
+                      <p className="admin-product-title">{image.alt}</p>
+                      <div className="admin-product-actions">
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => deleteGalleryImageMutation.mutate(image.id)}
-                          className="text-red-500 hover:text-red-700"
+                          className="admin-action-button text-red-500 hover:text-red-700 w-full"
                         >
-                          <Trash2 className="h-3 w-3" />
+                          <Trash2 className="h-3 w-3 mr-2" />
+                          Supprimer
                         </Button>
                       </div>
                     </CardContent>
@@ -550,10 +552,12 @@ export default function Admin() {
           </TabsContent>
 
           {/* Product Images Tab */}
-          <TabsContent value="product-images" className="space-y-6">
-            <h2 className="text-2xl font-semibold">Gestion des images de produits</h2>
+          <TabsContent value="product-images" className="space-y-4 sm:space-y-6">
+            <div className="admin-section-header">
+              <h2 className="admin-section-title text-gray-900 dark:text-gray-100">Gestion des images de produits</h2>
+            </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
               {products?.map((product) => (
                 <Card key={product.id}>
                   <CardHeader>
@@ -719,7 +723,7 @@ export default function Admin() {
 
         {/* Product Dialog */}
         <Dialog open={showProductDialog} onOpenChange={setShowProductDialog}>
-          <DialogContent className="max-w-2xl">
+          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto mx-4 sm:mx-0">
             <DialogHeader>
               <DialogTitle>
                 {editingProduct ? t("admin.editProduct") : t("admin.newProduct")}
@@ -729,7 +733,7 @@ export default function Admin() {
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={productForm.handleSubmit(handleProductSubmit)} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="name">Nom *</Label>
                   <Input
@@ -786,7 +790,7 @@ export default function Admin() {
                 </div>
               )}
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div>
                   <Label htmlFor="size">Taille *</Label>
                   <Select
@@ -846,7 +850,7 @@ export default function Admin() {
                 placeholder="Sélectionner l'image principale du produit"
               />
 
-              <div className="flex items-center space-x-6">
+              <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
                 <div className="flex items-center space-x-2">
                   <Checkbox
                     id="featured"
@@ -865,11 +869,11 @@ export default function Admin() {
                 </div>
               </div>
 
-              <div className="flex justify-end space-x-2">
-                <Button type="button" variant="outline" onClick={() => setShowProductDialog(false)}>
+              <div className="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-2">
+                <Button type="button" variant="outline" onClick={() => setShowProductDialog(false)} className="w-full sm:w-auto">
                   {t("admin.cancel")}
                 </Button>
-                <Button type="submit" className="btn-primary" disabled={uploadingImage}>
+                <Button type="submit" className="btn-primary w-full sm:w-auto" disabled={uploadingImage}>
                   {uploadingImage ? "Upload en cours..." : (editingProduct ? t("admin.modify") : t("admin.create"))}
                 </Button>
               </div>
@@ -879,7 +883,7 @@ export default function Admin() {
 
         {/* Gallery Dialog */}
         <Dialog open={showGalleryDialog} onOpenChange={setShowGalleryDialog}>
-          <DialogContent>
+          <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto mx-4 sm:mx-0">
             <DialogHeader>
               <DialogTitle>{t("admin.newImage")}</DialogTitle>
               <DialogDescription>
@@ -924,11 +928,11 @@ export default function Admin() {
                 </Select>
               </div>
 
-              <div className="flex justify-end space-x-2">
-                <Button type="button" variant="outline" onClick={() => setShowGalleryDialog(false)}>
+              <div className="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-2">
+                <Button type="button" variant="outline" onClick={() => setShowGalleryDialog(false)} className="w-full sm:w-auto">
                   {t("admin.cancel")}
                 </Button>
-                <Button type="submit" className="btn-primary">
+                <Button type="submit" className="btn-primary w-full sm:w-auto">
                   {t("admin.add")}
                 </Button>
               </div>

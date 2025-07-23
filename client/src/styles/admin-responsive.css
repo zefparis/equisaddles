@@ -73,6 +73,121 @@
   font-weight: 600;
 }
 
+/* Formulaires et cartes responsives */
+.admin-form-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-product-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  transition: box-shadow 0.2s;
+}
+
+.admin-product-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.admin-product-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.admin-product-actions button {
+  flex: 1;
+  min-width: auto;
+}
+
+/* Media queries pour différents breakpoints */
+@media (min-width: 320px) and (max-width: 374px) {
+  /* Très petits écrans (320px - 374px) */
+  .admin-tabs-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .admin-tab-trigger {
+    font-size: 0.5rem;
+    padding: 0.25rem 0.125rem;
+  }
+  
+  .admin-product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 479px) {
+  /* Petits écrans (375px - 479px) */
+  .admin-tabs-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .admin-tab-trigger {
+    font-size: 0.6rem;
+    padding: 0.3rem 0.2rem;
+  }
+  
+  .admin-product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 639px) {
+  /* Écrans moyens (480px - 639px) */
+  .admin-tabs-list {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  
+  .admin-tab-trigger {
+    font-size: 0.65rem;
+    padding: 0.4rem 0.3rem;
+  }
+  
+  .admin-product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  /* Tablettes petites (640px - 767px) */
+  .admin-tabs-list {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  
+  .admin-product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  /* Desktop et tablettes larges (768px+) */
+  .admin-tabs-list {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+  
+  .admin-tab-trigger {
+    font-size: 0.75rem;
+    padding: 0.5rem;
+    min-height: 3rem;
+  }
+  
+  .admin-product-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  
+  .admin-product-actions {
+    flex-direction: row;
+  }
+}
+
 .admin-add-button {
   width: 100%;
   font-size: 0.75rem;
