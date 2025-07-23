@@ -171,27 +171,27 @@ export default function CustomerService() {
                 </div>
                 
                 <div>
-                  <h4 className="font-semibold mb-3">Nos Engagements Qualité</h4>
+                  <h4 className="font-semibold mb-3">{t("service.quality.title")}</h4>
                   <div className="space-y-2">
                     <div className="flex items-start gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600 mt-0.5" />
-                      <span className="text-sm">Conseiller dédié pour chaque demande</span>
+                      <span className="text-sm">{t("service.quality.dedicated")}</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600 mt-0.5" />
-                      <span className="text-sm">Suivi jusqu'à résolution complète</span>
+                      <span className="text-sm">{t("service.quality.followup")}</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600 mt-0.5" />
-                      <span className="text-sm">Expertise technique approfondie</span>
+                      <span className="text-sm">{t("service.quality.expertise")}</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600 mt-0.5" />
-                      <span className="text-sm">Solutions personnalisées</span>
+                      <span className="text-sm">{t("service.quality.personalized")}</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle className="h-4 w-4 text-green-600 mt-0.5" />
-                      <span className="text-sm">Satisfaction client mesurée</span>
+                      <span className="text-sm">{t("service.quality.satisfaction")}</span>
                     </div>
                   </div>
                 </div>
@@ -204,16 +204,14 @@ export default function CustomerService() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Users className="h-5 w-5" />
-                Notre Équipe Service Client
+                {t("service.team.title")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-blue-800 mb-2">Une Équipe de Passionnés</h4>
+                <h4 className="font-semibold text-blue-800 mb-2">{t("service.team.passionate")}</h4>
                 <p className="text-sm text-blue-700">
-                  Nos conseillers ne sont pas que des vendeurs, ce sont des cavaliers expérimentés 
-                  qui comprennent vos besoins et contraintes. Chacun possède une solide expertise 
-                  en sellerie et équitation.
+                  {t("service.team.description")}
                 </p>
               </div>
               
@@ -222,24 +220,24 @@ export default function CustomerService() {
                   <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
                     <Award className="h-8 w-8 text-primary" />
                   </div>
-                  <h5 className="font-semibold mb-1">Experts Sellerie</h5>
-                  <p className="text-sm text-gray-600">Formation approfondie en anatomie équine et ajustement de selles</p>
+                  <h5 className="font-semibold mb-1">{t("service.team.experts")}</h5>
+                  <p className="text-sm text-gray-600">{t("service.team.expertsDesc")}</p>
                 </div>
                 
                 <div className="text-center p-4 border rounded-lg">
                   <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
                     <Heart className="h-8 w-8 text-green-600" />
                   </div>
-                  <h5 className="font-semibold mb-1">Cavaliers Actifs</h5>
-                  <p className="text-sm text-gray-600">Pratique régulière de l'équitation, connaissance terrain</p>
+                  <h5 className="font-semibold mb-1">{t("service.team.riders")}</h5>
+                  <p className="text-sm text-gray-600">{t("service.team.ridersDesc")}</p>
                 </div>
                 
                 <div className="text-center p-4 border rounded-lg">
                   <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
                     <ThumbsUp className="h-8 w-8 text-purple-600" />
                   </div>
-                  <h5 className="font-semibold mb-1">Service Premium</h5>
-                  <p className="text-sm text-gray-600">Formation continue en relation client et satisfaction</p>
+                  <h5 className="font-semibold mb-1">{t("service.team.premium")}</h5>
+                  <p className="text-sm text-gray-600">{t("service.team.premiumDesc")}</p>
                 </div>
               </div>
             </CardContent>
