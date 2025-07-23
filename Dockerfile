@@ -13,12 +13,20 @@ COPY tsconfig*.json ./
 # Install all dependencies including devDependencies
 RUN npm install
 
-# Copy source code - assurez-vous que tous les fichiers nécessaires sont copiés
+# Copy source code with explicit checks
 COPY . .
 
-# Vérifiez que les fichiers sont bien présents
-RUN ls -la /app/server && \
-    ls -la /app/shared
+# Debug: Print directory structure and file contents
+RUN echo "=== Current directory structure ===" && \
+    ls -la /app && \
+    echo "\n=== Server directory contents ===" && \
+    find /app/server -type f -name "*.ts" | sort && \
+    echo "\n=== Shared directory contents ===" && \
+    find /app/shared -type f -name "*.ts" | sort && \
+    echo "\n=== tsconfig.server.json contents ===" && \
+    cat /app/tsconfig.server.json && \
+    echo "\n=== package.json scripts ===" && \
+    grep -A 10 "scripts" /app/package.json
 
 # Build the application
 RUN npm run build
