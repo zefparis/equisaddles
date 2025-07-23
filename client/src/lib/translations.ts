@@ -345,6 +345,24 @@ export const translations: Record<string, Record<string, string>> = {
     "support.categories.products": "Produits & Sizing",
     "support.categories.orders": "Commandes & Paiements",
     "support.categories.delivery": "Livraison & Retours",
+    
+    // Privacy page translations
+    "privacy.subtitle": "Equi Saddles is committed to protecting your personal data.",
+    "privacy.lastUpdated": "Last updated: January 2025",
+    "privacy.dataCollection.title": "Data Collection",
+    "privacy.dataWeCollect": "Data we collect:",
+    "privacy.personalInfo": "Personal information",
+    "privacy.personalInfoDesc": "Name, first name, email address, phone number, delivery address",
+    "privacy.orderData": "Order data",
+    "privacy.orderDataDesc": "Purchase history, product preferences, payment information (encrypted)",
+    "privacy.technicalData": "Technical data",
+    "privacy.technicalDataDesc": "IP address, browser type, pages visited, time spent on site",
+    "privacy.collectionPurposes": "Collection purposes:",
+    "privacy.purpose1": "Processing and delivery of your orders",
+    "privacy.purpose2": "Customer service and technical support",
+    "privacy.purpose3": "Improvement of our products and services",
+    "privacy.purpose4": "Marketing communications (with your consent)",
+    "privacy.protection.title": "Data Protection",
 
     
     // Additional Returns Content

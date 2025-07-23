@@ -23,10 +23,10 @@ export default function Privacy() {
             {t("legal.privacy.title")}
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            {t("legal.privacy.subtitle")}
+            {t("privacy.subtitle")}
           </p>
           <Badge variant="secondary" className="mt-4">
-            {t("legal.lastUpdate")} : {t("legal.date")}
+            {t("privacy.lastUpdated")}
           </Badge>
         </div>
 
@@ -42,27 +42,24 @@ export default function Privacy() {
             <CardContent className="space-y-4">
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-semibold mb-2">{t("privacy.dataCollected")} :</h3>
+                  <h3 className="font-semibold mb-2">{t("privacy.dataWeCollect")}</h3>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
                       <div>
-                        <strong>Informations personnelles :</strong> Nom, prénom, adresse email, 
-                        numéro de téléphone, adresse de livraison
+                        <strong>{t("privacy.personalInfo")} :</strong> {t("privacy.personalInfoDesc")}
                       </div>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
                       <div>
-                        <strong>Données de commande :</strong> Historique des achats, préférences produits, 
-                        informations de paiement (cryptées)
+                        <strong>{t("privacy.orderData")} :</strong> {t("privacy.orderDataDesc")}
                       </div>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
                       <div>
-                        <strong>Données techniques :</strong> Adresse IP, type de navigateur, 
-                        pages visitées, temps passé sur le site
+                        <strong>{t("privacy.technicalData")} :</strong> {t("privacy.technicalDataDesc")}
                       </div>
                     </li>
                   </ul>
@@ -71,23 +68,23 @@ export default function Privacy() {
                 <Separator />
                 
                 <div>
-                  <h3 className="font-semibold mb-2">Finalités de la collecte :</h3>
+                  <h3 className="font-semibold mb-2">{t("privacy.collectionPurposes")}</h3>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                      <span>Traitement et livraison de vos commandes</span>
+                      <span>{t("privacy.purpose1")}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                      <span>Service client et support technique</span>
+                      <span>{t("privacy.purpose2")}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                      <span>Amélioration de nos produits et services</span>
+                      <span>{t("privacy.purpose3")}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                      <span>Communications marketing (avec votre consentement)</span>
+                      <span>{t("privacy.purpose4")}</span>
                     </li>
                   </ul>
                 </div>
@@ -100,7 +97,7 @@ export default function Privacy() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Lock className="h-5 w-5" />
-                Protection des Données
+{t("privacy.protection.title")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
