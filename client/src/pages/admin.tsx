@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLanguage } from "../hooks/use-language";
+import "../styles/admin-responsive.css";
 import { useToast } from "../hooks/use-toast";
 import { scrollToTop } from "../lib/utils";
 import { apiRequest } from "../lib/queryClient";
@@ -315,52 +316,57 @@ export default function Admin() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 admin-container">
+      <div className="container mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold flex items-center gap-3">
-            <Settings className="h-8 w-8" />
-            {t("admin.title")}
+        <div className="admin-header">
+          <h1 className="admin-header-title text-gray-900 dark:text-gray-100">
+            <Settings className="admin-header-icon" />
+            <span>{t("admin.title")}</span>
           </h1>
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-600 dark:text-gray-400 mt-2 text-sm sm:text-base">
             Interface d'administration pour gérer les produits, la galerie et les commandes.
           </p>
         </div>
 
-        <Tabs defaultValue="saddles" className="space-y-8">
-          <TabsList className="grid w-full grid-cols-6">
-            <TabsTrigger value="saddles" className="flex items-center gap-2">
-              <Package className="h-4 w-4" />
-              Selles
+        <Tabs defaultValue="saddles" className="space-y-6 sm:space-y-8">
+          <TabsList className="admin-tabs-list w-full">
+            <TabsTrigger value="saddles" className="admin-tab-trigger">
+              <Package className="admin-tab-icon" />
+              <span>Selles</span>
             </TabsTrigger>
-            <TabsTrigger value="accessories" className="flex items-center gap-2">
-              <Package className="h-4 w-4" />
-              Accessoires
+            <TabsTrigger value="accessories" className="admin-tab-trigger">
+              <Package className="admin-tab-icon" />
+              <span className="hidden sm:inline">Accessoires</span>
+              <span className="sm:hidden">Access.</span>
             </TabsTrigger>
-            <TabsTrigger value="product-images" className="flex items-center gap-2">
-              <Images className="h-4 w-4" />
-              Images Produits
+            <TabsTrigger value="product-images" className="admin-tab-trigger">
+              <Images className="admin-tab-icon" />
+              <span className="hidden sm:inline">Images Produits</span>
+              <span className="sm:hidden">Images</span>
             </TabsTrigger>
-            <TabsTrigger value="gallery" className="flex items-center gap-2">
-              <Images className="h-4 w-4" />
-              {t("admin.gallery")}
+            <TabsTrigger value="gallery" className="admin-tab-trigger">
+              <Images className="admin-tab-icon" />
+              <span className="hidden sm:inline">{t("admin.gallery")}</span>
+              <span className="sm:hidden">Galerie</span>
             </TabsTrigger>
-            <TabsTrigger value="orders" className="flex items-center gap-2">
-              <ShoppingCart className="h-4 w-4" />
-              {t("admin.orders")}
+            <TabsTrigger value="orders" className="admin-tab-trigger">
+              <ShoppingCart className="admin-tab-icon" />
+              <span className="hidden sm:inline">{t("admin.orders")}</span>
+              <span className="sm:hidden">Commandes</span>
             </TabsTrigger>
-            <TabsTrigger value="chat" className="flex items-center gap-2">
-              <MessageCircle className="h-4 w-4" />
-              Chat Support
+            <TabsTrigger value="chat" className="admin-tab-trigger">
+              <MessageCircle className="admin-tab-icon" />
+              <span className="hidden sm:inline">Chat Support</span>
+              <span className="sm:hidden">Chat</span>
             </TabsTrigger>
           </TabsList>
 
           {/* Saddles Tab */}
-          <TabsContent value="saddles" className="space-y-6">
-            <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-semibold">Gestion des selles</h2>
-              <Button onClick={() => handleNewProduct("saddle")} className="btn-primary">
+          <TabsContent value="saddles" className="space-y-4 sm:space-y-6">
+            <div className="admin-section-header">
+              <h2 className="admin-section-title text-gray-900 dark:text-gray-100">Gestion des selles</h2>
+              <Button onClick={() => handleNewProduct("saddle")} className="btn-primary admin-add-button">
                 <Plus className="h-4 w-4 mr-2" />
                 Nouvelle selle
               </Button>
@@ -377,30 +383,30 @@ export default function Admin() {
                 ))}
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="admin-product-grid">
                 {products?.filter(product => product.category !== "Accessoires").map((product) => (
-                  <Card key={product.id}>
+                  <Card key={product.id} className="admin-product-card">
                     <div className="relative">
                       <img
                         src={product.image}
                         alt={product.name}
-                        className="w-full h-48 object-cover"
+                        className="admin-product-image"
                       />
                       {product.featured && (
-                        <Badge className="absolute top-2 right-2 bg-accent">
+                        <Badge className="absolute top-2 right-2 bg-accent text-xs">
                           Vedette
                         </Badge>
                       )}
                     </div>
-                    <CardContent className="p-4">
-                      <h3 className="font-semibold mb-2">{product.name}</h3>
-                      <p className="text-sm text-gray-600 mb-2">
+                    <CardContent className="admin-product-content">
+                      <h3 className="admin-product-title">{product.name}</h3>
+                      <p className="admin-product-meta">
                         {product.category} - {product.size}
                       </p>
-                      <p className="text-lg font-bold text-primary mb-4">
+                      <p className="admin-product-price text-primary">
                         {parseFloat(product.price).toFixed(2)} €
                       </p>
-                      <div className="flex gap-2">
+                      <div className="admin-product-actions">
                         <Button
                           variant="outline"
                           size="sm"
@@ -425,27 +431,27 @@ export default function Admin() {
           </TabsContent>
 
           {/* Accessories Tab */}
-          <TabsContent value="accessories" className="space-y-6">
-            <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-semibold">Gestion des accessoires</h2>
-              <Button onClick={() => handleNewProduct("accessory")} className="btn-primary">
+          <TabsContent value="accessories" className="space-y-4 sm:space-y-6">
+            <div className="admin-section-header">
+              <h2 className="admin-section-title text-gray-900 dark:text-gray-100">Gestion des accessoires</h2>
+              <Button onClick={() => handleNewProduct("accessory")} className="btn-primary admin-add-button">
                 <Plus className="h-4 w-4 mr-2" />
                 Nouvel accessoire
               </Button>
             </div>
 
             {productsLoading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="admin-product-grid">
                 {[...Array(6)].map((_, i) => (
                   <div key={i} className="animate-pulse">
-                    <div className="bg-gray-300 h-48 rounded-lg mb-4"></div>
-                    <div className="bg-gray-300 h-6 rounded mb-2"></div>
-                    <div className="bg-gray-300 h-4 rounded"></div>
+                    <div className="bg-gray-300 dark:bg-gray-700 h-40 sm:h-48 rounded-lg mb-4"></div>
+                    <div className="bg-gray-300 dark:bg-gray-700 h-4 sm:h-6 rounded mb-2"></div>
+                    <div className="bg-gray-300 dark:bg-gray-700 h-3 sm:h-4 rounded"></div>
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="admin-product-grid">
                 {products?.filter(product => product.category === "Accessoires").map((product) => (
                   <Card key={product.id}>
                     <div className="relative">
@@ -706,8 +712,13 @@ export default function Admin() {
           </TabsContent>
 
           {/* Chat Support Tab */}
-          <TabsContent value="chat" className="space-y-6">
-            <ChatAdmin />
+          <TabsContent value="chat" className="space-y-4 sm:space-y-6">
+            <div className="admin-section-header">
+              <h2 className="admin-section-title text-gray-900 dark:text-gray-100">Chat Support Admin</h2>
+            </div>
+            <div className="admin-chat-widget">
+              <ChatAdmin />
+            </div>
           </TabsContent>
         </Tabs>
 
