@@ -87,7 +87,7 @@ export default function CustomerService() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <MessageCircle className="h-5 w-5" />
-{t("service.contact.title")}
+                {t("service.contact.title")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -143,7 +143,7 @@ export default function CustomerService() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Star className="h-5 w-5" />
-{t("service.standards.title")}
+                {t("service.standards.title")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
