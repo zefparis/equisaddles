@@ -201,7 +201,7 @@ export const translations: Record<string, Record<string, string>> = {
     "delivery.europe": "Europe",
     "delivery.europeDesc": "Livraison dans toute l'Europe",
     "delivery.fastShipping": "2-3 Jours",
-    "delivery.franceShipping": "France métropolitaine",
+    "delivery.franceShipping": "Belgique",
     "delivery.packaging": "Emballage",
     "delivery.packagingDesc": "Professionnel et sécurisé",
     
@@ -785,7 +785,7 @@ export const translations: Record<string, Record<string, string>> = {
     "delivery.europe": "Europe",
     "delivery.europeDesc": "Delivery throughout Europe",
     "delivery.fastShipping": "2-3 Days",
-    "delivery.franceShipping": "Metropolitan France",
+    "delivery.franceShipping": "Belgium",
     "delivery.packaging": "Packaging",
     "delivery.packagingDesc": "Professional and secure",
     
@@ -1234,7 +1234,7 @@ export const translations: Record<string, Record<string, string>> = {
     "delivery.europe": "Europa",
     "delivery.europeDesc": "Levering door heel Europa",
     "delivery.fastShipping": "2-3 Dagen",
-    "delivery.franceShipping": "Metropolitaans Frankrijk",
+    "delivery.franceShipping": "België",
     "delivery.packaging": "Verpakking",
     "delivery.packagingDesc": "Professioneel en veilig",
     
@@ -1702,7 +1702,7 @@ export const translations: Record<string, Record<string, string>> = {
     "delivery.europe": "Europa",
     "delivery.europeDesc": "Entrega en toda Europa",
     "delivery.fastShipping": "2-3 Días",
-    "delivery.franceShipping": "Francia metropolitana",
+    "delivery.franceShipping": "Bélgica",
     "delivery.packaging": "Embalaje",
     "delivery.packagingDesc": "Profesional y seguro",
     
@@ -2407,7 +2407,7 @@ export const translations: Record<string, Record<string, string>> = {
     "delivery.europe": "Europa",
     "delivery.europeDesc": "Lieferung in ganz Europa",
     "delivery.fastShipping": "2-3 Tage",
-    "delivery.franceShipping": "Kontinental Frankreich",
+    "delivery.franceShipping": "Belgien",
     "delivery.packaging": "Verpackung",
     "delivery.packagingDesc": "Professionell und sicher",
     

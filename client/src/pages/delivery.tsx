@@ -110,7 +110,7 @@ export default function Delivery() {
                           <li>• {t("delivery.home.sms")}</li>
                         </ul>
                         <div className="mt-3">
-                          <Badge variant="secondary">2-3 jours France</Badge>
+                          <Badge variant="secondary">{t("delivery.fastShipping")} {t("delivery.franceShipping")}</Badge>
                           <Badge variant="outline" className="ml-2">8,50€ - 18,90€</Badge>
                         </div>
                       </div>
