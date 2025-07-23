@@ -78,30 +78,30 @@ export default function Terms() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <CreditCard className="h-5 w-5" />
-                Produits et Prix
+                {t("terms.products.title")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-4">
                 <div>
-                  <h4 className="font-semibold mb-2">Nos Produits</h4>
+                  <h4 className="font-semibold mb-2">{t("terms.products.our")}</h4>
                   <ul className="text-sm space-y-1">
-                    <li>• Selles d'équitation de haute qualité (Dressage, Obstacle, Cross, Mixte, Poney)</li>
-                    <li>• Accessoires et équipements équestres sélectionnés</li>
-                    <li>• Produits neufs exclusivement, avec garantie fabricant</li>
+                    <li>• {t("terms.products.list1")}</li>
+                    <li>• {t("terms.products.list2")}</li>
+                    <li>• {t("terms.products.list3")}</li>
                   </ul>
                 </div>
                 
                 <Separator />
                 
                 <div>
-                  <h4 className="font-semibold mb-2">Tarification</h4>
+                  <h4 className="font-semibold mb-2">{t("terms.pricing.title")}</h4>
                   <ul className="text-sm space-y-1">
-                    <li>• Prix indiqués en euros (€), toutes taxes comprises (TTC)</li>
-                    <li>• TVA applicable : 20% (France métropolitaine)</li>
-                    <li>• Frais de livraison calculés selon destination et poids</li>
-                    <li>• Prix susceptibles de modification sans préavis</li>
-                    <li>• Prix applicable : celui en vigueur au moment de la commande</li>
+                    <li>• {t("terms.pricing.list1")}</li>
+                    <li>• {t("terms.pricing.list2")}</li>
+                    <li>• {t("terms.pricing.list3")}</li>
+                    <li>• {t("terms.pricing.list4")}</li>
+                    <li>• {t("terms.pricing.list5")}</li>
                   </ul>
                 </div>
               </div>
@@ -113,31 +113,31 @@ export default function Terms() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Clock className="h-5 w-5" />
-                Commandes et Paiement
+                {t("terms.orders.title")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <h4 className="font-semibold mb-2">Processus de Commande</h4>
+                  <h4 className="font-semibold mb-2">{t("terms.orders.process")}</h4>
                   <ul className="text-sm space-y-1">
-                    <li>1. Sélection des produits</li>
-                    <li>2. Validation du panier</li>
-                    <li>3. Saisie des informations</li>
-                    <li>4. Choix du mode de livraison</li>
-                    <li>5. Paiement sécurisé</li>
-                    <li>6. Confirmation par email</li>
+                    <li>1. {t("terms.orders.step1")}</li>
+                    <li>2. {t("terms.orders.step2")}</li>
+                    <li>3. {t("terms.orders.step3")}</li>
+                    <li>4. {t("terms.orders.step4")}</li>
+                    <li>5. {t("terms.orders.step5")}</li>
+                    <li>6. {t("terms.orders.step6")}</li>
                   </ul>
                 </div>
                 
                 <div>
-                  <h4 className="font-semibold mb-2">Moyens de Paiement</h4>
+                  <h4 className="font-semibold mb-2">{t("terms.payment.methods")}</h4>
                   <ul className="text-sm space-y-1">
-                    <li>• Carte bancaire (Visa, Mastercard)</li>
-                    <li>• Paiement sécurisé via Stripe</li>
-                    <li>• Cryptage SSL 256-bit</li>
-                    <li>• Aucune donnée bancaire stockée</li>
-                    <li>• Paiement en une fois uniquement</li>
+                    <li>• {t("terms.payment.list1")}</li>
+                    <li>• {t("terms.payment.list2")}</li>
+                    <li>• {t("terms.payment.list3")}</li>
+                    <li>• {t("terms.payment.list4")}</li>
+                    <li>• {t("terms.payment.list5")}</li>
                   </ul>
                 </div>
               </div>
@@ -145,8 +145,7 @@ export default function Terms() {
               <Alert className="bg-green-50 border-green-200">
                 <ShieldCheck className="h-4 w-4" />
                 <AlertDescription className="text-green-800">
-                  <strong>Sécurité :</strong> Vos données de paiement sont protégées par 
-                  le standard PCI DSS et ne transitent jamais par nos serveurs.
+                  <strong>{t("terms.payment.security")} :</strong> {t("terms.payment.securityDesc")}
                 </AlertDescription>
               </Alert>
             </CardContent>
@@ -157,18 +156,16 @@ export default function Terms() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Truck className="h-5 w-5" />
-                Livraison et Transport
+                {t("terms.delivery.title")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
                 <h4 className="font-semibold text-yellow-800 mb-2">
-                  ⚠️ Limitation de Responsabilité - Transport
+                  {t("terms.delivery.warning")}
                 </h4>
                 <p className="text-sm text-yellow-700">
-                  <strong>Equi Saddles n'est pas responsable des dommages, pertes, vols ou retards 
-                  causés par le transporteur.</strong> Nous confions vos colis à DPD, transporteur 
-                  professionnel, mais ne pouvons être tenus responsables des incidents pendant le transport.
+                  {t("terms.delivery.liability")}
                 </p>
               </div>
               

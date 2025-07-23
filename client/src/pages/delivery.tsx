@@ -73,8 +73,8 @@ export default function Delivery() {
             <Card className="bg-orange-50 border-orange-200">
               <CardContent className="p-4 text-center">
                 <Shield className="h-8 w-8 text-orange-600 mx-auto mb-2" />
-                <h3 className="font-semibold text-orange-800">Suivi</h3>
-                <p className="text-sm text-orange-700">Tracking en temps réel</p>
+                <h3 className="font-semibold text-orange-800">{t("delivery.tracking.title")}</h3>
+                <p className="text-sm text-orange-700">{t("delivery.trackingDesc")}</p>
               </CardContent>
             </Card>
           </div>
@@ -83,10 +83,7 @@ export default function Delivery() {
           <Alert className="bg-red-50 border-red-200">
             <AlertTriangle className="h-4 w-4" />
             <AlertDescription className="text-red-800">
-              <strong>Important :</strong> Equi Saddles n'est pas responsable des dommages, pertes, 
-              vols ou retards causés par le transporteur DPD pendant l'acheminement. 
-              Nous nous engageons à emballer soigneusement vos commandes et à les confier 
-              en parfait état au transporteur.
+              <strong>{t("delivery.important")} :</strong> {t("delivery.importantDesc")}
             </AlertDescription>
           </Alert>
 
@@ -105,12 +102,12 @@ export default function Delivery() {
                     <div className="flex items-start gap-3">
                       <Home className="h-6 w-6 text-blue-600 mt-1" />
                       <div>
-                        <h4 className="font-semibold text-blue-800 mb-2">Livraison à Domicile</h4>
+                        <h4 className="font-semibold text-blue-800 mb-2">{t("delivery.home.title")}</h4>
                         <ul className="text-sm text-blue-700 space-y-1">
-                          <li>• Livraison directe à votre adresse</li>
-                          <li>• Signature requise</li>
-                          <li>• Tentatives multiples</li>
-                          <li>• SMS de notification</li>
+                          <li>• {t("delivery.home.direct")}</li>
+                          <li>• {t("delivery.home.signature")}</li>
+                          <li>• {t("delivery.home.attempts")}</li>
+                          <li>• {t("delivery.home.sms")}</li>
                         </ul>
                         <div className="mt-3">
                           <Badge variant="secondary">2-3 jours France</Badge>
@@ -124,12 +121,12 @@ export default function Delivery() {
                     <div className="flex items-start gap-3">
                       <Store className="h-6 w-6 text-green-600 mt-1" />
                       <div>
-                        <h4 className="font-semibold text-green-800 mb-2">Point Relais DPD</h4>
+                        <h4 className="font-semibold text-green-800 mb-2">{t("delivery.relay.title")}</h4>
                         <ul className="text-sm text-green-700 space-y-1">
-                          <li>• Plus de 8 000 points en France</li>
-                          <li>• Horaires étendus</li>
-                          <li>• Retrait sous 8 jours</li>
-                          <li>• Notification SMS/email</li>
+                          <li>• {t("delivery.relay.points")}</li>
+                          <li>• {t("delivery.relay.hours")}</li>
+                          <li>• {t("delivery.relay.pickup")}</li>
+                          <li>• {t("delivery.relay.notification")}</li>
                         </ul>
                         <div className="mt-3">
                           <Badge variant="secondary">2-3 jours</Badge>

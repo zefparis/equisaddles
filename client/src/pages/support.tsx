@@ -56,7 +56,7 @@ export default function Support() {
                     <div>
                       <h3 className="font-semibold">Email</h3>
                       <p className="text-sm text-gray-600">support@equisaddles.com</p>
-                      <Badge variant="secondary" className="mt-1">Réponse sous 24h</Badge>
+                      <Badge variant="secondary" className="mt-1">{t("support.email.response")}</Badge>
                     </div>
                   </div>
                   
@@ -65,7 +65,7 @@ export default function Support() {
                     <div>
                       <h3 className="font-semibold">Téléphone</h3>
                       <p className="text-sm text-gray-600">+33 1 23 45 67 89</p>
-                      <Badge variant="secondary" className="mt-1">Lun-Ven 9h-18h</Badge>
+                      <Badge variant="secondary" className="mt-1">{t("support.phone.hours")}</Badge>
                     </div>
                   </div>
                 </div>
@@ -75,14 +75,14 @@ export default function Support() {
                 <div className="bg-amber-50 p-4 rounded-lg">
                   <div className="flex items-center gap-2 mb-2">
                     <Clock className="h-5 w-5 text-amber-600" />
-                    <h3 className="font-semibold">Horaires de Support</h3>
+                    <h3 className="font-semibold">{t("support.hours.title")}</h3>
                   </div>
                   <div className="text-sm space-y-1">
-                    <p><strong>Lundi - Vendredi :</strong> 9h00 - 18h00</p>
-                    <p><strong>Samedi :</strong> 10h00 - 16h00</p>
-                    <p><strong>Dimanche :</strong> Fermé</p>
+                    <p><strong>{t("support.hours.weekdays")} :</strong> {t("support.hours.weekdaysTime")}</p>
+                    <p><strong>{t("support.hours.saturday")} :</strong> {t("support.hours.saturdayTime")}</p>
+                    <p><strong>{t("support.hours.sunday")} :</strong> {t("support.hours.closed")}</p>
                     <p className="text-amber-700 mt-2">
-                      <strong>Support d'urgence :</strong> Disponible 24h/24 pour les problèmes de commande
+                      <strong>{t("support.hours.emergency")} :</strong> {t("support.hours.emergencyDesc")}
                     </p>
                   </div>
                 </div>
@@ -94,32 +94,29 @@ export default function Support() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <HelpCircle className="h-5 w-5" />
-                  Questions Fréquentes
+                  {t("support.faq.title")}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-4">
                   <div className="border-l-4 border-primary pl-4">
-                    <h4 className="font-semibold mb-2">Comment choisir la bonne taille de selle ?</h4>
+                    <h4 className="font-semibold mb-2">{t("support.faq.q1")}</h4>
                     <p className="text-sm text-gray-600">
-                      Nos experts sont disponibles pour vous conseiller. Contactez-nous avec les mesures 
-                      de votre cheval et votre discipline pour une recommandation personnalisée.
+                      {t("support.faq.a1")}
                     </p>
                   </div>
                   
                   <div className="border-l-4 border-primary pl-4">
-                    <h4 className="font-semibold mb-2">Puis-je échanger ma selle si elle ne convient pas ?</h4>
+                    <h4 className="font-semibold mb-2">{t("support.faq.q2")}</h4>
                     <p className="text-sm text-gray-600">
-                      Oui, nous acceptons les échanges dans les 30 jours suivant l'achat, 
-                      sous condition que la selle soit en parfait état.
+                      {t("support.faq.a2")}
                     </p>
                   </div>
                   
                   <div className="border-l-4 border-primary pl-4">
-                    <h4 className="font-semibold mb-2">Offrez-vous un service d'entretien ?</h4>
+                    <h4 className="font-semibold mb-2">{t("support.faq.q3")}</h4>
                     <p className="text-sm text-gray-600">
-                      Nous proposons des conseils d'entretien détaillés et pouvons vous recommander 
-                      des produits spécialisés pour maintenir votre selle en parfait état.
+                      {t("support.faq.a3")}
                     </p>
                   </div>
                 </div>
@@ -131,20 +128,20 @@ export default function Support() {
           <div className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>Aide par Catégorie</CardTitle>
+                <CardTitle>{t("support.categories.title")}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <Button variant="outline" className="w-full justify-start">
                   <Package className="h-4 w-4 mr-2" />
-                  Produits & Sizing
+                  {t("support.categories.products")}
                 </Button>
                 <Button variant="outline" className="w-full justify-start">
                   <CreditCard className="h-4 w-4 mr-2" />
-                  Commandes & Paiements
+                  {t("support.categories.orders")}
                 </Button>
                 <Button variant="outline" className="w-full justify-start">
                   <Truck className="h-4 w-4 mr-2" />
-                  Livraison & Retours
+{t("support.categories.delivery")}
                 </Button>
                 <Button variant="outline" className="w-full justify-start">
                   <FileText className="h-4 w-4 mr-2" />
