@@ -261,6 +261,8 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Costs and Refunds
     "costs.refunds.title": "Frais et Remboursements",
+    "returns.process.step5desc": "Dès réception, nous vérifions l'état du produit. Si conforme, remboursement sous 14 jours sur votre moyen de paiement initial.",
+    "returns.process.step5email": "Vous recevez un email de confirmation à chaque étape.",
     
     "footer.warranty": "Garantie",
     "footer.faq": "FAQ",
@@ -570,6 +572,8 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Costs and Refunds
     "costs.refunds.title": "Costs and Refunds",
+    "returns.process.step5desc": "Upon receipt, we check the product condition. If compliant, refund within 14 days to your original payment method.",
+    "returns.process.step5email": "You receive a confirmation email at each step.",
     
     "footer.warranty": "Warranty",
     "footer.faq": "FAQ",
@@ -841,6 +845,8 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Costs and Refunds
     "costs.refunds.title": "Kosten en Terugbetalingen",
+    "returns.process.step5desc": "Bij ontvangst controleren wij de productstaat. Indien conform, terugbetaling binnen 14 dagen naar uw oorspronkelijke betaalmethode.",
+    "returns.process.step5email": "U ontvangt een bevestigingsmail bij elke stap.",
     
     "footer.warranty": "Garantie",
     "footer.faq": "FAQ",
@@ -1131,6 +1137,8 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Costs and Refunds
     "costs.refunds.title": "Costos y Reembolsos",
+    "returns.process.step5desc": "Al recibir, verificamos el estado del producto. Si es conforme, reembolso en 14 días a su método de pago original.",
+    "returns.process.step5email": "Recibe un email de confirmación en cada etapa.",
     
     "footer.warranty": "Garantía",
     "footer.faq": "FAQ",
@@ -1484,6 +1492,8 @@ export const translations: Record<string, Record<string, string>> = {
     "exchange.model.desc": "Anderes Modell - Preisunterschied angewandt",
     
     // Costs and Refunds
-    "costs.refunds.title": "Kosten und Rückerstattungen"
+    "costs.refunds.title": "Kosten und Rückerstattungen",
+    "returns.process.step5desc": "Bei Erhalt prüfen wir den Produktzustand. Bei Konformität Rückerstattung innerhalb 14 Tagen auf Ihre ursprüngliche Zahlungsmethode.",
+    "returns.process.step5email": "Sie erhalten eine Bestätigungs-E-Mail bei jedem Schritt."
   }
 };

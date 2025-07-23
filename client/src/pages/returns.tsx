@@ -214,11 +214,10 @@ export default function Returns() {
                   <div>
                     <h4 className="font-semibold mb-1">{t("returns.process.step5")}</h4>
                     <p className="text-sm text-gray-600 mb-2">
-                      Dès réception, nous vérifions l'état du produit. Si conforme, 
-                      remboursement sous 14 jours sur votre moyen de paiement initial.
+                      {t("returns.process.step5desc")}
                     </p>
                     <p className="text-sm text-gray-500">
-                      Vous recevez un email de confirmation à chaque étape.
+                      {t("returns.process.step5email")}
                     </p>
                   </div>
                 </div>
@@ -238,37 +237,35 @@ export default function Returns() {
               <div className="bg-green-50 p-4 rounded-lg">
                 <h4 className="font-semibold text-green-800 mb-2">{t("exchange.free.title")}</h4>
                 <p className="text-sm text-green-700">
-                  <strong>{t("exchange.free.subtitle")} :</strong> {t("exchange.free.desc")} 
-                  à votre cheval, nous proposons un échange gratuit vers un modèle plus approprié 
-                  dans les 30 jours suivant l'achat.
+                  <strong>{t("exchange.free.subtitle")} :</strong> {t("exchange.free.desc")}
                 </p>
               </div>
               
               <div className="space-y-4">
                 <div>
-                  <h4 className="font-semibold mb-2">Conditions d'Échange</h4>
+                  <h4 className="font-semibold mb-2">{t("exchange.conditions.title")}</h4>
                   <ul className="text-sm space-y-1">
-                    <li>• Selle en parfait état, non utilisée</li>
-                    <li>• Expertise par notre sellier partenaire (recommandé)</li>
-                    <li>• Différence de prix éventuelle à régler</li>
-                    <li>• Un seul échange autorisé par commande</li>
-                    <li>• Frais de port pris en charge par Equi Saddles</li>
+                    <li>• {t("exchange.condition1")}</li>
+                    <li>• {t("exchange.condition2")}</li>
+                    <li>• {t("exchange.condition3")}</li>
+                    <li>• {t("exchange.condition4")}</li>
+                    <li>• {t("exchange.condition5")}</li>
                   </ul>
                 </div>
                 
                 <div>
-                  <h4 className="font-semibold mb-2">Types d'Échanges</h4>
+                  <h4 className="font-semibold mb-2">{t("exchange.types.title")}</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="border-l-4 border-blue-500 pl-3">
-                      <h5 className="font-medium text-blue-800">Changement de Taille</h5>
+                      <h5 className="font-medium text-blue-800">{t("exchange.size.title")}</h5>
                       <p className="text-sm text-blue-600">
-                        Même modèle, taille différente - Échange gratuit
+                        {t("exchange.size.desc")}
                       </p>
                     </div>
                     <div className="border-l-4 border-purple-500 pl-3">
-                      <h5 className="font-medium text-purple-800">Changement de Modèle</h5>
+                      <h5 className="font-medium text-purple-800">{t("exchange.model.title")}</h5>
                       <p className="text-sm text-purple-600">
-                        Modèle différent - Différence de prix applicable
+                        {t("exchange.model.desc")}
                       </p>
                     </div>
                   </div>
@@ -282,7 +279,7 @@ export default function Returns() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <CreditCard className="h-5 w-5" />
-                Frais et Remboursements
+{t("costs.refunds.title")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
