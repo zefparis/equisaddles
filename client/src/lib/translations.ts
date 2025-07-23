@@ -314,7 +314,7 @@ export const translations: Record<string, Record<string, string>> = {
     "footer.company.description": "Equi Saddles se spécialise dans la fabrication de montures équestres de haute gamme depuis plus de 20 ans.",
     "footer.products.title": "Produits",
     "footer.products.jumping": "Montures spécialisées pour saut d'obstacles",
-    "footer.products.dressage": "Montures pour doma clásica",
+    "footer.products.dressage": "Montures pour dressage classique",
     "footer.products.cross": "Montures robustes pour cross-country",
     "footer.products.versatile": "Montures polyvalentes pour toutes les disciplines",
     "footer.products.young": "Montures adaptées pour poneys et jeunes chevaux",
