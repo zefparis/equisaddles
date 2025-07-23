@@ -10,6 +10,18 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+### July 23, 2025 - Chat System Implementation & Email Configuration
+- **COMPLETED**: Système de chat en temps réel complet avec WebSocket et notifications email
+- **COMPLETED**: Configuration email admin mise à jour vers contact@equisaddles.com
+- **COMPLETED**: Interface admin avec onglet "Chat Support" pour gestion des conversations client
+- **COMPLETED**: Widget de chat flottant pour clients avec formulaire de contact intégré
+- **COMPLETED**: Correction de l'URL WebSocket pour connexions directes au port 5000
+- **COMPLETED**: Integration Brevo API pour notifications email automatiques
+- **COMPLETED**: Stockage des sessions et messages de chat avec historique complet
+- Système de chat opérationnel permettant communication temps réel entre clients et admins
+- Notifications automatiques envoyées à contact@equisaddles.com lors de nouveaux messages client
+- Interface admin centralisée pour répondre aux conversations avec compteur de messages non lus
+
 ### July 23, 2025 - Enhanced Dark Mode for Smartphone Optimization
 - **COMPLETED**: Comprehensive dark mode improvements specifically optimized for smartphone users
 - **COMPLETED**: Adjusted background colors from very dark (8% lightness) to more readable (12% lightness)

@@ -9,11 +9,9 @@ async function initializeBrevo() {
 
   try {
     const brevo = await import('@getbrevo/brevo');
-    // Configuration simplifiée
-    const defaultClient = brevo.default.ApiClient.instance;
-    const apiKey = defaultClient.authentications['api-key'];
-    apiKey.apiKey = process.env.BREVO_API_KEY;
-    brevoAPI = new brevo.default.TransactionalEmailsApi();
+    // Configuration directe sans ApiClient
+    brevoAPI = new brevo.TransactionalEmailsApi();
+    brevoAPI.setApiKey('api-key', process.env.BREVO_API_KEY);
     console.log('Brevo API initialized successfully');
     return brevoAPI;
   } catch (error) {
@@ -43,7 +41,7 @@ export async function sendEmail(emailData: EmailData): Promise<boolean> {
     }
 
     const brevo = await import('@getbrevo/brevo');
-    const sendSmtpEmail = new brevo.default.SendSmtpEmail();
+    const sendSmtpEmail = new brevo.SendSmtpEmail();
     
     sendSmtpEmail.subject = emailData.subject;
     sendSmtpEmail.htmlContent = emailData.htmlContent;
