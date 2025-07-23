@@ -214,9 +214,35 @@ export default function Admin() {
     setShowProductDialog(true);
   };
 
-  const handleNewProduct = () => {
+  const handleNewProduct = (type?: "saddle" | "accessory") => {
     setEditingProduct(null);
-    productForm.reset();
+    if (type === "accessory") {
+      productForm.reset({
+        name: "",
+        category: "Accessoires",
+        subcategory: "",
+        size: "S",
+        price: "0",
+        description: "",
+        image: "",
+        images: [],
+        featured: false,
+        inStock: true,
+      });
+    } else {
+      productForm.reset({
+        name: "",
+        category: "Obstacle",
+        subcategory: "",
+        size: "17",
+        price: "0",
+        description: "",
+        image: "",
+        images: [],
+        featured: false,
+        inStock: true,
+      });
+    }
     setShowProductDialog(true);
   };
 
@@ -234,11 +260,15 @@ export default function Admin() {
           </p>
         </div>
 
-        <Tabs defaultValue="products" className="space-y-8">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="products" className="flex items-center gap-2">
+        <Tabs defaultValue="saddles" className="space-y-8">
+          <TabsList className="grid w-full grid-cols-5">
+            <TabsTrigger value="saddles" className="flex items-center gap-2">
               <Package className="h-4 w-4" />
-              {t("admin.products")}
+              Selles
+            </TabsTrigger>
+            <TabsTrigger value="accessories" className="flex items-center gap-2">
+              <Package className="h-4 w-4" />
+              Accessoires
             </TabsTrigger>
             <TabsTrigger value="product-images" className="flex items-center gap-2">
               <Images className="h-4 w-4" />
@@ -254,13 +284,13 @@ export default function Admin() {
             </TabsTrigger>
           </TabsList>
 
-          {/* Products Tab */}
-          <TabsContent value="products" className="space-y-6">
+          {/* Saddles Tab */}
+          <TabsContent value="saddles" className="space-y-6">
             <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-semibold">Gestion des produits</h2>
-              <Button onClick={handleNewProduct} className="btn-primary">
+              <h2 className="text-2xl font-semibold">Gestion des selles</h2>
+              <Button onClick={() => handleNewProduct("saddle")} className="btn-primary">
                 <Plus className="h-4 w-4 mr-2" />
-                Nouveau produit
+                Nouvelle selle
               </Button>
             </div>
 
@@ -276,7 +306,7 @@ export default function Admin() {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {products?.map((product) => (
+                {products?.filter(product => product.category !== "Accessoires").map((product) => (
                   <Card key={product.id}>
                     <div className="relative">
                       <img
@@ -293,8 +323,75 @@ export default function Admin() {
                     <CardContent className="p-4">
                       <h3 className="font-semibold mb-2">{product.name}</h3>
                       <p className="text-sm text-gray-600 mb-2">
-                        {product.category}
-                        {product.subcategory && ` - ${product.subcategory}`} - {product.size}
+                        {product.category} - {product.size}
+                      </p>
+                      <p className="text-lg font-bold text-primary mb-4">
+                        {parseFloat(product.price).toFixed(2)} €
+                      </p>
+                      <div className="flex gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleEditProduct(product)}
+                        >
+                          <Edit className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => deleteProductMutation.mutate(product.id)}
+                          className="text-red-500 hover:text-red-700"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )}
+          </TabsContent>
+
+          {/* Accessories Tab */}
+          <TabsContent value="accessories" className="space-y-6">
+            <div className="flex justify-between items-center">
+              <h2 className="text-2xl font-semibold">Gestion des accessoires</h2>
+              <Button onClick={() => handleNewProduct("accessory")} className="btn-primary">
+                <Plus className="h-4 w-4 mr-2" />
+                Nouvel accessoire
+              </Button>
+            </div>
+
+            {productsLoading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="animate-pulse">
+                    <div className="bg-gray-300 h-48 rounded-lg mb-4"></div>
+                    <div className="bg-gray-300 h-6 rounded mb-2"></div>
+                    <div className="bg-gray-300 h-4 rounded"></div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {products?.filter(product => product.category === "Accessoires").map((product) => (
+                  <Card key={product.id}>
+                    <div className="relative">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-48 object-cover"
+                      />
+                      {product.featured && (
+                        <Badge className="absolute top-2 right-2 bg-accent">
+                          Vedette
+                        </Badge>
+                      )}
+                    </div>
+                    <CardContent className="p-4">
+                      <h3 className="font-semibold mb-2">{product.name}</h3>
+                      <p className="text-sm text-gray-600 mb-2">
+                        {product.subcategory} - {product.size}
                       </p>
                       <p className="text-lg font-bold text-primary mb-4">
                         {parseFloat(product.price).toFixed(2)} €
