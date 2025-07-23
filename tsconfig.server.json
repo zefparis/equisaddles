@@ -1,15 +1,18 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "es2022",
+    "moduleResolution": "nodenext",
+    "rootDir": "server",
     "outDir": "dist/server",
-    "rootDir": ".",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "typeRoots": ["./shared", "./node_modules/@types"],
+    "typeRoots": [
+      "./shared",
+      "./node_modules/@types"
+    ],
     "baseUrl": ".",
     "paths": {
       "@shared/*": ["./shared/*"]
