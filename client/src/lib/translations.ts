@@ -401,37 +401,7 @@ export const translations: Record<string, Record<string, string>> = {
 
 
 
-    // Terms Page Content - French
-    "terms.products.title": "Nos Produits",
-    "terms.products.our": "Nos produits",
-    "terms.products.list1": "Selles d'obstacle professionnelles et sur-mesure",
-    "terms.products.list2": "Selles de dressage classique et compétition",
-    "terms.products.list3": "Selles mixtes polyvalentes pour toutes disciplines",
-    "terms.pricing.title": "Tarification et Disponibilité",
-    "terms.pricing.list1": "Tous nos prix sont indiqués en euros TTC",
-    "terms.pricing.list2": "Les prix peuvent être modifiés sans préavis",
-    "terms.pricing.list3": "Disponibilité sous réserve de nos stocks",
-    "terms.pricing.list4": "Délais de fabrication : 2-6 semaines pour le sur-mesure",
-    "terms.pricing.list5": "Possibilité de paiement en plusieurs fois (nous consulter)",
-    "terms.orders.title": "Processus de Commande",
-    "terms.orders.process": "Processus de commande",
-    "terms.orders.step1": "Sélection du produit et configuration",
-    "terms.orders.step2": "Ajout au panier et vérification",
-    "terms.orders.step3": "Saisie des informations de livraison",
-    "terms.orders.step4": "Choix du mode de paiement",
-    "terms.orders.step5": "Validation et confirmation de commande",
-    "terms.orders.step6": "Réception du numéro de commande par email",
-    "terms.payment.methods": "Moyens de paiement acceptés",
-    "terms.payment.list1": "Carte bancaire (Visa, MasterCard, American Express)",
-    "terms.payment.list2": "Paiement sécurisé via Stripe",
-    "terms.payment.list3": "Chèque bancaire (sur demande pour montants élevés)",
-    "terms.payment.list4": "Virement bancaire (commandes professionnelles)",
-    "terms.payment.list5": "PayPal (disponible selon les montants)",
-    "terms.payment.security": "Sécurité des paiements",
-    "terms.payment.securityDesc": "Tous les paiements sont cryptés et sécurisés via notre partenaire Stripe, certifié PCI DSS niveau 1.",
-    "terms.delivery.title": "Livraison et Transport",
-    "terms.delivery.warning": "⚠️ Limitation de Responsabilité - Transport",
-    "terms.delivery.liability": "Equi Saddles n'est pas responsable des dommages, pertes, vols ou retards causés par le transporteur. Nous confions vos colis à DPD, transporteur professionnel, mais ne pouvons être tenus responsables des incidents pendant le transport.",
+
 
     // Additional Returns Content
     "returns.orderError": "Erreur de commande de notre part",
