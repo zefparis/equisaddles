@@ -264,6 +264,32 @@ export const translations: Record<string, Record<string, string>> = {
     "returns.process.step5desc": "Dès réception, nous vérifions l'état du produit. Si conforme, remboursement sous 14 jours sur votre moyen de paiement initial.",
     "returns.process.step5email": "Vous recevez un email de confirmation à chaque étape.",
     
+    // Return Costs Section
+    "costs.return.title": "Frais de Retour",
+    "costs.free.title": "Gratuit",
+    "costs.free.defective": "Produit défectueux",
+    "costs.free.ourError": "Erreur de notre part",
+    "costs.free.exchange": "Échange inadéquation",
+    "costs.charged.title": "À votre charge",
+    "costs.charged.withdrawal": "Rétractation simple",
+    "costs.charged.changeOfMind": "Changement d'avis",
+    "costs.charged.cost": "Coût : 15-25€ selon zone",
+    
+    // Refund Terms Section
+    "refund.terms.title": "Modalités de Remboursement",
+    "refund.processing.time": "Délai de traitement :",
+    "refund.processing.duration": "3-5 jours ouvrés",
+    "refund.refund.time": "Délai de remboursement :",
+    "refund.refund.duration": "14 jours max",
+    "refund.payment.method": "Moyen de paiement :",
+    "refund.payment.original": "Carte bancaire d'origine",
+    "refund.delivery.costs": "Frais de livraison :",
+    "refund.delivery.notRefunded": "Non remboursés*",
+    "refund.delivery.note": "*Sauf défaut ou erreur de notre part",
+    
+    // Transport Responsibility
+    "transport.responsibility.title": "Responsabilité Transport",
+    
     "footer.warranty": "Garantie",
     "footer.faq": "FAQ",
     "footer.opening": "Lun-Ven: 9h-18h",
@@ -575,6 +601,32 @@ export const translations: Record<string, Record<string, string>> = {
     "returns.process.step5desc": "Upon receipt, we check the product condition. If compliant, refund within 14 days to your original payment method.",
     "returns.process.step5email": "You receive a confirmation email at each step.",
     
+    // Return Costs Section
+    "costs.return.title": "Return Costs",
+    "costs.free.title": "Free",
+    "costs.free.defective": "Defective product",
+    "costs.free.ourError": "Our error",
+    "costs.free.exchange": "Unsuitable exchange",
+    "costs.charged.title": "At your expense",
+    "costs.charged.withdrawal": "Simple withdrawal",
+    "costs.charged.changeOfMind": "Change of mind",
+    "costs.charged.cost": "Cost: 15-25€ depending on zone",
+    
+    // Refund Terms Section
+    "refund.terms.title": "Refund Terms",
+    "refund.processing.time": "Processing time:",
+    "refund.processing.duration": "3-5 business days",
+    "refund.refund.time": "Refund time:",
+    "refund.refund.duration": "14 days max",
+    "refund.payment.method": "Payment method:",
+    "refund.payment.original": "Original bank card",
+    "refund.delivery.costs": "Delivery costs:",
+    "refund.delivery.notRefunded": "Not refunded*",
+    "refund.delivery.note": "*Except for defect or our error",
+    
+    // Transport Responsibility
+    "transport.responsibility.title": "Transport Responsibility",
+    
     "footer.warranty": "Warranty",
     "footer.faq": "FAQ",
     "footer.opening": "Mon-Fri: 9am-6pm",
@@ -847,6 +899,32 @@ export const translations: Record<string, Record<string, string>> = {
     "costs.refunds.title": "Kosten en Terugbetalingen",
     "returns.process.step5desc": "Bij ontvangst controleren wij de productstaat. Indien conform, terugbetaling binnen 14 dagen naar uw oorspronkelijke betaalmethode.",
     "returns.process.step5email": "U ontvangt een bevestigingsmail bij elke stap.",
+    
+    // Return Costs Section
+    "costs.return.title": "Retourkosten",
+    "costs.free.title": "Gratis",
+    "costs.free.defective": "Defect product",
+    "costs.free.ourError": "Onze fout",
+    "costs.free.exchange": "Ongeschikte ruil",
+    "costs.charged.title": "Voor uw rekening",
+    "costs.charged.withdrawal": "Eenvoudige herroeping",
+    "costs.charged.changeOfMind": "Van gedachten veranderd",
+    "costs.charged.cost": "Kosten: 15-25€ afhankelijk van zone",
+    
+    // Refund Terms Section
+    "refund.terms.title": "Terugbetalingsvoorwaarden",
+    "refund.processing.time": "Verwerkingstijd:",
+    "refund.processing.duration": "3-5 werkdagen",
+    "refund.refund.time": "Terugbetalingstijd:",
+    "refund.refund.duration": "14 dagen max",
+    "refund.payment.method": "Betaalmethode:",
+    "refund.payment.original": "Oorspronkelijke bankkaart",
+    "refund.delivery.costs": "Leveringskosten:",
+    "refund.delivery.notRefunded": "Niet terugbetaald*",
+    "refund.delivery.note": "*Behalve bij defect of onze fout",
+    
+    // Transport Responsibility
+    "transport.responsibility.title": "Transportverantwoordelijkheid",
     
     "footer.warranty": "Garantie",
     "footer.faq": "FAQ",
@@ -1139,6 +1217,32 @@ export const translations: Record<string, Record<string, string>> = {
     "costs.refunds.title": "Costos y Reembolsos",
     "returns.process.step5desc": "Al recibir, verificamos el estado del producto. Si es conforme, reembolso en 14 días a su método de pago original.",
     "returns.process.step5email": "Recibe un email de confirmación en cada etapa.",
+    
+    // Return Costs Section
+    "costs.return.title": "Costos de Devolución",
+    "costs.free.title": "Gratuito",
+    "costs.free.defective": "Producto defectuoso",
+    "costs.free.ourError": "Error nuestro",
+    "costs.free.exchange": "Intercambio inadecuado",
+    "costs.charged.title": "A su cargo",
+    "costs.charged.withdrawal": "Desistimiento simple",
+    "costs.charged.changeOfMind": "Cambio de opinión",
+    "costs.charged.cost": "Costo: 15-25€ según zona",
+    
+    // Refund Terms Section
+    "refund.terms.title": "Modalidades de Reembolso",
+    "refund.processing.time": "Tiempo de procesamiento:",
+    "refund.processing.duration": "3-5 días laborables",
+    "refund.refund.time": "Tiempo de reembolso:",
+    "refund.refund.duration": "14 días máx",
+    "refund.payment.method": "Método de pago:",
+    "refund.payment.original": "Tarjeta bancaria original",
+    "refund.delivery.costs": "Costos de entrega:",
+    "refund.delivery.notRefunded": "No reembolsados*",
+    "refund.delivery.note": "*Excepto por defecto o error nuestro",
+    
+    // Transport Responsibility
+    "transport.responsibility.title": "Responsabilidad de Transporte",
     
     "footer.warranty": "Garantía",
     "footer.faq": "FAQ",
@@ -1494,6 +1598,32 @@ export const translations: Record<string, Record<string, string>> = {
     // Costs and Refunds
     "costs.refunds.title": "Kosten und Rückerstattungen",
     "returns.process.step5desc": "Bei Erhalt prüfen wir den Produktzustand. Bei Konformität Rückerstattung innerhalb 14 Tagen auf Ihre ursprüngliche Zahlungsmethode.",
-    "returns.process.step5email": "Sie erhalten eine Bestätigungs-E-Mail bei jedem Schritt."
+    "returns.process.step5email": "Sie erhalten eine Bestätigungs-E-Mail bei jedem Schritt.",
+    
+    // Return Costs Section
+    "costs.return.title": "Rücksendekosten",
+    "costs.free.title": "Kostenlos",
+    "costs.free.defective": "Defektes Produkt",
+    "costs.free.ourError": "Unser Fehler",
+    "costs.free.exchange": "Ungeeigneter Umtausch",
+    "costs.charged.title": "Auf Ihre Kosten",
+    "costs.charged.withdrawal": "Einfacher Widerruf",
+    "costs.charged.changeOfMind": "Meinungsänderung",
+    "costs.charged.cost": "Kosten: 15-25€ je nach Zone",
+    
+    // Refund Terms Section
+    "refund.terms.title": "Rückerstattungsmodalitäten",
+    "refund.processing.time": "Bearbeitungszeit:",
+    "refund.processing.duration": "3-5 Werktage",
+    "refund.refund.time": "Rückerstattungszeit:",
+    "refund.refund.duration": "14 Tage max",
+    "refund.payment.method": "Zahlungsmethode:",
+    "refund.payment.original": "Ursprüngliche Bankkarte",
+    "refund.delivery.costs": "Lieferkosten:",
+    "refund.delivery.notRefunded": "Nicht erstattet*",
+    "refund.delivery.note": "*Außer bei Defekt oder unserem Fehler",
+    
+    // Transport Responsibility
+    "transport.responsibility.title": "Transportverantwortung"
   }
 };

@@ -285,50 +285,50 @@ export default function Returns() {
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-semibold mb-3">Frais de Retour</h4>
+                  <h4 className="font-semibold mb-3">{t("costs.return.title")}</h4>
                   <div className="space-y-3">
                     <div className="bg-green-50 p-3 rounded">
-                      <h5 className="font-medium text-green-800">Gratuit</h5>
+                      <h5 className="font-medium text-green-800">{t("costs.free.title")}</h5>
                       <ul className="text-sm text-green-700 mt-1">
-                        <li>• Produit défectueux</li>
-                        <li>• Erreur de notre part</li>
-                        <li>• Échange inadéquation</li>
+                        <li>• {t("costs.free.defective")}</li>
+                        <li>• {t("costs.free.ourError")}</li>
+                        <li>• {t("costs.free.exchange")}</li>
                       </ul>
                     </div>
                     
                     <div className="bg-orange-50 p-3 rounded">
-                      <h5 className="font-medium text-orange-800">À votre charge</h5>
+                      <h5 className="font-medium text-orange-800">{t("costs.charged.title")}</h5>
                       <ul className="text-sm text-orange-700 mt-1">
-                        <li>• Rétractation simple</li>
-                        <li>• Changement d'avis</li>
-                        <li>• Coût : 15-25€ selon zone</li>
+                        <li>• {t("costs.charged.withdrawal")}</li>
+                        <li>• {t("costs.charged.changeOfMind")}</li>
+                        <li>• {t("costs.charged.cost")}</li>
                       </ul>
                     </div>
                   </div>
                 </div>
                 
                 <div>
-                  <h4 className="font-semibold mb-3">Modalités de Remboursement</h4>
+                  <h4 className="font-semibold mb-3">{t("refund.terms.title")}</h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span>Délai de traitement :</span>
-                      <span className="font-medium">3-5 jours ouvrés</span>
+                      <span>{t("refund.processing.time")}</span>
+                      <span className="font-medium">{t("refund.processing.duration")}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Délai de remboursement :</span>
-                      <span className="font-medium">14 jours max</span>
+                      <span>{t("refund.refund.time")}</span>
+                      <span className="font-medium">{t("refund.refund.duration")}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Moyen de paiement :</span>
-                      <span className="font-medium">Carte bancaire d'origine</span>
+                      <span>{t("refund.payment.method")}</span>
+                      <span className="font-medium">{t("refund.payment.original")}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Frais de livraison :</span>
-                      <span className="font-medium">Non remboursés*</span>
+                      <span>{t("refund.delivery.costs")}</span>
+                      <span className="font-medium">{t("refund.delivery.notRefunded")}</span>
                     </div>
                   </div>
                   <p className="text-xs text-gray-500 mt-2">
-                    *Sauf défaut ou erreur de notre part
+                    {t("refund.delivery.note")}
                   </p>
                 </div>
               </div>
@@ -340,7 +340,7 @@ export default function Returns() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-yellow-800">
                 <Truck className="h-5 w-5" />
-                Responsabilité Transport
+{t("transport.responsibility.title")}
               </CardTitle>
             </CardHeader>
             <CardContent>
