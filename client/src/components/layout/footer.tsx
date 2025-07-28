@@ -1,13 +1,9 @@
 import { Link } from "wouter";
 import { useLanguage } from "../../hooks/use-language";
-import { useInstallPrompt } from "../../hooks/use-install-prompt";
-import { useToast } from "../../hooks/use-toast";
 import { Facebook, Instagram, Youtube, Phone, Mail, MapPin, Clock, Download, Smartphone } from "lucide-react";
 
 export default function Footer() {
   const { t } = useLanguage();
-  const { installApp } = useInstallPrompt();
-  const { toast } = useToast();
 
   return (
     <footer className="bg-gray-900 text-white py-12">
@@ -75,30 +71,6 @@ export default function Footer() {
               <li className="flex items-center">
                 <Clock className="h-4 w-4 mr-2" />
                 {t("footer.contact.hours")}
-              </li>
-              
-              {/* PWA Install Link */}
-              <li className="mt-4 pt-3 border-t border-gray-700">
-                <div
-                  onClick={async () => {
-                    const success = await installApp();
-                    if (success) {
-                      toast({
-                        title: "Installation réussie",
-                        description: "L'application Equi Saddles a été installée sur votre appareil.",
-                      });
-                    } else {
-                      toast({
-                        title: "Installation",
-                        description: "Vous pouvez installer l'application depuis le menu de votre navigateur.",
-                      });
-                    }
-                  }}
-                  className="flex items-center cursor-pointer hover:text-white transition-colors group"
-                >
-                  <Smartphone className="h-4 w-4 mr-2 group-hover:text-accent transition-colors" />
-                  <span className="group-hover:text-accent transition-colors">{t("pwa.install")}</span>
-                </div>
               </li>
             </ul>
           </div>

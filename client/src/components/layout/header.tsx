@@ -2,8 +2,6 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { useLanguage } from "../../hooks/use-language";
 import { useCart } from "../../hooks/use-cart";
-import { useInstallPrompt } from "../../hooks/use-install-prompt";
-import { useToast } from "../../hooks/use-toast";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { Menu, ShoppingCart, Globe, Download } from "lucide-react";
@@ -14,7 +12,6 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import CartModal from "../cart/cart-modal";
-import { InstallButtonDesktop } from "../pwa/install-button-desktop";
 
 const languages = [
   { code: "fr", name: "Français", flag: <svg className="w-4 h-4" viewBox="0 0 24 16"><rect width="8" height="16" fill="#002654"/><rect x="8" width="8" height="16" fill="#ffffff"/><rect x="16" width="8" height="16" fill="#ce1126"/></svg> },
@@ -27,8 +24,6 @@ const languages = [
 export default function Header() {
   const { language, setLanguage, t } = useLanguage();
   const { totalItems } = useCart();
-  const { installApp } = useInstallPrompt();
-  const { toast } = useToast();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -65,10 +60,20 @@ export default function Header() {
 
           {/* Header Actions */}
           <div className="flex items-center space-x-4">
-            {/* PWA Install Button - Hidden on mobile */}
-            <div className="hidden md:block">
-              <InstallButtonDesktop />
-            </div>
+            {/* PWA Install Button - Simple approach */}
+            <button
+              onClick={() => {
+                if ('serviceWorker' in navigator) {
+                  alert('Application PWA disponible ! Ajoutez cette page à votre écran d\'accueil depuis le menu de votre navigateur.');
+                } else {
+                  alert('Installation PWA disponible depuis le menu de votre navigateur.');
+                }
+              }}
+              className="hidden sm:flex items-center space-x-2 px-3 py-2 text-sm text-white hover:text-accent border border-white/30 rounded-lg transition-colors"
+            >
+              <Download className="h-4 w-4" />
+              <span>Installer</span>
+            </button>
             
             {/* Language Selector */}
             <DropdownMenu>
@@ -107,7 +112,7 @@ export default function Header() {
               )}
             </Button>
 
-            {/* Mobile Menu Toggle */}
+            {/* Mobile Menu with PWA */}
             <div className="relative">
               <Button 
                 variant="ghost" 
@@ -117,7 +122,6 @@ export default function Header() {
                 <Menu className="h-5 w-5 text-white" />
               </Button>
               
-              {/* Simple Mobile Menu */}
               {isMobileMenuOpen && (
                 <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-lg shadow-xl border z-50">
                   <nav className="flex flex-col p-4">
@@ -131,6 +135,18 @@ export default function Header() {
                         {item.name}
                       </Link>
                     ))}
+                    
+                    {/* PWA Mobile Link */}
+                    <button
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        alert('Application PWA disponible ! Ajoutez cette page à votre écran d\'accueil depuis le menu de votre navigateur.');
+                      }}
+                      className="flex items-center space-x-3 py-3 text-gray-800 hover:text-accent transition-colors duration-200 border-t border-gray-200 mt-2 pt-4"
+                    >
+                      <Download className="h-5 w-5 text-accent" />
+                      <span>Installer l'app</span>
+                    </button>
                   </nav>
                 </div>
               )}

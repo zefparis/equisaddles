@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import { useLanguage } from "../hooks/use-language";
 import { useCart } from "../hooks/use-cart";
-import { useInstallPrompt } from "../hooks/use-install-prompt";
 import { useToast } from "../hooks/use-toast";
 import { scrollToTop, scrollToSection } from "../lib/utils";
 import { Product } from "@shared/schema";
@@ -44,7 +43,6 @@ const categories = [
 export default function Home() {
   const { t } = useLanguage();
   const { addItem } = useCart();
-  const { installApp } = useInstallPrompt();
   const { toast } = useToast();
 
   // Scroll to top when page loads
@@ -194,40 +192,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PWA Install Section */}
-      <section className="py-12 bg-accent/10">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-accent/20">
-            <Smartphone className="h-12 w-12 text-accent mx-auto mb-4" />
-            <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">
-              {t("pwa.install")}
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">
-              Accédez à Equi Saddles directement depuis votre écran d'accueil
-            </p>
-            <Button
-              onClick={async () => {
-                const success = await installApp();
-                if (success) {
-                  toast({
-                    title: "Installation réussie",
-                    description: "L'application Equi Saddles a été installée.",
-                  });
-                } else {
-                  toast({
-                    title: "Installation",
-                    description: "Installation disponible via le menu de votre navigateur.",
-                  });
-                }
-              }}
-              className="w-full bg-accent hover:bg-accent/90 text-white flex items-center justify-center gap-2"
-            >
-              <Download className="h-4 w-4" />
-              {t("pwa.install")}
-            </Button>
-          </div>
-        </div>
-      </section>
+
 
       {/* Newsletter */}
       <section className="py-16 bg-primary text-white">
