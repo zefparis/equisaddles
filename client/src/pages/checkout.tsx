@@ -72,6 +72,7 @@ const CheckoutForm = () => {
     setValue,
     control,
     reset,
+    trigger,
     formState: { errors },
   } = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutSchema),
@@ -103,15 +104,22 @@ const CheckoutForm = () => {
   const watchedPostalCode = watch("postalCode");
   const watchedCity = watch("city");
 
-  // Auto-formatting du code postal
-  const handlePostalCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/[^a-zA-Z0-9\s-]/g, '');
-    const formatted = formatPostalCode(watchedCountry, value);
-    setValue("postalCode", formatted);
-  };
 
+
+  // Effect pour observer les changements de pays et vider le code postal
   useEffect(() => {
-    if (watchedCountry && watchedPostalCode) {
+    // Ne pas exécuter au premier rendu
+    if (watchedCountry && watchedCountry !== "BE") {
+      setValue("postalCode", "");
+      trigger("postalCode");
+      console.log("Country changed, clearing postal code:", watchedCountry);
+    }
+  }, [watchedCountry, setValue, trigger]);
+
+  // Effect pour calculer les frais de livraison
+  useEffect(() => {
+    if (watchedCountry && watchedPostalCode && watchedPostalCode.length > 0) {
+      console.log("Calculating shipping for:", watchedCountry, watchedPostalCode);
       calculateShipping();
     }
   }, [watchedCountry, watchedPostalCode]);
@@ -307,13 +315,23 @@ const CheckoutForm = () => {
 
                 <div>
                   <Label htmlFor="postalCode">{t("checkout.postalCode")} *</Label>
-                  <Input
-                    id="postalCode"
-                    {...register("postalCode")}
-                    onChange={handlePostalCodeChange}
-                    placeholder={`Ex: ${getPostalCodeExample(watchedCountry)}`}
-                    maxLength={getPostalCodeMaxLength(watchedCountry)}
-                    className={errors.postalCode ? "border-red-500" : ""}
+                  <Controller
+                    name="postalCode"
+                    control={control}
+                    render={({ field }) => (
+                      <Input
+                        id="postalCode"
+                        value={field.value || ""}
+                        onChange={(e) => {
+                          const value = e.target.value.replace(/[^a-zA-Z0-9\s-]/g, '');
+                          const formatted = formatPostalCode(watchedCountry, value);
+                          field.onChange(formatted);
+                        }}
+                        placeholder={`Ex: ${getPostalCodeExample(watchedCountry)}`}
+                        maxLength={getPostalCodeMaxLength(watchedCountry)}
+                        className={errors.postalCode ? "border-red-500" : ""}
+                      />
+                    )}
                   />
                   {errors.postalCode && (
                     <p className="text-red-500 text-sm mt-1">{errors.postalCode.message}</p>
@@ -335,6 +353,7 @@ const CheckoutForm = () => {
                           console.log("Country changed to:", value); // Debug log
                           field.onChange(value);
                           setValue("postalCode", ""); // Reset postal code when country changes
+                          trigger("postalCode"); // Force re-validation and UI update
                         }}
                       >
                         <SelectTrigger id="country" className={errors.country ? "border-red-500" : ""}>
