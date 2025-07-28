@@ -349,7 +349,7 @@ export default function CustomerService() {
                   Ligne d'Urgence : +32 496 94 41 25
                 </Button>
                 <p className="text-xs text-red-600 mt-2">
-                  Disponible 24h/24 - 7j/7 - Réponse immédiate garantie
+                  Disponible 24h/24 pour les urgences uniquement
                 </p>
               </div>
             </CardContent>

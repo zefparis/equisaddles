@@ -65,7 +65,7 @@ export default function Terms() {
                   <p><strong>Représentant légal :</strong> Justine Bogaerts</p>
                   <p><strong>Numéro de TVA :</strong> BE0542650464</p>
                   <p><strong>Téléphone :</strong> +32 496 94 41 25</p>
-                  <p><strong>Email :</strong> contact@equisaddles.com</p>
+                  <p><strong>Email :</strong> equisaddles@gmail.com</p>
                 </div>
               </div>
             </CardContent>
@@ -98,7 +98,6 @@ export default function Terms() {
                     <li>• {t("terms.pricing.list1")}</li>
                     <li>• {t("terms.pricing.list2")}</li>
                     <li>• {t("terms.pricing.list3")}</li>
-                    <li>• {t("terms.pricing.list4")}</li>
                     <li>• {t("terms.pricing.list5")}</li>
                   </ul>
                 </div>
@@ -171,7 +170,7 @@ export default function Terms() {
                 <div>
                   <h4 className="font-semibold mb-2">Zones de Livraison</h4>
                   <ul className="text-sm space-y-1">
-                    <li>• <strong>France métropolitaine :</strong> 2-3 jours ouvrés</li>
+                    <li>• <strong>Belgique :</strong> 2-3 jours ouvrés</li>
                     <li>• <strong>Europe :</strong> 3-5 jours ouvrés</li>
                     <li>• <strong>International :</strong> 5-10 jours ouvrés</li>
                   </ul>
@@ -245,7 +244,6 @@ export default function Terms() {
                   <ul className="text-sm space-y-1">
                     <li>• <strong>Article défectueux :</strong> Retour gratuit</li>
                     <li>• <strong>Erreur de notre part :</strong> Retour gratuit</li>
-                    <li>• <strong>Rétractation client :</strong> Frais à la charge du client</li>
                   </ul>
                 </div>
               </div>
@@ -265,16 +263,14 @@ export default function Terms() {
                 <div>
                   <h4 className="font-semibold mb-2">Garantie Légale</h4>
                   <ul className="text-sm space-y-1">
-                    <li>• Garantie de conformité : 2 ans</li>
-                    <li>• Garantie contre les vices cachés : 2 ans</li>
-                    <li>• SAV et réparations assurés</li>
+                    <li>• Garantie de conformité : 6 mois</li>
+                    <li>• Garantie contre les vices cachés : 6 mois</li>
                   </ul>
                 </div>
                 
                 <div>
                   <h4 className="font-semibold mb-2">Garantie Commerciale</h4>
                   <ul className="text-sm space-y-1">
-                    <li>• Échange gratuit sous 30 jours si inadéquation</li>
                     <li>• Conseils d'experts pour le choix de votre selle</li>
                     <li>• Service après-vente dédié</li>
                   </ul>
@@ -314,8 +310,8 @@ export default function Terms() {
                 <div>
                   <h4 className="font-semibold mb-2">Droit Applicable</h4>
                   <p className="text-sm">
-                    Les présentes conditions générales sont soumises au droit français. 
-                    Tout litige sera de la compétence exclusive des tribunaux de Paris.
+                    Les présentes conditions générales sont soumises au droit Belge. 
+                    Tout litige sera de la compétence exclusive des tribunaux de Bruxelles.
                   </p>
                 </div>
                 
@@ -356,7 +352,7 @@ export default function Terms() {
                   Notre équipe juridique est à votre disposition pour toute clarification
                 </p>
                 <div className="space-y-2 text-sm">
-                  <p><strong>Email :</strong> contact@equisaddles.com</p>
+                  <p><strong>Email :</strong> equisaddles@gmail.com</p>
                   <p><strong>Téléphone :</strong> +32 496 94 41 25</p>
                   <p><strong>Courrier :</strong> Equi Saddles<br />
                   Rue du Vicinal 9, 4141 Louveigné, Belgique</p>

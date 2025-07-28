@@ -179,8 +179,8 @@ export default function Privacy() {
               <div className="bg-gray-50 p-4 rounded-lg mt-4">
                 <p className="text-sm">
                   <strong>Pour exercer vos droits :</strong> Contactez-nous à 
-                  <a href="mailto:privacy@equisaddles.com" className="text-primary ml-1">
-                    privacy@equisaddles.com
+                  <a href="mailto:equisaddles@gmail.com" className="text-primary ml-1">
+                    equisaddles@gmail.com
                   </a>
                 </p>
               </div>
@@ -283,7 +283,7 @@ export default function Privacy() {
               <div className="bg-primary/5 p-6 rounded-lg">
                 <h4 className="font-semibold mb-3">Délégué à la Protection des Données</h4>
                 <div className="space-y-2 text-sm">
-                  <p><strong>Email :</strong> contact@equisaddles.com</p>
+                  <p><strong>Email :</strong> equisaddles@gmail.com</p>
                   <p><strong>Adresse :</strong> Equi Saddles - Service DPO<br />
                   Rue du Vicinal 9<br />
                   4141 Louveigné, Belgique</p>
