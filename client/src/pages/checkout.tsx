@@ -64,6 +64,7 @@ const CheckoutForm = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [shippingInfo, setShippingInfo] = useState({ cost: 0, carrier: "DPD" });
   const [selectedShippingOption, setSelectedShippingOption] = useState<any>(null);
+  const [localCountry, setLocalCountry] = useState("BE"); // State local pour éviter les conflits
 
   const {
     register,
@@ -87,48 +88,34 @@ const CheckoutForm = () => {
     },
   });
 
-  // Force reset to ensure default values are properly set
-  useEffect(() => {
-    reset({
-      country: "BE",
-      city: "",
-      postalCode: "",
-      name: "",
-      email: "",
-      address: "",
-      phone: "",
-    });
-  }, []);
-
-  const watchedCountry = watch("country");
   const watchedPostalCode = watch("postalCode");
   const watchedCity = watch("city");
 
-
-
-  // Effect pour observer les changements de pays et vider le code postal
+  // Synchroniser le pays local avec le formulaire
   useEffect(() => {
-    // Ne pas exécuter au premier rendu
-    if (watchedCountry && watchedCountry !== "BE") {
-      setValue("postalCode", "");
-      trigger("postalCode");
-      console.log("Country changed, clearing postal code:", watchedCountry);
-    }
-  }, [watchedCountry, setValue, trigger]);
+    setValue("country", localCountry);
+    console.log("Country synchronized to:", localCountry);
+  }, [localCountry, setValue]);
+
+  // Vider le code postal quand le pays change
+  useEffect(() => {
+    setValue("postalCode", "");
+    console.log("Postal code cleared for country:", localCountry);
+  }, [localCountry, setValue]);
 
   // Effect pour calculer les frais de livraison
   useEffect(() => {
-    if (watchedCountry && watchedPostalCode && watchedPostalCode.length > 0) {
-      console.log("Calculating shipping for:", watchedCountry, watchedPostalCode);
-      calculateShipping();
+    if (localCountry && watchedPostalCode && watchedPostalCode.length > 0) {
+      console.log("Calculating shipping for:", localCountry, watchedPostalCode);
+      calculateShippingWithCountry();
     }
-  }, [watchedCountry, watchedPostalCode]);
+  }, [localCountry, watchedPostalCode]);
 
-  const calculateShipping = async () => {
+  const calculateShippingWithCountry = async () => {
     try {
       const response = await apiRequest("POST", "/api/calculate-shipping", {
         postalCode: watchedPostalCode,
-        country: watchedCountry,
+        country: localCountry,
         items,
       });
       const data = await response.json();
@@ -138,6 +125,7 @@ const CheckoutForm = () => {
       });
     } catch (error) {
       console.error("Error calculating shipping:", error);
+      setShippingInfo({ cost: 19.90, carrier: "DPD" });
     }
   };
 
@@ -324,11 +312,11 @@ const CheckoutForm = () => {
                         value={field.value || ""}
                         onChange={(e) => {
                           const value = e.target.value.replace(/[^a-zA-Z0-9\s-]/g, '');
-                          const formatted = formatPostalCode(watchedCountry, value);
+                          const formatted = formatPostalCode(localCountry, value);
                           field.onChange(formatted);
                         }}
-                        placeholder={`Ex: ${getPostalCodeExample(watchedCountry)}`}
-                        maxLength={getPostalCodeMaxLength(watchedCountry)}
+                        placeholder={`Ex: ${getPostalCodeExample(localCountry)}`}
+                        maxLength={getPostalCodeMaxLength(localCountry)}
                         className={errors.postalCode ? "border-red-500" : ""}
                       />
                     )}
@@ -337,45 +325,37 @@ const CheckoutForm = () => {
                     <p className="text-red-500 text-sm mt-1">{errors.postalCode.message}</p>
                   )}
                   <p className="text-xs text-muted-foreground mt-1">
-                    Format: {getPostalCodeExample(watchedCountry)} ({countries.find(c => c.code === watchedCountry)?.name})
+                    Format: {getPostalCodeExample(localCountry)} ({countries.find(c => c.code === localCountry)?.name})
                   </p>
                 </div>
 
                 <div>
                   <Label htmlFor="country">{t("checkout.country")} *</Label>
-                  <Controller
-                    name="country"
-                    control={control}
-                    render={({ field }) => (
-                      <Select 
-                        value={field.value || "BE"} 
-                        onValueChange={(value) => {
-                          console.log("Country changed to:", value); // Debug log
-                          field.onChange(value);
-                          setValue("postalCode", ""); // Reset postal code when country changes
-                          trigger("postalCode"); // Force re-validation and UI update
-                        }}
-                      >
-                        <SelectTrigger id="country" className={errors.country ? "border-red-500" : ""}>
-                          <SelectValue placeholder="Sélectionnez un pays">
-                            {countries.find(c => c.code === (field.value || "BE"))?.name || "Belgique"}
-                          </SelectValue>
-                        </SelectTrigger>
-                        <SelectContent>
-                          {countries.map((country) => (
-                            <SelectItem key={country.code} value={country.code}>
-                              {country.name} ({country.zone})
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    )}
-                  />
+                  <Select 
+                    value={localCountry} 
+                    onValueChange={(value) => {
+                      console.log("Country changed to:", value);
+                      setLocalCountry(value);
+                    }}
+                  >
+                    <SelectTrigger id="country" className={errors.country ? "border-red-500" : ""}>
+                      <SelectValue>
+                        {countries.find(c => c.code === localCountry)?.name || "Belgique"}
+                      </SelectValue>
+                    </SelectTrigger>
+                    <SelectContent>
+                      {countries.map((country) => (
+                        <SelectItem key={country.code} value={country.code}>
+                          {country.name} ({country.zone})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   {errors.country && (
                     <p className="text-red-500 text-sm mt-1">{errors.country.message}</p>
                   )}
                   <p className="text-xs text-muted-foreground mt-1">
-                    Pays actuel: {countries.find(c => c.code === watchedCountry)?.name || "Belgique"}
+                    Pays sélectionné: {countries.find(c => c.code === localCountry)?.name}
                   </p>
                 </div>
               </div>
