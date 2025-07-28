@@ -3,9 +3,11 @@ const CACHE_NAME = 'equi-saddles-v1';
 const urlsToCache = [
   '/',
   '/catalog',
-  '/gallery',
+  '/gallery', 
   '/contact',
-  '/manifest.webmanifest'
+  '/manifest.webmanifest',
+  '/icons/icon-192.svg',
+  '/icons/icon-512.svg'
 ];
 
 // Install event - cache essential resources
@@ -51,6 +53,23 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // NEVER cache POST requests - they cause errors and are not cacheable
+  if (event.request.method !== 'GET') {
+    console.log('[SW] Skipping non-GET request:', event.request.method, event.request.url);
+    return;
+  }
+
+  // Determine cache strategy based on request type
+  const url = new URL(event.request.url);
+  const isStaticAsset = /\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot)$/i.test(url.pathname);
+  const isApiRequest = url.pathname.startsWith('/api/');
+
+  // Skip API requests from caching
+  if (isApiRequest) {
+    console.log('[SW] Skipping API request:', event.request.url);
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
@@ -67,23 +86,62 @@ self.addEventListener('fetch', (event) => {
             return response;
           }
 
-          // Clone response for caching
-          const responseToCache = response.clone();
+          // Only cache static assets and pages (not API responses)
+          if (isStaticAsset || event.request.destination === 'document') {
+            // Clone response for caching
+            const responseToCache = response.clone();
 
-          caches.open(CACHE_NAME)
-            .then((cache) => {
-              cache.put(event.request, responseToCache);
-            });
+            caches.open(CACHE_NAME)
+              .then((cache) => {
+                console.log('[SW] Caching:', event.request.url);
+                cache.put(event.request, responseToCache);
+              })
+              .catch((cacheError) => {
+                console.warn('[SW] Failed to cache:', event.request.url, cacheError);
+              });
+          }
 
           return response;
         });
       })
       .catch((error) => {
         console.error('[SW] Fetch failed:', error);
-        // Return a fallback page for navigation requests
+        
+        // Fallback strategies
         if (event.request.destination === 'document') {
-          return caches.match('/');
+          // Return cached homepage for navigation requests
+          return caches.match('/').then((cachedResponse) => {
+            if (cachedResponse) {
+              console.log('[SW] Serving cached homepage as fallback');
+              return cachedResponse;
+            }
+            // Return a simple offline page if nothing is cached
+            return new Response(`
+              <!DOCTYPE html>
+              <html>
+                <head><title>Hors ligne - Equi Saddles</title></head>
+                <body style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
+                  <h1>Hors ligne</h1>
+                  <p>Vous êtes actuellement hors ligne. Vérifiez votre connexion Internet.</p>
+                  <button onclick="window.location.reload()">Réessayer</button>
+                </body>
+              </html>
+            `, { 
+              headers: { 'Content-Type': 'text/html' }
+            });
+          });
         }
+        
+        // For images, return a placeholder
+        if (event.request.destination === 'image') {
+          return new Response(
+            '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="150" fill="#ddd"><rect width="100%" height="100%" fill="#f5f5f5"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="#999">Image non disponible</text></svg>',
+            { headers: { 'Content-Type': 'image/svg+xml' } }
+          );
+        }
+        
+        // For all other requests, let them fail naturally
+        throw error;
       })
   );
 });

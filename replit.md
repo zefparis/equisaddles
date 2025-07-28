@@ -47,20 +47,34 @@ Preferred communication style: Simple, everyday language.
 - Tous les formulaires maintenant correctement étiquetés pour les lecteurs d'écran
 - Interface administrative entièrement accessible avec navigation au clavier optimisée
 
-### July 28, 2025 - Progressive Web App (PWA) Implementation & Stripe Fixes
+### July 28, 2025 - Progressive Web App (PWA) Optimization & Security Enhancements
 - **COMPLETED**: Created complete PWA manifest.webmanifest with proper icons configuration
 - **COMPLETED**: Implemented useInstallPrompt hook to handle beforeinstallprompt events
 - **COMPLETED**: Added InstallButton component with proper prompt() and userChoice handling
-- **COMPLETED**: Created service worker (sw.js) for offline caching and PWA functionality
+- **COMPLETED**: Optimized service worker (sw.js) with smart caching strategy:
+  - Never caches POST requests (eliminates error at line 75)
+  - Selective caching for static assets (images, CSS, JS) and pages only
+  - Skips API requests from caching to prevent stale data
+  - Enhanced fallback system with offline page for navigation requests
+  - Image placeholder fallback when images fail to load
+  - Better error handling and logging for debugging
 - **COMPLETED**: Added PWA meta tags and manifest link in HTML head section
 - **COMPLETED**: Integrated install button in header (desktop) and mobile menu navigation
-- **COMPLETED**: Fixed all PWA manifest warnings with proper sizes and type fields for icons
+- **COMPLETED**: Enhanced PWA manifest with complete icon specifications:
+  - All icons now have proper `sizes` and `type` fields as required
+  - Comprehensive icon set from 72x72 to 512x512 for all device types
+  - SVG format with proper MIME types for scalability
+  - Optimized caching of essential PWA icons in service worker
 - **COMPLETED**: Set display mode to "standalone" and proper start_url configuration
 - **COMPLETED**: Added comprehensive logging with [PWAFix] tags for debugging
 - **COMPLETED**: Fixed Vite HMR WebSocket errors on Replit with graceful error handling
 - **COMPLETED**: Created vite-hmr-fix.ts utility to prevent "localhost:undefined" WebSocket crashes
 - **COMPLETED**: Added console.error override and unhandledrejection listeners for WebSocket errors
-- **COMPLETED**: Fixed Stripe 429 "Too Many Requests" errors by implementing payment intent creation flag
+- **COMPLETED**: Enhanced Stripe security and error handling:
+  - Implemented iframe detection warning to prevent security risks
+  - Fixed Stripe 429 "Too Many Requests" errors with payment intent creation flag
+  - Added automatic detection of iframe loading (bad practice warning)
+  - Console warning when Stripe is loaded in iframe for security compliance
 - **COMPLETED**: Enhanced Stripe 402 "Payment Required" error handling with detailed validation
 - **COMPLETED**: Added comprehensive error logging with [StripeFix] tags for debugging
 - **COMPLETED**: Complete multilingual translation implementation for /returns page

@@ -23,6 +23,12 @@ import DPDShippingOptions from "../components/shipping/dpd-shipping-options";
 if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
   throw new Error('Missing required Stripe key: VITE_STRIPE_PUBLIC_KEY');
 }
+
+// Stripe iframe detection - warn if loaded in iframe (bad practice)
+if (window.self !== window.top) {
+  console.warn('[StripeFix] WARNING: Stripe is being loaded in an iframe. This is a security risk and may cause payment failures. Load Stripe in the main window instead.');
+}
+
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 const checkoutSchema = z.object({
