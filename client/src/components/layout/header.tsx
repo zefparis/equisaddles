@@ -116,7 +116,7 @@ export default function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px]">
-                <nav className="flex flex-col space-y-4 mt-8">
+                <nav className="flex flex-col space-y-4 mt-8">{/* Debug: Menu mobile ouvert */}
                   {navigation.map((item) => (
                     <Link
                       key={item.name}
@@ -128,29 +128,11 @@ export default function Header() {
                     </Link>
                   ))}
                   
-                  {/* PWA Install Button in Mobile Menu */}
-                  <div className="pt-4 border-t">
-                    <div 
-                      onClick={async () => {
-                        const success = await installApp();
-                        if (success) {
-                          toast({
-                            title: "Installation réussie",
-                            description: "L'application Equi Saddles a été installée sur votre appareil.",
-                          });
-                        } else {
-                          toast({
-                            title: "Installation",
-                            description: "Vous pouvez installer l'application depuis le menu de votre navigateur.",
-                            variant: "default",
-                          });
-                        }
-                        setIsMobileMenuOpen(false);
-                      }}
-                      className="text-lg hover:text-accent transition-colors duration-200 flex items-center space-x-3 cursor-pointer"
-                    >
-                      <Download className="h-5 w-5 text-accent" />
-                      <span>{t("pwa.install")}</span>
+                  {/* Test: Always visible link */}
+                  <div className="pt-4 border-t border-gray-300 bg-red-50 p-2">
+                    <div className="text-lg flex items-center space-x-3 text-red-600">
+                      <Download className="h-5 w-5" />
+                      <span>TEST - Installer l'app</span>
                     </div>
                   </div>
                 </nav>
