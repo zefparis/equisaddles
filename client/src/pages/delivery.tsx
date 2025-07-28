@@ -356,7 +356,7 @@ export default function Delivery() {
                   </Button>
                   <Button size="sm" variant="outline">
                     <Mail className="h-3 w-3 mr-1" />
-                    support@equisaddles.com
+                    equisaddles@gmail.com
                   </Button>
                 </div>
               </div>
@@ -373,10 +373,9 @@ export default function Delivery() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="bg-green-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-green-800 mb-2">Livraison Gratuite</h4>
+                <h4 className="font-semibold text-green-800 mb-2">Frais de Livraison</h4>
                 <p className="text-sm text-green-700">
-                  <strong>Commandes supérieures à 500€</strong> en France métropolitaine - 
-                  Livraison standard offerte automatiquement !
+                  Les frais de livraison dépendent de la destination et du poids de la commande.
                 </p>
               </div>
               
@@ -415,7 +414,7 @@ export default function Delivery() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <Button variant="outline" className="flex items-center gap-2">
                     <Mail className="h-4 w-4" />
-                    shipping@equisaddles.com
+                    equisaddles@gmail.com
                   </Button>
                   <Button variant="outline" className="flex items-center gap-2">
                     <Phone className="h-4 w-4" />

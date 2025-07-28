@@ -471,6 +471,27 @@ export const translations: Record<string, Record<string, string>> = {
     "returns.timeExpired": "Délai de 14 jours dépassé",
     "returns.customProducts": "Produits personnalisés",
     
+    // Missing Return Policy Translations
+    "returns.policy.satisfactionLegalOnly": "Nous garantissons votre satisfaction selon la législation belge sur la protection des consommateurs. Retour gratuit sous 14 jours pour toute inadéquation.",
+    
+    // Missing Contact Translations
+    "returns.contact.question.title": "Une Question sur votre Retour ?",
+    "returns.contact.email": "contact@equisaddles.com", 
+    "returns.contact.phone": "+32 496 94 41 25",
+    "returns.contact.availability": "Disponible du lundi au vendredi de 9h à 18h",
+    "returns.contact.response": "Réponse garantie sous 24h ouvrées",
+    
+    // Missing Transport Translations
+    "transport.responsibility.title": "Responsabilité de Transport",
+    "transport.important": "Important :",
+    "transport.disclaimer": "Equi Saddles n'est pas responsable des dommages, pertes, vols ou retards causés par le transporteur DPD. Nous nous engageons à emballer soigneusement vos commandes et à les confier en parfait état au transporteur.",
+    "transport.recommendations": "Recommandations pour votre retour :",
+    "transport.rec1": "Emballer soigneusement le produit dans son emballage d'origine",
+    "transport.rec2": "Inclure toutes les protections et accessoires",
+    "transport.rec3": "Prendre des photos avant expédition comme preuve",
+    "transport.rec4": "Conserver le récépissé de dépôt comme justificatif",
+    "transport.rec5": "Suivre le colis via le numéro de tracking fourni",
+    
     // Return Process Content
     "returns.process.step1": "Contactez notre Service Client",
     "returns.process.step1desc": "Envoyez-nous un email à contact@equisaddles.com ou appelez-nous au +32 496 94 41 25 dans les 14 jours suivant la réception.",
@@ -531,23 +552,7 @@ export const translations: Record<string, Record<string, string>> = {
     "refund.delivery.notRefunded": "Non remboursés*",
     "refund.delivery.note": "*Sauf défaut ou erreur de notre part",
     
-    // Transport Responsibility
-    "transport.responsibility.title": "Responsabilité Transport",
-    "transport.important": "Important :",
-    "transport.disclaimer": "Equi Saddles n'est pas responsable des dommages, pertes ou retards causés par le transporteur pendant le retour. Nous recommandons fortement d'assurer vos envois de valeur.",
-    "transport.recommendations": "Nos Recommandations :",
-    "transport.rec1": "Emballez soigneusement avec protection renforcée",
-    "transport.rec2": "Photographiez l'emballage avant envoi",
-    "transport.rec3": "Conservez tous les récépissés de transport",
-    "transport.rec4": "Déclarez la valeur réelle du produit",
-    "transport.rec5": "Utilisez l'étiquette de retour fournie par nos soins",
-    
-    // Returns Contact Section
-    "returns.contact.question.title": "Une Question sur votre Retour ?",
-    "returns.contact.email": "contact@equisaddles.com",
-    "returns.contact.phone": "+32 496 94 41 25",
-    "returns.contact.availability": "Service client disponible du lundi au vendredi, 9h-18h",
-    "returns.contact.response": "Réponse garantie sous 24h ouvrées",
+
     
     "footer.warranty": "Garantie",
     "footer.faq": "FAQ", 
