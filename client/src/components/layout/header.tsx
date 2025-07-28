@@ -5,7 +5,6 @@ import { useCart } from "../../hooks/use-cart";
 import { useInstallPrompt } from "../../hooks/use-install-prompt";
 import { useToast } from "../../hooks/use-toast";
 import { Button } from "../ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Badge } from "../ui/badge";
 import { Menu, ShoppingCart, Globe, Download } from "lucide-react";
 import {
@@ -109,35 +108,59 @@ export default function Header() {
             </Button>
 
             {/* Mobile Menu Toggle */}
-            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" className="md:hidden text-white">
-                  <Menu className="h-5 w-5 text-white" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-[300px]">
-                <nav className="flex flex-col space-y-4 mt-8">{/* Debug: Menu mobile ouvert */}
-                  {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-lg hover:text-accent transition-colors duration-200"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                  
-                  {/* Test: Always visible link */}
-                  <div className="pt-4 border-t border-gray-300 bg-red-50 p-2">
-                    <div className="text-lg flex items-center space-x-3 text-red-600">
-                      <Download className="h-5 w-5" />
-                      <span>TEST - Installer l'app</span>
+            <div className="relative">
+              <Button 
+                variant="ghost" 
+                className="md:hidden text-white"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                <Menu className="h-5 w-5 text-white" />
+              </Button>
+              
+              {/* Simple Mobile Menu */}
+              {isMobileMenuOpen && (
+                <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-lg shadow-xl border z-50">
+                  <nav className="flex flex-col p-4">
+                    {navigation.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="py-3 text-gray-800 hover:text-accent transition-colors duration-200 border-b border-gray-100"
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                    
+                    {/* PWA Install Link */}
+                    <div className="pt-3 border-t border-gray-200 mt-3">
+                      <div 
+                        onClick={async () => {
+                          console.log("PWA Install clicked");
+                          const success = await installApp();
+                          if (success) {
+                            toast({
+                              title: "Installation réussie",
+                              description: "L'application a été installée.",
+                            });
+                          } else {
+                            toast({
+                              title: "Information",
+                              description: "Installation disponible via le menu navigateur.",
+                            });
+                          }
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className="flex items-center space-x-3 py-2 text-gray-800 hover:text-accent cursor-pointer transition-colors duration-200"
+                      >
+                        <Download className="h-5 w-5 text-accent" />
+                        <span>{t("pwa.install")}</span>
+                      </div>
                     </div>
-                  </div>
-                </nav>
-              </SheetContent>
-            </Sheet>
+                  </nav>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
