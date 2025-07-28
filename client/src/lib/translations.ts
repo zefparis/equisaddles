@@ -1068,6 +1068,9 @@ export const translations: Record<string, Record<string, string>> = {
     "transport.rec4": "Declare the real value of the product",
     "transport.rec5": "Use the return label provided by us",
     
+    // Missing Return Policy Translations
+    "returns.policy.satisfactionLegalOnly": "We guarantee your satisfaction according to Belgian consumer protection legislation. Free return within 14 days for any inadequacy.",
+    
     // Returns Contact Section
     "returns.contact.question.title": "A Question about your Return?",
     "returns.contact.email": "contact@equisaddles.com",
@@ -1516,6 +1519,9 @@ export const translations: Record<string, Record<string, string>> = {
     "transport.rec3": "Bewaar alle transportbonnen",
     "transport.rec4": "Geef de werkelijke waarde van het product aan",
     "transport.rec5": "Gebruik het door ons verstrekte retouretiket",
+    
+    // Missing Return Policy Translations
+    "returns.policy.satisfactionLegalOnly": "Wij garanderen uw tevredenheid volgens de Belgische wetgeving inzake consumentenbescherming. Gratis retour binnen 14 dagen bij elke inadequaatheid.",
     
     // Returns Contact Section
     "returns.contact.question.title": "Een Vraag over uw Retour?",
@@ -2017,6 +2023,9 @@ export const translations: Record<string, Record<string, string>> = {
     "transport.rec3": "Conserve todos los recibos de transporte",
     "transport.rec4": "Declare el valor real del producto",
     "transport.rec5": "Use la etiqueta de devolución proporcionada por nosotros",
+    
+    // Missing Return Policy Translations
+    "returns.policy.satisfactionLegalOnly": "Garantizamos su satisfacción según la legislación belga de protección al consumidor. Devolución gratuita dentro de 14 días por cualquier inadecuación.",
     
     // Returns Contact Section
     "returns.contact.question.title": "¿Una Pregunta sobre su Devolución?",
@@ -2556,6 +2565,9 @@ export const translations: Record<string, Record<string, string>> = {
     "transport.rec3": "Alle Transportbelege aufbewahren",
     "transport.rec4": "Den tatsächlichen Wert des Produkts angeben",
     "transport.rec5": "Das von uns bereitgestellte Rücksendeetikett verwenden",
+    
+    // Missing Return Policy Translations
+    "returns.policy.satisfactionLegalOnly": "Wir garantieren Ihre Zufriedenheit gemäß der belgischen Verbraucherschutzgesetzgebung. Kostenlose Rücksendung innerhalb von 14 Tagen bei jeder Unzulänglichkeit.",
     
     // Returns Contact Section
     "returns.contact.question.title": "Eine Frage zu Ihrer Rücksendung?",
