@@ -348,9 +348,6 @@ export default function CustomerService() {
                   <Phone className="h-4 w-4 mr-2" />
                   Ligne d'Urgence : +32 496 94 41 25
                 </Button>
-                <p className="text-xs text-red-600 mt-2">
-                  Disponible 24h/24 pour les urgences uniquement
-                </p>
               </div>
             </CardContent>
           </Card>
