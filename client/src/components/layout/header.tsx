@@ -117,32 +117,23 @@ export default function Header() {
                 <Menu className="h-5 w-5 text-white" />
               </Button>
               
-              {/* TEST: Menu always visible */}
-              <div className="fixed top-16 right-4 w-64 bg-white rounded-lg shadow-xl border z-[9999] p-4">
-                <div className="bg-green-100 p-2 mb-2 text-sm">
-                  Menu Test - État: {isMobileMenuOpen ? 'OUVERT' : 'FERMÉ'}
+              {/* Simple Mobile Menu */}
+              {isMobileMenuOpen && (
+                <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-lg shadow-xl border z-50">
+                  <nav className="flex flex-col p-4">
+                    {navigation.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="py-3 text-gray-800 hover:text-accent transition-colors duration-200 border-b border-gray-100"
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </nav>
                 </div>
-                <nav className="flex flex-col">
-                  {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="py-2 text-gray-800 hover:text-accent transition-colors duration-200 border-b border-gray-100"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                  
-                  {/* PWA Install Link */}
-                  <div className="pt-2 border-t border-gray-200 mt-2">
-                    <div className="flex items-center space-x-3 py-2 text-gray-800 cursor-pointer bg-blue-50">
-                      <Download className="h-4 w-4 text-blue-600" />
-                      <span className="text-blue-600">INSTALLER L'APP (TEST)</span>
-                    </div>
-                  </div>
-                </nav>
-              </div>
+              )}
             </div>
           </div>
         </div>
