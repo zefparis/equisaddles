@@ -72,7 +72,7 @@ export default function DPDShippingOptions({
     switch (service) {
       case "DPD_EXPRESS":
         return <Clock className="h-4 w-4" />;
-      case "DPD_RELAIS":
+      case "DPD_PICKUP":
         return <MapPin className="h-4 w-4" />;
       case "DPD_PREDICT":
         return <Package className="h-4 w-4" />;
@@ -85,7 +85,7 @@ export default function DPDShippingOptions({
     switch (service) {
       case "DPD_EXPRESS":
         return "bg-red-100 text-red-800";
-      case "DPD_RELAIS":
+      case "DPD_PICKUP":
         return "bg-blue-100 text-blue-800";
       case "DPD_PREDICT":
         return "bg-green-100 text-green-800";

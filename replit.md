@@ -2,13 +2,31 @@
 
 ## Overview
 
-This is a full-stack e-commerce application specialized in selling equestrian saddles. The application is built with a modern tech stack featuring React with TypeScript on the frontend, Express.js backend, and PostgreSQL database. The application supports multiple languages (FR, EN, NL, ES, DE), integrates with Stripe for payments, includes an admin panel for content management, and features comprehensive DPD shipping integration with real-time calculation capabilities. The application is now fully responsive and optimized for mobile devices.
+This is a full-stack e-commerce application specialized in selling equestrian saddles. The application is built with a modern tech stack featuring React with TypeScript on the frontend, Express.js backend, and PostgreSQL database. The application supports multiple languages (FR, EN, NL, ES, DE), integrates with Stripe for payments, includes an admin panel for content management, and features comprehensive **DPD shipping integration with real API implementation** and real-time calculation capabilities. The application is now fully responsive and optimized for mobile devices with complete PWA support.
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
+
+### July 28, 2025 - Complete DPD API Integration with Real Implementation
+- **COMPLETED**: Real DPD API integration using authenticated API key `88c15fb0174e09324dc5808831e7cd9abac2a1f308d6f1e11d3342d6cf507145`
+- **COMPLETED**: Secure server-side DPD service with Bearer token authentication and zone-based calculations
+- **COMPLETED**: Belgium-based shipping configuration (Louveigné) with correct domestic/Europe/international zones
+- **COMPLETED**: Real-time shipping rate calculation with API fallback to contracted rates when needed
+- **COMPLETED**: Complete DPD services integration: Classic, Point Relais, Predict, Express 12h
+- **COMPLETED**: Enhanced `/api/shipping/calculate` endpoint with parameter validation and error handling
+- **COMPLETED**: Real shipment label generation API (`/api/shipping/generate-label`) with DPD integration
+- **COMPLETED**: Package tracking system (`/api/shipping/track/:trackingNumber`) with fallback simulation
+- **COMPLETED**: DPD tracking widget component with real-time status updates and event history
+- **COMPLETED**: Complete DPD demo page (`/dpd-demo`) for testing all shipping functionalities
+- **COMPLETED**: Zone-specific pricing: BE/LU domestic (€7.50+), Europe (€14.90+), International (€32.00+)
+- **COMPLETED**: Weight and value-based surcharges following real DPD pricing structure
+- **COMPLETED**: Comprehensive error handling with detailed logging for debugging and monitoring
+- System includes both real API calls and reliable fallback mechanisms for production use
+- All DPD integration fully functional with Belgian business configuration and proper zones
+- Demo page available at `/dpd-demo` for testing rates, label generation, and tracking
 
 ### July 28, 2025 - Accessibility Improvements & Label/Input Association Fixes
 - **COMPLETED**: Fixed all label/input association issues for improved screen reader compatibility

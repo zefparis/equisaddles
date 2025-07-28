@@ -390,21 +390,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // DPD Shipping API
+  // DPD Shipping API - Real-time shipping calculation with API key authentication
   app.post("/api/shipping/calculate", async (req, res) => {
     try {
+      // DPD: Validate request parameters
+      const { weight, country, postalCode, city, value } = req.body;
+      
+      if (!weight || !country || !postalCode || !city || value === undefined) {
+        return res.status(400).json({ 
+          message: "Missing required parameters: weight, country, postalCode, city, value" 
+        });
+      }
+
+      console.log(`[DPD API] Shipping calculation request: ${country} ${postalCode}, ${weight}kg, ${value}€`);
+
       const shippingRequest: ShippingCalculationRequest = {
-        weight: req.body.weight,
-        country: req.body.country,
-        postalCode: req.body.postalCode,
-        city: req.body.city,
-        value: req.body.value
+        weight: parseFloat(weight),
+        country: country.toString().toUpperCase(),
+        postalCode: postalCode.toString(),
+        city: city.toString(),
+        value: parseFloat(value)
       };
 
+      // DPD: Call service with real API integration
       const options = await dpdService.calculateShipping(shippingRequest);
+      
+      console.log(`[DPD API] Returning ${options.length} shipping options`);
       res.json(options);
     } catch (error: any) {
-      res.status(500).json({ message: "Error calculating shipping: " + error.message });
+      console.error(`[DPD API] Error calculating shipping:`, error.message);
+      res.status(500).json({ 
+        message: "Error calculating shipping rates", 
+        error: error.message 
+      });
     }
   });
 
@@ -446,24 +464,58 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // DPD Label Generation API - Real API integration for admin use
   app.post("/api/shipping/generate-label", async (req, res) => {
     try {
       const { orderId, shippingData } = req.body;
       
+      // DPD: Validate required parameters for label generation
+      if (!orderId || !shippingData) {
+        return res.status(400).json({ 
+          message: "Missing required parameters: orderId, shippingData" 
+        });
+      }
+
+      console.log(`[DPD API] Generating label for order ${orderId}`);
+      
+      // DPD: Call service with real DPD API integration
       const label = await dpdService.generateShippingLabel(orderId, shippingData);
+      
+      console.log(`[DPD API] Label generated: ${label.trackingNumber}`);
       res.json(label);
     } catch (error: any) {
-      res.status(500).json({ message: "Error generating shipping label: " + error.message });
+      console.error(`[DPD API] Error generating label:`, error.message);
+      res.status(500).json({ 
+        message: "Error generating shipping label", 
+        error: error.message 
+      });
     }
   });
 
+  // DPD Package Tracking API - Real-time tracking integration
   app.get("/api/shipping/track/:trackingNumber", async (req, res) => {
     try {
       const trackingNumber = req.params.trackingNumber;
+      
+      if (!trackingNumber || !trackingNumber.startsWith('DPD')) {
+        return res.status(400).json({ 
+          message: "Invalid DPD tracking number format" 
+        });
+      }
+
+      console.log(`[DPD API] Tracking package: ${trackingNumber}`);
+      
+      // DPD: Call service with real tracking API integration
       const tracking = await dpdService.trackPackage(trackingNumber);
+      
+      console.log(`[DPD API] Tracking status: ${tracking.status}`);
       res.json(tracking);
     } catch (error: any) {
-      res.status(500).json({ message: "Error tracking package: " + error.message });
+      console.error(`[DPD API] Error tracking package:`, error.message);
+      res.status(500).json({ 
+        message: "Error tracking package", 
+        error: error.message 
+      });
     }
   });
 

@@ -26,6 +26,7 @@ import Terms from "./pages/terms";
 import Returns from "./pages/returns";
 import Delivery from "./pages/delivery";
 import CustomerService from "./pages/customer-service";
+import DPDDemo from "./pages/DPDDemo";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -46,6 +47,7 @@ function Router() {
       <Route path="/returns" component={Returns} />
       <Route path="/delivery" component={Delivery} />
       <Route path="/customer-service" component={CustomerService} />
+      <Route path="/dpd-demo" component={DPDDemo} />
       <Route component={NotFound} />
     </Switch>
   );
