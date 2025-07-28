@@ -13,7 +13,7 @@ import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 import { Separator } from "../components/ui/separator";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Link } from "wouter";
@@ -70,6 +70,7 @@ const CheckoutForm = () => {
     handleSubmit,
     watch,
     setValue,
+    control,
     formState: { errors },
   } = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutSchema),
@@ -304,25 +305,30 @@ const CheckoutForm = () => {
 
                 <div>
                   <Label htmlFor="country">{t("checkout.country")} *</Label>
-                  {/* FIX: label for/id - Added id to SelectTrigger for accessibility */}
-                  <Select 
-                    value={watchedCountry} 
-                    onValueChange={(value) => {
-                      setValue("country", value);
-                      setValue("postalCode", ""); // Reset postal code when country changes
-                    }}
-                  >
-                    <SelectTrigger id="country" className={errors.country ? "border-red-500" : ""}>
-                      <SelectValue placeholder={t("checkout.selectCountry")} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {countries.map((country) => (
-                        <SelectItem key={country.code} value={country.code}>
-                          {country.name} ({country.zone})
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <Controller
+                    name="country"
+                    control={control}
+                    render={({ field }) => (
+                      <Select 
+                        value={field.value} 
+                        onValueChange={(value) => {
+                          field.onChange(value);
+                          setValue("postalCode", ""); // Reset postal code when country changes
+                        }}
+                      >
+                        <SelectTrigger id="country" className={errors.country ? "border-red-500" : ""}>
+                          <SelectValue placeholder={t("checkout.selectCountry")} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {countries.map((country) => (
+                            <SelectItem key={country.code} value={country.code}>
+                              {country.name} ({country.zone})
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
                   {errors.country && (
                     <p className="text-red-500 text-sm mt-1">{errors.country.message}</p>
                   )}
