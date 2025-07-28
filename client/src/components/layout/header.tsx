@@ -14,6 +14,7 @@ import {
 } from "../ui/dropdown-menu";
 import CartModal from "../cart/cart-modal";
 import { InstallButton } from "../pwa/install-button";
+import { InstallButtonDesktop } from "../pwa/install-button-desktop";
 
 const languages = [
   { code: "fr", name: "Français", flag: <svg className="w-4 h-4" viewBox="0 0 24 16"><rect width="8" height="16" fill="#002654"/><rect x="8" width="8" height="16" fill="#ffffff"/><rect x="16" width="8" height="16" fill="#ce1126"/></svg> },
@@ -64,7 +65,7 @@ export default function Header() {
           <div className="flex items-center space-x-4">
             {/* PWA Install Button - Hidden on mobile */}
             <div className="hidden md:block">
-              <InstallButton />
+              <InstallButtonDesktop />
             </div>
             
             {/* Language Selector */}
@@ -126,10 +127,7 @@ export default function Header() {
                   
                   {/* PWA Install Button in Mobile Menu */}
                   <div className="pt-4 border-t">
-                    <div className="text-lg hover:text-accent transition-colors duration-200 flex items-center space-x-3">
-                      <Download className="h-5 w-5 text-accent" />
-                      <InstallButton />
-                    </div>
+                    <InstallButton />
                   </div>
                 </nav>
               </SheetContent>

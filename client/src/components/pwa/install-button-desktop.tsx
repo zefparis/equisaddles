@@ -4,27 +4,22 @@ import { useInstallPrompt } from '../../hooks/use-install-prompt';
 import { useToast } from '../../hooks/use-toast';
 import { useLanguage } from '../../hooks/use-language';
 
-export function InstallButton() {
+export function InstallButtonDesktop() {
   const { canInstall, isInstalled, installApp } = useInstallPrompt();
   const { toast } = useToast();
   const { t } = useLanguage();
 
   if (isInstalled) {
     return (
-      <div className="text-lg transition-colors duration-200 flex items-center space-x-3 text-green-600">
-        <Check className="h-5 w-5" />
-        <span>{t("pwa.install")} ✓</span>
-      </div>
+      <Button variant="outline" size="sm" disabled className="gap-2">
+        <Check className="h-4 w-4" />
+        {t("pwa.install")} ✓
+      </Button>
     );
   }
 
   if (!canInstall) {
-    return (
-      <div className="text-lg hover:text-accent transition-colors duration-200 flex items-center space-x-3 text-gray-500">
-        <Download className="h-5 w-5" />
-        <span>{t("pwa.install")} (déjà installée ou non disponible)</span>
-      </div>
-    );
+    return null;
   }
 
   const handleInstall = async () => {
@@ -45,12 +40,14 @@ export function InstallButton() {
   };
 
   return (
-    <div 
+    <Button 
       onClick={handleInstall}
-      className="text-lg hover:text-accent transition-colors duration-200 flex items-center space-x-3 cursor-pointer"
+      variant="outline" 
+      size="sm" 
+      className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
     >
-      <Download className="h-5 w-5 text-accent" />
-      <span>{t("pwa.install")}</span>
-    </div>
+      <Download className="h-4 w-4" />
+      {t("pwa.install")}
+    </Button>
   );
 }
