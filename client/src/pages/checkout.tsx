@@ -71,13 +71,33 @@ const CheckoutForm = () => {
     watch,
     setValue,
     control,
+    reset,
     formState: { errors },
   } = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutSchema),
     defaultValues: {
       country: "BE", // Belgique par défaut
+      city: "",
+      postalCode: "",
+      name: "",
+      email: "",
+      address: "",
+      phone: "",
     },
   });
+
+  // Force reset to ensure default values are properly set
+  useEffect(() => {
+    reset({
+      country: "BE",
+      city: "",
+      postalCode: "",
+      name: "",
+      email: "",
+      address: "",
+      phone: "",
+    });
+  }, []);
 
   const watchedCountry = watch("country");
   const watchedPostalCode = watch("postalCode");
@@ -310,14 +330,17 @@ const CheckoutForm = () => {
                     control={control}
                     render={({ field }) => (
                       <Select 
-                        value={field.value} 
+                        value={field.value || "BE"} 
                         onValueChange={(value) => {
+                          console.log("Country changed to:", value); // Debug log
                           field.onChange(value);
                           setValue("postalCode", ""); // Reset postal code when country changes
                         }}
                       >
                         <SelectTrigger id="country" className={errors.country ? "border-red-500" : ""}>
-                          <SelectValue placeholder={t("checkout.selectCountry")} />
+                          <SelectValue placeholder="Sélectionnez un pays">
+                            {countries.find(c => c.code === (field.value || "BE"))?.name || "Belgique"}
+                          </SelectValue>
                         </SelectTrigger>
                         <SelectContent>
                           {countries.map((country) => (
@@ -332,6 +355,9 @@ const CheckoutForm = () => {
                   {errors.country && (
                     <p className="text-red-500 text-sm mt-1">{errors.country.message}</p>
                   )}
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Pays actuel: {countries.find(c => c.code === watchedCountry)?.name || "Belgique"}
+                  </p>
                 </div>
               </div>
 
