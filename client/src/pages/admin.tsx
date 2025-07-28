@@ -761,6 +761,7 @@ export default function Admin() {
                 </div>
                 <div>
                   <Label htmlFor="category">Catégorie *</Label>
+                  {/* FIX: label for/id - Added id to SelectTrigger for accessibility */}
                   <Select
                     value={productForm.watch("category")}
                     onValueChange={(value) => {
@@ -771,7 +772,7 @@ export default function Admin() {
                       }
                     }}
                   >
-                    <SelectTrigger>
+                    <SelectTrigger id="category">
                       <SelectValue placeholder={t("admin.selectCategory")} />
                     </SelectTrigger>
                     <SelectContent>
@@ -789,11 +790,12 @@ export default function Admin() {
               {productForm.watch("category") === "Accessoires" && (
                 <div>
                   <Label htmlFor="subcategory">Sous-catégorie *</Label>
+                  {/* FIX: label for/id - Added id to SelectTrigger for accessibility */}
                   <Select
                     value={productForm.watch("subcategory") || ""}
                     onValueChange={(value) => productForm.setValue("subcategory", value)}
                   >
-                    <SelectTrigger>
+                    <SelectTrigger id="subcategory">
                       <SelectValue placeholder={t("admin.selectSubcategory")} />
                     </SelectTrigger>
                     <SelectContent>
@@ -810,11 +812,12 @@ export default function Admin() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div>
                   <Label htmlFor="size">Taille *</Label>
+                  {/* FIX: label for/id - Added id to SelectTrigger for accessibility */}
                   <Select
                     value={productForm.watch("size")}
                     onValueChange={(value) => productForm.setValue("size", value)}
                   >
-                    <SelectTrigger>
+                    <SelectTrigger id="size">
                       <SelectValue placeholder={t("admin.selectSize")} />
                     </SelectTrigger>
                     <SelectContent>
@@ -928,11 +931,12 @@ export default function Admin() {
 
               <div>
                 <Label htmlFor="galleryCategory">Catégorie *</Label>
+                {/* FIX: label for/id - Added id to SelectTrigger for accessibility */}
                 <Select
                   value={galleryForm.watch("category")}
                   onValueChange={(value) => galleryForm.setValue("category", value)}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger id="galleryCategory">
                     <SelectValue placeholder={t("admin.selectCategory")} />
                   </SelectTrigger>
                   <SelectContent>

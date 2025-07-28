@@ -157,8 +157,9 @@ export default function Catalog() {
               </div>
             ) : (
               <div className="flex-1">
+                {/* ACCESSIBILITY: Added aria-label for screen readers */}
                 <Select value={searchTerm} onValueChange={setSearchTerm}>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label={t("catalog.selectAccessory")}>
                     <SelectValue placeholder={t("catalog.selectAccessory")} />
                   </SelectTrigger>
                   <SelectContent>
@@ -173,8 +174,9 @@ export default function Catalog() {
               </div>
             )}
             
+            {/* ACCESSIBILITY: Added aria-label for screen readers */}
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-full sm:w-48">
+              <SelectTrigger className="w-full sm:w-48" aria-label={t("catalog.sortBy")}>
                 <SelectValue placeholder={t("catalog.sortBy")} />
               </SelectTrigger>
               <SelectContent>

@@ -6,6 +6,7 @@ import { useToast } from "../../hooks/use-toast";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
+import { Checkbox } from "../ui/checkbox";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "../ui/dialog";
@@ -198,11 +199,11 @@ export default function ProductImageManager({ productId }: ProductImageManagerPr
                 />
               </div>
               <div className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
+                {/* FIX: label for/id - Changed input to Checkbox component for consistency */}
+                <Checkbox
                   id="isMain"
                   checked={uploadForm.isMain}
-                  onChange={(e) => setUploadForm({ ...uploadForm, isMain: e.target.checked })}
+                  onCheckedChange={(checked: boolean) => setUploadForm({ ...uploadForm, isMain: checked })}
                 />
                 <Label htmlFor="isMain">Image principale</Label>
               </div>

@@ -282,8 +282,9 @@ const CheckoutForm = () => {
 
                 <div>
                   <Label htmlFor="country">{t("checkout.country")} *</Label>
+                  {/* FIX: label for/id - Added id to SelectTrigger for accessibility */}
                   <Select value={watchedCountry} onValueChange={(value) => register("country").onChange({ target: { value } })}>
-                    <SelectTrigger className={errors.country ? "border-red-500" : ""}>
+                    <SelectTrigger id="country" className={errors.country ? "border-red-500" : ""}>
                       <SelectValue placeholder={t("checkout.selectCountry")} />
                     </SelectTrigger>
                     <SelectContent>
