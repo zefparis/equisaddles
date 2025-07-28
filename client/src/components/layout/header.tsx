@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { useLanguage } from "../../hooks/use-language";
 import { useCart } from "../../hooks/use-cart";
+import { useInstallPrompt } from "../../hooks/use-install-prompt";
+import { useToast } from "../../hooks/use-toast";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Badge } from "../ui/badge";
@@ -13,7 +15,6 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import CartModal from "../cart/cart-modal";
-import { InstallButton } from "../pwa/install-button";
 import { InstallButtonDesktop } from "../pwa/install-button-desktop";
 
 const languages = [
@@ -27,6 +28,8 @@ const languages = [
 export default function Header() {
   const { language, setLanguage, t } = useLanguage();
   const { totalItems } = useCart();
+  const { installApp } = useInstallPrompt();
+  const { toast } = useToast();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -127,7 +130,28 @@ export default function Header() {
                   
                   {/* PWA Install Button in Mobile Menu */}
                   <div className="pt-4 border-t">
-                    <InstallButton />
+                    <div 
+                      onClick={async () => {
+                        const success = await installApp();
+                        if (success) {
+                          toast({
+                            title: "Installation réussie",
+                            description: "L'application Equi Saddles a été installée sur votre appareil.",
+                          });
+                        } else {
+                          toast({
+                            title: "Installation",
+                            description: "Vous pouvez installer l'application depuis le menu de votre navigateur.",
+                            variant: "default",
+                          });
+                        }
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="text-lg hover:text-accent transition-colors duration-200 flex items-center space-x-3 cursor-pointer"
+                    >
+                      <Download className="h-5 w-5 text-accent" />
+                      <span>{t("pwa.install")}</span>
+                    </div>
                   </div>
                 </nav>
               </SheetContent>
