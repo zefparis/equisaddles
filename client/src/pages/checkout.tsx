@@ -6,6 +6,7 @@ import { useLanguage } from "../hooks/use-language";
 import { useToast } from "../hooks/use-toast";
 import { apiRequest } from "../lib/queryClient";
 import { scrollToTop } from "../lib/utils";
+import { validatePostalCode, getPostalCodeExample, getPostalCodeMaxLength, formatPostalCode } from "../lib/postal-validation";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Input } from "../components/ui/input";
@@ -30,21 +31,28 @@ const checkoutSchema = z.object({
   phone: z.string().optional(),
   address: z.string().min(5, "L'adresse est requise"),
   city: z.string().min(2, "La ville est requise"),
-  postalCode: z.string().min(5, "Le code postal est requis"),
+  postalCode: z.string().min(1, "Le code postal est requis"),
   country: z.string().min(2, "Le pays est requis"),
+}).refine((data) => validatePostalCode(data.country, data.postalCode), {
+  message: "Format de code postal invalide pour ce pays",
+  path: ["postalCode"],
 });
 
 type CheckoutFormData = z.infer<typeof checkoutSchema>;
 
 const countries = [
-  { code: "FR", name: "France" },
-  { code: "BE", name: "Belgique" },
-  { code: "NL", name: "Pays-Bas" },
-  { code: "DE", name: "Allemagne" },
-  { code: "ES", name: "Espagne" },
-  { code: "IT", name: "Italie" },
-  { code: "CH", name: "Suisse" },
-  { code: "LU", name: "Luxembourg" },
+  { code: "BE", name: "Belgique", zone: "domestic" },
+  { code: "LU", name: "Luxembourg", zone: "domestic" },
+  { code: "FR", name: "France", zone: "europe" },
+  { code: "NL", name: "Pays-Bas", zone: "europe" },
+  { code: "DE", name: "Allemagne", zone: "europe" },
+  { code: "ES", name: "Espagne", zone: "europe" },
+  { code: "IT", name: "Italie", zone: "europe" },
+  { code: "CH", name: "Suisse", zone: "europe" },
+  { code: "AT", name: "Autriche", zone: "europe" },
+  { code: "GB", name: "Royaume-Uni", zone: "europe" },
+  { code: "US", name: "États-Unis", zone: "international" },
+  { code: "CA", name: "Canada", zone: "international" },
 ];
 
 const CheckoutForm = () => {
@@ -61,16 +69,25 @@ const CheckoutForm = () => {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutSchema),
     defaultValues: {
-      country: "FR",
+      country: "BE", // Belgique par défaut
     },
   });
 
   const watchedCountry = watch("country");
   const watchedPostalCode = watch("postalCode");
+  const watchedCity = watch("city");
+
+  // Auto-formatting du code postal
+  const handlePostalCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/[^a-zA-Z0-9\s-]/g, '');
+    const formatted = formatPostalCode(watchedCountry, value);
+    setValue("postalCode", formatted);
+  };
 
   useEffect(() => {
     if (watchedCountry && watchedPostalCode) {
@@ -272,25 +289,36 @@ const CheckoutForm = () => {
                   <Input
                     id="postalCode"
                     {...register("postalCode")}
-                    placeholder={t("checkout.postalCodePlaceholder")}
+                    onChange={handlePostalCodeChange}
+                    placeholder={`Ex: ${getPostalCodeExample(watchedCountry)}`}
+                    maxLength={getPostalCodeMaxLength(watchedCountry)}
                     className={errors.postalCode ? "border-red-500" : ""}
                   />
                   {errors.postalCode && (
                     <p className="text-red-500 text-sm mt-1">{errors.postalCode.message}</p>
                   )}
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Format: {getPostalCodeExample(watchedCountry)} ({countries.find(c => c.code === watchedCountry)?.name})
+                  </p>
                 </div>
 
                 <div>
                   <Label htmlFor="country">{t("checkout.country")} *</Label>
                   {/* FIX: label for/id - Added id to SelectTrigger for accessibility */}
-                  <Select value={watchedCountry} onValueChange={(value) => register("country").onChange({ target: { value } })}>
+                  <Select 
+                    value={watchedCountry} 
+                    onValueChange={(value) => {
+                      setValue("country", value);
+                      setValue("postalCode", ""); // Reset postal code when country changes
+                    }}
+                  >
                     <SelectTrigger id="country" className={errors.country ? "border-red-500" : ""}>
                       <SelectValue placeholder={t("checkout.selectCountry")} />
                     </SelectTrigger>
                     <SelectContent>
                       {countries.map((country) => (
                         <SelectItem key={country.code} value={country.code}>
-                          {country.name}
+                          {country.name} ({country.zone})
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -405,6 +433,8 @@ export default function Checkout() {
   useEffect(() => {
     scrollToTop();
   }, []);
+
+
 
   // FIX: Stripe 429 - Prevent multiple API calls by using flag and debouncing
   useEffect(() => {

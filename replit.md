@@ -24,9 +24,14 @@ Preferred communication style: Simple, everyday language.
 - **COMPLETED**: Zone-specific pricing: BE/LU domestic (€7.50+), Europe (€14.90+), International (€32.00+)
 - **COMPLETED**: Weight and value-based surcharges following real DPD pricing structure
 - **COMPLETED**: Comprehensive error handling with detailed logging for debugging and monitoring
+- **COMPLETED**: Smart postal code validation system adapted to each country's format with auto-formatting
+- **COMPLETED**: Enhanced checkout form with real-time DPD shipping calculation based on destination
+- **COMPLETED**: Country-specific postal code validation (BE: 4 digits, FR: 5 digits, NL: 4+2 letters, etc.)
+- **COMPLETED**: Auto-formatting postal codes per country standards (NL: 1234 AB, GB: SW1A 1AA, etc.)
 - System includes both real API calls and reliable fallback mechanisms for production use
 - All DPD integration fully functional with Belgian business configuration and proper zones
 - Demo page available at `/dpd-demo` for testing rates, label generation, and tracking
+- Checkout form automatically calculates shipping costs when address is complete and valid
 
 ### July 28, 2025 - Accessibility Improvements & Label/Input Association Fixes
 - **COMPLETED**: Fixed all label/input association issues for improved screen reader compatibility
