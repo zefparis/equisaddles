@@ -97,6 +97,11 @@ const CheckoutForm = () => {
     console.log("Country synchronized to:", localCountry);
   }, [localCountry, setValue]);
 
+  // Debug: Afficher le pays actuel
+  useEffect(() => {
+    console.log("Current local country:", localCountry);
+  }, [localCountry]);
+
   // Vider le code postal quand le pays change
   useEffect(() => {
     if (localCountry !== "BE") { // Ne pas vider au premier rendu
@@ -354,6 +359,7 @@ const CheckoutForm = () => {
                   <p className="text-xs text-muted-foreground mt-1">
                     Pays sélectionné: {countries.find(c => c.code === localCountry)?.name}
                   </p>
+                  <input type="hidden" {...register("country")} value={localCountry} />
                 </div>
               </div>
 
@@ -363,9 +369,9 @@ const CheckoutForm = () => {
               <div className="mb-6">
                 <DPDShippingOptions
                   items={items}
-                  country={watchedCountry}
+                  country={localCountry}
                   postalCode={watchedPostalCode}
-                  city={watch("city")}
+                  city={watchedCity}
                   onOptionSelect={handleShippingOptionSelect}
                   selectedOption={selectedShippingOption}
                 />
