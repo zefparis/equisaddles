@@ -13,7 +13,7 @@ export function InstallButton() {
     return (
       <Button variant="outline" size="sm" disabled className="gap-2">
         <Check className="h-4 w-4" />
-        App installée
+        {t("pwa.install")} ✓
       </Button>
     );
   }
@@ -47,7 +47,7 @@ export function InstallButton() {
       className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
     >
       <Download className="h-4 w-4" />
-      Installer l'app
+      {t("pwa.install")}
     </Button>
   );
 }

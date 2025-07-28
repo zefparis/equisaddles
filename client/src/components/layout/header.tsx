@@ -5,7 +5,7 @@ import { useCart } from "../../hooks/use-cart";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Badge } from "../ui/badge";
-import { Menu, ShoppingCart, Globe } from "lucide-react";
+import { Menu, ShoppingCart, Globe, Download } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -126,7 +126,10 @@ export default function Header() {
                   
                   {/* PWA Install Button in Mobile Menu */}
                   <div className="pt-4 border-t">
-                    <InstallButton />
+                    <div className="text-lg hover:text-accent transition-colors duration-200 flex items-center space-x-3">
+                      <Download className="h-5 w-5 text-accent" />
+                      <InstallButton />
+                    </div>
                   </div>
                 </nav>
               </SheetContent>
