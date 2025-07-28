@@ -70,6 +70,11 @@ export default function Home() {
         </div>
         
         <div className="relative z-10 text-center px-4 fade-in text-white">
+          {/* TEST VISUEL */}
+          <div className="bg-red-600 text-white p-4 mb-4 rounded-lg text-xl font-bold">
+            TEST - SI VOUS VOYEZ CECI, LE SITE EST À JOUR !
+          </div>
+          
           <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
             {t("hero.title")}
           </h1>
