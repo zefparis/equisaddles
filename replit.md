@@ -10,6 +10,20 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+### July 28, 2025 - Accessibility Improvements & Label/Input Association Fixes
+- **COMPLETED**: Fixed all label/input association issues for improved screen reader compatibility
+- **COMPLETED**: Replaced native input checkbox with shadcn/ui Checkbox component in ProductImageManager
+- **COMPLETED**: Added missing id attributes to all SelectTrigger components in admin forms:
+  - category, subcategory, size, and galleryCategory SelectTriggers now have proper IDs
+- **COMPLETED**: Added id="country" to country selection in checkout form
+- **COMPLETED**: Enhanced navigation Select components in catalog with aria-label attributes
+- **COMPLETED**: Resolved all TypeScript errors related to component changes
+- **COMPLETED**: Verified all htmlFor attributes now match corresponding id attributes
+- Application maintenant conforme aux standards d'accessibilité WCAG pour les associations label/input
+- Amélioration significative de l'expérience utilisateur pour les technologies d'assistance
+- Tous les formulaires maintenant correctement étiquetés pour les lecteurs d'écran
+- Interface administrative entièrement accessible avec navigation au clavier optimisée
+
 ### July 28, 2025 - Progressive Web App (PWA) Implementation & Stripe Fixes
 - **COMPLETED**: Created complete PWA manifest.webmanifest with proper icons configuration
 - **COMPLETED**: Implemented useInstallPrompt hook to handle beforeinstallprompt events
