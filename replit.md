@@ -20,6 +20,9 @@ Preferred communication style: Simple, everyday language.
 - **COMPLETED**: Fixed all PWA manifest warnings with proper sizes and type fields for icons
 - **COMPLETED**: Set display mode to "standalone" and proper start_url configuration
 - **COMPLETED**: Added comprehensive logging with [PWAFix] tags for debugging
+- **COMPLETED**: Fixed Vite HMR WebSocket errors on Replit with graceful error handling
+- **COMPLETED**: Created vite-hmr-fix.ts utility to prevent "localhost:undefined" WebSocket crashes
+- **COMPLETED**: Added console.error override and unhandledrejection listeners for WebSocket errors
 - **COMPLETED**: Fixed Stripe 429 "Too Many Requests" errors by implementing payment intent creation flag
 - **COMPLETED**: Enhanced Stripe 402 "Payment Required" error handling with detailed validation
 - **COMPLETED**: Added comprehensive error logging with [StripeFix] tags for debugging
@@ -29,6 +32,15 @@ Preferred communication style: Simple, everyday language.
 - Bouton "Installer l'app" disponible dans l'interface utilisateur avec gestion des états
 - Service Worker opérationnel pour fonctionnement hors ligne et mise en cache
 - Configuration PWA conforme aux standards avec manifeste complet et icônes SVG
+- Système de paiement Stripe maintenant robuste contre les erreurs 429 et 402
+- Protection anti-spam et validation améliorée côté client et serveur
+- Logs de debug détaillés pour faciliter le suivi des erreurs de paiement
+- Gestion d'erreurs spécifiques selon le type d'erreur Stripe rencontrée
+- Page des retours entièrement traduite dans les 5 langues (FR, EN, NL, ES, DE)
+- Correction du problème d'affichage de code en ajoutant toutes les traductions manquantes
+- Fix WebSocket HMR: élimination des erreurs "localhost:undefined" sans désactiver le hot reload
+- Protection gracieuse contre les erreurs de connexion WebSocket sur l'environnement Replit
+- Vite HMR reste actif avec gestion d'erreurs robuste en arrière-plan
 - Système de paiement Stripe maintenant robuste contre les erreurs 429 et 402
 - Protection anti-spam et validation améliorée côté client et serveur
 - Logs de debug détaillés pour faciliter le suivi des erreurs de paiement
