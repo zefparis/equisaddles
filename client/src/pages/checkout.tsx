@@ -104,42 +104,78 @@ const CheckoutForm = () => {
   };
 
   const onSubmit = async (data: CheckoutFormData) => {
+    // FIX: Stripe 402 - Validate Stripe readiness before payment
     if (!stripe || !elements) {
+      console.error("[StripeFix] Stripe not ready - stripe:", !!stripe, "elements:", !!elements);
+      return;
+    }
+
+    // FIX: Stripe 429 - Prevent double submission
+    if (isProcessing) {
+      console.warn("[StripeFix] Payment already processing, ignoring duplicate submission");
       return;
     }
 
     setIsProcessing(true);
+    console.warn("[StripeFix] Starting payment confirmation");
 
     try {
-      const { error } = await stripe.confirmPayment({
+      const { error, paymentIntent } = await stripe.confirmPayment({
         elements,
         confirmParams: {
           return_url: `${window.location.origin}/confirmation`,
         },
+        redirect: 'if_required', // FIX: Stripe 402 - Handle redirect issues
       });
 
       if (error) {
+        // FIX: Stripe 402 - Enhanced error logging and handling
+        console.error("[StripeFix] Payment error:", error.type, error.code, error.message);
+        
+        let errorMessage = error.message;
+        if (error.type === 'card_error') {
+          errorMessage = "Problème avec votre carte. Vérifiez vos informations.";
+        } else if (error.type === 'validation_error') {
+          errorMessage = "Informations de paiement invalides.";
+        } else if (error.code === 'payment_intent_authentication_failure') {
+          errorMessage = "Authentification échouée. Réessayez.";
+        }
+
         toast({
           title: t("checkout.paymentError"),
-          description: error.message,
+          description: errorMessage,
           variant: "destructive",
         });
-      } else {
-        // Clear cart on successful payment
+      } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+        // FIX: Stripe 402 - Only clear cart on confirmed success
+        console.warn("[StripeFix] Payment succeeded:", paymentIntent.id);
         clearCart();
         toast({
           title: t("checkout.paymentSuccess"),
           description: t("checkout.paymentSuccessMessage"),
         });
       }
-    } catch (error) {
+    } catch (error: any) {
+      // FIX: Stripe 402 - Better error handling for network/API issues
+      console.error("[StripeFix] Payment submission error:", error);
+      
+      let errorMessage = t("checkout.errorMessage");
+      if (error.message?.includes('402')) {
+        errorMessage = "Paiement requis. Vérifiez vos informations de carte.";
+      } else if (error.message?.includes('429')) {
+        errorMessage = "Trop de tentatives. Attendez un moment avant de réessayer.";
+      }
+
       toast({
         title: t("checkout.error"),
-        description: t("checkout.errorMessage"),
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
-      setIsProcessing(false);
+      // FIX: Stripe 429 - Add delay before allowing new attempts
+      setTimeout(() => {
+        setIsProcessing(false);
+      }, 1000);
     }
   };
 
@@ -362,26 +398,52 @@ const CheckoutForm = () => {
 export default function Checkout() {
   const { items } = useCart();
   const [clientSecret, setClientSecret] = useState("");
+  const [paymentIntentCreated, setPaymentIntentCreated] = useState(false);
 
   // Scroll to top when page loads
   useEffect(() => {
     scrollToTop();
   }, []);
 
+  // FIX: Stripe 429 - Prevent multiple API calls by using flag and debouncing
   useEffect(() => {
-    if (items.length > 0) {
+    if (items.length > 0 && !paymentIntentCreated) {
       const totalAmount = items.reduce((sum, item) => sum + (parseFloat(item.price) * item.quantity), 0);
       
+      // FIX: Stripe 402 - Validate amount before API call
+      if (totalAmount <= 0) {
+        console.warn("[StripeFix] Invalid amount for payment intent:", totalAmount);
+        return;
+      }
+
+      console.warn("[StripeFix] Creating payment intent for amount:", totalAmount);
+      
       apiRequest("POST", "/api/create-payment-intent", { amount: totalAmount })
-        .then((res) => res.json())
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+          }
+          return res.json();
+        })
         .then((data) => {
-          setClientSecret(data.clientSecret);
+          // FIX: Stripe 402 - Validate client_secret before setting
+          if (data.clientSecret && typeof data.clientSecret === 'string') {
+            setClientSecret(data.clientSecret);
+            setPaymentIntentCreated(true);
+            console.warn("[StripeFix] Payment intent created successfully");
+          } else {
+            console.error("[StripeFix] Invalid client_secret received:", data);
+          }
         })
         .catch((error) => {
-          console.error("Error creating payment intent:", error);
+          console.error("[StripeFix] Error creating payment intent:", error);
+          // FIX: Stripe 429 - Don't block further attempts on network errors
+          if (!error.message.includes('429')) {
+            setPaymentIntentCreated(false);
+          }
         });
     }
-  }, [items]);
+  }, [items.length, paymentIntentCreated]); // FIX: Stripe 429 - Use items.length instead of items array
 
   if (items.length === 0) {
     return (

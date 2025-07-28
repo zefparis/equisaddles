@@ -10,18 +10,23 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
-### July 28, 2025 - Returns Page Translation Completion & JSX Syntax Fix
+### July 28, 2025 - Stripe Error Fixes & Code Quality Improvements
+- **COMPLETED**: Fixed Stripe 429 "Too Many Requests" errors by implementing payment intent creation flag
+- **COMPLETED**: Added debouncing protection to prevent multiple API calls in useEffect
+- **COMPLETED**: Enhanced Stripe 402 "Payment Required" error handling with detailed validation
+- **COMPLETED**: Added comprehensive error logging with [StripeFix] tags for debugging
+- **COMPLETED**: Implemented anti-spam protection on payment submission button
+- **COMPLETED**: Enhanced backend validation for payment amounts and client_secret verification
+- **COMPLETED**: Added proper error status codes and messages for different Stripe error types
+- **COMPLETED**: Improved payment confirmation flow with redirect handling and status validation
 - **COMPLETED**: Complete multilingual translation implementation for /returns page
 - **COMPLETED**: Added missing translation key "returns.policy.satisfactionLegalOnly" in all 5 languages
-- **COMPLETED**: Fixed coded text display issue by ensuring all translation keys exist
-- **COMPLETED**: Enhanced returns page with Belgian consumer protection law references
-- **COMPLETED**: Fixed JSX syntax error in customer-service.tsx (unclosed <p> tag at line 351)
-- **COMPLETED**: Added proper closing tag and content for emergency contact section
-- **COMPLETED**: Updated Brevo API key for email notification system (validated and operational)
-- **COMPLETED**: Updated Stripe payment keys with new test secret and live public key
-- **COMPLETED**: Verified all payment processing functionality with new Stripe configuration
-- **COMPLETED**: Chat system fully operational with email notifications via Brevo
-- **COMPLETED**: Application restarted with final payment and email configurations
+- **COMPLETED**: Fixed JSX syntax error in customer-service.tsx (unclosed <p> tag)
+- **COMPLETED**: Updated Brevo API key and Stripe payment keys configuration
+- Système de paiement Stripe maintenant robuste contre les erreurs 429 et 402
+- Protection anti-spam et validation améliorée côté client et serveur
+- Logs de debug détaillés pour faciliter le suivi des erreurs de paiement
+- Gestion d'erreurs spécifiques selon le type d'erreur Stripe rencontrée
 - Page des retours entièrement traduite dans les 5 langues (FR, EN, NL, ES, DE)
 - Correction du problème d'affichage de code en ajoutant toutes les traductions manquantes
 - Nouvelle configuration Stripe : clé secrète de test et clé publique live

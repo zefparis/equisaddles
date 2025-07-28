@@ -238,28 +238,73 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Stripe payment integration
   app.post("/api/create-payment-intent", async (req, res) => {
     if (!stripe) {
+      console.error("[StripeFix] Stripe not configured - missing STRIPE_SECRET_KEY");
       return res.status(500).json({ message: "Stripe not configured. Please set STRIPE_SECRET_KEY environment variable." });
     }
 
     try {
       const { amount, currency = "eur" } = req.body;
       
-      if (!amount || amount <= 0) {
+      // FIX: Stripe 402 - Enhanced validation
+      if (!amount || typeof amount !== 'number' || amount <= 0) {
+        console.warn("[StripeFix] Invalid amount received:", amount);
         return res.status(400).json({ message: "Valid amount is required" });
       }
 
+      if (amount > 999999) { // Prevent extremely large amounts
+        console.warn("[StripeFix] Amount too large:", amount);
+        return res.status(400).json({ message: "Amount too large" });
+      }
+
+      console.warn("[StripeFix] Creating payment intent for amount:", amount, "currency:", currency);
+
       const paymentIntent = await stripe.paymentIntents.create({
         amount: Math.round(amount * 100), // Convert to cents
-        currency: currency,
+        currency: currency.toLowerCase(),
         automatic_payment_methods: {
           enabled: true,
         },
+        // FIX: Stripe 402 - Add metadata for tracking
+        metadata: {
+          created_at: new Date().toISOString(),
+          source: 'equi_saddles_checkout'
+        }
       });
 
+      // FIX: Stripe 402 - Validate client_secret before sending
+      if (!paymentIntent.client_secret) {
+        console.error("[StripeFix] No client_secret in payment intent:", paymentIntent.id);
+        return res.status(500).json({ message: "Failed to create payment intent" });
+      }
+
+      console.warn("[StripeFix] Payment intent created successfully:", paymentIntent.id);
       res.json({ clientSecret: paymentIntent.client_secret });
     } catch (error: any) {
-      console.error("Error creating payment intent:", error);
-      res.status(500).json({ message: "Error creating payment intent: " + error.message });
+      // FIX: Stripe 429 - Enhanced error handling with specific status codes
+      console.error("[StripeFix] Error creating payment intent:", error.type, error.code, error.message);
+      
+      let statusCode = 500;
+      let message = "Error creating payment intent";
+
+      if (error.type === 'StripeCardError') {
+        statusCode = 402;
+        message = "Card error: " + error.message;
+      } else if (error.type === 'StripeRateLimitError') {
+        statusCode = 429;
+        message = "Too many requests. Please try again later.";
+      } else if (error.type === 'StripeInvalidRequestError') {
+        statusCode = 400;
+        message = "Invalid request: " + error.message;
+      } else if (error.type === 'StripeAPIError') {
+        statusCode = 502;
+        message = "Stripe API error. Please try again.";
+      }
+
+      res.status(statusCode).json({ 
+        message: message,
+        type: error.type,
+        code: error.code 
+      });
     }
   });
 
