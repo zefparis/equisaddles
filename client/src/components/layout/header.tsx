@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import CartModal from "../cart/cart-modal";
+import { InstallButton } from "../pwa/install-button";
 
 const languages = [
   { code: "fr", name: "Français", flag: <svg className="w-4 h-4" viewBox="0 0 24 16"><rect width="8" height="16" fill="#002654"/><rect x="8" width="8" height="16" fill="#ffffff"/><rect x="16" width="8" height="16" fill="#ce1126"/></svg> },
@@ -61,6 +62,11 @@ export default function Header() {
 
           {/* Header Actions */}
           <div className="flex items-center space-x-4">
+            {/* PWA Install Button - Hidden on mobile */}
+            <div className="hidden md:block">
+              <InstallButton />
+            </div>
+            
             {/* Language Selector */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -117,6 +123,11 @@ export default function Header() {
                       {item.name}
                     </Link>
                   ))}
+                  
+                  {/* PWA Install Button in Mobile Menu */}
+                  <div className="pt-4 border-t">
+                    <InstallButton />
+                  </div>
                 </nav>
               </SheetContent>
             </Sheet>
