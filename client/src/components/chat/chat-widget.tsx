@@ -196,7 +196,7 @@ export default function ChatWidget({ isAdmin = false, sessionId: adminSessionId,
   }, [externalIsOpen]);
   
   if (!isAdmin && !isOpen) {
-    return null; // Le bouton sera géré par ChatButton
+    return null;
   }
 
   if (!isOpen && isAdmin) {

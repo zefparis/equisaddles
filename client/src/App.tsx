@@ -27,7 +27,7 @@ import NotFound from "./pages/not-found";
 import { queryClient } from "./lib/queryClient";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
-import ChatWidget from "./components/chat/chat-widget";
+import ChatButton from "./components/chat/chat-button";
 
 function Router() {
   const [location] = useLocation();
@@ -75,8 +75,8 @@ function Router() {
               </main>
               <Footer />
               
-              {/* Chat Widget flottant pour toutes les pages publiques */}
-              <ChatWidget />
+              {/* Chat Button flottant pour toutes les pages publiques */}
+              <ChatButton />
             </div>
             <Toaster />
           </AdminAuthProvider>

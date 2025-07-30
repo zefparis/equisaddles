@@ -1,33 +1,43 @@
-import React from "react";
-import { Button } from "../ui/button";
-import { Badge } from "../ui/badge";
+import { useState } from "react";
 import { MessageCircle } from "lucide-react";
-import { useLanguage } from "../../hooks/use-language";
+import { Button } from "../ui/button";
+import ChatWidget from "./chat-widget";
 
-interface ChatButtonProps {
-  onClick: () => void;
-  hasUnread?: boolean;
-}
-
-export default function ChatButton({ onClick, hasUnread = false }: ChatButtonProps) {
-  const { t } = useLanguage();
+export default function ChatButton() {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
-      <Button
-        onClick={onClick}
-        className="w-14 h-14 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 bg-blue-600 hover:bg-blue-700 text-white border-2 border-white"
-        size="lg"
-      >
-        <div className="relative">
-          <MessageCircle className="h-6 w-6 text-white" />
-          {hasUnread && (
-            <Badge className="absolute -top-2 -right-2 w-3 h-3 p-0 bg-red-500 border-2 border-white">
-              <span className="sr-only">{t("chat.unread")}</span>
-            </Badge>
-          )}
+    <>
+      {/* Bouton flottant */}
+      {!isOpen && (
+        <div className="fixed bottom-4 right-4 z-50">
+          <Button
+            onClick={() => setIsOpen(true)}
+            className="
+              h-14 w-14 rounded-full shadow-2xl
+              bg-primary hover:bg-primary/90
+              border-2 border-white
+              transition-all duration-300 ease-in-out
+              hover:scale-110 hover:shadow-xl
+            "
+            size="lg"
+          >
+            <MessageCircle className="h-6 w-6 text-white" />
+          </Button>
         </div>
-      </Button>
-    </div>
+      )}
+
+      {/* Widget de chat */}
+      {isOpen && (
+        <div className="fixed bottom-4 right-4 z-50">
+          <div className="w-80 max-w-[calc(100vw-2rem)]">
+            <ChatWidget 
+              isOpen={isOpen} 
+              onToggle={() => setIsOpen(false)}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
