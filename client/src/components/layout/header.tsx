@@ -4,7 +4,7 @@ import { useLanguage } from "../../hooks/use-language";
 import { useCart } from "../../hooks/use-cart";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
-import { Menu, ShoppingCart, Download } from "lucide-react";
+import { ShoppingCart, Download } from "lucide-react";
 import { useInstallPrompt } from "../../hooks/use-install-prompt";
 import {
   DropdownMenu,
@@ -165,10 +165,24 @@ export default function Header() {
             <div className="relative" ref={mobileMenuRef}>
               <Button
                 variant="ghost"
-                className="md:hidden text-white"
+                className="md:hidden text-white p-2 hover:text-[#FFD700]"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Menu mobile"
               >
-                <Menu className="h-5 w-5" />
+                <svg 
+                  className="h-5 w-5" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M4 6h16M4 12h16M4 18h16" 
+                  />
+                </svg>
               </Button>
               {isMobileMenuOpen && (
                 <div
