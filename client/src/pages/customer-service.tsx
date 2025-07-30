@@ -98,7 +98,7 @@ export default function CustomerService() {
                     <div>
                       <h4 className="font-semibold text-blue-800 mb-2">{t("service.email.title")}</h4>
                       <p className="text-sm text-blue-700 mb-2">
-                        <strong>contact@equisaddles.com</strong>
+                        <strong>equisaddles@gmail.com</strong>
                       </p>
                       <ul className="text-sm text-blue-600 space-y-1">
                         <li>• {t("service.email.response")}</li>

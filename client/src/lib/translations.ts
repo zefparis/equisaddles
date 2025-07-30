@@ -445,7 +445,7 @@ export const translations: Record<string, Record<string, string>> = {
     "privacy.rights.portability": "Droit à la Portabilité",
     "privacy.rights.portabilityDesc": "Vous pouvez récupérer vos données dans un format structuré",
     "privacy.contact.title": "Contact Data Protection",
-    "privacy.contact.email": "contact@equisaddles.com",
+    "privacy.contact.email": "equisaddles@gmail.com",
     "privacy.contact.phone": "+32 496 94 41 25",
     "privacy.contact.address": "Rue du Vicinal 9, 4141 Louveigné, Belgique",
     "privacy.sharing.title": "Partage des Données",
@@ -477,7 +477,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Missing Contact Translations
     "returns.contact.question.title": "Une Question sur votre Retour ?",
-    "returns.contact.email": "contact@equisaddles.com", 
+    "returns.contact.email": "equisaddles@gmail.com", 
     "returns.contact.phone": "+32 496 94 41 25",
     "returns.contact.availability": "Disponible du lundi au vendredi de 9h à 18h",
     "returns.contact.response": "Réponse garantie sous 24h ouvrées",
@@ -495,7 +495,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Return Process Content
     "returns.process.step1": "Contactez notre Service Client",
-    "returns.process.step1desc": "Envoyez-nous un email à contact@equisaddles.com ou appelez-nous au +32 496 94 41 25 dans les 14 jours suivant la réception.",
+    "returns.process.step1desc": "Envoyez-nous un email à equisaddles@gmail.com ou appelez-nous au +32 496 94 41 25 dans les 14 jours suivant la réception.",
     "returns.process.step1info": "Informations à fournir : numéro de commande, motif du retour, photos si défaut.",
     "returns.process.step2": "Autorisation de Retour",
     "returns.process.step2desc": "Nous vous envoyons par email un numéro RMA (Return Merchandise Authorization) et une étiquette de retour prépayée.",
@@ -561,7 +561,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Footer Content
     "footer.company.name": "Equi Saddles",
-    "footer.company.description": "Equi Saddles se spécialise dans la fabrication de montures équestres de haute gamme depuis plus de 20 ans.",
+    "footer.company.description": "Equi Saddles, votre spécialiste en selles équestres de haute qualité depuis 2018.",
     "footer.products.title": "Produits",
     "footer.products.jumping": "Montures spécialisées pour saut d'obstacles",
     "footer.products.dressage": "Montures pour dressage classique",
@@ -577,7 +577,7 @@ export const translations: Record<string, Record<string, string>> = {
     "footer.contact.title": "Contact",
     "footer.contact.address": "Rue du Vicinal 9, 4141 Louveigné, Belgique",
     "footer.contact.phone": "+32 496 94 41 25",
-    "footer.contact.email": "contact@equisaddles.com",
+    "footer.contact.email": "equisaddles@gmail.com",
     "footer.contact.hours": "Lun-Ven: 9h-18h",
     "admin.newProduct": "Nouveau produit",
     "admin.editProduct": "Modifier le produit",
@@ -1001,7 +1001,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Return Process Content
     "returns.process.step1": "Contact our Customer Service",
-    "returns.process.step1desc": "Send us an email at contact@equisaddles.com or call us at +32 496 94 41 25 within 14 days of receipt.",
+    "returns.process.step1desc": "Send us an email at equisaddles@gmail.com or call us at +32 496 94 41 25 within 14 days of receipt.",
     "returns.process.step1info": "Information to provide: order number, reason for return, photos if defective.",
     "returns.process.step2": "Return Authorization",
     "returns.process.step2desc": "We will email you an RMA (Return Merchandise Authorization) number and a prepaid return label.",
@@ -1075,7 +1075,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Returns Contact Section
     "returns.contact.question.title": "A Question about your Return?",
-    "returns.contact.email": "contact@equisaddles.com",
+    "returns.contact.email": "equisaddles@gmail.com",
     "returns.contact.phone": "+32 496 94 41 25",
     "returns.contact.availability": "Customer service available Monday to Friday, 9am-6pm",
     "returns.contact.response": "Response guaranteed within 24 business hours",
@@ -1086,7 +1086,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Footer Content
     "footer.company.name": "Equi Saddles",
-    "footer.company.description": "Equi Saddles specializes in manufacturing high-end equestrian saddles for over 20 years.",
+    "footer.company.description": "Equi Saddles, your specialist in high-quality equestrian saddles since 2018.",
     "footer.products.title": "Products",
     "footer.products.jumping": "Specialized saddles for show jumping",
     "footer.products.dressage": "Saddles for classical dressage",
@@ -1102,7 +1102,7 @@ export const translations: Record<string, Record<string, string>> = {
     "footer.contact.title": "Contact",
     "footer.contact.address": "Rue du Vicinal 9, 4141 Louveigné, Belgique",
     "footer.contact.phone": "+32 496 94 41 25",
-    "footer.contact.email": "contact@equisaddles.com",
+    "footer.contact.email": "equisaddles@gmail.com",
     "footer.contact.hours": "Mon-Fri: 9am-6pm",
     "admin.newProduct": "New Product",
     "admin.editProduct": "Edit Product",
@@ -1454,7 +1454,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Return Process Content
     "returns.process.step1": "Contacteer onze Klantenservice",
-    "returns.process.step1desc": "Stuur ons een email naar contact@equisaddles.com of bel ons op +32 496 94 41 25 binnen 14 dagen na ontvangst.",
+    "returns.process.step1desc": "Stuur ons een email naar equisaddles@gmail.com of bel ons op +32 496 94 41 25 binnen 14 dagen na ontvangst.",
     "returns.process.step1info": "Te verstrekken informatie: bestelnummer, reden voor retour, foto's bij gebreken.",
     "returns.process.step2": "Retour Autorisatie",
     "returns.process.step2desc": "Wij sturen u per email een RMA-nummer (Return Merchandise Authorization) en een vooruitbetaald retouretiket.",
@@ -1528,7 +1528,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Returns Contact Section
     "returns.contact.question.title": "Een Vraag over uw Retour?",
-    "returns.contact.email": "contact@equisaddles.com",
+    "returns.contact.email": "equisaddles@gmail.com",
     "returns.contact.phone": "+32 496 94 41 25",
     "returns.contact.availability": "Klantenservice beschikbaar maandag tot vrijdag, 9u-18u",
     "returns.contact.response": "Respons gegarandeerd binnen 24 werkuren",
@@ -1539,7 +1539,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Footer Content
     "footer.company.name": "Equi Saddles",
-    "footer.company.description": "Equi Saddles specialiseert zich in de vervaardiging van hoogwaardige paardenzadels sinds meer dan 20 jaar.",
+    "footer.company.description": "Equi Saddles, uw specialist in hoogwaardige paardenzadels sinds 2018.",
     "footer.products.title": "Producten",
     "footer.products.jumping": "Gespecialiseerde zadels voor springconcours",
     "footer.products.dressage": "Zadels voor klassieke dressuur",
@@ -1555,7 +1555,7 @@ export const translations: Record<string, Record<string, string>> = {
     "footer.contact.title": "Contact",
     "footer.contact.address": "Rue du Vicinal 9, 4141 Louveigné, Belgique",
     "footer.contact.phone": "+32 496 94 41 25",
-    "footer.contact.email": "contact@equisaddles.com",
+    "footer.contact.email": "equisaddles@gmail.com",
     "footer.contact.hours": "Ma-Vr: 9u-18u",
     "admin.newProduct": "Nieuw product",
     "admin.editProduct": "Product bewerken",
@@ -1959,7 +1959,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Return Process Content
     "returns.process.step1": "Contacte nuestro Servicio al Cliente",
-    "returns.process.step1desc": "Envíenos un email a contact@equisaddles.com o llámenos al +32 496 94 41 25 dentro de los 14 días siguientes a la recepción.",
+    "returns.process.step1desc": "Envíenos un email a equisaddles@gmail.com o llámenos al +32 496 94 41 25 dentro de los 14 días siguientes a la recepción.",
     "returns.process.step1info": "Información a proporcionar: número de pedido, motivo de devolución, fotos si hay defecto.",
     "returns.process.step2": "Autorización de Devolución",
     "returns.process.step2desc": "Le enviaremos por email un número RMA (Return Merchandise Authorization) y una etiqueta de devolución prepagada.",
@@ -2033,7 +2033,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Returns Contact Section
     "returns.contact.question.title": "¿Una Pregunta sobre su Devolución?",
-    "returns.contact.email": "contact@equisaddles.com",
+    "returns.contact.email": "equisaddles@gmail.com",
     "returns.contact.phone": "+32 496 94 41 25",
     "returns.contact.availability": "Servicio al cliente disponible de lunes a viernes, 9h-18h",
     "returns.contact.response": "Respuesta garantizada en 24 horas laborables",
@@ -2044,7 +2044,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Footer Content
     "footer.company.name": "Equi Saddles",
-    "footer.company.description": "Equi Saddles se especializa en la fabricación de monturas ecuestres de alta gama desde hace más de 20 años.",
+    "footer.company.description": "Equi Saddles, su especialista en sillas ecuestres de alta calidad desde 2018.",
     "footer.products.title": "Productos",
     "footer.products.jumping": "Monturas especializadas para salto de obstáculos",
     "footer.products.dressage": "Monturas para doma clásica",
@@ -2060,7 +2060,7 @@ export const translations: Record<string, Record<string, string>> = {
     "footer.contact.title": "Contacto",
     "footer.contact.address": "Rue du Vicinal 9, 4141 Louveigné",
     "footer.contact.phone": "+32 496 94 41 25",
-    "footer.contact.email": "contact@equisaddles.com",
+    "footer.contact.email": "equisaddles@gmail.com",
     "footer.contact.hours": "Lun-Ven: 9h-18h",
     "admin.newProduct": "Nuevo producto",
     "admin.editProduct": "Editar producto",
@@ -2502,7 +2502,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Return Process Content
     "returns.process.step1": "Kontaktieren Sie unseren Kundenservice",
-    "returns.process.step1desc": "Senden Sie uns eine E-Mail an contact@equisaddles.com oder rufen Sie uns unter +32 496 94 41 25 innerhalb von 14 Tagen nach Erhalt an.",
+    "returns.process.step1desc": "Senden Sie uns eine E-Mail an equisaddles@gmail.com oder rufen Sie uns unter +32 496 94 41 25 innerhalb von 14 Tagen nach Erhalt an.",
     "returns.process.step1info": "Anzugebende Informationen: Bestellnummer, Rückgabegrund, Fotos bei Mängeln.",
     "returns.process.step2": "Rückgabe-Autorisierung",
     "returns.process.step2desc": "Wir senden Ihnen per E-Mail eine RMA-Nummer (Return Merchandise Authorization) und ein vorausbezahltes Rücksendeetikett.",
@@ -2576,7 +2576,7 @@ export const translations: Record<string, Record<string, string>> = {
     
     // Returns Contact Section
     "returns.contact.question.title": "Eine Frage zu Ihrer Rücksendung?",
-    "returns.contact.email": "contact@equisaddles.com",
+    "returns.contact.email": "equisaddles@gmail.com",
     "returns.contact.phone": "+32 496 94 41 25",
     "returns.contact.availability": "Kundenservice verfügbar Montag bis Freitag, 9-18 Uhr",
     "returns.contact.response": "Antwort garantiert innerhalb von 24 Stunden",
@@ -2644,7 +2644,7 @@ export const translations: Record<string, Record<string, string>> = {
 
     // Footer Content
     "footer.company.name": "Equi Saddles",
-    "footer.company.description": "Equi Saddles spezialisiert sich seit über 20 Jahren auf die Herstellung hochwertiger Reitsättel.",
+    "footer.company.description": "Equi Saddles, Ihr Spezialist für hochwertige Reitsättel seit 2018.",
     "footer.products.title": "Produkte",
     "footer.products.jumping": "Spezialisierte Sättel für Springreiten",
     "footer.products.dressage": "Sättel für klassische Dressur",
@@ -2660,7 +2660,7 @@ export const translations: Record<string, Record<string, string>> = {
     "footer.contact.title": "Kontakt",
     "footer.contact.address": "Rue du Vicinal 9, 4141 Louveigné, Belgique",
     "footer.contact.phone": "+32 496 94 41 25",
-    "footer.contact.email": "contact@equisaddles.com",
+    "footer.contact.email": "equisaddles@gmail.com",
     "footer.contact.hours": "Mo-Fr: 9-18 Uhr"
   }
 };
