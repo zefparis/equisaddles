@@ -36,21 +36,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Admin} />
-      <Route path="/administrateur" component={Admin} />
-      <Route path="/catalog" component={Catalog} />
-      <Route path="/product/:id" component={ProductPage} />
-      <Route path="/cart" component={Cart} />
-      <Route path="/checkout" component={Checkout} />
-      <Route path="/confirmation" component={Confirmation} />
-      <Route path="/gallery" component={Gallery} />
-      <Route path="/contact" component={Contact} />
-      <Route path="/support" component={Support} />
-      <Route path="/privacy" component={Privacy} />
-      <Route path="/terms" component={Terms} />
-      <Route path="/returns" component={Returns} />
-      <Route path="/delivery" component={Delivery} />
-      <Route path="/customer-service" component={CustomerService} />
-
+      <Route path="/admin" component={Admin} />
       <Route component={NotFound} />
     </Switch>
   );
