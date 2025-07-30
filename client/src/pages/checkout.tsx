@@ -112,7 +112,7 @@ function CheckoutForm({ orderData }: { orderData: CheckoutFormData & { items: an
 
 export default function Checkout() {
   const { t } = useLanguage();
-  const { items, getTotal, clearCart } = useCart();
+  const { items, totalAmount, clearCart } = useCart();
   const { toast } = useToast();
   const [clientSecret, setClientSecret] = useState("");
   const [orderCreated, setOrderCreated] = useState(false);
@@ -154,11 +154,11 @@ export default function Checkout() {
           quantity: item.quantity,
           price: item.price,
         })),
-        total: getTotal(),
+        total: totalAmount,
       };
 
       const response = await apiRequest("POST", "/api/create-payment-intent", {
-        amount: getTotal(),
+        amount: totalAmount,
         orderData,
       });
 
@@ -406,7 +406,7 @@ export default function Checkout() {
                   
                   <div className="flex justify-between items-center font-bold text-lg">
                     <span>Sous-total</span>
-                    <span>{getTotal().toFixed(2)}€</span>
+                    <span>{totalAmount.toFixed(2)}€</span>
                   </div>
                   
                   <div className="text-sm text-gray-600 dark:text-gray-400">
@@ -426,7 +426,7 @@ export default function Checkout() {
                     quantity: item.quantity,
                     price: item.price,
                   })),
-                  total: getTotal()
+                  total: totalAmount
                 }} />
               </Elements>
             )}
