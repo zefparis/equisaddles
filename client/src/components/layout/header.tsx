@@ -21,6 +21,9 @@ const languages = [
   { code: "de", name: "Deutsch", flag: <svg className="w-4 h-4" viewBox="0 0 24 16"><rect width="24" height="5.33" fill="#000000"/><rect width="24" height="5.33" y="5.33" fill="#dd0000"/><rect width="24" height="5.33" y="10.67" fill="#ffce00"/></svg> },
 ];
 
+// Effet cuir SVG background (tu peux coller dans un fichier CSS global si tu préfères)
+const leatherTexture = "url(\"data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle fill='%23644529' fill-opacity='0.21' cx='5' cy='5' r='1.5'/%3E%3Ccircle fill='%23644529' fill-opacity='0.18' cx='15' cy='15' r='1.2'/%3E%3Ccircle fill='%23644529' fill-opacity='0.16' cx='14' cy='6' r='0.8'/%3E%3Ccircle fill='%23644529' fill-opacity='0.15' cx='6' cy='14' r='1'/%3E%3C/svg%3E\")";
+
 export default function Header() {
   const { language, setLanguage, t } = useLanguage();
   const { totalItems } = useCart();
@@ -30,14 +33,12 @@ export default function Header() {
 
   const currentLanguage = languages.find(lang => lang.code === language);
 
-  // Fermer le menu mobile au clic extérieur
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
         setIsMobileMenuOpen(false);
       }
     }
-
     if (isMobileMenuOpen) {
       document.addEventListener('mousedown', handleClickOutside);
       return () => document.removeEventListener('mousedown', handleClickOutside);
@@ -51,13 +52,24 @@ export default function Header() {
     { name: t("nav.contact"), href: "/contact" },
   ];
 
+  // Custom style pour le fond "cuir"
+  const leatherBg = {
+    backgroundColor: "#6B4226",
+    backgroundImage: leatherTexture,
+    backgroundRepeat: "repeat",
+    backgroundSize: "auto",
+    border: "none"
+  };
+
   return (
-    <header className="bg-primary text-white sticky top-0 z-50 shadow-lg">
+    <header className="bg-[#6B4226] text-white sticky top-0 z-50 shadow-xl" style={leatherBg}>
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="text-xl font-bold">Equi Saddles</span>
+            <span className="text-xl font-bold tracking-widest" style={{ letterSpacing: "0.05em" }}>
+              Equi Saddles
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -66,7 +78,7 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="hover:text-accent transition-colors duration-200"
+                className="hover:text-[#FFD700] text-white transition-colors duration-150 font-medium"
               >
                 {item.name}
               </Link>
@@ -74,40 +86,45 @@ export default function Header() {
           </nav>
 
           {/* Header Actions */}
-          <div className="flex items-center space-x-4">
-            {/* PWA Install Button - Simple approach */}
+          <div className="flex items-center space-x-3">
+            {/* PWA Install Button */}
             <button
               onClick={() => {
-                if ('serviceWorker' in navigator) {
-                  alert('Application PWA disponible ! Ajoutez cette page à votre écran d\'accueil depuis le menu de votre navigateur.');
-                } else {
-                  alert('Installation PWA disponible depuis le menu de votre navigateur.');
-                }
+                alert('Ajoute cette app à ton écran d\'accueil depuis le menu de ton navigateur 📱');
               }}
-              className="hidden sm:flex items-center space-x-2 px-3 py-2 text-sm text-white hover:text-accent border border-white/30 rounded-lg transition-colors"
+              className="hidden sm:flex items-center gap-2 px-3 py-2 text-sm text-white hover:text-[#FFD700] border border-white/20 rounded-lg transition"
             >
               <Download className="h-4 w-4" />
               <span>Installer</span>
             </button>
-            
             {/* Language Selector */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center space-x-2 hover:text-accent text-white">
-                  <Globe className="h-4 w-4 text-white" />
+                <Button variant="ghost" className="flex items-center gap-1 text-white hover:text-[#FFD700]">
+                  <Globe className="h-4 w-4" />
                   <span className="flex items-center">{currentLanguage?.flag}</span>
-                  <span className="text-sm text-white">{language.toUpperCase()}</span>
+                  <span className="text-sm">{language.toUpperCase()}</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-white border border-gray-200 shadow-lg z-50">
+              <DropdownMenuContent
+                className="border-none shadow-2xl text-white min-w-[180px]"
+                style={leatherBg}
+              >
                 {languages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
                     onClick={() => setLanguage(lang.code)}
-                    className={`cursor-pointer px-3 py-2 text-black hover:bg-gray-100 hover:text-black transition-colors font-bold ${language === lang.code ? 'bg-gray-200 text-black' : ''}`}
+                    className={`
+                      cursor-pointer px-3 py-2 font-medium flex items-center
+                      transition-colors rounded
+                      ${language === lang.code 
+                        ? 'bg-[#a47551] text-white'
+                        : 'hover:bg-[#a47551] hover:text-white'
+                      }
+                    `}
                   >
                     <span className="mr-2 flex items-center">{lang.flag}</span>
-                    <span className="font-medium">{lang.name}</span>
+                    <span>{lang.name}</span>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -117,49 +134,61 @@ export default function Header() {
             <Button
               variant="ghost"
               onClick={() => setIsCartOpen(true)}
-              className="relative hover:text-accent text-white"
+              className="relative hover:text-[#FFD700] text-white"
             >
-              <ShoppingCart className="h-5 w-5 text-white" />
+              <ShoppingCart className="h-5 w-5" />
               {totalItems > 0 && (
-                <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-accent text-xs">
+                <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-[#FFD700] text-[#6B4226] text-xs flex items-center justify-center">
                   {totalItems}
                 </Badge>
               )}
             </Button>
 
-            {/* Mobile Menu with PWA */}
+            {/* Mobile Menu */}
             <div className="relative" ref={mobileMenuRef}>
-              <Button 
-                variant="ghost" 
+              <Button
+                variant="ghost"
                 className="md:hidden text-white"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
-                <Menu className="h-5 w-5 text-white" />
+                <Menu className="h-5 w-5" />
               </Button>
-              
               {isMobileMenuOpen && (
-                <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-lg shadow-xl border z-50">
+                <div
+                  className="
+                    absolute top-full right-0 mt-2 w-64 rounded-2xl shadow-2xl z-50
+                    text-white animate-fade-in
+                  "
+                  style={leatherBg}
+                >
                   <nav className="flex flex-col p-4">
                     {navigation.map((item) => (
                       <Link
                         key={item.name}
                         href={item.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className="py-3 text-gray-800 hover:text-blue-600 hover:bg-blue-50 transition-colors duration-200 border-b border-gray-100 font-medium"
+                        className="
+                          py-3 px-2 mb-1 rounded-lg text-white font-semibold
+                          hover:bg-[#a47551] hover:text-white
+                          transition-colors
+                        "
                       >
                         {item.name}
                       </Link>
                     ))}
-                    
-                    {/* PWA Mobile Link */}
+                    {/* PWA Install (mobile) */}
                     <button
                       onClick={() => {
                         setIsMobileMenuOpen(false);
-                        alert('Application PWA disponible ! Ajoutez cette page à votre écran d\'accueil depuis le menu de votre navigateur.');
+                        alert('Ajoute cette app à ton écran d\'accueil depuis le menu de ton navigateur 📱');
                       }}
-                      className="flex items-center space-x-3 py-3 text-gray-800 hover:text-blue-600 hover:bg-blue-50 transition-colors duration-200 border-t border-gray-200 mt-2 pt-4 font-medium"
+                      className="
+                        flex items-center gap-3 py-3 px-2 rounded-lg
+                        text-[#FFD700] hover:bg-[#a47551] hover:text-white
+                        transition-colors font-medium mt-2
+                      "
                     >
-                      <Download className="h-5 w-5 text-accent" />
+                      <Download className="h-5 w-5" />
                       <span>Installer l'app</span>
                     </button>
                   </nav>
@@ -169,9 +198,9 @@ export default function Header() {
           </div>
         </div>
       </div>
-
       {/* Cart Modal */}
       <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </header>
   );
 }
+
