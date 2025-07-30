@@ -104,7 +104,7 @@ export default function Header() {
                   <DropdownMenuItem
                     key={lang.code}
                     onClick={() => setLanguage(lang.code)}
-                    className={`cursor-pointer px-3 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-900 transition-colors ${language === lang.code ? 'bg-blue-100 text-blue-900 font-medium' : ''}`}
+                    className={`cursor-pointer px-3 py-2 text-black hover:bg-gray-100 hover:text-black transition-colors font-bold ${language === lang.code ? 'bg-gray-200 text-black' : ''}`}
                   >
                     <span className="mr-2 flex items-center">{lang.flag}</span>
                     <span className="font-medium">{lang.name}</span>
