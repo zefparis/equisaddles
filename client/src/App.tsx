@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Route, Switch } from "wouter";
 import { LanguageProvider } from "./hooks/use-language";
 import { CartProvider } from "./hooks/use-cart";
-import { AdminAuthProvider } from "./hooks/use-admin-auth";
+// import { AdminAuthProvider } from "./hooks/use-admin-auth";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
 import { Toaster } from "./components/ui/toaster";
@@ -61,7 +61,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
         <CartProvider>
-          <AdminAuthProvider>
+          {/* <AdminAuthProvider> */}
             <div className="min-h-screen flex flex-col">
             <Header />
             <main className="flex-1">
@@ -70,7 +70,7 @@ function App() {
             <Footer />
           </div>
           <Toaster />
-          </AdminAuthProvider>
+          {/* </AdminAuthProvider> */}
         </CartProvider>
       </LanguageProvider>
     </QueryClientProvider>
