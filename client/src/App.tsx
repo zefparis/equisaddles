@@ -56,12 +56,26 @@ function Router() {
 }
 
 export default function App() {
+  console.log("App component rendering...");
+  
   return (
-    <div style={{ padding: '20px', background: 'lightblue', minHeight: '100vh' }}>
-      <h1>TEST REACT FONCTIONNE</h1>
-      <p>Si vous voyez ceci, React se charge correctement</p>
-      <button onClick={() => alert('Button works!')}>Test Button</button>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <LanguageProvider>
+        <CartProvider>
+          <AdminAuthProvider>
+            <div className="min-h-screen flex flex-col">
+              <Header />
+              <main className="flex-1">
+                <Router />
+              </main>
+              <Footer />
+            </div>
+            <ChatWidget />
+            <Toaster />
+          </AdminAuthProvider>
+        </CartProvider>
+      </LanguageProvider>
+    </QueryClientProvider>
   );
 }
 
