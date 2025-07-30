@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { useLanguage } from "../hooks/use-language";
+// import { useLanguage } from "../hooks/use-language";
 import { useAdminAuth } from "../contexts/AdminAuthContext";
 import AdminLogin from "../components/admin/AdminLogin";
 import "../styles/admin-responsive.css";
@@ -36,7 +36,7 @@ type ProductFormData = z.infer<typeof insertProductSchema>;
 type GalleryFormData = z.infer<typeof insertGalleryImageSchema>;
 
 export default function Admin() {
-  const { t } = useLanguage();
+  const t = (key: string) => key; // Fonction simple de traduction
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const { isAuthenticated, logout } = useAdminAuth();
