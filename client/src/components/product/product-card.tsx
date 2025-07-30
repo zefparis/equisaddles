@@ -58,6 +58,37 @@ export default function ProductCard({ product }: ProductCardProps) {
         </Link>
         <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">{t(`product.description.${product.id}`) || product.description}</p>
         
+        {/* Details produit - couleur, état, localisation */}
+        <div className="space-y-2 mb-4 text-sm">
+          <div className="flex items-center justify-between">
+            <span className="text-gray-600 dark:text-gray-400">Taille: {product.size}</span>
+            {!product.inStock && (
+              <Badge variant="destructive" className="text-xs">Vendu</Badge>
+            )}
+            {product.inStock && (
+              <Badge variant="default" className="text-xs bg-green-600">Disponible</Badge>
+            )}
+          </div>
+          
+          {product.color && product.category !== "Accessoires" && (
+            <div className="text-gray-600 dark:text-gray-400">
+              <span className="font-medium">Couleur:</span> {product.color}
+            </div>
+          )}
+          
+          {product.condition && (
+            <div className="text-gray-600 dark:text-gray-400">
+              <span className="font-medium">État:</span> {product.condition.charAt(0).toUpperCase() + product.condition.slice(1)}
+            </div>
+          )}
+          
+          {product.location && (
+            <div className="text-gray-600 dark:text-gray-400">
+              📍 {product.location}
+            </div>
+          )}
+        </div>
+        
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">
             <span className="text-2xl font-bold text-primary">
@@ -69,7 +100,6 @@ export default function ProductCard({ product }: ProductCardProps) {
               </span>
             )}
           </div>
-          <Badge variant="secondary">{product.size}</Badge>
         </div>
 
         <div className="flex items-center mb-4">
@@ -86,9 +116,10 @@ export default function ProductCard({ product }: ProductCardProps) {
         <Button 
           onClick={handleAddToCart}
           className="w-full btn-primary"
+          disabled={!product.inStock}
         >
           <ShoppingCart className="h-4 w-4 mr-2" />
-          {t("product.addToCart")}
+          {product.inStock ? t("product.addToCart") : "Produit vendu"}
         </Button>
       </CardFooter>
     </Card>

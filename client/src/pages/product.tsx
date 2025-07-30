@@ -154,12 +154,55 @@ export default function ProductPage() {
               )}
             </div>
 
-            {/* Size */}
-            <div className="flex items-center space-x-4">
-              <span className="font-semibold">{t("product.size")}:</span>
-              <Badge variant="outline" className="text-lg px-4 py-2">
-                {product.size}
-              </Badge>
+            {/* Product Details */}
+            <div className="space-y-4 p-6 bg-white rounded-lg shadow-sm">
+              <h3 className="text-lg font-semibold mb-4">Détails de l'annonce</h3>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex items-center space-x-3">
+                  <span className="font-medium text-gray-700">Taille:</span>
+                  <Badge variant="outline" className="text-base px-3 py-1">
+                    {product.size}
+                  </Badge>
+                </div>
+                
+                <div className="flex items-center space-x-3">
+                  <span className="font-medium text-gray-700">Statut:</span>
+                  {product.inStock ? (
+                    <Badge className="bg-green-600 text-white">Disponible</Badge>
+                  ) : (
+                    <Badge variant="destructive">Vendu</Badge>
+                  )}
+                </div>
+                
+                {product.color && product.category !== "Accessoires" && (
+                  <div className="flex items-center space-x-3">
+                    <span className="font-medium text-gray-700">Couleur:</span>
+                    <span className="text-gray-900">{product.color}</span>
+                  </div>
+                )}
+                
+                {product.condition && (
+                  <div className="flex items-center space-x-3">
+                    <span className="font-medium text-gray-700">État:</span>
+                    <span className="text-gray-900">{product.condition.charAt(0).toUpperCase() + product.condition.slice(1)}</span>
+                  </div>
+                )}
+                
+                {product.location && (
+                  <div className="flex items-center space-x-3 sm:col-span-2">
+                    <span className="font-medium text-gray-700">Localisation:</span>
+                    <span className="text-gray-900">📍 {product.location}</span>
+                  </div>
+                )}
+                
+                {product.sellerContact && (
+                  <div className="flex items-center space-x-3 sm:col-span-2">
+                    <span className="font-medium text-gray-700">Contact vendeur:</span>
+                    <span className="text-gray-900">{product.sellerContact}</span>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Rating */}
@@ -179,7 +222,7 @@ export default function ProductPage() {
               disabled={!product.inStock}
             >
               <ShoppingCart className="h-5 w-5 mr-2" />
-              {product.inStock ? t("product.addToCart") : t("product.outOfStock")}
+              {product.inStock ? t("product.addToCart") : "Produit vendu"}
             </Button>
 
             {/* Features */}
