@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { Product } from "@shared/schema";
 
 export interface CartItem extends Product {
@@ -17,7 +17,7 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem("equi-saddles-cart");
@@ -84,14 +84,20 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       {children}
     </CartContext.Provider>
   );
-};
+}
 
 export function useCart(): CartContextType {
   const context = useContext(CartContext);
   if (!context) {
-    throw new Error(
-      "useCart must be used within a CartProvider. Vérifie que <CartProvider> entoure bien ton application !"
-    );
+    return {
+      items: [],
+      addItem: () => {},
+      removeItem: () => {},
+      updateQuantity: () => {},
+      clearCart: () => {},
+      totalAmount: 0,
+      totalItems: 0
+    };
   }
   return context;
 }

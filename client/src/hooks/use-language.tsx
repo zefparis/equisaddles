@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode } from "react";
 import { translations } from "../lib/translations";
 
 interface LanguageContextType {
@@ -9,7 +9,7 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem("equi-saddles-language") || "fr";
@@ -33,14 +33,16 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
       {children}
     </LanguageContext.Provider>
   );
-};
+}
 
 export function useLanguage(): LanguageContextType {
   const context = useContext(LanguageContext);
   if (!context) {
-    throw new Error(
-      "useLanguage must be used within a LanguageProvider. Vérifie que <LanguageProvider> entoure bien ton application !"
-    );
+    return {
+      language: "fr",
+      setLanguage: () => {},
+      t: (key: string) => key
+    };
   }
   return context;
 }
