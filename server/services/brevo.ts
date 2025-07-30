@@ -57,7 +57,7 @@ export async function sendEmail(emailData: EmailData): Promise<boolean> {
     const emailPayload = {
       sender: {
         name: emailData.senderName || "Equi Saddles - Chat Support",
-        email: emailData.senderEmail || "lecoinrdc@gmail.com"
+        email: emailData.senderEmail || "equisaddles@gmail.com"
       },
       to: [{ email: emailData.to }],
       subject: emailData.subject,
@@ -75,7 +75,7 @@ export async function sendEmail(emailData: EmailData): Promise<boolean> {
 }
 
 export async function sendChatNotificationToAdmin(customerName: string, customerEmail: string, message: string, sessionId: string): Promise<boolean> {
-  const adminEmail = "lecoinrdc@gmail.com"; // Email de l'admin vérifié dans Brevo
+  const adminEmail = "equisaddles@gmail.com"; // Email de l'admin vérifié dans Brevo
   
   const emailData: EmailData = {
     to: adminEmail,
@@ -97,9 +97,16 @@ export async function sendChatNotificationToAdmin(customerName: string, customer
         </div>
         
         <div style="text-align: center; margin-top: 30px;">
-          <a href="${process.env.REPLIT_DOMAIN || 'https://your-domain.replit.app'}/admin" 
+          <a href="${process.env.REPLIT_DOMAIN || 'https://your-domain.replit.app'}/admin?tab=chat&session=${sessionId}" 
              style="background-color: #8B5A3C; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
-            Répondre via l'interface admin
+            🔗 Répondre directement à cette conversation
+          </a>
+        </div>
+        
+        <div style="text-align: center; margin-top: 15px;">
+          <a href="${process.env.REPLIT_DOMAIN || 'https://your-domain.replit.app'}/admin" 
+             style="background-color: #6c757d; color: white; padding: 8px 16px; text-decoration: none; border-radius: 3px; display: inline-block; font-size: 14px;">
+            📊 Voir toutes les conversations
           </a>
         </div>
         
@@ -111,8 +118,8 @@ export async function sendChatNotificationToAdmin(customerName: string, customer
         </p>
       </div>
     `,
-    senderName: "Equi Saddles - Système de Chat",
-    senderEmail: "lecoinrdc@gmail.com"
+    senderName: "Equi Saddles - Système de Chat", 
+    senderEmail: "equisaddles@gmail.com"
   };
 
   return await sendEmail(emailData);
@@ -157,7 +164,7 @@ export async function sendChatResponseToCustomer(customerEmail: string, customer
       </div>
     `,
     senderName: "Equi Saddles",
-    senderEmail: "lecoinrdc@gmail.com"
+    senderEmail: "equisaddles@gmail.com"
   };
 
   return await sendEmail(emailData);
