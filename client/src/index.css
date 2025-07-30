@@ -96,7 +96,7 @@
   /* Dark mode overrides */
   .dark body, .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6,
   .dark p, .dark span, .dark div:not([class*="text-white"]):not([class*="text-primary"]), .dark main {
-    @apply text-foreground;
+    color: var(--foreground);
   }
 }
 
@@ -128,15 +128,42 @@
   }
 
   .btn-primary {
-    @apply bg-primary hover:bg-opacity-90 text-primary-foreground font-semibold py-2.5 px-5 rounded-xl transition-all duration-300 ease-out;
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    font-weight: 600;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .btn-primary:hover {
+    background-color: rgba(var(--primary), 0.9);
   }
 
   .btn-secondary {
-    @apply bg-secondary hover:bg-opacity-90 text-secondary-foreground font-semibold py-2.5 px-5 rounded-xl transition-all duration-300 ease-out;
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
+    font-weight: 600;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .btn-secondary:hover {
+    background-color: rgba(var(--secondary), 0.9);
   }
 
   .btn-accent {
-    @apply bg-accent hover:bg-opacity-90 text-accent-foreground font-semibold py-2.5 px-5 rounded-xl transition-all duration-300 ease-out;
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+    font-weight: 600;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .btn-accent:hover {
+    background-color: rgba(var(--accent), 0.9);
   }
 
   .lightbox-overlay {
