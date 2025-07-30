@@ -9,7 +9,7 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: ReactNode }): JSX.Element {
+export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [language, setLanguageState] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem("equi-saddles-language") || "fr";
@@ -33,7 +33,7 @@ export function LanguageProvider({ children }: { children: ReactNode }): JSX.Ele
       {children}
     </LanguageContext.Provider>
   );
-}
+};
 
 export function useLanguage(): LanguageContextType {
   const context = useContext(LanguageContext);

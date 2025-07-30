@@ -17,7 +17,7 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-export function CartProvider({ children }: { children: ReactNode }): JSX.Element {
+export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem("equi-saddles-cart");
@@ -84,7 +84,7 @@ export function CartProvider({ children }: { children: ReactNode }): JSX.Element
       {children}
     </CartContext.Provider>
   );
-}
+};
 
 export function useCart(): CartContextType {
   const context = useContext(CartContext);
