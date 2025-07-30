@@ -84,11 +84,11 @@ export default function Admin() {
     mutationFn: (data: ProductFormData) => apiRequest("POST", "/api/products", data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/products"] });
-      toast({ title: t("admin.productCreated") });
+      toast({ title: "Annonce créée avec succès" });
       setShowProductDialog(false);
     },
     onError: (error) => {
-      toast({ title: t("admin.error"), description: error.message, variant: "destructive" });
+      toast({ title: "Erreur", description: error.message, variant: "destructive" });
     },
   });
 
@@ -608,10 +608,10 @@ export default function Admin() {
           <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto mx-4 sm:mx-0">
             <DialogHeader>
               <DialogTitle>
-                {editingProduct ? t("admin.editProduct") : t("admin.newProduct")}
+                {editingProduct ? "Modifier l'annonce" : "Nouvelle annonce"}
               </DialogTitle>
               <DialogDescription>
-                {editingProduct ? t("admin.editProductDesc") : t("admin.newProductDesc")}
+                {editingProduct ? "Modifiez les détails de l'annonce" : "Créez une nouvelle annonce de selle ou accessoire équestre"}
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={productForm.handleSubmit(handleProductSubmit)} className="space-y-4">
@@ -621,7 +621,7 @@ export default function Admin() {
                   <Input
                     id="name"
                     {...productForm.register("name")}
-                    placeholder={t("admin.productName")}
+                    placeholder="Nom de l'article"
                   />
                 </div>
                 <div>
@@ -638,7 +638,7 @@ export default function Admin() {
                     }}
                   >
                     <SelectTrigger id="category">
-                      <SelectValue placeholder={t("admin.selectCategory")} />
+                      <SelectValue placeholder="Sélectionner une catégorie" />
                     </SelectTrigger>
                     <SelectContent>
                       {categories.map((category) => (
@@ -661,7 +661,7 @@ export default function Admin() {
                     onValueChange={(value) => productForm.setValue("subcategory", value)}
                   >
                     <SelectTrigger id="subcategory">
-                      <SelectValue placeholder={t("admin.selectSubcategory")} />
+                      <SelectValue placeholder="Sélectionner une sous-catégorie" />
                     </SelectTrigger>
                     <SelectContent>
                       {accessorySubcategories.map((subcategory) => (
@@ -779,7 +779,7 @@ export default function Admin() {
                   setSelectedImageFile(file);
                 }}
                 currentImage={productForm.watch("image")}
-                placeholder={t("admin.selectMainImage")}
+                placeholder="Sélectionner l'image principale"
               />
 
               <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
@@ -795,10 +795,10 @@ export default function Admin() {
 
               <div className="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-2">
                 <Button type="button" variant="outline" onClick={() => setShowProductDialog(false)} className="w-full sm:w-auto">
-                  {t("admin.cancel")}
+                  Annuler
                 </Button>
                 <Button type="submit" className="btn-primary w-full sm:w-auto" disabled={uploadingImage}>
-                  {uploadingImage ? "Upload en cours..." : (editingProduct ? t("admin.modify") : t("admin.create"))}
+                  {uploadingImage ? "Upload en cours..." : (editingProduct ? "Modifier" : "Créer l'annonce")}
                 </Button>
               </div>
             </form>
@@ -809,9 +809,9 @@ export default function Admin() {
         <Dialog open={showGalleryDialog} onOpenChange={setShowGalleryDialog}>
           <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto mx-4 sm:mx-0">
             <DialogHeader>
-              <DialogTitle>{t("admin.newImage")}</DialogTitle>
+              <DialogTitle>Nouvelle image</DialogTitle>
               <DialogDescription>
-                {t("admin.newImageDesc")}
+                Ajoutez une image à la galerie
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={galleryForm.handleSubmit(handleGallerySubmit)} className="space-y-4">
@@ -821,7 +821,7 @@ export default function Admin() {
                   setSelectedImageFile(file);
                 }}
                 currentImage={galleryForm.watch("url")}
-                placeholder={t("admin.selectGalleryImage")}
+                placeholder="Sélectionner une image pour la galerie"
               />
 
               <div>
@@ -829,7 +829,7 @@ export default function Admin() {
                 <Input
                   id="alt"
                   {...galleryForm.register("alt")}
-                  placeholder={t("admin.imageDescription")}
+                  placeholder="Description de l'image"
                 />
               </div>
 
@@ -841,7 +841,7 @@ export default function Admin() {
                   onValueChange={(value) => galleryForm.setValue("category", value)}
                 >
                   <SelectTrigger id="galleryCategory">
-                    <SelectValue placeholder={t("admin.selectCategory")} />
+                    <SelectValue placeholder="Sélectionner une catégorie" />
                   </SelectTrigger>
                   <SelectContent>
                     {categories.map((category) => (
@@ -855,10 +855,10 @@ export default function Admin() {
 
               <div className="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-2">
                 <Button type="button" variant="outline" onClick={() => setShowGalleryDialog(false)} className="w-full sm:w-auto">
-                  {t("admin.cancel")}
+                  Annuler
                 </Button>
                 <Button type="submit" className="btn-primary w-full sm:w-auto">
-                  {t("admin.add")}
+                  Ajouter
                 </Button>
               </div>
             </form>
