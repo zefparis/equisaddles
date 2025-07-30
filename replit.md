@@ -8,7 +8,7 @@ This is a full-stack e-commerce application specialized in selling equestrian sa
 
 Preferred communication style: Simple, everyday language.
 
-## État Actuel de l'Application (BACKUP 30/07/2025)
+## État Actuel de l'Application (BACKUP COMPLET 30/07/2025 - 18h10)
 
 ### Configuration Technique Stable
 - **Frontend**: React 18.3.1 + TypeScript + Vite
@@ -17,13 +17,28 @@ Preferred communication style: Simple, everyday language.
 - **Paiements**: Stripe intégré avec clés configurées
 - **PWA**: Désactivé en développement pour éviter problèmes de cache
 - **Chat**: WebSocket fonctionnel avec notifications email (Brevo)
+- **CSS**: Tailwind CSS avec toutes les erreurs @apply résolues
+
+### Architecture Complète
+- **Structure Monorepo**: client/, server/, shared/, public/
+- **Routing Frontend**: Wouter avec navigation complète
+- **State Management**: React Query + Context API
+- **UI Components**: shadcn/ui + Tailwind CSS
+- **Base de données**: PostgreSQL avec Drizzle ORM
+- **API**: RESTful endpoints Express.js
+- **Session**: PostgreSQL session store
+- **Authentification**: Admin local (username: admin, password: Justine1234!)
 
 ### Fichiers Clés Fonctionnels
 - `client/src/App.tsx`: Routing principal avec séparation admin/public
 - `client/src/components/layout/header.tsx`: Header avec menu langue corrigé
 - `client/src/main.tsx`: PWA désactivé, Service Worker supprimé
+- `client/src/index.css`: CSS Tailwind sans erreurs @apply
 - `server/index.ts`: Backend Express fonctionnel
+- `server/routes.ts`: API endpoints complets
 - `shared/schema.ts`: Schéma base de données complet
+- `tailwind.config.ts`: Configuration Tailwind stable
+- `postcss.config.js`: PostCSS configuré
 
 ### Pages Opérationnelles
 - `/` - Homepage avec produits et navigation
@@ -36,20 +51,44 @@ Preferred communication style: Simple, everyday language.
 - `/admin` - Panel admin avec authentification (admin/Justine1234!)
 - Pages légales complètes (support, privacy, terms, etc.)
 
-### Fonctionnalités Validées
-- ✅ Navigation entre toutes les pages
-- ✅ Système multilingue (5 langues)
-- ✅ Panier et checkout Stripe
-- ✅ Admin panel avec gestion produits
-- ✅ Chat temps réel avec notifications
-- ✅ Base de données PostgreSQL
-- ✅ Responsive design mobile/desktop
-- ✅ Menu déroulant langue avec bon contraste
+### Fonctionnalités Validées (État 30/07/2025 18h10)
+- ✅ Navigation entre toutes les pages (15+ pages)
+- ✅ Système multilingue complet (FR, EN, NL, ES, DE)
+- ✅ Panier d'achat avec persistance localStorage
+- ✅ Checkout Stripe fonctionnel avec paiements
+- ✅ Admin panel complet avec authentification sécurisée
+- ✅ Gestion produits CRUD (création, modification, suppression)
+- ✅ Galerie d'images avec lightbox et catégories
+- ✅ Chat temps réel WebSocket avec notifications email
+- ✅ Base de données PostgreSQL avec schéma complet
+- ✅ Responsive design mobile/tablette/desktop
+- ✅ Menu déroulant langue avec contraste optimal
+- ✅ Pages légales complètes (6 pages traduites)
+- ✅ Système de commandes avec historique
+- ✅ Filtrage produits par catégorie et taille
+- ✅ CSS Tailwind sans erreurs de compilation
+- ✅ Dark mode complet et optimisé mobile
+- ✅ Notifications toast pour feedback utilisateur
+- ✅ Formulaires validés avec React Hook Form + Zod
+- ✅ API REST complète avec gestion d'erreurs
+- ✅ Session management sécurisé
 
-### Identifiants Admin
-- Utilisateur: `admin`
-- Mot de passe: `Justine1234!`
-- Accès: `/admin` ou `/administrateur`
+### Identifiants et Configuration
+- **Admin**: username `admin` / password `Justine1234!`
+- **Accès Admin**: `/admin` ou `/administrateur`
+- **Email Chat**: contact@equisaddles.com (notifications Brevo)
+- **Database**: PostgreSQL Neon serverless
+- **Stripe**: Clés configurées et fonctionnelles
+- **Port Backend**: 5000 (Express.js)
+- **Port Frontend**: Vite dev server intégré
+
+### Variables d'Environnement Configurées
+- ✅ DATABASE_URL (PostgreSQL Neon)
+- ✅ STRIPE_SECRET_KEY (paiements)
+- ✅ VITE_STRIPE_PUBLIC_KEY (frontend)
+- ✅ BREVO_API_KEY (notifications email)
+- ✅ SESSION_SECRET (sessions sécurisées)
+- ✅ Toutes variables PostgreSQL (PGHOST, PGUSER, etc.)
 
 ## Recent Changes
 
