@@ -142,7 +142,7 @@ export default function Confirmation() {
               <div className="space-y-2">
                 <p className="flex items-center gap-2">
                   <Mail className="h-4 w-4" />
-                  <span>contact@equi-saddles.com</span>
+                  <span>equisaddles@gmail.com</span>
                 </p>
                 <p className="flex items-center gap-2">
                   <span>📞</span>
