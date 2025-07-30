@@ -5,6 +5,7 @@ import { useCart } from "../../hooks/use-cart";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { Menu, ShoppingCart, Download } from "lucide-react";
+import { useInstallPrompt } from "../../hooks/use-install-prompt";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,6 +28,7 @@ const leatherTexture = "url(\"data:image/svg+xml,%3Csvg width='20' height='20' v
 export default function Header() {
   const { language, setLanguage, t } = useLanguage();
   const { totalItems } = useCart();
+  const { canInstall, promptInstall, isInstalled } = useInstallPrompt();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
@@ -88,15 +90,15 @@ export default function Header() {
           {/* Header Actions */}
           <div className="flex items-center space-x-3">
             {/* PWA Install Button */}
-            <button
-              onClick={() => {
-                alert('Ajoute cette app à ton écran d\'accueil depuis le menu de ton navigateur 📱');
-              }}
-              className="hidden sm:flex items-center gap-2 px-3 py-2 text-sm text-white hover:text-[#FFD700] border border-white/20 rounded-lg transition"
-            >
-              <Download className="h-4 w-4" />
-              <span>Installer</span>
-            </button>
+            {!isInstalled && (
+              <button
+                onClick={promptInstall}
+                className="hidden sm:flex items-center gap-2 px-3 py-2 text-sm text-white hover:text-[#FFD700] border border-white/20 rounded-lg transition"
+              >
+                <Download className="h-4 w-4" />
+                <span>Installer</span>
+              </button>
+            )}
             {/* Language Selector */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -175,20 +177,22 @@ export default function Header() {
                       </Link>
                     ))}
                     {/* PWA Install (mobile) */}
-                    <button
-                      onClick={() => {
-                        setIsMobileMenuOpen(false);
-                        alert('Ajoute cette app à ton écran d\'accueil depuis le menu de ton navigateur 📱');
-                      }}
-                      className="
-                        flex items-center gap-3 py-3 px-2 rounded-lg
-                        text-[#FFD700] hover:bg-[#a47551] hover:text-white
-                        transition-colors font-medium mt-2
-                      "
-                    >
-                      <Download className="h-5 w-5" />
-                      <span>Installer l'app</span>
-                    </button>
+                    {!isInstalled && (
+                      <button
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          promptInstall();
+                        }}
+                        className="
+                          flex items-center gap-3 py-3 px-2 rounded-lg
+                          text-[#FFD700] hover:bg-[#a47551] hover:text-white
+                          transition-colors font-medium mt-2
+                        "
+                      >
+                        <Download className="h-5 w-5" />
+                        <span>Installer l'app</span>
+                      </button>
+                    )}
                   </nav>
                 </div>
               )}
