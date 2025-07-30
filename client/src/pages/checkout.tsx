@@ -40,19 +40,32 @@ const checkoutSchema = z.object({
 type CheckoutFormData = z.infer<typeof checkoutSchema>;
 
 // Composant pour afficher l'état de la commande
-function OrderSummaryCard() {
+function OrderSummaryCard({ stripeUrl }: { stripeUrl?: string }) {
   return (
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <span>✅</span> Commande en cours de création
+          <span>✅</span> Commande créée - Paiement en cours
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-gray-600 dark:text-gray-400">
-          Votre commande a été créée avec succès. Vous allez être redirigé vers Stripe pour effectuer le paiement sécurisé.
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+          Votre commande a été créée avec succès. Le paiement Stripe s'est ouvert dans un nouvel onglet. 
+          Si l'onglet ne s'est pas ouvert automatiquement, cliquez sur le bouton ci-dessous.
         </p>
-        <div className="mt-4 space-y-2">
+        
+        {stripeUrl && (
+          <div className="mb-4">
+            <Button 
+              onClick={() => window.open(stripeUrl, '_blank', 'noopener,noreferrer')}
+              className="w-full"
+            >
+              Ouvrir le paiement Stripe
+            </Button>
+          </div>
+        )}
+        
+        <div className="space-y-2">
           <div className="flex items-center gap-2 text-sm">
             <span>🔒</span>
             <span>Paiement sécurisé avec Stripe</span>
@@ -75,7 +88,7 @@ export default function Checkout() {
   const { t } = useLanguage();
   const { items, totalAmount, clearCart } = useCart();
   const { toast } = useToast();
-  const [clientSecret, setClientSecret] = useState("");
+  const [stripeUrl, setStripeUrl] = useState("");
   const [orderCreated, setOrderCreated] = useState(false);
 
   // Scroll to top when page loads
@@ -142,9 +155,23 @@ export default function Checkout() {
 
       const result = await response.json();
       
-      // Redirection vers Stripe Checkout
+      // Redirection vers Stripe Checkout dans un nouvel onglet
       if (result.clientSecret) {
-        window.location.href = result.clientSecret;
+        // Ouvrir dans un nouvel onglet pour éviter les problèmes d'iframe
+        const stripeWindow = window.open(result.clientSecret, '_blank', 'noopener,noreferrer');
+        
+        if (!stripeWindow) {
+          // Si le popup est bloqué, essayer une redirection directe
+          window.location.href = result.clientSecret;
+        } else {
+          // Afficher un message d'information à l'utilisateur
+          toast({
+            title: "Redirection vers Stripe",
+            description: "Votre paiement s'ouvre dans un nouvel onglet. Veuillez compléter le paiement là-bas.",
+          });
+          setOrderCreated(true);
+          setStripeUrl(result.clientSecret);
+        }
       } else {
         throw new Error("URL de paiement non reçue");
       }
@@ -395,7 +422,7 @@ export default function Checkout() {
             </Card>
 
             {/* État de la commande */}
-            {orderCreated && <OrderSummaryCard />}
+            {orderCreated && <OrderSummaryCard stripeUrl={stripeUrl} />}
           </div>
         </div>
       </div>
