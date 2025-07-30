@@ -68,15 +68,15 @@ export default function Header() {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-2 md:gap-3 flex-1 min-w-0">
             <img 
               src="/images/logo (3).png" 
               alt="Equi Saddles"
-              className="h-16 w-auto object-contain md:h-20"
-              style={{ maxHeight: "80px", maxWidth: "300px" }}
+              className="h-12 w-auto object-contain md:h-20 flex-shrink-0"
+              style={{ maxHeight: "80px", maxWidth: "200px" }}
             />
             <span 
-              className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text"
+              className="text-lg md:text-3xl font-bold text-transparent bg-clip-text truncate"
               style={{
                 fontFamily: "'Cinzel', 'Playfair Display', serif",
                 background: "linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6B35 100%)",
@@ -105,12 +105,12 @@ export default function Header() {
           </nav>
 
           {/* Header Actions */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 md:space-x-3 flex-shrink-0">
             {/* PWA Install Button */}
             {!isInstalled && (
               <button
                 onClick={promptInstall}
-                className="hidden sm:flex items-center gap-2 px-3 py-2 text-sm text-white hover:text-[#FFD700] border border-white/20 rounded-lg transition"
+                className="hidden lg:flex items-center gap-2 px-3 py-2 text-sm text-white hover:text-[#FFD700] border border-white/20 rounded-lg transition"
               >
                 <Download className="h-4 w-4" />
                 <span>Installer</span>
