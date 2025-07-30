@@ -135,7 +135,8 @@ export default function Checkout() {
           name: item.name,
           price: item.price,
           quantity: item.quantity,
-          imageUrl: item.image || ""
+          imageUrl: item.image && (item.image.startsWith('http://') || item.image.startsWith('https://')) 
+            ? item.image : null
         })),
         customerInfo: {
           firstName: data.firstName,

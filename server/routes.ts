@@ -227,17 +227,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
-        line_items: items.map((item: any) => ({
-          price_data: {
-            currency: 'eur',
-            product_data: {
-              name: item.name,
-              images: item.imageUrl ? [item.imageUrl] : [],
+        line_items: items.map((item: any) => {
+          // Valider l'URL de l'image - ne l'inclure que si c'est une URL complète valide
+          const validImageUrl = item.imageUrl && 
+            (item.imageUrl.startsWith('http://') || item.imageUrl.startsWith('https://')) 
+            ? item.imageUrl : null;
+          
+          return {
+            price_data: {
+              currency: 'eur',
+              product_data: {
+                name: item.name,
+                images: validImageUrl ? [validImageUrl] : [],
+              },
+              unit_amount: Math.round(parseFloat(item.price) * 100),
             },
-            unit_amount: Math.round(parseFloat(item.price) * 100),
-          },
-          quantity: item.quantity,
-        })),
+            quantity: item.quantity,
+          };
+        }),
         mode: 'payment',
         success_url: `${req.headers.origin}/confirmation?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.origin}/cart`,
