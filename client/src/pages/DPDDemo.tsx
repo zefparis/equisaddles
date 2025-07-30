@@ -83,6 +83,14 @@ export default function DPDDemo() {
         <p className="text-lg text-muted-foreground">
           Test complet de l'intégration DPD avec API réelle et système de fallback
         </p>
+        <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+          <p className="text-sm text-blue-800 dark:text-blue-200">
+            <strong>📦 Expédition depuis:</strong> Equi Saddles - Rue du Vicinal 9, 4141 Louveigné, Belgique
+          </p>
+          <p className="text-xs text-blue-600 dark:text-blue-300 mt-1">
+            Tous les frais de livraison sont calculés depuis cette adresse belge
+          </p>
+        </div>
         <Badge variant="outline" className="text-sm">
           🔐 API Key: 88c15...d145 (sécurisée côté serveur)
         </Badge>

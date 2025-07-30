@@ -336,13 +336,23 @@ const CheckoutForm = () => {
                           field.onChange(value);
                           setValue("postalCode", "");
                         }}
+                        open={undefined}
                       >
-                        <SelectTrigger id="country" className={errors.country ? "border-red-500" : ""}>
-                          <SelectValue placeholder="Sélectionnez un pays" />
+                        <SelectTrigger 
+                          id="country" 
+                          className={`${errors.country ? "border-red-500" : ""} cursor-pointer`}
+                        >
+                          <SelectValue>
+                            {countries.find(c => c.code === (field.value || "BE"))?.name || "Sélectionnez un pays"}
+                          </SelectValue>
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="max-h-60 overflow-y-auto">
                           {countries.map((country) => (
-                            <SelectItem key={country.code} value={country.code}>
+                            <SelectItem 
+                              key={country.code} 
+                              value={country.code}
+                              className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+                            >
                               {country.name} ({country.zone})
                             </SelectItem>
                           ))}
@@ -354,6 +364,7 @@ const CheckoutForm = () => {
                     <p className="text-red-500 text-sm mt-1">{errors.country.message}</p>
                   )}
                   <p className="text-xs text-muted-foreground mt-1">
+                    <strong>Expédition depuis:</strong> Rue du Vicinal 9, 4141 Louveigné, Belgique<br/>
                     Zone: {countries.find(c => c.code === watchedCountry)?.zone} | 
                     {countries.find(c => c.code === watchedCountry)?.name}
                   </p>
