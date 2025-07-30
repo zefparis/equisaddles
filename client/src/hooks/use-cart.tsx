@@ -89,15 +89,9 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 export function useCart(): CartContextType {
   const context = useContext(CartContext);
   if (!context) {
-    return {
-      items: [],
-      addItem: () => {},
-      removeItem: () => {},
-      updateQuantity: () => {},
-      clearCart: () => {},
-      totalAmount: 0,
-      totalItems: 0
-    };
+    throw new Error(
+      "useCart must be used within a CartProvider. Vérifie que <CartProvider> entoure bien ton application !"
+    );
   }
   return context;
 }
