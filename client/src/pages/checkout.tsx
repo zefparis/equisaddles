@@ -319,53 +319,68 @@ const CheckoutForm = () => {
                   <Controller
                     name="postalCode"
                     control={control}
-                    render={({ field }) => (
-                      <Input
-                        id="postalCode"
-                        value={field.value || ""}
-                        onChange={(e) => {
-                          const value = e.target.value.replace(/[^a-zA-Z0-9\s-]/g, '');
-                          const formatted = formatPostalCode(localCountry, value);
-                          field.onChange(formatted);
-                        }}
-                        placeholder={`Ex: ${getPostalCodeExample(localCountry)}`}
-                        maxLength={getPostalCodeMaxLength(localCountry)}
-                        className={errors.postalCode ? "border-red-500" : ""}
-                      />
-                    )}
+                    render={({ field }) => {
+                      const currentCountry = watch("country") || localCountry;
+                      return (
+                        <Input
+                          id="postalCode"
+                          value={field.value || ""}
+                          onChange={(e) => {
+                            const value = e.target.value.replace(/[^a-zA-Z0-9\s-]/g, '');
+                            const formatted = formatPostalCode(currentCountry, value);
+                            field.onChange(formatted);
+                          }}
+                          placeholder={`Ex: ${getPostalCodeExample(currentCountry)}`}
+                          maxLength={getPostalCodeMaxLength(currentCountry)}
+                          className={errors.postalCode ? "border-red-500" : ""}
+                        />
+                      );
+                    }}
                   />
                   {errors.postalCode && (
                     <p className="text-red-500 text-sm mt-1">{errors.postalCode.message}</p>
                   )}
                   <p className="text-xs text-muted-foreground mt-1">
-                    Format: {getPostalCodeExample(localCountry)} ({countries.find(c => c.code === localCountry)?.name})
+                    Format: {getPostalCodeExample(watch("country") || localCountry)} ({countries.find(c => c.code === (watch("country") || localCountry))?.name})
                   </p>
                 </div>
 
                 <div>
                   <Label htmlFor="country">{t("checkout.country")} *</Label>
-                  <select 
-                    id="country"
-                    value={localCountry}
-                    onChange={(e) => {
-                      console.log("Country changed to:", e.target.value);
-                      setLocalCountry(e.target.value);
-                    }}
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                  >
-                    {countries.map((country) => (
-                      <option key={country.code} value={country.code}>
-                        {country.name} ({country.zone})
-                      </option>
-                    ))}
-                  </select>
+                  <Controller
+                    name="country"
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        value={field.value || localCountry}
+                        onValueChange={(value) => {
+                          console.log("Country changed to:", value);
+                          field.onChange(value);
+                          setLocalCountry(value);
+                          // Reset postal code when country changes
+                          setValue("postalCode", "");
+                        }}
+                      >
+                        <SelectTrigger id="country" className={errors.country ? "border-red-500" : ""}>
+                          <SelectValue placeholder="Sélectionnez un pays" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {countries.map((country) => (
+                            <SelectItem key={country.code} value={country.code}>
+                              {country.name} ({country.zone})
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
                   {errors.country && (
                     <p className="text-red-500 text-sm mt-1">{errors.country.message}</p>
                   )}
                   <p className="text-xs text-muted-foreground mt-1">
-                    Pays sélectionné: {countries.find(c => c.code === localCountry)?.name}
+                    Zone: {countries.find(c => c.code === (watch("country") || localCountry))?.zone} | 
+                    {countries.find(c => c.code === (watch("country") || localCountry))?.name}
                   </p>
-                  <input type="hidden" {...register("country")} value={localCountry} />
                 </div>
               </div>
 
@@ -375,7 +390,7 @@ const CheckoutForm = () => {
               <div className="mb-6">
                 <DPDShippingOptions
                   items={items}
-                  country={localCountry}
+                  country={watch("country") || localCountry}
                   postalCode={watchedPostalCode}
                   city={watchedCity}
                   onOptionSelect={handleShippingOptionSelect}
