@@ -1,4 +1,27 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Route, Switch } from "wouter";
+import { LanguageProvider } from "./hooks/use-language";
+import { CartProvider } from "./hooks/use-cart";
+import { AdminAuthProvider } from "./contexts/AdminAuthContext";
+import { Toaster } from "./components/ui/toaster";
+
+// Pages
+import Home from "./pages/home";
+import Catalog from "./pages/catalog";
+import ProductPage from "./pages/product";
+import Cart from "./pages/cart";
+import Checkout from "./pages/checkout";
+import Confirmation from "./pages/confirmation";
+import Gallery from "./pages/gallery";
+import Contact from "./pages/contact";
+import Admin from "./pages/admin";
+import Support from "./pages/support";
+import Privacy from "./pages/privacy";
+import Terms from "./pages/terms";
+import Returns from "./pages/returns";
+import Delivery from "./pages/delivery";
+import CustomerService from "./pages/customer-service";
+import NotFound from "./pages/not-found";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -8,38 +31,45 @@ const queryClient = new QueryClient({
   },
 });
 
+function Router() {
+  return (
+    <Switch>
+      <Route path="/" component={Home} />
+      <Route path="/catalog" component={Catalog} />
+      <Route path="/product/:id" component={ProductPage} />
+      <Route path="/cart" component={Cart} />
+      <Route path="/checkout" component={Checkout} />
+      <Route path="/confirmation" component={Confirmation} />
+      <Route path="/gallery" component={Gallery} />
+      <Route path="/contact" component={Contact} />
+      <Route path="/admin" component={Admin} />
+      <Route path="/administrateur" component={Admin} />
+      <Route path="/support" component={Support} />
+      <Route path="/privacy" component={Privacy} />
+      <Route path="/terms" component={Terms} />
+      <Route path="/returns" component={Returns} />
+      <Route path="/delivery" component={Delivery} />
+      <Route path="/customer-service" component={CustomerService} />
+      <Route component={NotFound} />
+    </Switch>
+  );
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen bg-white p-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6">Equi Saddles - Administration</h1>
-        
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
-          <h2 className="text-xl font-semibold text-blue-800 mb-2">Application Fonctionnelle</h2>
-          <p className="text-blue-700">
-            Le serveur fonctionne correctement. L'interface d'administration est disponible.
-          </p>
-        </div>
-
-        <div className="grid gap-4">
-          <a 
-            href="/admin" 
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium inline-block text-center transition-colors"
-          >
-            Accéder à l'Administration Complète
-          </a>
-          
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-            <h3 className="font-semibold text-gray-800 mb-2">État du Système</h3>
-            <ul className="space-y-1 text-gray-600">
-              <li>✅ Serveur Express actif sur port 5000</li>
-              <li>✅ Base de données PostgreSQL connectée</li>
-              <li>✅ APIs produits et commandes opérationnelles</li>
-              <li>✅ Interface d'administration prête</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <LanguageProvider>
+        <CartProvider>
+          <AdminAuthProvider>
+            <div className="min-h-screen flex flex-col">
+              <main className="flex-1">
+                <Router />
+              </main>
+            </div>
+            <Toaster />
+          </AdminAuthProvider>
+        </CartProvider>
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }
