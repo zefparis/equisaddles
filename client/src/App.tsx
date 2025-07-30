@@ -59,17 +59,18 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Providers temporairement désactivés à cause d'erreurs TypeScript */}
-      {/* <LanguageProvider> */}
-      {/* <CartProvider> */}
+      <LanguageProvider>
+        <CartProvider>
           <div className="min-h-screen flex flex-col">
+            <Header />
             <main className="flex-1">
               <Router />
             </main>
+            <Footer />
           </div>
-          {/* <Toaster /> */}
-      {/* </CartProvider> */}
-      {/* </LanguageProvider> */}
+          <Toaster />
+        </CartProvider>
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }

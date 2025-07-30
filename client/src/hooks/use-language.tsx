@@ -35,7 +35,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }): R
   );
 }
 
-export function useLanguage() {
+export function useLanguage(): LanguageContextType {
   const context = useContext(LanguageContext);
   if (!context) {
     throw new Error("useLanguage must be used within a LanguageProvider");
