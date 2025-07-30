@@ -123,7 +123,11 @@ export default function ProductPage() {
           <div className="space-y-6">
             <div>
               <Badge variant="secondary" className="mb-2">
-                {product.category}
+                {product.category === "Accessoires" && product.subcategory === "Autre" && product.customSubcategory
+                  ? product.customSubcategory
+                  : product.category === "Accessoires" 
+                  ? product.subcategory 
+                  : product.category}
               </Badge>
               <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
               <p className="text-gray-600 text-lg leading-relaxed">

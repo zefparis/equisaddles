@@ -166,7 +166,9 @@ export default function Catalog() {
                     <SelectItem value="tous">{t("catalog.allAccessories")}</SelectItem>
                     {accessoires.map((accessoire) => (
                       <SelectItem key={accessoire.id} value={accessoire.name}>
-                        {getTranslatedProductName(accessoire.name)}
+                        {accessoire.subcategory === "Autre" && accessoire.customSubcategory 
+                          ? `${accessoire.name} (${accessoire.customSubcategory})`
+                          : getTranslatedProductName(accessoire.name)}
                       </SelectItem>
                     ))}
                   </SelectContent>

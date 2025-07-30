@@ -18,6 +18,7 @@ export const products = pgTable("products", {
   inStock: boolean("in_stock").default(true), // true = Disponible, false = Vendu
   location: text("location"), // Ville/région où se trouve l'article
   sellerContact: text("seller_contact"), // Contact du vendeur
+  customSubcategory: text("custom_subcategory"), // Sous-catégorie personnalisée pour "Autre"
   publishedAt: timestamp("published_at").defaultNow(),
   createdAt: timestamp("created_at").defaultNow(),
 });

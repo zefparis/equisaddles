@@ -29,7 +29,7 @@ import ChatAdmin from "../components/admin/chat-admin";
 
 const categories = ["Obstacle", "Dressage", "Cross", "Mixte", "Poney", "Accessoires"];
 const saddleSizes = ["16", "16.5", "17", "17.5", "18", "18.5"];
-const accessorySubcategories = ["Sangles", "Etrivieres", "Etriers", "Amortisseurs", "Tapis", "Briderie", "Couvertures", "Protections"];
+const accessorySubcategories = ["Sangles", "Etrivieres", "Etriers", "Amortisseurs", "Tapis", "Briderie", "Couvertures", "Protections", "Autre"];
 const accessorySizes = ["S", "M", "L", "XL", "XXL", "Unique", "Poney", "Cheval", "Double Poney", "Full"];
 const saddleColors = [
   "Noir",
@@ -157,6 +157,7 @@ export default function Admin() {
       sellerContact: "",
       color: "",
       condition: "",
+      customSubcategory: "",
     },
   });
 
@@ -262,6 +263,7 @@ export default function Admin() {
       sellerContact: product.sellerContact || "",
       color: product.color || "",
       condition: product.condition || "",
+      customSubcategory: product.customSubcategory || "",
     });
     setShowProductDialog(true);
   };
@@ -283,6 +285,7 @@ export default function Admin() {
         sellerContact: "",
         color: "",
         condition: "",
+        customSubcategory: "",
       });
     } else {
       productForm.reset({
@@ -299,6 +302,7 @@ export default function Admin() {
         sellerContact: "",
         color: "",
         condition: "",
+        customSubcategory: "",
       });
     }
     setShowProductDialog(true);
@@ -405,7 +409,10 @@ export default function Admin() {
                       <h3 className="admin-product-title">{product.name}</h3>
                       <div className="space-y-1 text-sm">
                         <p className="admin-product-meta">
-                          {product.category === "Accessoires" ? product.subcategory : product.category} - Taille {product.size}
+                          {product.category === "Accessoires" ? 
+                            (product.subcategory === "Autre" && product.customSubcategory ? 
+                              product.customSubcategory : product.subcategory) 
+                            : product.category} - Taille {product.size}
                         </p>
                         {product.color && product.category !== "Accessoires" && (
                           <p className="text-gray-600 dark:text-gray-400">
@@ -658,7 +665,13 @@ export default function Admin() {
                   {/* FIX: label for/id - Added id to SelectTrigger for accessibility */}
                   <Select
                     value={productForm.watch("subcategory") || ""}
-                    onValueChange={(value) => productForm.setValue("subcategory", value)}
+                    onValueChange={(value) => {
+                      productForm.setValue("subcategory", value);
+                      // Reset custom subcategory when changing selection
+                      if (value !== "Autre") {
+                        productForm.setValue("customSubcategory", "");
+                      }
+                    }}
                   >
                     <SelectTrigger id="subcategory">
                       <SelectValue placeholder="Sélectionner une sous-catégorie" />
@@ -671,6 +684,18 @@ export default function Admin() {
                       ))}
                     </SelectContent>
                   </Select>
+                </div>
+              )}
+
+              {/* Champ personnalisé pour "Autre" sous-catégorie */}
+              {productForm.watch("category") === "Accessoires" && productForm.watch("subcategory") === "Autre" && (
+                <div>
+                  <Label htmlFor="customSubcategory">Précisez le type d'accessoire *</Label>
+                  <Input
+                    id="customSubcategory"
+                    {...productForm.register("customSubcategory")}
+                    placeholder="Ex: Licol, Longe, Cravache, Boots, etc."
+                  />
                 </div>
               )}
 

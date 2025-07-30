@@ -115,7 +115,10 @@ Preferred communication style: Simple, everyday language.
 - **COMPLETED**: Enhanced product cards to display color, condition, and location information
 - **COMPLETED**: Fixed all translation key display issues - replaced coded text with proper French labels
 - **COMPLETED**: Optimized form layout with better field organization and user-friendly placeholders
-- **STATUS**: Admin interface now perfectly suited for posting saddle and accessories advertisements with complete classification details
+- **COMPLETED**: Added "Autre" option in accessory subcategories with custom text field for non-listed products
+- **COMPLETED**: Harmonized catalog display with admin fields (color, condition, location, custom subcategories)
+- **COMPLETED**: Enhanced product cards and pages to show all classified ad details consistently
+- **STATUS**: Complete harmony between admin interface and public catalog - classified ads system fully functional
 
 ### July 30, 2025 - Logo Integration & PWA Installation Enhancement
 - **COMPLETED**: Nouveau logo PNG Equi Saddles intégré dans la navbar remplaçant le texte

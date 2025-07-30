@@ -31,11 +31,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             alt={product.name}
             className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
           />
-          {product.featured && (
-            <Badge className="absolute top-4 right-4 bg-accent">
-              {t("product.featured")}
-            </Badge>
-          )}
+
           {hasDiscount && (
             <Badge className="absolute top-4 left-4 bg-red-500">
               -
