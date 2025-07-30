@@ -28,6 +28,7 @@ import { queryClient } from "./lib/queryClient";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
 import ChatWidget from "./components/chat/chat-widget";
+import TestHeader from "./test-header";
 
 function Router() {
   
@@ -55,6 +56,7 @@ function Router() {
 }
 
 function App() {
+  console.log("App component is rendering...");
   
   return (
     <QueryClientProvider client={queryClient}>
@@ -62,6 +64,7 @@ function App() {
         <CartProvider>
           <AdminAuthProvider>
             <div className="min-h-screen flex flex-col">
+              <TestHeader />
               <Header />
               <main className="flex-1">
                 <Router />
