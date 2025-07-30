@@ -4,7 +4,7 @@ import { useLanguage } from "../../hooks/use-language";
 import { useCart } from "../../hooks/use-cart";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
-import { Menu, ShoppingCart, Globe, Download } from "lucide-react";
+import { Menu, ShoppingCart, Download } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -100,10 +100,8 @@ export default function Header() {
             {/* Language Selector */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center gap-1 text-white hover:text-[#FFD700]">
-                  <Globe className="h-4 w-4" />
+                <Button variant="ghost" className="p-2 text-white hover:text-[#FFD700]">
                   <span className="flex items-center">{currentLanguage?.flag}</span>
-                  <span className="text-sm">{language.toUpperCase()}</span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent
