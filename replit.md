@@ -36,6 +36,10 @@ Preferred communication style: Simple, everyday language.
 - **COMPLETED**: Homepage (/) correctly shows Home page instead of Admin panel
 - **COMPLETED**: Admin panel accessible at /admin and /administrateur routes with authentication
 - **COMPLETED**: LanguageProvider and CartProvider fully functional with proper TypeScript types
+- **COMPLETED**: Rebuilt checkout page with simplified shipping process - no client-side DPD integration
+- **COMPLETED**: Checkout now only collects delivery address, Equi Saddles calculates shipping costs offline
+- **COMPLETED**: Added clear messaging that shipping quotation will be sent by email after order creation
+- **COMPLETED**: Stripe payment integration maintained for order processing
 - Application now completely stable with full navigation, multilingual support, and cart functionality
 
 ### July 30, 2025 - DPD API Security Enhancement & Country Selector Fix (REMOVED)

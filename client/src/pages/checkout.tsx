@@ -1,98 +1,60 @@
 import { useState, useEffect } from "react";
-import { useStripe, Elements, PaymentElement, useElements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useCart } from "../hooks/use-cart";
 import { useLanguage } from "../hooks/use-language";
 import { useToast } from "../hooks/use-toast";
-import { apiRequest } from "../lib/queryClient";
 import { scrollToTop } from "../lib/utils";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../components/ui/form";
+import { Badge } from "../components/ui/badge";
 import { Separator } from "../components/ui/separator";
-import { useForm, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Link } from "wouter";
-import { ArrowLeft, CreditCard, Truck } from "lucide-react";
-import { StripeErrorHandler } from "../utils/stripe-error-handler";
+import { Alert, AlertDescription } from "../components/ui/alert";
+import Header from "../components/layout/header";
+import Footer from "../components/layout/footer";
+import ChatWidget from "../components/chat/chat-widget";
+import { Truck, Mail, Calculator, Info } from "lucide-react";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { apiRequest } from "../lib/queryClient";
 
 if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
   throw new Error('Missing required Stripe key: VITE_STRIPE_PUBLIC_KEY');
 }
-
-if (window.self !== window.top) {
-  console.warn('[StripeFix] WARNING: Stripe is being loaded in an iframe. This is a security risk and may cause payment failures. Load Stripe in the main window instead.');
-}
-
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
+// Schema de validation pour le formulaire d'adresse
 const checkoutSchema = z.object({
-  name: z.string().min(2, "Le nom est requis"),
-  email: z.string().email("Email invalide"),
-  phone: z.string().optional(),
-  address: z.string().min(5, "L'adresse est requise"),
-  city: z.string().min(2, "La ville est requise"),
-  postalCode: z.string().min(1, "Le code postal est requis"),
-  country: z.string().min(2, "Le pays est requis"),
+  firstName: z.string().min(2, "Le prénom doit contenir au moins 2 caractères"),
+  lastName: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
+  email: z.string().email("Adresse email invalide"),
+  phone: z.string().min(10, "Numéro de téléphone invalide"),
+  address: z.string().min(5, "Adresse complète requise"),
+  city: z.string().min(2, "Ville requise"),
+  postalCode: z.string().min(4, "Code postal requis"),
+  country: z.string().min(2, "Pays requis"),
+  notes: z.string().optional(),
 });
 
 type CheckoutFormData = z.infer<typeof checkoutSchema>;
 
-const countries = [
-  { code: 'BE', name: 'Belgique' },
-  { code: 'FR', name: 'France' },
-  { code: 'NL', name: 'Pays-Bas' },
-  { code: 'DE', name: 'Allemagne' },
-  { code: 'ES', name: 'Espagne' },
-  { code: 'IT', name: 'Italie' },
-  { code: 'LU', name: 'Luxembourg' },
-];
-
-const CheckoutForm = () => {
+// Composant du formulaire de paiement Stripe
+function CheckoutForm({ orderData }: { orderData: CheckoutFormData & { items: any[]; total: number } }) {
   const stripe = useStripe();
   const elements = useElements();
-  const { toast } = useToast();
-  const { items, totalAmount, clearCart } = useCart();
   const { t } = useLanguage();
+  const { toast } = useToast();
+  const { clearCart } = useCart();
   const [isProcessing, setIsProcessing] = useState(false);
-  const [shippingCost, setShippingCost] = useState(0);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    control,
-    watch,
-  } = useForm<CheckoutFormData>({
-    resolver: zodResolver(checkoutSchema),
-    defaultValues: {
-      country: 'BE'
-    }
-  });
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-  const watchedCountry = watch('country');
-
-  // Calculate shipping when country changes
-  useEffect(() => {
-    if (watchedCountry) {
-      let cost = 0;
-      if (watchedCountry === 'BE') {
-        cost = 7.50;
-      } else if (['FR', 'NL', 'DE', 'LU'].includes(watchedCountry)) {
-        cost = 12.90;
-      } else {
-        cost = 19.90;
-      }
-      setShippingCost(cost);
-    }
-  }, [watchedCountry]);
-
-  const finalTotal = totalAmount + shippingCost;
-
-  const onSubmit = async (data: CheckoutFormData) => {
     if (!stripe || !elements) {
       return;
     }
@@ -100,27 +62,24 @@ const CheckoutForm = () => {
     setIsProcessing(true);
 
     try {
-      // Create checkout session
-      const response = await apiRequest("POST", "/api/create-payment-intent", {
-        items,
-        customerInfo: data,
-        shippingCost
+      const { error } = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          return_url: `${window.location.origin}/confirmation`,
+        },
       });
 
-      const data_response = await response.json();
-      const { clientSecret } = data_response;
-
-      if (clientSecret) {
-        window.location.href = clientSecret;
-      } else {
-        throw new Error("No payment URL received");
+      if (error) {
+        toast({
+          title: "Erreur de paiement",
+          description: error.message,
+          variant: "destructive",
+        });
       }
-    } catch (error: any) {
-      console.error('[StripeFix] Payment error:', error);
-      const handledError = StripeErrorHandler.handleApiError(error);
+    } catch (err) {
       toast({
-        title: "Erreur de paiement",
-        description: handledError.message,
+        title: "Erreur",
+        description: "Une erreur est survenue lors du paiement",
         variant: "destructive",
       });
     } finally {
@@ -129,206 +88,354 @@ const CheckoutForm = () => {
   };
 
   return (
-    <Card className="max-w-2xl mx-auto">
+    <Card>
       <CardHeader>
-        <div className="flex items-center gap-4">
-          <Link href="/cart">
-            <Button variant="outline" size="sm">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Retour au panier
-            </Button>
-          </Link>
-          <CardTitle className="flex items-center gap-2">
-            <CreditCard className="w-5 h-5" />
-            Finaliser la commande
-          </CardTitle>
-        </div>
+        <CardTitle className="flex items-center gap-2">
+          <span>💳</span> {t("checkout.payment")}
+        </CardTitle>
       </CardHeader>
-
       <CardContent>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          {/* Customer Information */}
-          <div>
-            <Label className="text-lg font-semibold mb-4 block">Informations personnelles</Label>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="name">Nom complet *</Label>
-                <Input
-                  id="name"
-                  {...register("name")}
-                  className={errors.name ? "border-red-500" : ""}
-                />
-                {errors.name && (
-                  <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
-                )}
-              </div>
-
-              <div>
-                <Label htmlFor="email">Email *</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  {...register("email")}
-                  className={errors.email ? "border-red-500" : ""}
-                />
-                {errors.email && (
-                  <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
-                )}
-              </div>
-
-              <div className="md:col-span-2">
-                <Label htmlFor="phone">Téléphone</Label>
-                <Input
-                  id="phone"
-                  {...register("phone")}
-                />
-              </div>
-            </div>
-          </div>
-
-          <Separator />
-
-          {/* Shipping Address */}
-          <div>
-            <Label className="text-lg font-semibold mb-4 block flex items-center gap-2">
-              <Truck className="w-5 h-5" />
-              Adresse de livraison
-            </Label>
-            
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="address">Adresse *</Label>
-                <Input
-                  id="address"
-                  {...register("address")}
-                  className={errors.address ? "border-red-500" : ""}
-                />
-                {errors.address && (
-                  <p className="text-red-500 text-sm mt-1">{errors.address.message}</p>
-                )}
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div>
-                  <Label htmlFor="city">Ville *</Label>
-                  <Input
-                    id="city"
-                    {...register("city")}
-                    className={errors.city ? "border-red-500" : ""}
-                  />
-                  {errors.city && (
-                    <p className="text-red-500 text-sm mt-1">{errors.city.message}</p>
-                  )}
-                </div>
-
-                <div>
-                  <Label htmlFor="postalCode">Code postal *</Label>
-                  <Input
-                    id="postalCode"
-                    {...register("postalCode")}
-                    className={errors.postalCode ? "border-red-500" : ""}
-                  />
-                  {errors.postalCode && (
-                    <p className="text-red-500 text-sm mt-1">{errors.postalCode.message}</p>
-                  )}
-                </div>
-
-                <div>
-                  <Label htmlFor="country">Pays *</Label>
-                  <Controller
-                    name="country"
-                    control={control}
-                    render={({ field }) => (
-                      <Select value={field.value} onValueChange={field.onChange}>
-                        <SelectTrigger id="country" className={errors.country ? "border-red-500" : ""}>
-                          <SelectValue placeholder="Sélectionner un pays" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {countries.map((country) => (
-                            <SelectItem key={country.code} value={country.code}>
-                              {country.name}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    )}
-                  />
-                  {errors.country && (
-                    <p className="text-red-500 text-sm mt-1">{errors.country.message}</p>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <Separator />
-
-          {/* Order Summary */}
-          <div>
-            <Label className="text-lg font-semibold mb-4 block">Résumé de la commande</Label>
-            <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg space-y-2">
-              <div className="flex justify-between">
-                <span>Sous-total ({items.length} article{items.length > 1 ? 's' : ''})</span>
-                <span>{totalAmount.toFixed(2)} €</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Livraison</span>
-                <span>{shippingCost.toFixed(2)} €</span>
-              </div>
-              <Separator />
-              <div className="flex justify-between font-semibold text-lg">
-                <span>Total</span>
-                <span>{finalTotal.toFixed(2)} €</span>
-              </div>
-            </div>
-          </div>
-
-          <Separator />
-
-          {/* Payment */}
-          <div>
-            <Label className="text-lg font-semibold mb-4 block">Informations de paiement</Label>
-            <div className="p-4 border rounded-lg bg-gray-50">
-              <PaymentElement />
-            </div>
-          </div>
-
-          <Button
-            type="submit"
-            className="w-full btn-primary text-lg py-6"
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <PaymentElement />
+          <Button 
+            type="submit" 
+            className="w-full" 
             disabled={!stripe || isProcessing}
           >
-            {isProcessing ? "Traitement..." : `Payer ${finalTotal.toFixed(2)} € avec Stripe`}
+            {isProcessing ? "Traitement..." : `Payer ${orderData.total.toFixed(2)}€`}
           </Button>
         </form>
       </CardContent>
     </Card>
   );
-};
+}
 
 export default function Checkout() {
-  const { items } = useCart();
+  const { t } = useLanguage();
+  const { items, getTotal, clearCart } = useCart();
+  const { toast } = useToast();
+  const [clientSecret, setClientSecret] = useState("");
+  const [orderCreated, setOrderCreated] = useState(false);
 
+  // Scroll to top when page loads
   useEffect(() => {
     scrollToTop();
   }, []);
 
-  if (!items.length) {
-    return (
-      <div className="container mx-auto px-4 py-8 text-center">
-        <h1 className="text-2xl font-bold mb-4">Votre panier est vide</h1>
-        <Link href="/catalog">
-          <Button>Retourner au catalogue</Button>
-        </Link>
-      </div>
-    );
+  // Redirection si le panier est vide
+  useEffect(() => {
+    if (items.length === 0) {
+      window.location.href = "/catalog";
+    }
+  }, [items]);
+
+  const form = useForm<CheckoutFormData>({
+    resolver: zodResolver(checkoutSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      address: "",
+      city: "",
+      postalCode: "",
+      country: "BE",
+      notes: "",
+    },
+  });
+
+  const onSubmit = async (data: CheckoutFormData) => {
+    try {
+      // Créer l'intention de paiement avec les données du client
+      const orderData = {
+        ...data,
+        items: items.map(item => ({
+          productId: item.id,
+          quantity: item.quantity,
+          price: item.price,
+        })),
+        total: getTotal(),
+      };
+
+      const response = await apiRequest("POST", "/api/create-payment-intent", {
+        amount: getTotal(),
+        orderData,
+      });
+
+      const { clientSecret } = await response.json();
+      setClientSecret(clientSecret);
+      setOrderCreated(true);
+
+      toast({
+        title: "Commande créée",
+        description: "Procédez maintenant au paiement",
+      });
+    } catch (error) {
+      toast({
+        title: "Erreur",
+        description: "Impossible de créer la commande",
+        variant: "destructive",
+      });
+    }
+  };
+
+  if (items.length === 0) {
+    return null;
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <Elements stripe={stripePromise}>
-        <CheckoutForm />
-      </Elements>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <Header />
+      
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold mb-8 text-center">
+          {t("checkout.title")}
+        </h1>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Formulaire d'adresse de livraison */}
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Truck className="h-5 w-5" />
+                  Adresse de livraison
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <FormField
+                        control={form.control}
+                        name="firstName"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Prénom</FormLabel>
+                            <FormControl>
+                              <Input {...field} className="bg-blue-50 dark:bg-gray-700" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="lastName"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Nom</FormLabel>
+                            <FormControl>
+                              <Input {...field} className="bg-blue-50 dark:bg-gray-700" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Email</FormLabel>
+                          <FormControl>
+                            <Input type="email" {...field} className="bg-blue-50 dark:bg-gray-700" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="phone"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Téléphone</FormLabel>
+                          <FormControl>
+                            <Input type="tel" {...field} className="bg-blue-50 dark:bg-gray-700" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="address"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Adresse complète</FormLabel>
+                          <FormControl>
+                            <Input {...field} className="bg-blue-50 dark:bg-gray-700" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <FormField
+                        control={form.control}
+                        name="city"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Ville</FormLabel>
+                            <FormControl>
+                              <Input {...field} className="bg-blue-50 dark:bg-gray-700" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="postalCode"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Code postal</FormLabel>
+                            <FormControl>
+                              <Input {...field} className="bg-blue-50 dark:bg-gray-700" />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="country"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Pays</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger id="country" className="bg-blue-50 dark:bg-gray-700">
+                                  <SelectValue />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                <SelectItem value="BE">Belgique</SelectItem>
+                                <SelectItem value="FR">France</SelectItem>
+                                <SelectItem value="NL">Pays-Bas</SelectItem>
+                                <SelectItem value="DE">Allemagne</SelectItem>
+                                <SelectItem value="LU">Luxembourg</SelectItem>
+                                <SelectItem value="CH">Suisse</SelectItem>
+                                <SelectItem value="ES">Espagne</SelectItem>
+                                <SelectItem value="IT">Italie</SelectItem>
+                                <SelectItem value="GB">Royaume-Uni</SelectItem>
+                                <SelectItem value="US">États-Unis</SelectItem>
+                                <SelectItem value="CA">Canada</SelectItem>
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <FormField
+                      control={form.control}
+                      name="notes"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Notes (optionnel)</FormLabel>
+                          <FormControl>
+                            <Input {...field} placeholder="Instructions de livraison..." className="bg-blue-50 dark:bg-gray-700" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    {!orderCreated && (
+                      <Button type="submit" className="w-full">
+                        Créer la commande
+                      </Button>
+                    )}
+                  </form>
+                </Form>
+              </CardContent>
+            </Card>
+
+            {/* Information sur les frais de port */}
+            <Alert>
+              <Info className="h-4 w-4" />
+              <AlertDescription className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <Calculator className="h-4 w-4" />
+                  <strong>Calcul des frais de port</strong>
+                </div>
+                <p>
+                  Les frais de livraison seront calculés par notre équipe avec DPD selon votre adresse. 
+                  Vous recevrez une quotation détaillée par email avant la finalisation de votre commande.
+                </p>
+                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  <Mail className="h-3 w-3" />
+                  <span>Expédition depuis: Rue du Vicinal 9, 4141 Louveigné, Belgique</span>
+                </div>
+              </AlertDescription>
+            </Alert>
+          </div>
+
+          {/* Résumé de commande et paiement */}
+          <div className="space-y-6">
+            {/* Résumé du panier */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Résumé de la commande</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {items.map((item) => (
+                    <div key={item.id} className="flex justify-between items-center">
+                      <div>
+                        <h4 className="font-medium">{item.name}</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                          Quantité: {item.quantity} • Taille: {item.size}
+                        </p>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-medium">{(item.price * item.quantity).toFixed(2)}€</p>
+                      </div>
+                    </div>
+                  ))}
+                  
+                  <Separator />
+                  
+                  <div className="flex justify-between items-center font-bold text-lg">
+                    <span>Sous-total</span>
+                    <span>{getTotal().toFixed(2)}€</span>
+                  </div>
+                  
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    <p>+ Frais de livraison (calculés séparément)</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Formulaire de paiement */}
+            {orderCreated && clientSecret && (
+              <Elements stripe={stripePromise} options={{ clientSecret }}>
+                <CheckoutForm orderData={{
+                  ...form.getValues(),
+                  items: items.map(item => ({
+                    productId: item.id,
+                    quantity: item.quantity,
+                    price: item.price,
+                  })),
+                  total: getTotal()
+                }} />
+              </Elements>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <Footer />
+      <ChatWidget />
     </div>
   );
 }
