@@ -8,6 +8,49 @@ This is a full-stack e-commerce application specialized in selling equestrian sa
 
 Preferred communication style: Simple, everyday language.
 
+## État Actuel de l'Application (BACKUP 30/07/2025)
+
+### Configuration Technique Stable
+- **Frontend**: React 18.3.1 + TypeScript + Vite
+- **Backend**: Express.js + TypeScript sur port 5000  
+- **Base de données**: PostgreSQL (Neon) via Drizzle ORM
+- **Paiements**: Stripe intégré avec clés configurées
+- **PWA**: Désactivé en développement pour éviter problèmes de cache
+- **Chat**: WebSocket fonctionnel avec notifications email (Brevo)
+
+### Fichiers Clés Fonctionnels
+- `client/src/App.tsx`: Routing principal avec séparation admin/public
+- `client/src/components/layout/header.tsx`: Header avec menu langue corrigé
+- `client/src/main.tsx`: PWA désactivé, Service Worker supprimé
+- `server/index.ts`: Backend Express fonctionnel
+- `shared/schema.ts`: Schéma base de données complet
+
+### Pages Opérationnelles
+- `/` - Homepage avec produits et navigation
+- `/catalog` - Catalogue avec filtres par catégorie
+- `/product/:id` - Pages produits individuelles
+- `/cart` - Panier d'achat fonctionnel
+- `/checkout` - Processus de commande Stripe
+- `/gallery` - Galerie d'images catégorisée
+- `/contact` - Page contact avec chat widget
+- `/admin` - Panel admin avec authentification (admin/Justine1234!)
+- Pages légales complètes (support, privacy, terms, etc.)
+
+### Fonctionnalités Validées
+- ✅ Navigation entre toutes les pages
+- ✅ Système multilingue (5 langues)
+- ✅ Panier et checkout Stripe
+- ✅ Admin panel avec gestion produits
+- ✅ Chat temps réel avec notifications
+- ✅ Base de données PostgreSQL
+- ✅ Responsive design mobile/desktop
+- ✅ Menu déroulant langue avec bon contraste
+
+### Identifiants Admin
+- Utilisateur: `admin`
+- Mot de passe: `Justine1234!`
+- Accès: `/admin` ou `/administrateur`
+
 ## Recent Changes
 
 ### July 28, 2025 - PWA Installation Link Implementation
@@ -28,6 +71,31 @@ Preferred communication style: Simple, everyday language.
 - **COMPLETED**: Admin panel completely separated and functional without interfering with main app
 - **COMPLETED**: Main application routing fixed with proper component loading
 - **STATUS**: Application now fully functional with complete navigation system
+
+### July 30, 2025 - PWA Cache Issue Resolution & Application Stabilization (BACKUP POINT)
+- **BACKUP COMPLET CRÉÉ**: État stable de l'application après résolution des problèmes de cache PWA
+- **PROBLÈME RÉSOLU**: Cache PWA qui empêchait les modifications de se refléter dans le navigateur
+- **SOLUTION IMPLÉMENTÉE**: Service Worker PWA complètement désactivé pour développement
+- **HEADER CORRIGÉ**: Menu déroulant de langue avec contraste amélioré (text-black, fond gris)
+- **FICHIERS CONCERNÉS**: 
+  - client/src/main.tsx: PWA désactivé avec suppression automatique des caches
+  - client/src/components/layout/header.tsx: Menu langue avec contraste amélioré
+  - client/src/App.tsx: Utilise header.tsx (pas header-fixed.tsx)
+- **APPLICATION FONCTIONNELLE**: 
+  - Navigation complète entre toutes les pages
+  - Cart et checkout opérationnels
+  - Admin panel accessible sur /admin
+  - Chat widget fonctionnel
+  - Système multilingue (FR, EN, NL, ES, DE)
+  - Paiement Stripe configuré
+  - Base de données PostgreSQL connectée
+- **ÉTAT TECHNIQUE ACTUEL**:
+  - React 18.3.1 avec TypeScript
+  - Express.js backend sur port 5000
+  - PWA désactivé en développement pour éviter les problèmes de cache
+  - Service Worker supprimé automatiquement au chargement
+  - Vite HMR fonctionnel sans interférence PWA
+- **POINT DE RESTAURATION**: Cette configuration est stable et prête pour le développement
 
 ### July 30, 2025 - Complete Application Restoration & Frontend Reconstruction
 - **COMPLETED**: Complete removal of all DPD integration components and APIs
