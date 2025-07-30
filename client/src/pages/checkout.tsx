@@ -19,7 +19,6 @@ import { z } from "zod";
 import { Link } from "wouter";
 import { ArrowLeft, CreditCard, Truck } from "lucide-react";
 import DPDShippingOptions from "../components/shipping/dpd-shipping-options";
-import { DPDAddressForm } from "../components/checkout/DPDAddressForm";
 
 if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
   throw new Error('Missing required Stripe key: VITE_STRIPE_PUBLIC_KEY');
@@ -259,14 +258,115 @@ const CheckoutForm = () => {
                 )}
               </div>
 
-              {/* Utilisation du composant DPD officiel pour l'adresse */}
-              <DPDAddressForm
-                register={register}
-                errors={errors}
-                control={control}
-                setValue={setValue}
-                watch={watch}
-              />
+              {/* Formulaire d'adresse DPD intégré */}
+              <div className="space-y-6">
+                {/* En-tête DPD */}
+                <div className="bg-gradient-to-r from-red-600 to-red-700 text-white p-4 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <span className="text-red-600 font-bold text-sm">DPD</span>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold">Adresse de livraison DPD</h3>
+                        <p className="text-sm opacity-90">Expédition depuis Louveigné, Belgique</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Champs d'adresse avec validation DPD */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                  <div>
+                    <Label htmlFor="city">{t("checkout.city")} *</Label>
+                    <Input
+                      id="city"
+                      {...register("city")}
+                      placeholder={t("checkout.cityPlaceholder")}
+                      className={`${errors.city ? "border-red-500" : ""} bg-blue-50 dark:bg-gray-800`}
+                    />
+                    {errors.city && (
+                      <p className="text-red-500 text-sm mt-1">{errors.city.message}</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <Label htmlFor="postalCode">
+                      {t("checkout.postalCode")} *
+                      <span className="text-xs text-muted-foreground ml-1">
+                        ({watchedCountry === 'BE' ? '4 chiffres' : watchedCountry === 'FR' ? '5 chiffres' : 'Variable'})
+                      </span>
+                    </Label>
+                    <Input
+                      id="postalCode"
+                      {...register("postalCode")}
+                      placeholder={watchedCountry === 'BE' ? '4141' : watchedCountry === 'FR' ? '75001' : 'Code postal'}
+                      maxLength={watchedCountry === 'BE' ? 4 : watchedCountry === 'FR' ? 5 : 10}
+                      className={`${errors.postalCode ? "border-red-500" : ""} bg-blue-50 dark:bg-gray-800`}
+                    />
+                    {errors.postalCode && (
+                      <p className="text-red-500 text-sm mt-1">{errors.postalCode.message}</p>
+                    )}
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Format: {watchedCountry === 'BE' ? '4141 (4 chiffres)' : watchedCountry === 'FR' ? '75001 (5 chiffres)' : 'Selon pays'}
+                    </p>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="country">{t("checkout.country")} *</Label>
+                    <select
+                      id="country"
+                      {...register("country")}
+                      onChange={(e) => {
+                        setValue("country", e.target.value);
+                        setValue("postalCode", "");
+                      }}
+                      className={`flex h-10 w-full rounded-md border border-input bg-blue-50 dark:bg-gray-800 px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
+                        errors.country ? "border-red-500" : ""
+                      }`}
+                    >
+                      <option value="BE">🇧🇪 Belgique (Zone domestique)</option>
+                      <option value="LU">🇱🇺 Luxembourg (Zone domestique)</option>
+                      <option value="FR">🇫🇷 France (Zone Europe)</option>
+                      <option value="NL">🇳🇱 Pays-Bas (Zone Europe)</option>
+                      <option value="DE">🇩🇪 Allemagne (Zone Europe)</option>
+                      <option value="ES">🇪🇸 Espagne (Zone Europe)</option>
+                      <option value="IT">🇮🇹 Italie (Zone Europe)</option>
+                      <option value="CH">🇨🇭 Suisse (Zone Europe)</option>
+                      <option value="AT">🇦🇹 Autriche (Zone Europe)</option>
+                      <option value="GB">🇬🇧 Royaume-Uni (Zone Internationale)</option>
+                      <option value="US">🇺🇸 États-Unis (Zone Internationale)</option>
+                      <option value="CA">🇨🇦 Canada (Zone Internationale)</option>
+                    </select>
+                    {errors.country && (
+                      <p className="text-red-500 text-sm mt-1">{errors.country.message}</p>
+                    )}
+                    <p className="text-xs text-muted-foreground mt-1">
+                      <strong>Expédition depuis:</strong> Rue du Vicinal 9, 4141 Louveigné, Belgique
+                    </p>
+                  </div>
+                </div>
+
+                {/* Informations de validation DPD */}
+                <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg border">
+                  <div className="flex items-start gap-2">
+                    <div className="text-red-600 mt-0.5">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="text-sm">
+                      <p className="font-medium text-gray-900 dark:text-gray-100 mb-1">
+                        Validation d'adresse DPD
+                      </p>
+                      <p className="text-gray-600 dark:text-gray-300">
+                        Codes postaux: Belgique (4 chiffres), France (5 chiffres).
+                        L'adresse sera validée automatiquement par le système DPD.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <Separator className="my-6" />
 

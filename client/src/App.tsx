@@ -72,7 +72,7 @@ function App() {
             {/* Chat System */}
             <ChatWidget 
               isOpen={isChatOpen} 
-              onClose={() => setIsChatOpen(false)} 
+              onToggle={() => setIsChatOpen(!isChatOpen)} 
             />
             {!isChatOpen && (
               <ChatButton 
