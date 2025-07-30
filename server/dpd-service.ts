@@ -128,28 +128,15 @@ export class DPDService {
   }
 
   /**
-   * DPD: Calculate shipping rates using real DPD API integration
-   * Since DPD doesn't provide direct rate calculation endpoints, we implement
-   * a hybrid approach using real DPD tariffs with potential API validation
+   * DPD: Calculate shipping rates using contracted rates
+   * Real-time API temporarily disabled due to authentication issues
    */
   public async calculateShipping(request: ShippingCalculationRequest): Promise<DPDShippingOption[]> {
     console.log(`[DPD API] Calculating shipping for ${request.country} ${request.postalCode}, weight: ${request.weight}kg, value: ${request.value}€`);
     
     const zone = this.getShippingZone(request.country);
-    const options: DPDShippingOption[] = [];
-
-    // DPD: Try to get real-time rates from DPD API first
-    try {
-      const realTimeRates = await this.fetchRealTimeDPDRates(request);
-      if (realTimeRates && realTimeRates.length > 0) {
-        console.log(`[DPD API] Got ${realTimeRates.length} real-time rates from DPD API`);
-        return realTimeRates;
-      }
-    } catch (error: any) {
-      console.warn(`[DPD API] Real-time API call failed, falling back to contracted rates:`, error.message);
-    }
-
-    // DPD: Fallback to contracted rates based on real DPD tariffs
+    
+    // DPD: Use contracted rates (reliable and production-ready)
     console.log(`[DPD API] Using contracted rates for zone: ${zone}`);
     return this.calculateContractedRates(request, zone);
   }

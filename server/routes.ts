@@ -396,9 +396,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // DPD: Validate request parameters
       const { weight, country, postalCode, city, value } = req.body;
       
-      if (!weight || !country || !postalCode || !city || value === undefined) {
+      if (!weight || !country || !postalCode || value === undefined) {
         return res.status(400).json({ 
-          message: "Missing required parameters: weight, country, postalCode, city, value" 
+          message: "Missing required parameters: weight, country, postalCode, value" 
         });
       }
 
@@ -408,7 +408,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         weight: parseFloat(weight),
         country: country.toString().toUpperCase(),
         postalCode: postalCode.toString(),
-        city: city.toString(),
+        city: city?.toString() || "",
         value: parseFloat(value)
       };
 
