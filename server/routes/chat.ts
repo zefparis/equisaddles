@@ -1,4 +1,4 @@
-import type { Express } from "express";
+import type { Express, Request, Response } from "express";
 import { WebSocketServer, WebSocket } from "ws";
 import type { Server } from "http";
 import { chatStorage } from "../storage/chat";
@@ -103,7 +103,7 @@ export function setupChatWebSocket(server: Server, app: Express) {
   });
 
   // Routes REST pour le chat
-  app.get('/api/chat/sessions', async (req, res) => {
+  app.get('/api/chat/sessions', async (req: Request, res: Response) => {
     try {
       const sessions = await chatStorage.getAllChatSessions();
       res.json(sessions);
@@ -113,7 +113,7 @@ export function setupChatWebSocket(server: Server, app: Express) {
     }
   });
 
-  app.get('/api/chat/sessions/:sessionId/messages', async (req, res) => {
+  app.get('/api/chat/sessions/:sessionId/messages', async (req: Request, res: Response) => {
     try {
       const { sessionId } = req.params;
       const messages = await chatStorage.getChatMessages(sessionId);
@@ -124,7 +124,7 @@ export function setupChatWebSocket(server: Server, app: Express) {
     }
   });
 
-  app.post('/api/chat/sessions/:sessionId/mark-read', async (req, res) => {
+  app.post('/api/chat/sessions/:sessionId/mark-read', async (req: Request, res: Response) => {
     try {
       const { sessionId } = req.params;
       const { senderType } = req.body;
@@ -136,7 +136,7 @@ export function setupChatWebSocket(server: Server, app: Express) {
     }
   });
 
-  app.get('/api/chat/unread-count', async (req, res) => {
+  app.get('/api/chat/unread-count', async (req: Request, res: Response) => {
     try {
       const count = await chatStorage.getUnreadMessagesCount();
       res.json({ count });

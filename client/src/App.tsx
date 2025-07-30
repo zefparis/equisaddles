@@ -74,9 +74,10 @@ function Router() {
                 </Switch>
               </main>
               <Footer />
-
+              
+              {/* Chat Widget flottant pour toutes les pages publiques */}
+              <ChatWidget />
             </div>
-            <ChatWidget />
             <Toaster />
           </AdminAuthProvider>
         </CartProvider>

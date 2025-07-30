@@ -352,8 +352,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   const httpServer = createServer(app);
   
-  // Setup WebSocket for chat (disabled for now)
-  // setupChatWebSocket(httpServer);
+  // Setup WebSocket for chat
+  setupChatWebSocket(httpServer, app);
   
   return httpServer;
 }
