@@ -20,7 +20,7 @@ import Privacy from "./pages/privacy";
 import Terms from "./pages/terms";
 import Returns from "./pages/returns";
 import Delivery from "./pages/delivery";
-import CustomerService from "./pages/customer-service";
+import CustomerService from "./pages/customer-service";  
 import NotFound from "./pages/not-found";
 
 // Import the queryClient from the lib to get the default queryFn
@@ -29,9 +29,7 @@ import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
 import ChatWidget from "./components/chat/chat-widget";
 
-
 function Router() {
-  
   return (
     <Switch>
       <Route path="/" component={Home} />
@@ -57,10 +55,22 @@ function Router() {
 
 export default function App() {
   return (
-    <div style={{ background: 'green', color: 'white', padding: '20px' }}>
-      <h1>TEST - APP SIMPLE FONCTIONNE</h1>
-      <p>Si vous voyez cette page verte, le problème était bien dans les providers</p>
-      <a href="/admin" style={{ color: 'yellow' }}>Aller vers admin (qui fonctionne)</a>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <LanguageProvider>
+        <CartProvider>
+          <AdminAuthProvider>
+            <div className="min-h-screen flex flex-col">
+              <Header />
+              <main className="flex-1">
+                <Router />
+              </main>
+              <Footer />
+            </div>
+            <ChatWidget />
+            <Toaster />
+          </AdminAuthProvider>
+        </CartProvider>
+      </LanguageProvider>
+    </QueryClientProvider>
   );
 }
