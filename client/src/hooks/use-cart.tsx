@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { Product } from "@shared/schema";
 
 export interface CartItem extends Product {
@@ -17,14 +17,19 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-export function CartProvider({ children }: { children: ReactNode }): JSX.Element {
+export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>(() => {
-    const saved = localStorage.getItem("equi-saddles-cart");
-    return saved ? JSON.parse(saved) : [];
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem("equi-saddles-cart");
+      return saved ? JSON.parse(saved) : [];
+    }
+    return [];
   });
 
   useEffect(() => {
-    localStorage.setItem("equi-saddles-cart", JSON.stringify(items));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem("equi-saddles-cart", JSON.stringify(items));
+    }
   }, [items]);
 
   const addItem = (product: Product) => {
@@ -64,10 +69,9 @@ export function CartProvider({ children }: { children: ReactNode }): JSX.Element
   const totalAmount = items.reduce((sum, item) => sum + (parseFloat(item.price) * item.quantity), 0);
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
 
-  return React.createElement(
-    CartContext.Provider,
-    {
-      value: {
+  return (
+    <CartContext.Provider
+      value={{
         items,
         addItem,
         removeItem,
@@ -75,9 +79,10 @@ export function CartProvider({ children }: { children: ReactNode }): JSX.Element
         clearCart,
         totalAmount,
         totalItems
-      }
-    },
-    children
+      }}
+    >
+      {children}
+    </CartContext.Provider>
   );
 }
 
