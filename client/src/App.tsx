@@ -1,5 +1,28 @@
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Route, Switch } from "wouter";
+import { LanguageProvider } from "./hooks/use-language";
+import { CartProvider } from "./hooks/use-cart";
+import { AdminAuthProvider } from "./hooks/use-admin-auth";
+import Header from "./components/layout/header";
+import Footer from "./components/layout/footer";
+import { Toaster } from "./components/ui/toaster";
+import Home from "./pages/home";
+import Catalog from "./pages/catalog";
+import ProductPage from "./pages/product";
+import Cart from "./pages/cart";
+import Checkout from "./pages/checkout";
+import Confirmation from "./pages/confirmation";
+import Gallery from "./pages/gallery";
+import Contact from "./pages/contact";
+import Admin from "./pages/admin";
+import Support from "./pages/support";
+import Privacy from "./pages/privacy";
+import Terms from "./pages/terms";
+import Returns from "./pages/returns";
+import Delivery from "./pages/delivery";
+import CustomerService from "./pages/customer-service";
+import NotFound from "./pages/not-found";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -9,39 +32,26 @@ const queryClient = new QueryClient({
   },
 });
 
-function Home() {
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold text-center mb-8">Equi Saddles</h1>
-      <p className="text-center text-xl">Boutique spécialisée en selles d'équitation</p>
-      <div className="mt-8 text-center">
-        <a href="/catalog" className="bg-blue-600 text-white px-6 py-3 rounded-lg inline-block">
-          Voir le catalogue
-        </a>
-      </div>
-    </div>
-  );
-}
-
-function Catalog() {
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">Catalogue des selles</h1>
-      <p>Catalogue en cours de chargement...</p>
-    </div>
-  );
-}
-
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/catalog" component={Catalog} />
-      <Route>
-        <div className="container mx-auto px-4 py-8">
-          <h1 className="text-3xl font-bold">Page non trouvée</h1>
-        </div>
-      </Route>
+      <Route path="/product/:id" component={ProductPage} />
+      <Route path="/cart" component={Cart} />
+      <Route path="/checkout" component={Checkout} />
+      <Route path="/confirmation" component={Confirmation} />
+      <Route path="/gallery" component={Gallery} />
+      <Route path="/contact" component={Contact} />
+      <Route path="/admin" component={Admin} />
+      <Route path="/support" component={Support} />
+      <Route path="/privacy" component={Privacy} />
+      <Route path="/terms" component={Terms} />
+      <Route path="/returns" component={Returns} />
+      <Route path="/delivery" component={Delivery} />
+      <Route path="/customer-service" component={CustomerService} />
+
+      <Route component={NotFound} />
     </Switch>
   );
 }
@@ -49,9 +59,20 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen bg-white">
-        <Router />
-      </div>
+      <LanguageProvider>
+        <CartProvider>
+          <AdminAuthProvider>
+            <div className="min-h-screen flex flex-col">
+            <Header />
+            <main className="flex-1">
+              <Router />
+            </main>
+            <Footer />
+          </div>
+          <Toaster />
+          </AdminAuthProvider>
+        </CartProvider>
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }

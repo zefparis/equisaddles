@@ -92,7 +92,7 @@ export default function Delivery() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Truck className="h-5 w-5" />
-                {t("delivery.options.title")} DPD
+                {t("delivery.options.title")} Standard
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -331,7 +331,7 @@ export default function Delivery() {
                     </div>
                     <div className="flex items-center gap-2">
                       <Phone className="h-4 w-4 text-green-600" />
-                      <span>SMS DPD (si activé)</span>
+                      <span>SMS Standard (si activé)</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Globe className="h-4 w-4 text-purple-600" />
@@ -346,13 +346,13 @@ export default function Delivery() {
               <div className="bg-blue-50 p-4 rounded-lg">
                 <h4 className="font-semibold text-blue-800 mb-2">Problème de Livraison ?</h4>
                 <p className="text-sm text-blue-700 mb-3">
-                  En cas de problème avec votre livraison, contactez directement DPD 
+                  En cas de problème avec votre livraison, contactez directement Standard 
                   ou notre service client qui fera le lien avec le transporteur.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <Button size="sm" variant="outline">
                     <Phone className="h-3 w-3 mr-1" />
-                    DPD : 0825 10 00 10
+                    Standard : 0825 10 00 10
                   </Button>
                   <Button size="sm" variant="outline">
                     <Mail className="h-3 w-3 mr-1" />

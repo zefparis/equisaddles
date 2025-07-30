@@ -673,7 +673,7 @@ export default function Admin() {
                         </div>
                       </div>
 
-                      {/* DPD Shipping Actions */}
+                      {/* Standard Shipping Actions */}
                       <div className="mt-4">
                         <h4 className="font-semibold mb-2">{t("admin.dpd.title")}</h4>
                         <div className="flex flex-wrap gap-2">
@@ -716,7 +716,7 @@ export default function Admin() {
                             onClick={() => window.open(`https://www.dpd.fr/suivi_colis`, '_blank')}
                           >
                             <MapPin className="h-4 w-4 mr-2" />
-                            {t("admin.dpd.openDPD")}
+                            {t("admin.dpd.openStandard")}
                           </Button>
                         </div>
                       </div>

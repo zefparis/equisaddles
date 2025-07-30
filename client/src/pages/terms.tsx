@@ -180,7 +180,7 @@ export default function Terms() {
                   <h4 className="font-semibold mb-2">Options de Livraison</h4>
                   <ul className="text-sm space-y-1">
                     <li>• Livraison standard à domicile</li>
-                    <li>• Point relais DPD</li>
+                    <li>• Point relais Standard</li>
                     <li>• Livraison express (selon zones)</li>
                     <li>• Livraison avec créneau horaire</li>
                   </ul>
@@ -191,7 +191,7 @@ export default function Terms() {
                   <ul className="text-sm space-y-1">
                     <li>• <strong>Equi Saddles :</strong> Emballage soigné et remise au transporteur</li>
                     <li>• <strong>Client :</strong> Vérification du colis à réception</li>
-                    <li>• <strong>Transporteur (DPD) :</strong> Acheminement et livraison</li>
+                    <li>• <strong>Transporteur (Standard) :</strong> Acheminement et livraison</li>
                   </ul>
                 </div>
               </div>
@@ -234,7 +234,7 @@ export default function Terms() {
                     <li>1. Contactez notre service client sous 14 jours</li>
                     <li>2. Réception d'un bon de retour prépayé</li>
                     <li>3. Emballage soigné du produit</li>
-                    <li>4. Envoi via DPD avec le bon de retour</li>
+                    <li>4. Envoi via Standard avec le bon de retour</li>
                     <li>5. Remboursement sous 14 jours après réception</li>
                   </ol>
                 </div>
