@@ -1,5 +1,5 @@
 import { QueryClientProvider } from "@tanstack/react-query";
-import { Route, Switch } from "wouter";
+import { Switch, Route } from "wouter";
 import { LanguageProvider } from "./hooks/use-language";
 import { CartProvider } from "./hooks/use-cart";
 import { AdminAuthProvider } from "./contexts/AdminAuthContext";
@@ -57,23 +57,10 @@ function Router() {
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <LanguageProvider>
-        <CartProvider>
-          <AdminAuthProvider>
-            <div className="min-h-screen flex flex-col">
-              <Header />
-              <main className="flex-1">
-                <Router />
-              </main>
-              <Footer />
-            </div>
-            <ChatWidget />
-            <Toaster />
-          </AdminAuthProvider>
-        </CartProvider>
-      </LanguageProvider>
-    </QueryClientProvider>
+    <div style={{ background: 'green', color: 'white', padding: '20px' }}>
+      <h1>TEST - APP SIMPLE FONCTIONNE</h1>
+      <p>Si vous voyez cette page verte, le problème était bien dans les providers</p>
+      <a href="/admin" style={{ color: 'yellow' }}>Aller vers admin (qui fonctionne)</a>
+    </div>
   );
 }
-
