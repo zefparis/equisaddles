@@ -72,8 +72,8 @@ export default function Header() {
             <img 
               src="/images/logo (3).png" 
               alt="Equi Saddles"
-              className="h-10 w-auto object-contain"
-              style={{ maxHeight: "40px" }}
+              className="h-12 w-auto object-contain md:h-14"
+              style={{ maxHeight: "56px", maxWidth: "200px" }}
             />
           </Link>
 
