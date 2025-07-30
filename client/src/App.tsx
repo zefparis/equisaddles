@@ -1,5 +1,5 @@
 import { QueryClientProvider } from "@tanstack/react-query";
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { LanguageProvider } from "./hooks/use-language";
 import { CartProvider } from "./hooks/use-cart";
 import { AdminAuthProvider } from "./contexts/AdminAuthContext";
@@ -30,30 +30,21 @@ import Footer from "./components/layout/footer";
 import ChatWidget from "./components/chat/chat-widget";
 
 function Router() {
-  return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/catalog" component={Catalog} />
-      <Route path="/product/:id" component={ProductPage} />
-      <Route path="/cart" component={Cart} />
-      <Route path="/checkout" component={Checkout} />
-      <Route path="/confirmation" component={Confirmation} />
-      <Route path="/gallery" component={Gallery} />
-      <Route path="/contact" component={Contact} />
-      <Route path="/admin" component={Admin} />
-      <Route path="/administrateur" component={Admin} />
-      <Route path="/support" component={Support} />
-      <Route path="/privacy" component={Privacy} />
-      <Route path="/terms" component={Terms} />
-      <Route path="/returns" component={Returns} />
-      <Route path="/delivery" component={Delivery} />
-      <Route path="/customer-service" component={CustomerService} />
-      <Route component={NotFound} />
-    </Switch>
-  );
-}
-
-export default function App() {
+  const [location] = useLocation();
+  
+  // Si on est sur admin, afficher seulement l'admin sans header/footer
+  if (location === '/admin' || location === '/administrateur') {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <AdminAuthProvider>
+          <Admin />
+          <Toaster />
+        </AdminAuthProvider>
+      </QueryClientProvider>
+    );
+  }
+  
+  // Pour toutes les autres pages, afficher l'app normale
   return (
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
@@ -62,7 +53,23 @@ export default function App() {
             <div className="min-h-screen flex flex-col">
               <Header />
               <main className="flex-1">
-                <Router />
+                <Switch>
+                  <Route path="/" component={Home} />
+                  <Route path="/catalog" component={Catalog} />
+                  <Route path="/product/:id" component={ProductPage} />
+                  <Route path="/cart" component={Cart} />
+                  <Route path="/checkout" component={Checkout} />
+                  <Route path="/confirmation" component={Confirmation} />
+                  <Route path="/gallery" component={Gallery} />
+                  <Route path="/contact" component={Contact} />
+                  <Route path="/support" component={Support} />
+                  <Route path="/privacy" component={Privacy} />
+                  <Route path="/terms" component={Terms} />
+                  <Route path="/returns" component={Returns} />
+                  <Route path="/delivery" component={Delivery} />
+                  <Route path="/customer-service" component={CustomerService} />
+                  <Route component={NotFound} />
+                </Switch>
               </main>
               <Footer />
             </div>
@@ -73,4 +80,8 @@ export default function App() {
       </LanguageProvider>
     </QueryClientProvider>
   );
+}
+
+export default function App() {
+  return <Router />;
 }
