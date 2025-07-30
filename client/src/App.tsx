@@ -3,7 +3,7 @@ import { useState } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
-// import { LanguageProvider } from "./hooks/use-language";
+import { LanguageProvider } from "./hooks/use-language";
 import { CartProvider } from "./hooks/use-cart";
 import { AdminAuthProvider } from "./contexts/AdminAuthContext";
 import Header from "./components/layout/header";
@@ -25,7 +25,7 @@ import Terms from "./pages/terms";
 import Returns from "./pages/returns";
 import Delivery from "./pages/delivery";
 import CustomerService from "./pages/customer-service";
-import DPDDemo from "./pages/DPDDemo";
+
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -46,7 +46,7 @@ function Router() {
       <Route path="/returns" component={Returns} />
       <Route path="/delivery" component={Delivery} />
       <Route path="/customer-service" component={CustomerService} />
-      <Route path="/dpd-demo" component={DPDDemo} />
+
       <Route component={NotFound} />
     </Switch>
   );
@@ -57,9 +57,10 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <CartProvider>
-        <AdminAuthProvider>
-          <div className="min-h-screen flex flex-col">
+      <LanguageProvider>
+        <CartProvider>
+          <AdminAuthProvider>
+            <div className="min-h-screen flex flex-col">
             <Header />
             <main className="flex-1">
               <Router />
@@ -78,8 +79,9 @@ function App() {
               onClick={() => setIsChatOpen(true)} 
             />
           )}
-        </AdminAuthProvider>
-      </CartProvider>
+          </AdminAuthProvider>
+        </CartProvider>
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }
