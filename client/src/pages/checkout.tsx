@@ -6,7 +6,7 @@ import { useLanguage } from "../hooks/use-language";
 import { useToast } from "../hooks/use-toast";
 import { apiRequest } from "../lib/queryClient";
 import { scrollToTop } from "../lib/utils";
-import { validatePostalCode, getPostalCodeExample, getPostalCodeMaxLength, formatPostalCode } from "../lib/postal-validation";
+// Postal validation is now handled by DPDAddressForm component
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Input } from "../components/ui/input";
@@ -19,6 +19,7 @@ import { z } from "zod";
 import { Link } from "wouter";
 import { ArrowLeft, CreditCard, Truck } from "lucide-react";
 import DPDShippingOptions from "../components/shipping/dpd-shipping-options";
+import { DPDAddressForm } from "../components/checkout/DPDAddressForm";
 
 if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
   throw new Error('Missing required Stripe key: VITE_STRIPE_PUBLIC_KEY');
@@ -38,27 +39,11 @@ const checkoutSchema = z.object({
   city: z.string().min(2, "La ville est requise"),
   postalCode: z.string().min(1, "Le code postal est requis"),
   country: z.string().min(2, "Le pays est requis"),
-}).refine((data) => validatePostalCode(data.country, data.postalCode), {
-  message: "Format de code postal invalide pour ce pays",
-  path: ["postalCode"],
 });
 
 type CheckoutFormData = z.infer<typeof checkoutSchema>;
 
-const countries = [
-  { code: "BE", name: "Belgique", zone: "domestic" },
-  { code: "LU", name: "Luxembourg", zone: "domestic" },
-  { code: "FR", name: "France", zone: "europe" },
-  { code: "NL", name: "Pays-Bas", zone: "europe" },
-  { code: "DE", name: "Allemagne", zone: "europe" },
-  { code: "ES", name: "Espagne", zone: "europe" },
-  { code: "IT", name: "Italie", zone: "europe" },
-  { code: "CH", name: "Suisse", zone: "europe" },
-  { code: "AT", name: "Autriche", zone: "europe" },
-  { code: "GB", name: "Royaume-Uni", zone: "europe" },
-  { code: "US", name: "États-Unis", zone: "international" },
-  { code: "CA", name: "Canada", zone: "international" },
-];
+// Countries are now managed by DPDAddressForm component
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -274,78 +259,14 @@ const CheckoutForm = () => {
                 )}
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                <div>
-                  <Label htmlFor="city">{t("checkout.city")} *</Label>
-                  <Input
-                    id="city"
-                    {...register("city")}
-                    placeholder={t("checkout.cityPlaceholder")}
-                    className={errors.city ? "border-red-500" : ""}
-                  />
-                  {errors.city && (
-                    <p className="text-red-500 text-sm mt-1">{errors.city.message}</p>
-                  )}
-                </div>
-
-                <div>
-                  <Label htmlFor="postalCode">{t("checkout.postalCode")} *</Label>
-                  <Controller
-                    name="postalCode"
-                    control={control}
-                    render={({ field }) => (
-                      <Input
-                        id="postalCode"
-                        value={field.value || ""}
-                        onChange={(e) => {
-                          const value = e.target.value.replace(/[^a-zA-Z0-9\s-]/g, '');
-                          const formatted = formatPostalCode(watchedCountry, value);
-                          field.onChange(formatted);
-                        }}
-                        placeholder={`Ex: ${getPostalCodeExample(watchedCountry)}`}
-                        maxLength={getPostalCodeMaxLength(watchedCountry)}
-                        className={`${errors.postalCode ? "border-red-500" : ""} bg-blue-50 dark:bg-gray-800`}
-                      />
-                    )}
-                  />
-                  {errors.postalCode && (
-                    <p className="text-red-500 text-sm mt-1">{errors.postalCode.message}</p>
-                  )}
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Format: {getPostalCodeExample(watchedCountry)} ({countries.find(c => c.code === watchedCountry)?.name})
-                  </p>
-                </div>
-
-                <div>
-                  <Label htmlFor="country">{t("checkout.country")} *</Label>
-                  <select
-                    id="country"
-                    {...register("country")}
-                    onChange={(e) => {
-                      console.log("Country changed to:", e.target.value);
-                      setValue("country", e.target.value);
-                      setValue("postalCode", "");
-                    }}
-                    className={`flex h-10 w-full rounded-md border border-input bg-blue-50 dark:bg-gray-800 px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
-                      errors.country ? "border-red-500" : ""
-                    }`}
-                  >
-                    {countries.map((country) => (
-                      <option key={country.code} value={country.code}>
-                        {country.name} ({country.zone})
-                      </option>
-                    ))}
-                  </select>
-                  {errors.country && (
-                    <p className="text-red-500 text-sm mt-1">{errors.country.message}</p>
-                  )}
-                  <p className="text-xs text-muted-foreground mt-1">
-                    <strong>Expédition depuis:</strong> Rue du Vicinal 9, 4141 Louveigné, Belgique<br/>
-                    Zone: {countries.find(c => c.code === watchedCountry)?.zone} | 
-                    {countries.find(c => c.code === watchedCountry)?.name}
-                  </p>
-                </div>
-              </div>
+              {/* Utilisation du composant DPD officiel pour l'adresse */}
+              <DPDAddressForm
+                register={register}
+                errors={errors}
+                control={control}
+                setValue={setValue}
+                watch={watch}
+              />
 
               <Separator className="my-6" />
 
