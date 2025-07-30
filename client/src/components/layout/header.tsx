@@ -70,7 +70,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <img 
-              src="/attached_assets/logo (3)_1753909277879.png" 
+              src="/images/logo (3).png" 
               alt="Equi Saddles"
               className="h-10 w-auto object-contain"
               style={{ maxHeight: "40px" }}
