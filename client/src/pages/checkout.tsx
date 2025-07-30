@@ -70,7 +70,6 @@ const CheckoutForm = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [shippingInfo, setShippingInfo] = useState({ cost: 0, carrier: "DPD" });
   const [selectedShippingOption, setSelectedShippingOption] = useState<any>(null);
-  const [localCountry, setLocalCountry] = useState("BE"); // State local pour éviter les conflits
 
   const {
     register,
@@ -84,7 +83,7 @@ const CheckoutForm = () => {
   } = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutSchema),
     defaultValues: {
-      country: "BE", // Belgique par défaut
+      country: "BE",
       city: "",
       postalCode: "",
       name: "",
@@ -96,39 +95,21 @@ const CheckoutForm = () => {
 
   const watchedPostalCode = watch("postalCode");
   const watchedCity = watch("city");
-
-  // Synchroniser le pays local avec le formulaire
-  useEffect(() => {
-    setValue("country", localCountry);
-    console.log("Country synchronized to:", localCountry);
-  }, [localCountry, setValue]);
-
-  // Debug: Afficher le pays actuel
-  useEffect(() => {
-    console.log("Current local country:", localCountry);
-  }, [localCountry]);
-
-  // Vider le code postal quand le pays change
-  useEffect(() => {
-    if (localCountry !== "BE") { // Ne pas vider au premier rendu
-      setValue("postalCode", "");
-      console.log("Postal code cleared for country:", localCountry);
-    }
-  }, [localCountry, setValue]);
+  const watchedCountry = watch("country") || "BE";
 
   // Effect pour calculer les frais de livraison
   useEffect(() => {
-    if (localCountry && watchedPostalCode && watchedPostalCode.length > 0) {
-      console.log("Calculating shipping for:", localCountry, watchedPostalCode);
+    if (watchedCountry && watchedPostalCode && watchedPostalCode.length > 0) {
+      console.log("Calculating shipping for:", watchedCountry, watchedPostalCode);
       calculateShippingWithCountry();
     }
-  }, [localCountry, watchedPostalCode]);
+  }, [watchedCountry, watchedPostalCode]);
 
   const calculateShippingWithCountry = async () => {
     try {
       const response = await apiRequest("POST", "/api/calculate-shipping", {
         postalCode: watchedPostalCode,
-        country: localCountry,
+        country: watchedCountry,
         items,
       });
       const data = await response.json();
@@ -319,29 +300,26 @@ const CheckoutForm = () => {
                   <Controller
                     name="postalCode"
                     control={control}
-                    render={({ field }) => {
-                      const currentCountry = watch("country") || localCountry;
-                      return (
-                        <Input
-                          id="postalCode"
-                          value={field.value || ""}
-                          onChange={(e) => {
-                            const value = e.target.value.replace(/[^a-zA-Z0-9\s-]/g, '');
-                            const formatted = formatPostalCode(currentCountry, value);
-                            field.onChange(formatted);
-                          }}
-                          placeholder={`Ex: ${getPostalCodeExample(currentCountry)}`}
-                          maxLength={getPostalCodeMaxLength(currentCountry)}
-                          className={errors.postalCode ? "border-red-500" : ""}
-                        />
-                      );
-                    }}
+                    render={({ field }) => (
+                      <Input
+                        id="postalCode"
+                        value={field.value || ""}
+                        onChange={(e) => {
+                          const value = e.target.value.replace(/[^a-zA-Z0-9\s-]/g, '');
+                          const formatted = formatPostalCode(watchedCountry, value);
+                          field.onChange(formatted);
+                        }}
+                        placeholder={`Ex: ${getPostalCodeExample(watchedCountry)}`}
+                        maxLength={getPostalCodeMaxLength(watchedCountry)}
+                        className={errors.postalCode ? "border-red-500" : ""}
+                      />
+                    )}
                   />
                   {errors.postalCode && (
                     <p className="text-red-500 text-sm mt-1">{errors.postalCode.message}</p>
                   )}
                   <p className="text-xs text-muted-foreground mt-1">
-                    Format: {getPostalCodeExample(watch("country") || localCountry)} ({countries.find(c => c.code === (watch("country") || localCountry))?.name})
+                    Format: {getPostalCodeExample(watchedCountry)} ({countries.find(c => c.code === watchedCountry)?.name})
                   </p>
                 </div>
 
@@ -352,12 +330,10 @@ const CheckoutForm = () => {
                     control={control}
                     render={({ field }) => (
                       <Select
-                        value={field.value || localCountry}
+                        value={field.value || "BE"}
                         onValueChange={(value) => {
                           console.log("Country changed to:", value);
                           field.onChange(value);
-                          setLocalCountry(value);
-                          // Reset postal code when country changes
                           setValue("postalCode", "");
                         }}
                       >
@@ -378,8 +354,8 @@ const CheckoutForm = () => {
                     <p className="text-red-500 text-sm mt-1">{errors.country.message}</p>
                   )}
                   <p className="text-xs text-muted-foreground mt-1">
-                    Zone: {countries.find(c => c.code === (watch("country") || localCountry))?.zone} | 
-                    {countries.find(c => c.code === (watch("country") || localCountry))?.name}
+                    Zone: {countries.find(c => c.code === watchedCountry)?.zone} | 
+                    {countries.find(c => c.code === watchedCountry)?.name}
                   </p>
                 </div>
               </div>
@@ -390,7 +366,7 @@ const CheckoutForm = () => {
               <div className="mb-6">
                 <DPDShippingOptions
                   items={items}
-                  country={watch("country") || localCountry}
+                  country={watchedCountry}
                   postalCode={watchedPostalCode}
                   city={watchedCity}
                   onOptionSelect={handleShippingOptionSelect}
