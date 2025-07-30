@@ -135,7 +135,7 @@ export default function Checkout() {
           name: item.name,
           price: item.price,
           quantity: item.quantity,
-          imageUrl: item.imageUrl || ""
+          imageUrl: item.image || ""
         })),
         customerInfo: {
           firstName: data.firstName,
@@ -398,7 +398,7 @@ export default function Checkout() {
                         </p>
                       </div>
                       <div className="text-right">
-                        <p className="font-medium">{(item.price * item.quantity).toFixed(2)}€</p>
+                        <p className="font-medium">{(parseFloat(item.price) * item.quantity).toFixed(2)}€</p>
                       </div>
                     </div>
                   ))}
