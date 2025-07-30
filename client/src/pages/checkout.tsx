@@ -19,14 +19,10 @@ import Header from "../components/layout/header";
 import Footer from "../components/layout/footer";
 import ChatWidget from "../components/chat/chat-widget";
 import { Truck, Mail, Calculator, Info } from "lucide-react";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
+// Plus besoin des imports Stripe pour les éléments intégrés
 import { apiRequest } from "../lib/queryClient";
 
-if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
-  throw new Error('Missing required Stripe key: VITE_STRIPE_PUBLIC_KEY');
-}
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+// Plus besoin de charger Stripe côté client avec cette approche
 
 // Schema de validation pour le formulaire d'adresse
 const checkoutSchema = z.object({
@@ -43,68 +39,33 @@ const checkoutSchema = z.object({
 
 type CheckoutFormData = z.infer<typeof checkoutSchema>;
 
-// Composant du formulaire de paiement Stripe
-function CheckoutForm({ orderData }: { orderData: CheckoutFormData & { items: any[]; total: number } }) {
-  const stripe = useStripe();
-  const elements = useElements();
-  const { t } = useLanguage();
-  const { toast } = useToast();
-  const { clearCart } = useCart();
-  const [isProcessing, setIsProcessing] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!stripe || !elements) {
-      return;
-    }
-
-    setIsProcessing(true);
-
-    try {
-      const { error } = await stripe.confirmPayment({
-        elements,
-        confirmParams: {
-          return_url: `${window.location.origin}/confirmation`,
-        },
-      });
-
-      if (error) {
-        toast({
-          title: "Erreur de paiement",
-          description: error.message,
-          variant: "destructive",
-        });
-      }
-    } catch (err) {
-      toast({
-        title: "Erreur",
-        description: "Une erreur est survenue lors du paiement",
-        variant: "destructive",
-      });
-    } finally {
-      setIsProcessing(false);
-    }
-  };
-
+// Composant pour afficher l'état de la commande
+function OrderSummaryCard() {
   return (
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <span>💳</span> {t("checkout.payment")}
+          <span>✅</span> Commande en cours de création
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <PaymentElement />
-          <Button 
-            type="submit" 
-            className="w-full" 
-            disabled={!stripe || isProcessing}
-          >
-            {isProcessing ? "Traitement..." : `Payer ${orderData.total.toFixed(2)}€`}
-          </Button>
-        </form>
+        <p className="text-sm text-gray-600 dark:text-gray-400">
+          Votre commande a été créée avec succès. Vous allez être redirigé vers Stripe pour effectuer le paiement sécurisé.
+        </p>
+        <div className="mt-4 space-y-2">
+          <div className="flex items-center gap-2 text-sm">
+            <span>🔒</span>
+            <span>Paiement sécurisé avec Stripe</span>
+          </div>
+          <div className="flex items-center gap-2 text-sm">
+            <span>📧</span>
+            <span>Confirmation par email après paiement</span>
+          </div>
+          <div className="flex items-center gap-2 text-sm">
+            <span>🚚</span>
+            <span>Calcul des frais de port par notre équipe</span>
+          </div>
+        </div>
       </CardContent>
     </Card>
   );
@@ -158,18 +119,35 @@ export default function Checkout() {
       };
 
       const response = await apiRequest("POST", "/api/create-payment-intent", {
-        amount: totalAmount,
-        orderData,
+        items: items.map(item => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+          imageUrl: item.imageUrl || ""
+        })),
+        customerInfo: {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          phone: data.phone,
+          address: data.address,
+          city: data.city,
+          postalCode: data.postalCode,
+          country: data.country,
+          notes: data.notes || ""
+        },
+        shippingCost: 0 // Les frais seront calculés plus tard
       });
 
-      const { clientSecret } = await response.json();
-      setClientSecret(clientSecret);
-      setOrderCreated(true);
-
-      toast({
-        title: "Commande créée",
-        description: "Procédez maintenant au paiement",
-      });
+      const result = await response.json();
+      
+      // Redirection vers Stripe Checkout
+      if (result.clientSecret) {
+        window.location.href = result.clientSecret;
+      } else {
+        throw new Error("URL de paiement non reçue");
+      }
     } catch (error) {
       toast({
         title: "Erreur",
@@ -351,7 +329,7 @@ export default function Checkout() {
 
                     {!orderCreated && (
                       <Button type="submit" className="w-full">
-                        Créer la commande
+                        Procéder au paiement
                       </Button>
                     )}
                   </form>
@@ -416,20 +394,8 @@ export default function Checkout() {
               </CardContent>
             </Card>
 
-            {/* Formulaire de paiement */}
-            {orderCreated && clientSecret && (
-              <Elements stripe={stripePromise} options={{ clientSecret }}>
-                <CheckoutForm orderData={{
-                  ...form.getValues(),
-                  items: items.map(item => ({
-                    productId: item.id,
-                    quantity: item.quantity,
-                    price: item.price,
-                  })),
-                  total: totalAmount
-                }} />
-              </Elements>
-            )}
+            {/* État de la commande */}
+            {orderCreated && <OrderSummaryCard />}
           </div>
         </div>
       </div>
