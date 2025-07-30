@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs"
 import { Search, Grid, List, Filter } from "lucide-react";
 
 export default function Catalog() {
+  console.log("[CATALOG] Catalog page component rendering");
   const { t } = useLanguage();
 
   // Fonction pour obtenir les noms de produits traduits

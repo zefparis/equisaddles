@@ -1,5 +1,5 @@
-// Service Worker for Equi Saddles PWA
-const CACHE_NAME = 'equi-saddles-v1';
+// Service Worker for Equi Saddles PWA - DISABLED FOR DEBUGGING
+const CACHE_NAME = 'equi-saddles-v2-debug';
 const urlsToCache = [
   '/',
   '/catalog',
@@ -46,12 +46,11 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch event - serve from cache when offline
+// Fetch event - DISABLED FOR DEBUGGING - always fetch from network
 self.addEventListener('fetch', (event) => {
-  // Only handle same-origin requests
-  if (!event.request.url.startsWith(self.location.origin)) {
-    return;
-  }
+  console.log('[SW DEBUG] Fetch request:', event.request.url);
+  // DISABLED CACHING - always fetch from network for debugging
+  return;
 
   // NEVER cache POST requests - they cause errors and are not cacheable
   if (event.request.method !== 'GET') {

@@ -32,6 +32,8 @@ const queryClient = new QueryClient({
 });
 
 function Router() {
+  console.log("[ROUTER] Router component rendering");
+  
   return (
     <Switch>
       <Route path="/" component={Home} />
@@ -56,6 +58,8 @@ function Router() {
 }
 
 function App() {
+  console.log("[APP] App component rendering");
+  
   return (
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>

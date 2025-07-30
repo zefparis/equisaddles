@@ -41,6 +41,7 @@ const categories = [
 ];
 
 export default function Home() {
+  console.log("[HOME] Home page component rendering");
   const { t } = useLanguage();
   const { addItem } = useCart();
   const { toast } = useToast();
