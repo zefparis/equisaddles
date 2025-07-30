@@ -2,7 +2,7 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
-console.log("[MAIN] Version PWA V5 - Contraste liens amélioré - " + new Date().toISOString());
+console.log("[MAIN] Version PWA V6 - Texte NOIR et GRAS - " + new Date().toISOString());
 
 // Force cache clearing and immediate update
 if ('serviceWorker' in navigator) {

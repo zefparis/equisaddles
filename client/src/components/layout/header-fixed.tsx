@@ -104,8 +104,8 @@ export default function Header() {
                   <DropdownMenuItem
                     key={lang.code}
                     onClick={() => setLanguage(lang.code)}
-                    className={`cursor-pointer px-3 py-2.5 text-gray-900 hover:bg-blue-50 hover:text-blue-900 transition-colors font-semibold ${
-                      language === lang.code ? 'bg-blue-100 text-blue-900' : ''
+                    className={`cursor-pointer px-3 py-2.5 text-black hover:bg-blue-100 hover:text-blue-800 transition-colors font-bold ${
+                      language === lang.code ? 'bg-blue-200 text-blue-800' : ''
                     }`}
                   >
                     <span className="mr-3 flex items-center">{lang.flag}</span>
@@ -147,7 +147,7 @@ export default function Header() {
                         key={item.name}
                         href={item.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className="py-3 text-gray-900 hover:text-blue-700 hover:bg-blue-50 transition-colors duration-200 border-b border-gray-100 font-semibold"
+                        className="py-3 text-black hover:text-blue-700 hover:bg-blue-100 transition-colors duration-200 border-b border-gray-100 font-bold"
                       >
                         {item.name}
                       </Link>
@@ -159,7 +159,7 @@ export default function Header() {
                         setIsMobileMenuOpen(false);
                         alert('Application PWA disponible ! Ajoutez cette page à votre écran d\'accueil depuis le menu de votre navigateur.');
                       }}
-                      className="flex items-center space-x-3 py-3 text-gray-900 hover:text-blue-700 hover:bg-blue-50 transition-colors duration-200 border-t border-gray-200 mt-2 pt-4 font-semibold"
+                      className="flex items-center space-x-3 py-3 text-black hover:text-blue-700 hover:bg-blue-100 transition-colors duration-200 border-t border-gray-200 mt-2 pt-4 font-bold"
                     >
                       <Download className="h-5 w-5 text-accent" />
                       <span>Installer l'app</span>
@@ -175,8 +175,8 @@ export default function Header() {
                             setLanguage(lang.code);
                             setIsMobileMenuOpen(false);
                           }}
-                          className={`flex items-center space-x-3 w-full py-2 px-1 text-gray-900 hover:text-blue-700 hover:bg-blue-50 transition-colors font-semibold ${
-                            language === lang.code ? 'text-blue-900 bg-blue-100' : ''
+                          className={`flex items-center space-x-3 w-full py-2 px-1 text-black hover:text-blue-700 hover:bg-blue-100 transition-colors font-bold ${
+                            language === lang.code ? 'text-blue-800 bg-blue-200' : ''
                           }`}
                         >
                           <span className="flex items-center">{lang.flag}</span>
