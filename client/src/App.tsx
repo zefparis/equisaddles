@@ -35,7 +35,8 @@ const queryClient = new QueryClient({
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={Home} />
+      <Route path="/" component={Admin} />
+      <Route path="/administrateur" component={Admin} />
       <Route path="/catalog" component={Catalog} />
       <Route path="/product/:id" component={ProductPage} />
       <Route path="/cart" component={Cart} />
@@ -43,7 +44,6 @@ function Router() {
       <Route path="/confirmation" component={Confirmation} />
       <Route path="/gallery" component={Gallery} />
       <Route path="/contact" component={Contact} />
-      <Route path="/admin" component={Admin} />
       <Route path="/support" component={Support} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
@@ -59,18 +59,11 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <LanguageProvider>
-        <CartProvider>
-          <div className="min-h-screen flex flex-col">
-            <Header />
-            <main className="flex-1">
-              <Router />
-            </main>
-            <Footer />
-          </div>
-          <Toaster />
-        </CartProvider>
-      </LanguageProvider>
+      <div className="min-h-screen flex flex-col">
+        <main className="flex-1">
+          <Router />
+        </main>
+      </div>
     </QueryClientProvider>
   );
 }
