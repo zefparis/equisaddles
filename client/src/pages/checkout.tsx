@@ -237,7 +237,7 @@ const CheckoutForm = () => {
                     id="name"
                     {...register("name")}
                     placeholder={t("checkout.fullName")}
-                    className={errors.name ? "border-red-500" : ""}
+                    className={`${errors.name ? "border-red-500" : ""} bg-blue-50 dark:bg-gray-800`}
                   />
                   {errors.name && (
                     <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
@@ -251,7 +251,7 @@ const CheckoutForm = () => {
                     type="email"
                     {...register("email")}
                     placeholder={t("checkout.emailPlaceholder")}
-                    className={errors.email ? "border-red-500" : ""}
+                    className={`${errors.email ? "border-red-500" : ""} bg-blue-50 dark:bg-gray-800`}
                   />
                   {errors.email && (
                     <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
@@ -265,6 +265,7 @@ const CheckoutForm = () => {
                   id="phone"
                   {...register("phone")}
                   placeholder={t("checkout.phonePlaceholder")}
+                  className="bg-blue-50 dark:bg-gray-800"
                 />
               </div>
 
@@ -274,7 +275,7 @@ const CheckoutForm = () => {
                   id="address"
                   {...register("address")}
                   placeholder={t("checkout.addressPlaceholder")}
-                  className={errors.address ? "border-red-500" : ""}
+                  className={`${errors.address ? "border-red-500" : ""} bg-blue-50 dark:bg-gray-800`}
                 />
                 {errors.address && (
                   <p className="text-red-500 text-sm mt-1">{errors.address.message}</p>
@@ -288,7 +289,7 @@ const CheckoutForm = () => {
                     id="city"
                     {...register("city")}
                     placeholder={t("checkout.cityPlaceholder")}
-                    className={errors.city ? "border-red-500" : ""}
+                    className={`${errors.city ? "border-red-500" : ""} bg-blue-50 dark:bg-gray-800`}
                   />
                   {errors.city && (
                     <p className="text-red-500 text-sm mt-1">{errors.city.message}</p>
@@ -311,7 +312,7 @@ const CheckoutForm = () => {
                         }}
                         placeholder={`Ex: ${getPostalCodeExample(watchedCountry)}`}
                         maxLength={getPostalCodeMaxLength(watchedCountry)}
-                        className={errors.postalCode ? "border-red-500" : ""}
+                        className={`${errors.postalCode ? "border-red-500" : ""} bg-blue-50 dark:bg-gray-800`}
                       />
                     )}
                   />
@@ -341,12 +342,17 @@ const CheckoutForm = () => {
                         <SelectTrigger 
                           id="country" 
                           className={`${errors.country ? "border-red-500" : ""} cursor-pointer`}
+                          style={{
+                            backgroundColor: 'rgb(239 246 255)', // bg-blue-50
+                            border: '1px solid rgb(209 213 219)', // border-gray-300
+                            borderRadius: '0.375rem'
+                          }}
                         >
                           <SelectValue>
                             {countries.find(c => c.code === (field.value || "BE"))?.name || "Sélectionnez un pays"}
                           </SelectValue>
                         </SelectTrigger>
-                        <SelectContent className="max-h-60 overflow-y-auto">
+                        <SelectContent className="max-h-60 overflow-y-auto z-50">
                           {countries.map((country) => (
                             <SelectItem 
                               key={country.code} 
