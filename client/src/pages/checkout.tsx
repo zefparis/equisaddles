@@ -318,40 +318,24 @@ const CheckoutForm = () => {
 
                 <div>
                   <Label htmlFor="country">{t("checkout.country")} *</Label>
-                  <Controller
-                    name="country"
-                    control={control}
-                    render={({ field }) => (
-                      <Select
-                        value={field.value || "BE"}
-                        onValueChange={(value) => {
-                          console.log("Country changed to:", value);
-                          field.onChange(value);
-                          setValue("postalCode", "");
-                        }}
-                      >
-                        <SelectTrigger 
-                          id="country" 
-                          className={`${errors.country ? "border-red-500" : ""} bg-blue-50 dark:bg-gray-800 cursor-pointer`}
-                        >
-                          <SelectValue>
-                            {countries.find(c => c.code === (field.value || "BE"))?.name || "Sélectionnez un pays"}
-                          </SelectValue>
-                        </SelectTrigger>
-                        <SelectContent className="max-h-60 overflow-y-auto z-50">
-                          {countries.map((country) => (
-                            <SelectItem 
-                              key={country.code} 
-                              value={country.code}
-                              className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
-                            >
-                              {country.name} ({country.zone})
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    )}
-                  />
+                  <select
+                    id="country"
+                    {...register("country")}
+                    onChange={(e) => {
+                      console.log("Country changed to:", e.target.value);
+                      setValue("country", e.target.value);
+                      setValue("postalCode", "");
+                    }}
+                    className={`flex h-10 w-full rounded-md border border-input bg-blue-50 dark:bg-gray-800 px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
+                      errors.country ? "border-red-500" : ""
+                    }`}
+                  >
+                    {countries.map((country) => (
+                      <option key={country.code} value={country.code}>
+                        {country.name} ({country.zone})
+                      </option>
+                    ))}
+                  </select>
                   {errors.country && (
                     <p className="text-red-500 text-sm mt-1">{errors.country.message}</p>
                   )}
