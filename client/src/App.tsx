@@ -25,7 +25,7 @@ import NotFound from "./pages/not-found";
 
 // Import the queryClient from the lib to get the default queryFn
 import { queryClient } from "./lib/queryClient";
-import Header from "./components/layout/header";
+import Header from "./components/layout/header-fixed";
 import Footer from "./components/layout/footer";
 import ChatWidget from "./components/chat/chat-widget";
 

@@ -66,7 +66,7 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="hover:text-accent transition-colors duration-200"
+                className="hover:text-accent transition-colors duration-200 font-medium"
               >
                 {item.name}
               </Link>
@@ -75,7 +75,7 @@ export default function Header() {
 
           {/* Header Actions */}
           <div className="flex items-center space-x-4">
-            {/* PWA Install Button - Simple approach */}
+            {/* PWA Install Button */}
             <button
               onClick={() => {
                 if ('serviceWorker' in navigator) {
@@ -90,7 +90,7 @@ export default function Header() {
               <span>Installer</span>
             </button>
             
-            {/* Language Selector */}
+            {/* Language Selector - MENU SE FERME AUTOMATIQUEMENT */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="flex items-center space-x-2 hover:text-accent text-white">
@@ -99,15 +99,17 @@ export default function Header() {
                   <span className="text-sm text-white">{language.toUpperCase()}</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-white border border-gray-200 shadow-lg z-50">
+              <DropdownMenuContent className="bg-white border border-gray-200 shadow-lg z-50 min-w-[180px]">
                 {languages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
                     onClick={() => setLanguage(lang.code)}
-                    className={`cursor-pointer px-3 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-900 transition-colors ${language === lang.code ? 'bg-blue-100 text-blue-900 font-medium' : ''}`}
+                    className={`cursor-pointer px-3 py-2.5 text-gray-800 hover:bg-blue-50 hover:text-blue-900 transition-colors font-medium ${
+                      language === lang.code ? 'bg-blue-100 text-blue-900' : ''
+                    }`}
                   >
-                    <span className="mr-2 flex items-center">{lang.flag}</span>
-                    <span className="font-medium">{lang.name}</span>
+                    <span className="mr-3 flex items-center">{lang.flag}</span>
+                    <span>{lang.name}</span>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -127,7 +129,7 @@ export default function Header() {
               )}
             </Button>
 
-            {/* Mobile Menu with PWA */}
+            {/* Mobile Menu - SE FERME AU CLIC EXTÉRIEUR */}
             <div className="relative" ref={mobileMenuRef}>
               <Button 
                 variant="ghost" 
@@ -162,6 +164,26 @@ export default function Header() {
                       <Download className="h-5 w-5 text-accent" />
                       <span>Installer l'app</span>
                     </button>
+
+                    {/* Language Mobile Links */}
+                    <div className="border-t border-gray-200 mt-2 pt-4">
+                      <p className="text-sm text-gray-600 mb-2 px-1">Langue:</p>
+                      {languages.map((lang) => (
+                        <button
+                          key={lang.code}
+                          onClick={() => {
+                            setLanguage(lang.code);
+                            setIsMobileMenuOpen(false);
+                          }}
+                          className={`flex items-center space-x-3 w-full py-2 px-1 text-gray-800 hover:text-blue-600 hover:bg-blue-50 transition-colors font-medium ${
+                            language === lang.code ? 'text-blue-900 bg-blue-100' : ''
+                          }`}
+                        >
+                          <span className="flex items-center">{lang.flag}</span>
+                          <span>{lang.name}</span>
+                        </button>
+                      ))}
+                    </div>
                   </nav>
                 </div>
               )}
