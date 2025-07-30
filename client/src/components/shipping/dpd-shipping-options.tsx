@@ -49,6 +49,18 @@ export default function DPDShippingOptions({
     sum + (parseFloat(item.price) * item.quantity), 0
   );
 
+  // PIÈGE CLASSIQUE: Ghost state selection après changement de paramètres
+  // Quand country/postalCode/city/items changent, les nouvelles options de livraison
+  // ne correspondent plus à la selectedOption précédente. Il faut réinitialiser
+  // la sélection pour éviter qu'une option devenue invalide reste affichée.
+  // Solution: useEffect qui détecte les changements et reset la sélection.
+  useEffect(() => {
+    // Reset selection when shipping parameters change
+    if (selectedOption) {
+      onOptionSelect(undefined as any);
+    }
+  }, [country, postalCode, city, totalWeight, totalValue]);
+
   // Récupérer les options de livraison DPD
   const { data: shippingOptions, isLoading } = useQuery<DPDShippingOption[]>({
     queryKey: ["shipping-options", country, postalCode, totalWeight, totalValue],
