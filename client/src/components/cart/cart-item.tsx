@@ -28,7 +28,13 @@ export default function CartItem({ item }: CartItemProps) {
       
       <div className="flex-1 min-w-0">
         <h4 className="font-medium text-sm truncate">{item.name}</h4>
-        <p className="text-gray-600 text-xs">{item.category} - {item.size}</p>
+        <p className="text-gray-600 text-xs">
+          {item.category === "Accessoires" && item.subcategory === "Autre" && item.customSubcategory
+            ? `${item.customSubcategory} - ${item.size}`
+            : item.category === "Accessoires" 
+            ? `${item.subcategory} - ${item.size}`
+            : `${item.category} - ${item.size}`}
+        </p>
         <div className="flex items-center justify-between mt-2">
           <span className="font-bold text-primary text-sm">
             {parseFloat(item.price).toFixed(2)} €

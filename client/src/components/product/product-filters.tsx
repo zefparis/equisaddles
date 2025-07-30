@@ -18,7 +18,7 @@ interface ProductFiltersProps {
 }
 
 const categories = ["Obstacle", "Dressage", "Cross", "Mixte", "Poney"];
-const subcategories = ["Sangles", "Etrivieres", "Etriers", "Amortisseurs", "Tapis", "Briderie", "Couvertures", "Protections"];
+const subcategories = ["Sangles", "Etrivieres", "Etriers", "Amortisseurs", "Tapis", "Briderie", "Couvertures", "Protections", "Autre"];
 const sizes = ["16", "16.5", "17", "17.5", "18", "18.5"];
 
 export default function ProductFilters({ activeTab, onFiltersChange }: ProductFiltersProps) {
@@ -149,7 +149,7 @@ export default function ProductFilters({ activeTab, onFiltersChange }: ProductFi
                     }
                   />
                   <Label htmlFor={subcategory} className="text-sm">
-                    {t(`subcategories.${subcategory.toLowerCase()}`)}
+                    {subcategory}
                   </Label>
                 </div>
               ))}

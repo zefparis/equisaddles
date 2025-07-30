@@ -95,8 +95,16 @@ export default function Catalog() {
     }
 
     // Subcategory filter pour les accessoires uniquement
-    if (activeTab === "accessoires" && filters.subcategories.length > 0 && !filters.subcategories.includes(product.subcategory || "")) {
-      return false;
+    if (activeTab === "accessoires" && filters.subcategories.length > 0) {
+      const productSubcategory = product.subcategory || "";
+      // Si le produit a une subcategory "Autre" et une customSubcategory, on compare avec la customSubcategory
+      const effectiveSubcategory = product.subcategory === "Autre" && product.customSubcategory 
+        ? product.customSubcategory 
+        : productSubcategory;
+      
+      if (!filters.subcategories.includes(productSubcategory) && !filters.subcategories.includes(effectiveSubcategory)) {
+        return false;
+      }
     }
 
     // Size filter

@@ -72,6 +72,17 @@ export default function ProductCard({ product }: ProductCardProps) {
             </div>
           )}
           
+          {/* Afficher la sous-catégorie appropriée pour les accessoires */}
+          {product.category === "Accessoires" && (
+            <div className="text-gray-600 dark:text-gray-400">
+              <span className="font-medium">Type:</span> {
+                product.subcategory === "Autre" && product.customSubcategory
+                  ? product.customSubcategory
+                  : product.subcategory
+              }
+            </div>
+          )}
+          
           {product.condition && (
             <div className="text-gray-600 dark:text-gray-400">
               <span className="font-medium">État:</span> {product.condition.charAt(0).toUpperCase() + product.condition.slice(1)}
