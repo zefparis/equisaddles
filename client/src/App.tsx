@@ -1,4 +1,4 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { Route, Switch } from "wouter";
 import { LanguageProvider } from "./hooks/use-language";
 import { CartProvider } from "./hooks/use-cart";
@@ -23,16 +23,11 @@ import Delivery from "./pages/delivery";
 import CustomerService from "./pages/customer-service";
 import NotFound from "./pages/not-found";
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: false,
-    },
-  },
-});
+// Import the queryClient from the lib to get the default queryFn
+import { queryClient } from "./lib/queryClient";
 
 function Router() {
-  console.log("[ROUTER] Router component rendering");
+  console.log("[ROUTER] Router component rendering, current URL:", window.location.pathname);
   
   return (
     <Switch>
