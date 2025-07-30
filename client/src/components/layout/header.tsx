@@ -68,7 +68,7 @@ export default function Header() {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 md:gap-3 flex-1 min-w-0">
+          <Link href="/" className="flex items-center gap-1 md:gap-3 flex-1 min-w-0">
             <img 
               src="/images/logo (3).png" 
               alt="Equi Saddles"
@@ -105,7 +105,7 @@ export default function Header() {
           </nav>
 
           {/* Header Actions */}
-          <div className="flex items-center space-x-2 md:space-x-3 flex-shrink-0">
+          <div className="flex items-center space-x-1 md:space-x-2 flex-shrink-0">
             {/* PWA Install Button */}
             {!isInstalled && (
               <button
@@ -119,7 +119,7 @@ export default function Header() {
             {/* Language Selector */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="p-2 text-white hover:text-[#FFD700]">
+                <Button variant="ghost" className="p-1.5 md:p-2 text-white hover:text-[#FFD700]">
                   <span className="flex items-center">{currentLanguage?.flag}</span>
                 </Button>
               </DropdownMenuTrigger>
@@ -151,7 +151,7 @@ export default function Header() {
             <Button
               variant="ghost"
               onClick={() => setIsCartOpen(true)}
-              className="relative hover:text-[#FFD700] text-white"
+              className="relative hover:text-[#FFD700] text-white p-1.5 md:p-2"
             >
               <ShoppingCart className="h-5 w-5" />
               {totalItems > 0 && (
@@ -165,7 +165,7 @@ export default function Header() {
             <div className="relative" ref={mobileMenuRef}>
               <Button
                 variant="ghost"
-                className="md:hidden p-3 hover:bg-[#a47551]/20 transition-all duration-200"
+                className="md:hidden p-2 hover:bg-[#a47551]/20 transition-all duration-200"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label="Menu mobile"
               >
