@@ -24,25 +24,18 @@
     <script type="module" src="/src/main.tsx"></script>
     
     <script>
-      // DEBUG: Clear all caches to prevent navigation issues
-      console.log('[DEBUG] Clearing all caches for navigation debugging');
-      if ('caches' in window) {
-        caches.keys().then(function(names) {
-          for (let name of names) {
-            console.log('[DEBUG] Deleting cache:', name);
-            caches.delete(name);
-          }
+      // Register Service Worker for PWA functionality
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('[PWA] Service Worker registered successfully:', registration.scope);
+            })
+            .catch((error) => {
+              console.log('[PWA] Service Worker registration failed:', error);
+            });
         });
       }
-      
-      // DEBUG: Log URL changes for debugging navigation
-      let currentUrl = window.location.href;
-      setInterval(() => {
-        if (window.location.href !== currentUrl) {
-          console.log('[DEBUG] URL changed from', currentUrl, 'to', window.location.href);
-          currentUrl = window.location.href;
-        }
-      }, 100);
     </script>
     
     <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->

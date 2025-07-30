@@ -27,7 +27,6 @@ import NotFound from "./pages/not-found";
 import { queryClient } from "./lib/queryClient";
 
 function Router() {
-  console.log("[ROUTER] Router component rendering, current URL:", window.location.pathname);
   
   return (
     <Switch>
@@ -53,7 +52,6 @@ function Router() {
 }
 
 function App() {
-  console.log("[APP] App component rendering");
   
   return (
     <QueryClientProvider client={queryClient}>
