@@ -104,7 +104,7 @@ export default function Header() {
                   <DropdownMenuItem
                     key={lang.code}
                     onClick={() => setLanguage(lang.code)}
-                    className={`cursor-pointer px-3 py-2.5 text-gray-800 hover:bg-blue-50 hover:text-blue-900 transition-colors font-medium ${
+                    className={`cursor-pointer px-3 py-2.5 text-gray-900 hover:bg-blue-50 hover:text-blue-900 transition-colors font-semibold ${
                       language === lang.code ? 'bg-blue-100 text-blue-900' : ''
                     }`}
                   >
@@ -147,7 +147,7 @@ export default function Header() {
                         key={item.name}
                         href={item.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className="py-3 text-gray-800 hover:text-blue-600 hover:bg-blue-50 transition-colors duration-200 border-b border-gray-100 font-medium"
+                        className="py-3 text-gray-900 hover:text-blue-700 hover:bg-blue-50 transition-colors duration-200 border-b border-gray-100 font-semibold"
                       >
                         {item.name}
                       </Link>
@@ -159,7 +159,7 @@ export default function Header() {
                         setIsMobileMenuOpen(false);
                         alert('Application PWA disponible ! Ajoutez cette page à votre écran d\'accueil depuis le menu de votre navigateur.');
                       }}
-                      className="flex items-center space-x-3 py-3 text-gray-800 hover:text-blue-600 hover:bg-blue-50 transition-colors duration-200 border-t border-gray-200 mt-2 pt-4 font-medium"
+                      className="flex items-center space-x-3 py-3 text-gray-900 hover:text-blue-700 hover:bg-blue-50 transition-colors duration-200 border-t border-gray-200 mt-2 pt-4 font-semibold"
                     >
                       <Download className="h-5 w-5 text-accent" />
                       <span>Installer l'app</span>
@@ -175,7 +175,7 @@ export default function Header() {
                             setLanguage(lang.code);
                             setIsMobileMenuOpen(false);
                           }}
-                          className={`flex items-center space-x-3 w-full py-2 px-1 text-gray-800 hover:text-blue-600 hover:bg-blue-50 transition-colors font-medium ${
+                          className={`flex items-center space-x-3 w-full py-2 px-1 text-gray-900 hover:text-blue-700 hover:bg-blue-50 transition-colors font-semibold ${
                             language === lang.code ? 'text-blue-900 bg-blue-100' : ''
                           }`}
                         >
