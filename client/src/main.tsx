@@ -1,41 +1,40 @@
 import { createRoot } from "react-dom/client";
+import App from "./App";
+import "./index.css";
+import "./utils/vite-hmr-fix";
 
-function SimpleApp() {
-  return (
-    <div style={{
-      padding: '40px',
-      textAlign: 'center',
-      fontFamily: 'Arial, sans-serif',
-      background: '#f0f0f0',
-      minHeight: '100vh'
-    }}>
-      <h1 style={{ color: '#8B4513', fontSize: '2.5em', marginBottom: '20px' }}>
-        🐎 Equi Saddles
-      </h1>
-      <p style={{ fontSize: '1.2em', color: '#333', marginBottom: '30px' }}>
-        Application fonctionnelle - Diagnostique réussi
-      </p>
-      <div style={{ 
-        background: 'white', 
-        padding: '20px', 
-        borderRadius: '8px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-        maxWidth: '400px',
-        margin: '0 auto'
-      }}>
-        <h3>Status: ✅ WORKING</h3>
-        <p>React render OK</p>
-        <p>DOM mount OK</p>
-        <p>Serveur API OK</p>
-      </div>
-    </div>
-  );
+// Fix Vite HMR WebSocket errors on Replit
+if (typeof window !== 'undefined' && import.meta.hot) {
+  try {
+    // Catch and gracefully handle WebSocket connection errors
+    const originalConsoleError = console.error;
+    console.error = (...args) => {
+      const errorMessage = args.join(' ');
+      if (errorMessage.includes('WebSocket') && errorMessage.includes('localhost:undefined')) {
+        console.warn('[Vite WS fallback] WebSocket connection failed, continuing without HMR:', errorMessage);
+        return;
+      }
+      originalConsoleError.apply(console, args);
+    };
+
+    // Accept HMR updates with error handling
+    import.meta.hot.accept();
+  } catch (e) {
+    console.warn("[Vite WS fallback] HMR setup failed:", e);
+  }
 }
 
-const container = document.getElementById("root");
-if (container) {
-  const root = createRoot(container);
-  root.render(<SimpleApp />);
-} else {
-  console.error("Root container not found!");
+// Register Service Worker for PWA
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then((registration) => {
+        console.log('[PWAFix] Service Worker registered successfully:', registration.scope);
+      })
+      .catch((error) => {
+        console.error('[PWAFix] Service Worker registration failed:', error);
+      });
+  });
 }
+
+createRoot(document.getElementById("root")!).render(<App />);

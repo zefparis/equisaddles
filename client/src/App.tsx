@@ -1,8 +1,28 @@
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Route, Switch } from "wouter";
-
-// Pages simples
+import { LanguageProvider } from "./hooks/use-language";
+import { CartProvider } from "./hooks/use-cart";
+// import { AdminAuthProvider } from "./hooks/use-admin-auth";
+import Header from "./components/layout/header";
+import Footer from "./components/layout/footer";
+import { Toaster } from "./components/ui/toaster";
+import Home from "./pages/home";
+import Catalog from "./pages/catalog";
+import ProductPage from "./pages/product";
+import Cart from "./pages/cart";
+import Checkout from "./pages/checkout";
+import Confirmation from "./pages/confirmation";
+import Gallery from "./pages/gallery";
+import Contact from "./pages/contact";
 import Admin from "./pages/admin";
+import Support from "./pages/support";
+import Privacy from "./pages/privacy";
+import Terms from "./pages/terms";
+import Returns from "./pages/returns";
+import Delivery from "./pages/delivery";
+import CustomerService from "./pages/customer-service";
+import NotFound from "./pages/not-found";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -12,69 +32,26 @@ const queryClient = new QueryClient({
   },
 });
 
-function SimpleHome() {
-  return (
-    <div style={{ 
-      padding: '40px', 
-      textAlign: 'center',
-      fontFamily: 'Arial, sans-serif',
-      background: 'linear-gradient(135deg, #8B4513 0%, #D2691E 100%)',
-      minHeight: '100vh',
-      color: 'white'
-    }}>
-      <h1 style={{ fontSize: '3em', marginBottom: '20px' }}>
-        🐎 Equi Saddles
-      </h1>
-      <p style={{ fontSize: '1.5em', marginBottom: '30px' }}>
-        Boutique en ligne de selles d'équitation premium
-      </p>
-      <div style={{
-        background: 'rgba(255,255,255,0.9)',
-        color: '#333',
-        padding: '30px',
-        borderRadius: '12px',
-        maxWidth: '600px',
-        margin: '0 auto',
-        boxShadow: '0 8px 24px rgba(0,0,0,0.3)'
-      }}>
-        <h2>Application Restaurée ✅</h2>
-        <p style={{ marginBottom: '20px' }}>L'application fonctionne maintenant !</p>
-        
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
-          <a href="/admin" style={{
-            background: '#8B4513',
-            color: 'white',
-            padding: '12px 24px',
-            borderRadius: '6px',
-            textDecoration: 'none',
-            fontWeight: 'bold'
-          }}>
-            🔧 Administration
-          </a>
-          
-          <button style={{
-            background: '#228B22',
-            color: 'white',
-            padding: '12px 24px',
-            borderRadius: '6px',
-            border: 'none',
-            fontWeight: 'bold',
-            cursor: 'pointer'
-          }}>
-            🛍️ Boutique (Bientôt)
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={SimpleHome} />
+      <Route path="/" component={Home} />
+      <Route path="/catalog" component={Catalog} />
+      <Route path="/product/:id" component={ProductPage} />
+      <Route path="/cart" component={Cart} />
+      <Route path="/checkout" component={Checkout} />
+      <Route path="/confirmation" component={Confirmation} />
+      <Route path="/gallery" component={Gallery} />
+      <Route path="/contact" component={Contact} />
       <Route path="/admin" component={Admin} />
-      <Route component={() => <div>Page non trouvée</div>} />
+      <Route path="/support" component={Support} />
+      <Route path="/privacy" component={Privacy} />
+      <Route path="/terms" component={Terms} />
+      <Route path="/returns" component={Returns} />
+      <Route path="/delivery" component={Delivery} />
+      <Route path="/customer-service" component={CustomerService} />
+
+      <Route component={NotFound} />
     </Switch>
   );
 }
@@ -82,7 +59,17 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Router />
+      {/* Providers temporairement désactivés à cause d'erreurs TypeScript */}
+      {/* <LanguageProvider> */}
+      {/* <CartProvider> */}
+          <div className="min-h-screen flex flex-col">
+            <main className="flex-1">
+              <Router />
+            </main>
+          </div>
+          {/* <Toaster /> */}
+      {/* </CartProvider> */}
+      {/* </LanguageProvider> */}
     </QueryClientProvider>
   );
 }
