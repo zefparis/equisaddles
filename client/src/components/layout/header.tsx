@@ -165,21 +165,24 @@ export default function Header() {
             <div className="relative" ref={mobileMenuRef}>
               <Button
                 variant="ghost"
-                className="md:hidden text-white p-2 hover:text-[#FFD700]"
+                className="md:hidden p-3 hover:bg-[#a47551]/20 transition-all duration-200"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label="Menu mobile"
               >
                 <svg 
-                  className="h-5 w-5" 
+                  className="h-7 w-7" 
                   fill="none" 
-                  stroke="currentColor" 
+                  stroke="#FFD700"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
+                  style={{
+                    filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.3))"
+                  }}
                 >
                   <path 
                     strokeLinecap="round" 
                     strokeLinejoin="round" 
-                    strokeWidth={2} 
+                    strokeWidth={2.5} 
                     d="M4 6h16M4 12h16M4 18h16" 
                   />
                 </svg>
