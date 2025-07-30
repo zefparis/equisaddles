@@ -2,14 +2,11 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
-console.log("Main.tsx loading...");
-const root = document.getElementById("root");
-console.log("Root element found:", root);
+const rootElement = document.getElementById("root");
 
-if (root) {
-  console.log("Creating React root...");
-  createRoot(root).render(<App />);
-  console.log("App rendered successfully");
+if (rootElement) {
+  const root = createRoot(rootElement);
+  root.render(<App />);
 } else {
-  console.error("CRITICAL: Root element not found!");
+  console.error("Failed to find root element");
 }

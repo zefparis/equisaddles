@@ -56,8 +56,6 @@ function Router() {
 }
 
 export default function App() {
-  console.log("App component rendering...");
-  
   return (
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
