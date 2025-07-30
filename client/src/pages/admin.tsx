@@ -31,6 +31,19 @@ const categories = ["Obstacle", "Dressage", "Cross", "Mixte", "Poney", "Accessoi
 const saddleSizes = ["16", "16.5", "17", "17.5", "18", "18.5"];
 const accessorySubcategories = ["Sangles", "Etrivieres", "Etriers", "Amortisseurs", "Tapis", "Briderie", "Couvertures", "Protections"];
 const accessorySizes = ["S", "M", "L", "XL", "XXL", "Unique", "Poney", "Cheval", "Double Poney", "Full"];
+const saddleColors = [
+  "Noir",
+  "Marron foncé", 
+  "Marron havane",
+  "Marron clair / Cognac",
+  "Châtaigne",
+  "Tabac",
+  "Miel",
+  "Naturel",
+  "Chocolat",
+  "Acajou"
+];
+const productConditions = ["neuve", "occasion"];
 
 type ProductFormData = z.infer<typeof insertProductSchema>;
 type GalleryFormData = z.infer<typeof insertGalleryImageSchema>;
@@ -142,6 +155,8 @@ export default function Admin() {
       inStock: true,
       location: "",
       sellerContact: "",
+      color: "",
+      condition: "",
     },
   });
 
@@ -245,6 +260,8 @@ export default function Admin() {
       inStock: product.inStock !== false,
       location: product.location || "",
       sellerContact: product.sellerContact || "",
+      color: product.color || "",
+      condition: product.condition || "",
     });
     setShowProductDialog(true);
   };
@@ -264,6 +281,8 @@ export default function Admin() {
         inStock: true,
         location: "",
         sellerContact: "",
+        color: "",
+        condition: "",
       });
     } else {
       productForm.reset({
@@ -278,6 +297,8 @@ export default function Admin() {
         inStock: true,
         location: "",
         sellerContact: "",
+        color: "",
+        condition: "",
       });
     }
     setShowProductDialog(true);
@@ -382,10 +403,27 @@ export default function Admin() {
                     </div>
                     <CardContent className="admin-product-content">
                       <h3 className="admin-product-title">{product.name}</h3>
-                      <p className="admin-product-meta">
-                        {product.category === "Accessoires" ? product.subcategory : product.category} - {product.size}
-                      </p>
-                      <p className="admin-product-price text-primary">
+                      <div className="space-y-1 text-sm">
+                        <p className="admin-product-meta">
+                          {product.category === "Accessoires" ? product.subcategory : product.category} - Taille {product.size}
+                        </p>
+                        {product.color && product.category !== "Accessoires" && (
+                          <p className="text-gray-600 dark:text-gray-400">
+                            Couleur: {product.color}
+                          </p>
+                        )}
+                        {product.condition && (
+                          <p className="text-gray-600 dark:text-gray-400">
+                            État: {product.condition.charAt(0).toUpperCase() + product.condition.slice(1)}
+                          </p>
+                        )}
+                        {product.location && (
+                          <p className="text-gray-600 dark:text-gray-400">
+                            📍 {product.location}
+                          </p>
+                        )}
+                      </div>
+                      <p className="admin-product-price text-primary font-semibold mt-2">
                         {parseFloat(product.price).toFixed(2)} €
                       </p>
                       <div className="admin-product-actions">
@@ -655,6 +693,47 @@ export default function Admin() {
                     </SelectContent>
                   </Select>
                 </div>
+                {productForm.watch("category") !== "Accessoires" && (
+                  <div>
+                    <Label htmlFor="color">Couleur</Label>
+                    <Select
+                      value={productForm.watch("color") || ""}
+                      onValueChange={(value) => productForm.setValue("color", value)}
+                    >
+                      <SelectTrigger id="color">
+                        <SelectValue placeholder="Sélectionner une couleur" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {saddleColors.map((color) => (
+                          <SelectItem key={color} value={color}>
+                            {color}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
+                <div>
+                  <Label htmlFor="condition">État</Label>
+                  <Select
+                    value={productForm.watch("condition") || ""}
+                    onValueChange={(value) => productForm.setValue("condition", value)}
+                  >
+                    <SelectTrigger id="condition">
+                      <SelectValue placeholder="Sélectionner l'état" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {productConditions.map((condition) => (
+                        <SelectItem key={condition} value={condition}>
+                          {condition.charAt(0).toUpperCase() + condition.slice(1)}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="price">Prix *</Label>
                   <Input

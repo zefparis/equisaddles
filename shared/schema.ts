@@ -8,6 +8,8 @@ export const products = pgTable("products", {
   category: text("category").notNull(), // "Obstacle", "Dressage", "Cross", "Mixte", "Poney", "Accessoires"
   subcategory: text("subcategory"), // For "Accessoires": "Sangles", "Etrivieres", "Etriers", "Amortisseurs", "Tapis", "Briderie", "Couvertures", "Protections"
   size: text("size").notNull(), // "16", "16.5", "17", "17.5", "18", "18.5"
+  color: text("color"), // "Noir", "Marron foncé", "Marron havane", "Marron clair / Cognac", "Châtaigne", "Tabac", "Miel", "Naturel", "Chocolat", "Acajou"
+  condition: text("condition"), // "neuve", "occasion"
   price: decimal("price", { precision: 10, scale: 2 }).notNull(),
   originalPrice: decimal("original_price", { precision: 10, scale: 2 }),
   description: text("description").notNull(),
