@@ -1,13 +1,11 @@
 // Service Worker for Equi Saddles PWA
-const CACHE_NAME = 'equi-saddles-v7-dropdown-fix-' + Date.now();
+const CACHE_NAME = 'equi-saddles-v8-pwa-fix';
 const urlsToCache = [
   '/',
   '/catalog',
   '/gallery', 
   '/contact',
-  '/manifest.webmanifest',
-  '/icons/icon-192.svg',
-  '/icons/icon-512.svg'
+  '/manifest.webmanifest'
 ];
 
 // Install event - cache essential resources
@@ -48,8 +46,13 @@ self.addEventListener('activate', (event) => {
 
 // Fetch event - serve from cache when offline
 self.addEventListener('fetch', (event) => {
-  // Only handle same-origin requests
-  if (!event.request.url.startsWith(self.location.origin)) {
+  // Only handle same-origin requests and skip POST requests
+  if (!event.request.url.startsWith(self.location.origin) || event.request.method !== 'GET') {
+    return;
+  }
+  
+  // Skip API requests to avoid stale data
+  if (event.request.url.includes('/api/')) {
     return;
   }
 

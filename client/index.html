@@ -6,7 +6,7 @@
     
     <!-- PWA Manifeste -->
     <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="theme-color" content="#8B4513" />
+    <meta name="theme-color" content="#6B4226" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Equi Saddles" />
@@ -24,8 +24,20 @@
     <script type="module" src="/src/main.tsx"></script>
     
     <script>
-      // PWA Service Worker disabled for production deployment stability
-      console.log('[PWA] Service Worker disabled for production deployment');
+      // Register Service Worker for PWA functionality
+      if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('[PWA] Service Worker registered successfully:', registration.scope);
+            })
+            .catch((error) => {
+              console.log('[PWA] Service Worker registration failed:', error);
+            });
+        });
+      } else {
+        console.log('[PWA] Service Worker skipped (HTTPS required or not supported)');
+      }
     </script>
     
     <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
