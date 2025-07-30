@@ -2,17 +2,21 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
-console.log("[MAIN] Version PWA mise à jour - Header/Footer corrigés - " + new Date().toISOString());
+console.log("[MAIN] Version PWA V5 - Contraste liens amélioré - " + new Date().toISOString());
 
-// Force PWA cache update
+// Force cache clearing and immediate update
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then((registrations) => {
-    for (let registration of registrations) {
-      registration.unregister().then(() => {
-        console.log('[PWA] Service Worker désenregistré pour mise à jour');
-        window.location.reload();
+  navigator.serviceWorker.ready.then((registration) => {
+    // Clear all caches
+    caches.keys().then((cacheNames) => {
+      cacheNames.forEach((cacheName) => {
+        caches.delete(cacheName);
       });
-    }
+    });
+    
+    // Force update
+    registration.update();
+    console.log('[PWA] Cache forcé à se mettre à jour - Version contraste');
   });
 }
 
