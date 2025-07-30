@@ -24,18 +24,8 @@
     <script type="module" src="/src/main.tsx"></script>
     
     <script>
-      // Register Service Worker for PWA functionality
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then((registration) => {
-              console.log('[PWA] Service Worker registered successfully:', registration.scope);
-            })
-            .catch((error) => {
-              console.log('[PWA] Service Worker registration failed:', error);
-            });
-        });
-      }
+      // PWA Service Worker disabled for production deployment stability
+      console.log('[PWA] Service Worker disabled for production deployment');
     </script>
     
     <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
