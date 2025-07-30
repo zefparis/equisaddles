@@ -24,7 +24,6 @@ if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
   throw new Error('Missing required Stripe key: VITE_STRIPE_PUBLIC_KEY');
 }
 
-// Stripe iframe detection - warn if loaded in iframe (bad practice)
 if (window.self !== window.top) {
   console.warn('[StripeFix] WARNING: Stripe is being loaded in an iframe. This is a security risk and may cause payment failures. Load Stripe in the main window instead.');
 }
@@ -93,16 +92,22 @@ const CheckoutForm = () => {
     },
   });
 
+  // UTILISE RHF COMME SEULE SOURCE DE VÉRITÉ
+  const watchedCountry = watch("country") || "BE";
   const watchedPostalCode = watch("postalCode");
   const watchedCity = watch("city");
-  const watchedCountry = watch("country") || "BE";
 
-  // Effect pour calculer les frais de livraison
+  // Vider le code postal à chaque changement de pays
+  useEffect(() => {
+    setValue("postalCode", "");
+  }, [watchedCountry, setValue]);
+
+  // Calculer les frais de livraison
   useEffect(() => {
     if (watchedCountry && watchedPostalCode && watchedPostalCode.length > 0) {
-      console.log("Calculating shipping for:", watchedCountry, watchedPostalCode);
       calculateShippingWithCountry();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchedCountry, watchedPostalCode]);
 
   const calculateShippingWithCountry = async () => {
@@ -132,20 +137,17 @@ const CheckoutForm = () => {
   };
 
   const onSubmit = async (data: CheckoutFormData) => {
-    // FIX: Stripe 402 - Validate Stripe readiness before payment
     if (!stripe || !elements) {
       console.error("[StripeFix] Stripe not ready - stripe:", !!stripe, "elements:", !!elements);
       return;
     }
 
-    // FIX: Stripe 429 - Prevent double submission
     if (isProcessing) {
       console.warn("[StripeFix] Payment already processing, ignoring duplicate submission");
       return;
     }
 
     setIsProcessing(true);
-    console.warn("[StripeFix] Starting payment confirmation");
 
     try {
       const { error, paymentIntent } = await stripe.confirmPayment({
@@ -153,13 +155,10 @@ const CheckoutForm = () => {
         confirmParams: {
           return_url: `${window.location.origin}/confirmation`,
         },
-        redirect: 'if_required', // FIX: Stripe 402 - Handle redirect issues
+        redirect: 'if_required',
       });
 
       if (error) {
-        // FIX: Stripe 402 - Enhanced error logging and handling
-        console.error("[StripeFix] Payment error:", error.type, error.code, error.message);
-        
         let errorMessage = error.message;
         if (error.type === 'card_error') {
           errorMessage = "Problème avec votre carte. Vérifiez vos informations.";
@@ -175,8 +174,6 @@ const CheckoutForm = () => {
           variant: "destructive",
         });
       } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-        // FIX: Stripe 402 - Only clear cart on confirmed success
-        console.warn("[StripeFix] Payment succeeded:", paymentIntent.id);
         clearCart();
         toast({
           title: t("checkout.paymentSuccess"),
@@ -184,9 +181,6 @@ const CheckoutForm = () => {
         });
       }
     } catch (error: any) {
-      // FIX: Stripe 402 - Better error handling for network/API issues
-      console.error("[StripeFix] Payment submission error:", error);
-      
       let errorMessage = t("checkout.errorMessage");
       if (error.message?.includes('402')) {
         errorMessage = "Paiement requis. Vérifiez vos informations de carte.";
@@ -200,7 +194,6 @@ const CheckoutForm = () => {
         variant: "destructive",
       });
     } finally {
-      // FIX: Stripe 429 - Add delay before allowing new attempts
       setTimeout(() => {
         setIsProcessing(false);
       }, 1000);
@@ -237,7 +230,7 @@ const CheckoutForm = () => {
                     id="name"
                     {...register("name")}
                     placeholder={t("checkout.fullName")}
-                    className={`${errors.name ? "border-red-500" : ""} bg-blue-50 dark:bg-gray-800`}
+                    className={errors.name ? "border-red-500" : ""}
                   />
                   {errors.name && (
                     <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
@@ -251,7 +244,7 @@ const CheckoutForm = () => {
                     type="email"
                     {...register("email")}
                     placeholder={t("checkout.emailPlaceholder")}
-                    className={`${errors.email ? "border-red-500" : ""} bg-blue-50 dark:bg-gray-800`}
+                    className={errors.email ? "border-red-500" : ""}
                   />
                   {errors.email && (
                     <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
@@ -265,7 +258,6 @@ const CheckoutForm = () => {
                   id="phone"
                   {...register("phone")}
                   placeholder={t("checkout.phonePlaceholder")}
-                  className="bg-blue-50 dark:bg-gray-800"
                 />
               </div>
 
@@ -275,7 +267,7 @@ const CheckoutForm = () => {
                   id="address"
                   {...register("address")}
                   placeholder={t("checkout.addressPlaceholder")}
-                  className={`${errors.address ? "border-red-500" : ""} bg-blue-50 dark:bg-gray-800`}
+                  className={errors.address ? "border-red-500" : ""}
                 />
                 {errors.address && (
                   <p className="text-red-500 text-sm mt-1">{errors.address.message}</p>
@@ -289,7 +281,7 @@ const CheckoutForm = () => {
                     id="city"
                     {...register("city")}
                     placeholder={t("checkout.cityPlaceholder")}
-                    className={`${errors.city ? "border-red-500" : ""} bg-blue-50 dark:bg-gray-800`}
+                    className={errors.city ? "border-red-500" : ""}
                   />
                   {errors.city && (
                     <p className="text-red-500 text-sm mt-1">{errors.city.message}</p>
@@ -312,7 +304,7 @@ const CheckoutForm = () => {
                         }}
                         placeholder={`Ex: ${getPostalCodeExample(watchedCountry)}`}
                         maxLength={getPostalCodeMaxLength(watchedCountry)}
-                        className={`${errors.postalCode ? "border-red-500" : ""} bg-blue-50 dark:bg-gray-800`}
+                        className={errors.postalCode ? "border-red-500" : ""}
                       />
                     )}
                   />
@@ -333,32 +325,16 @@ const CheckoutForm = () => {
                       <Select
                         value={field.value || "BE"}
                         onValueChange={(value) => {
-                          console.log("Country changed to:", value);
                           field.onChange(value);
                           setValue("postalCode", "");
                         }}
-                        open={undefined}
                       >
-                        <SelectTrigger 
-                          id="country" 
-                          className={`${errors.country ? "border-red-500" : ""} cursor-pointer`}
-                          style={{
-                            backgroundColor: 'rgb(239 246 255)', // bg-blue-50
-                            border: '1px solid rgb(209 213 219)', // border-gray-300
-                            borderRadius: '0.375rem'
-                          }}
-                        >
-                          <SelectValue>
-                            {countries.find(c => c.code === (field.value || "BE"))?.name || "Sélectionnez un pays"}
-                          </SelectValue>
+                        <SelectTrigger id="country" className={errors.country ? "border-red-500" : ""}>
+                          <SelectValue placeholder="Sélectionnez un pays" />
                         </SelectTrigger>
-                        <SelectContent className="max-h-60 overflow-y-auto z-50">
+                        <SelectContent>
                           {countries.map((country) => (
-                            <SelectItem 
-                              key={country.code} 
-                              value={country.code}
-                              className="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
-                            >
+                            <SelectItem key={country.code} value={country.code}>
                               {country.name} ({country.zone})
                             </SelectItem>
                           ))}
@@ -370,7 +346,6 @@ const CheckoutForm = () => {
                     <p className="text-red-500 text-sm mt-1">{errors.country.message}</p>
                   )}
                   <p className="text-xs text-muted-foreground mt-1">
-                    <strong>Expédition depuis:</strong> Rue du Vicinal 9, 4141 Louveigné, Belgique<br/>
                     Zone: {countries.find(c => c.code === watchedCountry)?.zone} | 
                     {countries.find(c => c.code === watchedCountry)?.name}
                   </p>
@@ -477,26 +452,18 @@ export default function Checkout() {
   const [clientSecret, setClientSecret] = useState("");
   const [paymentIntentCreated, setPaymentIntentCreated] = useState(false);
 
-  // Scroll to top when page loads
   useEffect(() => {
     scrollToTop();
   }, []);
 
-
-
-  // FIX: Stripe 429 - Prevent multiple API calls by using flag and debouncing
   useEffect(() => {
     if (items.length > 0 && !paymentIntentCreated) {
       const totalAmount = items.reduce((sum, item) => sum + (parseFloat(item.price) * item.quantity), 0);
-      
-      // FIX: Stripe 402 - Validate amount before API call
       if (totalAmount <= 0) {
         console.warn("[StripeFix] Invalid amount for payment intent:", totalAmount);
         return;
       }
 
-      console.warn("[StripeFix] Creating payment intent for amount:", totalAmount);
-      
       apiRequest("POST", "/api/create-payment-intent", { amount: totalAmount })
         .then((res) => {
           if (!res.ok) {
@@ -505,24 +472,21 @@ export default function Checkout() {
           return res.json();
         })
         .then((data) => {
-          // FIX: Stripe 402 - Validate client_secret before setting
           if (data.clientSecret && typeof data.clientSecret === 'string') {
             setClientSecret(data.clientSecret);
             setPaymentIntentCreated(true);
-            console.warn("[StripeFix] Payment intent created successfully");
           } else {
             console.error("[StripeFix] Invalid client_secret received:", data);
           }
         })
         .catch((error) => {
           console.error("[StripeFix] Error creating payment intent:", error);
-          // FIX: Stripe 429 - Don't block further attempts on network errors
           if (!error.message.includes('429')) {
             setPaymentIntentCreated(false);
           }
         });
     }
-  }, [items.length, paymentIntentCreated]); // FIX: Stripe 429 - Use items.length instead of items array
+  }, [items.length, paymentIntentCreated]);
 
   if (items.length === 0) {
     return (

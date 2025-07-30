@@ -20,8 +20,17 @@ Preferred communication style: Simple, everyday language.
 - **STATUS**: PWA installation links now functional in both desktop and mobile interfaces
 - **FALLBACK**: Instructions guide users to use browser menu for PWA installation when native prompt unavailable
 
+### July 30, 2025 - DPD API Security Enhancement & Country Selector Fix
+- **COMPLETED**: DPD API key secured in environment variables (DPD_API_KEY)
+- **COMPLETED**: Fixed country selector styling to match other form fields with consistent blue background
+- **COMPLETED**: Enhanced country selector functionality with proper click events and z-index
+- **COMPLETED**: Added shipping origin information display: "Expédition depuis: Rue du Vicinal 9, 4141 Louveigné, Belgique"
+- **COMPLETED**: Unified all checkout form field styling with `bg-blue-50` background
+- **COMPLETED**: Resolved React Hook Form double synchronization issues for country selection
+- **COMPLETED**: Country selector now uses single source of truth with proper field value management
+
 ### July 28, 2025 - Complete DPD API Integration with Real Implementation
-- **COMPLETED**: Real DPD API integration using authenticated API key `88c15fb0174e09324dc5808831e7cd9abac2a1f308d6f1e11d3342d6cf507145`
+- **COMPLETED**: Real DPD API integration using authenticated API key (now secured in environment variables)
 - **COMPLETED**: Secure server-side DPD service with Bearer token authentication and zone-based calculations
 - **COMPLETED**: Belgium-based shipping configuration (Louveigné) with correct domestic/Europe/international zones
 - **COMPLETED**: Real-time shipping rate calculation with API fallback to contracted rates when needed

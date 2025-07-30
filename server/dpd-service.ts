@@ -3,7 +3,7 @@ import { ShippingRate } from "@shared/schema";
 // DPD: Real API configuration using provided API key
 // 🔐 The API key is secured server-side and never exposed to the client
 const DPD_CONFIG = {
-  apiKey: "88c15fb0174e09324dc5808831e7cd9abac2a1f308d6f1e11d3342d6cf507145",
+  apiKey: process.env.DPD_API_KEY || "88c15fb0174e09324dc5808831e7cd9abac2a1f308d6f1e11d3342d6cf507145",
   // DPD: Using DPD Group API endpoints based on documentation research
   apiUrl: "https://nst-preprod.dpsin.dpdgroup.com/api/v1.1", // DPD Group test environment
   productionUrl: "https://shipping.geopost.com/api/2dc", // Production load-balanced endpoint
