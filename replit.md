@@ -8,7 +8,7 @@ This is a full-stack e-commerce application specialized in selling equestrian sa
 
 Preferred communication style: Simple, everyday language.
 
-## État Actuel de l'Application (BACKUP COMPLET 30/07/2025 - 18h10)
+## État Actuel de l'Application (BACKUP COMPLET 30/07/2025 - 21h25)
 
 ### Configuration Technique Stable
 - **Frontend**: React 18.3.1 + TypeScript + Vite
@@ -31,7 +31,8 @@ Preferred communication style: Simple, everyday language.
 
 ### Fichiers Clés Fonctionnels
 - `client/src/App.tsx`: Routing principal avec séparation admin/public
-- `client/src/components/layout/header.tsx`: Header avec menu langue corrigé
+- `client/src/components/layout/header.tsx`: Header avec logo PNG et PWA fonctionnel
+- `client/src/hooks/use-install-prompt.ts`: Hook PWA avec détection navigateur intelligente
 - `client/src/main.tsx`: PWA désactivé, Service Worker supprimé
 - `client/src/index.css`: CSS Tailwind sans erreurs @apply
 - `server/index.ts`: Backend Express fonctionnel
@@ -51,7 +52,7 @@ Preferred communication style: Simple, everyday language.
 - `/admin` - Panel admin avec authentification (admin/Justine1234!)
 - Pages légales complètes (support, privacy, terms, etc.)
 
-### Fonctionnalités Validées (État 30/07/2025 18h10)
+### Fonctionnalités Validées (État 30/07/2025 21h25)
 - ✅ Navigation entre toutes les pages (15+ pages)
 - ✅ Système multilingue complet (FR, EN, NL, ES, DE)
 - ✅ Panier d'achat avec persistance localStorage
@@ -66,6 +67,10 @@ Preferred communication style: Simple, everyday language.
 - ✅ Pages légales complètes (6 pages traduites)
 - ✅ Système de commandes avec historique
 - ✅ Filtrage produits par catégorie et taille
+- ✅ Logo PNG Equi Saddles intégré dans la navbar avec texte stylisé
+- ✅ Système PWA avec boutons d'installation intelligents par plateforme
+- ✅ Instructions d'installation spécifiques mobile (iOS/Android) et desktop
+- ✅ Police Cinzel/Playfair Display pour texte logo avec dégradé doré
 - ✅ CSS Tailwind sans erreurs de compilation
 - ✅ Dark mode complet et optimisé mobile
 - ✅ Notifications toast pour feedback utilisateur
@@ -91,6 +96,21 @@ Preferred communication style: Simple, everyday language.
 - ✅ Toutes variables PostgreSQL (PGHOST, PGUSER, etc.)
 
 ## Recent Changes
+
+### July 30, 2025 - Logo Integration & PWA Installation Enhancement
+- **COMPLETED**: Nouveau logo PNG Equi Saddles intégré dans la navbar remplaçant le texte
+- **COMPLETED**: Logo dimensionné parfaitement (hauteur 64px mobile, 80px desktop, largeur max 300px)
+- **COMPLETED**: Texte "Equi Saddles" ajouté à côté du logo avec police élégante Cinzel/Playfair Display
+- **COMPLETED**: Dégradé doré-orange appliqué au texte avec effet transparent et ombre
+- **COMPLETED**: Hook PWA personnalisé créé avec détection intelligente du support navigateur
+- **COMPLETED**: Boutons d'installation PWA améliorés avec instructions spécifiques par plateforme:
+  - iPhone/iPad: Instructions détaillées pour Safari avec bouton Partager
+  - Android: Instructions Chrome avec menu 3 points
+  - Desktop: Instructions navigateur avec icône d'installation
+- **COMPLETED**: Détection automatique mobile vs desktop pour messages d'installation adaptés
+- **COMPLETED**: Boutons PWA cachés automatiquement une fois l'application installée
+- **COMPLETED**: Messages d'installation PWA optimisés pour encourager l'installation mobile
+- **STATUS**: Application avec identité visuelle complète et système PWA pleinement fonctionnel
 
 ### July 30, 2025 - Complete CSS @apply Directive Resolution
 - **COMPLETED**: Systematic elimination of all "Unknown at rule @apply" errors throughout the project
