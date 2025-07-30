@@ -44,13 +44,16 @@ function Router() {
     );
   }
   
-  // Pour toutes les autres pages, afficher l'app normale
+  // Pour toutes les autres pages, afficher l'app normale avec test header
   return (
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
         <CartProvider>
           <AdminAuthProvider>
             <div className="min-h-screen flex flex-col">
+              <div style={{ background: 'blue', color: 'white', padding: '10px', textAlign: 'center' }}>
+                HEADER TEST - Si vous voyez ceci, les providers fonctionnent
+              </div>
               <Header />
               <main className="flex-1">
                 <Switch>
@@ -72,6 +75,9 @@ function Router() {
                 </Switch>
               </main>
               <Footer />
+              <div style={{ background: 'green', color: 'white', padding: '10px', textAlign: 'center' }}>
+                FOOTER TEST - Si vous voyez ceci, tout fonctionne parfaitement
+              </div>
             </div>
             <ChatWidget />
             <Toaster />
