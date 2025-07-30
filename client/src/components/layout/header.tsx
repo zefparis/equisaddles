@@ -69,9 +69,12 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="text-xl font-bold tracking-widest" style={{ letterSpacing: "0.05em" }}>
-              Equi Saddles
-            </span>
+            <img 
+              src="/attached_assets/logo (3)_1753909277879.png" 
+              alt="Equi Saddles"
+              className="h-10 w-auto object-contain"
+              style={{ maxHeight: "40px" }}
+            />
           </Link>
 
           {/* Desktop Navigation */}
