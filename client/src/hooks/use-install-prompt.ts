@@ -51,19 +51,29 @@ export function useInstallPrompt() {
     if (!installPrompt) {
       // Fallback pour les navigateurs qui ne supportent pas beforeinstallprompt
       const userAgent = navigator.userAgent.toLowerCase();
+      const isMobile = /android|iphone|ipad|mobile/i.test(userAgent);
       let instructions = '';
       
-      if (userAgent.includes('chrome') || userAgent.includes('edge')) {
-        instructions = 'Cliquez sur les 3 points (⋮) > "Installer Equi Saddles" ou "Ajouter à l\'écran d\'accueil"';
-      } else if (userAgent.includes('firefox')) {
-        instructions = 'Cliquez sur les 3 lignes (☰) > "Installer cette page en tant qu\'application"';
-      } else if (userAgent.includes('safari')) {
-        instructions = 'Cliquez sur le bouton Partager > "Sur l\'écran d\'accueil"';
+      if (isMobile) {
+        if (userAgent.includes('safari') || userAgent.includes('iphone') || userAgent.includes('ipad')) {
+          // Instructions pour Safari iOS
+          instructions = '📱 Sur iPhone/iPad :\n\n1. Cliquez sur le bouton Partager en bas de l\'écran\n2. Faites défiler et sélectionnez "Sur l\'écran d\'accueil"\n3. Confirmez en appuyant sur "Ajouter"';
+        } else if (userAgent.includes('chrome') || userAgent.includes('android')) {
+          // Instructions pour Chrome Android
+          instructions = '📱 Sur Android :\n\n1. Cliquez sur les 3 points (⋮) en haut à droite\n2. Sélectionnez "Installer l\'application" ou "Ajouter à l\'écran d\'accueil"\n3. Confirmez l\'installation';
+        } else {
+          instructions = '📱 Pour installer sur mobile :\n\nUtilisez le menu de votre navigateur pour ajouter cette application à votre écran d\'accueil';
+        }
       } else {
-        instructions = 'Utilisez le menu de votre navigateur pour ajouter cette app à votre écran d\'accueil';
+        // Instructions pour desktop
+        if (userAgent.includes('chrome') || userAgent.includes('edge')) {
+          instructions = '💻 Sur ordinateur :\n\nCliquez sur l\'icône d\'installation dans la barre d\'adresse ou utilisez le menu (⋮) > "Installer Equi Saddles"';
+        } else {
+          instructions = '💻 Sur ordinateur :\n\nUtilisez le menu de votre navigateur pour installer cette application';
+        }
       }
       
-      alert(`Pour installer l'application :\n\n${instructions}`);
+      alert(`Installer l'app Equi Saddles\n\n${instructions}`);
       return;
     }
 
