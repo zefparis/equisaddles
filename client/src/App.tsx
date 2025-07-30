@@ -51,13 +51,12 @@ function Router() {
         <CartProvider>
           <AdminAuthProvider>
             <div className="min-h-screen flex flex-col">
-              <div style={{ background: 'blue', color: 'white', padding: '10px', textAlign: 'center' }}>
-                HEADER TEST - Si vous voyez ceci, les providers fonctionnent
-              </div>
+
               <Header />
               <main className="flex-1">
                 <Switch>
                   <Route path="/" component={Home} />
+                  <Route path="/home" component={Home} />
                   <Route path="/catalog" component={Catalog} />
                   <Route path="/product/:id" component={ProductPage} />
                   <Route path="/cart" component={Cart} />
@@ -75,9 +74,7 @@ function Router() {
                 </Switch>
               </main>
               <Footer />
-              <div style={{ background: 'green', color: 'white', padding: '10px', textAlign: 'center' }}>
-                FOOTER TEST - Si vous voyez ceci, tout fonctionne parfaitement
-              </div>
+
             </div>
             <ChatWidget />
             <Toaster />
