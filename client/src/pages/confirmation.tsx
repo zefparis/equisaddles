@@ -122,7 +122,7 @@ export default function Confirmation() {
                   <div>
                     <h4 className="font-semibold">Livraison</h4>
                     <p className="text-sm text-gray-600">
-                      Livraison par DPD sous 2-3 jours ouvrés. Vous recevrez un numéro de suivi.
+                      Livraison par Standard sous 2-3 jours ouvrés. Vous recevrez un numéro de suivi.
                     </p>
                   </div>
                 </div>
