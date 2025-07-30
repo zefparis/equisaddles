@@ -15,9 +15,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Badge } from "../components/ui/badge";
 import { Separator } from "../components/ui/separator";
 import { Alert, AlertDescription } from "../components/ui/alert";
-import Header from "../components/layout/header";
-import Footer from "../components/layout/footer";
-import ChatWidget from "../components/chat/chat-widget";
+// Header, Footer et ChatWidget sont maintenant dans App.tsx
 import { Truck, Mail, Calculator, Info } from "lucide-react";
 // Plus besoin des imports Stripe pour les éléments intégrés
 import { apiRequest } from "../lib/queryClient";
@@ -190,8 +188,6 @@ export default function Checkout() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <Header />
-      
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-8 text-center">
           {t("checkout.title")}
@@ -426,9 +422,6 @@ export default function Checkout() {
           </div>
         </div>
       </div>
-
-      <Footer />
-      <ChatWidget />
     </div>
   );
 }

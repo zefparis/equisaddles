@@ -10,9 +10,7 @@ import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import ProductCard from "../components/product/product-card";
-import Header from "../components/layout/header";
-import Footer from "../components/layout/footer";
-import ChatWidget from "../components/chat/chat-widget";
+// Header, Footer et ChatWidget sont maintenant dans App.tsx
 import { ArrowRight, Award, Headphones, FastForward, Star, Gavel, Download, Smartphone } from "lucide-react";
 
 const categories = [
@@ -59,7 +57,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      <Header />
       {/* Hero Section */}
       <section className="relative h-96 md:h-screen flex items-center justify-center text-white">
         <div
@@ -217,9 +214,6 @@ export default function Home() {
           </form>
         </div>
       </section>
-      
-      <Footer />
-      <ChatWidget />
     </div>
   );
 }

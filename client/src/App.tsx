@@ -25,6 +25,9 @@ import NotFound from "./pages/not-found";
 
 // Import the queryClient from the lib to get the default queryFn
 import { queryClient } from "./lib/queryClient";
+import Header from "./components/layout/header";
+import Footer from "./components/layout/footer";
+import ChatWidget from "./components/chat/chat-widget";
 
 function Router() {
   
@@ -59,10 +62,13 @@ function App() {
         <CartProvider>
           <AdminAuthProvider>
             <div className="min-h-screen flex flex-col">
+              <Header />
               <main className="flex-1">
                 <Router />
               </main>
+              <Footer />
             </div>
+            <ChatWidget />
             <Toaster />
           </AdminAuthProvider>
         </CartProvider>

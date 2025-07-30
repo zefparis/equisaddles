@@ -84,15 +84,15 @@ export default function Header() {
                   <span className="text-sm text-white">{language.toUpperCase()}</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-white border shadow-lg">
+              <DropdownMenuContent className="bg-white border shadow-lg z-50">
                 {languages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
                     onClick={() => setLanguage(lang.code)}
-                    className={`cursor-pointer text-black ${language === lang.code ? 'bg-accent' : ''}`}
+                    className={`cursor-pointer text-black hover:bg-gray-100 dark:hover:bg-gray-700 ${language === lang.code ? 'bg-blue-100 dark:bg-blue-900' : ''}`}
                   >
                     <span className="mr-2 flex items-center">{lang.flag}</span>
-                    {lang.name}
+                    <span className="text-black dark:text-white">{lang.name}</span>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
