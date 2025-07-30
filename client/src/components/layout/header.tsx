@@ -68,13 +68,27 @@ export default function Header() {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center gap-3">
             <img 
               src="/images/logo (3).png" 
               alt="Equi Saddles"
               className="h-16 w-auto object-contain md:h-20"
               style={{ maxHeight: "80px", maxWidth: "300px" }}
             />
+            <span 
+              className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text"
+              style={{
+                fontFamily: "'Cinzel', 'Playfair Display', serif",
+                background: "linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6B35 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                textShadow: "0 2px 4px rgba(0,0,0,0.3)",
+                letterSpacing: "0.05em"
+              }}
+            >
+              Equi Saddles
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
