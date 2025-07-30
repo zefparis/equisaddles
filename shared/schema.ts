@@ -13,8 +13,10 @@ export const products = pgTable("products", {
   description: text("description").notNull(),
   image: text("image").notNull(),
   images: text("images").array().default([]),
-  featured: boolean("featured").default(false),
-  inStock: boolean("in_stock").default(true),
+  inStock: boolean("in_stock").default(true), // true = Disponible, false = Vendu
+  location: text("location"), // Ville/région où se trouve l'article
+  sellerContact: text("seller_contact"), // Contact du vendeur
+  publishedAt: timestamp("published_at").defaultNow(),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -51,12 +53,6 @@ export const orders = pgTable("orders", {
   items: text("items").notNull(), // JSON string
   totalAmount: decimal("total_amount", { precision: 10, scale: 2 }).notNull(),
   shippingCost: decimal("shipping_cost", { precision: 10, scale: 2 }).default("0"),
-  shippingService: text("shipping_service").notNull().default("DPD_CLASSIC"),
-  shippingZone: text("shipping_zone").notNull().default("domestic"),
-  trackingNumber: text("tracking_number"),
-  shippingLabelUrl: text("shipping_label_url"),
-  estimatedDelivery: text("estimated_delivery"),
-  dpdReference: text("dpd_reference"),
   status: text("status").notNull().default("pending"), // "pending", "paid", "shipped", "delivered"
   stripeSessionId: text("stripe_session_id"),
   createdAt: timestamp("created_at").defaultNow(),

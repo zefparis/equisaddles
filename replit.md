@@ -97,6 +97,22 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+### July 30, 2025 - Admin Interface Complete Optimization for Classifieds
+- **COMPLETED**: Complete transformation of admin interface from e-commerce to classifieds system
+- **COMPLETED**: Removed all DPD shipping functionalities and complex shipping features
+- **COMPLETED**: Unified "Selles" and "Accessoires" tabs into single "Annonces" tab for better UX
+- **COMPLETED**: Removed redundant "Images produits" tab - images now managed within product forms
+- **COMPLETED**: Simplified product form by removing "featured" checkbox (not needed for classifieds)
+- **COMPLETED**: Added essential classifieds fields: location (ville/région) and seller contact
+- **COMPLETED**: Updated product status logic: inStock = true (Disponible) / false (Vendu)
+- **COMPLETED**: Enhanced product cards with clear availability badges (Disponible/Vendu)
+- **COMPLETED**: Simplified orders management with manual contact approach instead of automated shipping
+- **COMPLETED**: Updated database schema with location, sellerContact, and publishedAt fields
+- **COMPLETED**: Applied schema changes to database with npm run db:push
+- **COMPLETED**: Improved form placeholders and labels for classifieds context
+- **COMPLETED**: Streamlined interface from 6 tabs to 4 tabs: Annonces, Galerie, Commandes, Chat
+- **STATUS**: Admin interface now perfectly suited for posting saddle and accessories advertisements
+
 ### July 30, 2025 - Logo Integration & PWA Installation Enhancement
 - **COMPLETED**: Nouveau logo PNG Equi Saddles intégré dans la navbar remplaçant le texte
 - **COMPLETED**: Logo dimensionné parfaitement (hauteur 64px mobile, 80px desktop, largeur max 300px)

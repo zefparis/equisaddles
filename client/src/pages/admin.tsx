@@ -22,7 +22,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Settings, Package, Images, ShoppingCart, Plus, Edit, Trash2, Eye, FileText, Download, Truck, MapPin, MessageCircle } from "lucide-react";
+import { Settings, Package, Images, ShoppingCart, Plus, Edit, Trash2, MessageCircle } from "lucide-react";
 import ProductImageManager from "../components/admin/product-image-manager";
 import ImageUpload from "../components/admin/image-upload";
 import ChatAdmin from "../components/admin/chat-admin";
@@ -64,46 +64,7 @@ export default function Admin() {
     queryKey: ["/api/orders"],
   });
 
-  // Shipping management
-  const generateLabelMutation = useMutation({
-    mutationFn: ({ orderId, shippingData }: { orderId: number; shippingData: any }) =>
-      apiRequest("POST", "/api/shipping/generate-label", { orderId, shippingData }),
-    onSuccess: async (response) => {
-      const data = await response.json();
-      toast({
-        title: t("admin.dpd.labelGenerated"),
-        description: `${t("admin.dpd.labelGeneratedDesc")}: ${data.trackingNumber}`,
-      });
-      // Ouvrir automatiquement l'étiquette dans un nouvel onglet
-      window.open(data.labelUrl, '_blank');
-    },
-    onError: (error) => {
-      toast({
-        title: t("admin.error"),
-        description: t("admin.dpd.labelError"),
-        variant: "destructive",
-      });
-    },
-  });
 
-  const trackPackageMutation = useMutation({
-    mutationFn: (trackingNumber: string) =>
-      apiRequest("GET", `/api/shipping/track/${trackingNumber}`),
-    onSuccess: async (response) => {
-      const data = await response.json();
-      toast({
-        title: t("admin.dpd.trackingInfo"),
-        description: `${t("admin.dpd.trackingStatus")}: ${data.status} - ${data.location}`,
-      });
-    },
-    onError: (error) => {
-      toast({
-        title: t("admin.error"),
-        description: t("admin.dpd.trackingError"),
-        variant: "destructive",
-      });
-    },
-  });
 
   // Mutations
   const createProductMutation = useMutation({
@@ -178,8 +139,9 @@ export default function Admin() {
       description: "",
       image: "",
       images: [],
-      featured: false,
       inStock: true,
+      location: "",
+      sellerContact: "",
     },
   });
 
@@ -280,8 +242,9 @@ export default function Admin() {
       description: product.description,
       image: product.image,
       images: product.images || [],
-      featured: product.featured || false,
-      inStock: product.inStock || true,
+      inStock: product.inStock !== false,
+      location: product.location || "",
+      sellerContact: product.sellerContact || "",
     });
     setShowProductDialog(true);
   };
@@ -298,8 +261,9 @@ export default function Admin() {
         description: "",
         image: "",
         images: [],
-        featured: false,
         inStock: true,
+        location: "",
+        sellerContact: "",
       });
     } else {
       productForm.reset({
@@ -311,8 +275,9 @@ export default function Admin() {
         description: "",
         image: "",
         images: [],
-        featured: false,
         inStock: true,
+        location: "",
+        sellerContact: "",
       });
     }
     setShowProductDialog(true);
@@ -334,7 +299,7 @@ export default function Admin() {
               <span>{t("admin.title")}</span>
             </h1>
             <p className="text-gray-600 dark:text-gray-400 mt-2 text-sm sm:text-base">
-              Interface d'administration pour gérer les produits, la galerie et les commandes.
+              Interface d'administration pour publier et gérer vos annonces de selles et accessoires équestres.
             </p>
           </div>
           <Button 
@@ -346,27 +311,19 @@ export default function Admin() {
           </Button>
         </div>
 
-        <Tabs defaultValue="saddles" className="space-y-6 sm:space-y-8">
+        <Tabs defaultValue="products" className="space-y-6 sm:space-y-8">
           <TabsList className="admin-tabs-list w-full">
-            <TabsTrigger value="saddles" className="admin-tab-trigger">
+            <TabsTrigger value="products" className="admin-tab-trigger">
               <Package className="admin-tab-icon" />
-              <span>Selles</span>
-            </TabsTrigger>
-            <TabsTrigger value="accessories" className="admin-tab-trigger">
-              <Package className="admin-tab-icon" />
-              <span>Access</span>
-            </TabsTrigger>
-            <TabsTrigger value="product-images" className="admin-tab-trigger">
-              <Images className="admin-tab-icon" />
-              <span>Img</span>
+              <span>Annonces</span>
             </TabsTrigger>
             <TabsTrigger value="gallery" className="admin-tab-trigger">
               <Images className="admin-tab-icon" />
-              <span>Gal</span>
+              <span>Galerie</span>
             </TabsTrigger>
             <TabsTrigger value="orders" className="admin-tab-trigger">
               <ShoppingCart className="admin-tab-icon" />
-              <span>Cmd</span>
+              <span>Commandes</span>
             </TabsTrigger>
             <TabsTrigger value="chat" className="admin-tab-trigger">
               <MessageCircle className="admin-tab-icon" />
@@ -374,14 +331,20 @@ export default function Admin() {
             </TabsTrigger>
           </TabsList>
 
-          {/* Saddles Tab */}
-          <TabsContent value="saddles" className="space-y-4 sm:space-y-6">
+          {/* Products Tab - Unified for both saddles and accessories */}
+          <TabsContent value="products" className="space-y-4 sm:space-y-6">
             <div className="admin-section-header">
-              <h2 className="admin-section-title text-gray-900 dark:text-gray-100">Gestion des selles</h2>
-              <Button onClick={() => handleNewProduct("saddle")} className="btn-primary admin-add-button">
-                <Plus className="h-4 w-4 mr-2" />
-                Nouvelle selle
-              </Button>
+              <h2 className="admin-section-title text-gray-900 dark:text-gray-100">Gestion des annonces</h2>
+              <div className="flex gap-2">
+                <Button onClick={() => handleNewProduct("saddle")} className="btn-primary admin-add-button">
+                  <Plus className="h-4 w-4 mr-2" />
+                  Nouvelle selle
+                </Button>
+                <Button onClick={() => handleNewProduct("accessory")} variant="outline" className="admin-add-button">
+                  <Plus className="h-4 w-4 mr-2" />
+                  Accessoire
+                </Button>
+              </div>
             </div>
 
             {productsLoading ? (
@@ -396,7 +359,7 @@ export default function Admin() {
               </div>
             ) : (
               <div className="admin-product-grid">
-                {products?.filter(product => product.category !== "Accessoires").map((product) => (
+                {products?.map((product) => (
                   <Card key={product.id} className="admin-product-card">
                     <div className="relative">
                       <img
@@ -404,85 +367,23 @@ export default function Admin() {
                         alt={product.name}
                         className="admin-product-image"
                       />
-                      {product.featured && (
-                        <Badge className="absolute top-2 right-2 bg-accent text-xs">
-                          Vedette
+                      <Badge className="absolute top-2 left-2 bg-blue-500 text-white text-xs">
+                        {product.category === "Accessoires" ? product.subcategory : product.category}
+                      </Badge>
+                      {product.inStock ? (
+                        <Badge className="absolute top-2 right-2 bg-green-500 text-white text-xs">
+                          Disponible
+                        </Badge>
+                      ) : (
+                        <Badge className="absolute top-2 right-2 bg-red-500 text-white text-xs">
+                          Vendu
                         </Badge>
                       )}
                     </div>
                     <CardContent className="admin-product-content">
                       <h3 className="admin-product-title">{product.name}</h3>
                       <p className="admin-product-meta">
-                        {product.category} - {product.size}
-                      </p>
-                      <p className="admin-product-price text-primary">
-                        {parseFloat(product.price).toFixed(2)} €
-                      </p>
-                      <div className="admin-product-actions">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => handleEditProduct(product)}
-                          className="admin-action-button"
-                        >
-                          <Edit className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => deleteProductMutation.mutate(product.id)}
-                          className="admin-action-button text-red-500 hover:text-red-700"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            )}
-          </TabsContent>
-
-          {/* Accessories Tab */}
-          <TabsContent value="accessories" className="space-y-4 sm:space-y-6">
-            <div className="admin-section-header">
-              <h2 className="admin-section-title text-gray-900 dark:text-gray-100">Gestion des accessoires</h2>
-              <Button onClick={() => handleNewProduct("accessory")} className="btn-primary admin-add-button">
-                <Plus className="h-4 w-4 mr-2" />
-                Nouvel accessoire
-              </Button>
-            </div>
-
-            {productsLoading ? (
-              <div className="admin-product-grid">
-                {[...Array(6)].map((_, i) => (
-                  <div key={i} className="animate-pulse">
-                    <div className="bg-gray-300 dark:bg-gray-700 h-40 sm:h-48 rounded-lg mb-4"></div>
-                    <div className="bg-gray-300 dark:bg-gray-700 h-4 sm:h-6 rounded mb-2"></div>
-                    <div className="bg-gray-300 dark:bg-gray-700 h-3 sm:h-4 rounded"></div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="admin-product-grid">
-                {products?.filter(product => product.category === "Accessoires").map((product) => (
-                  <Card key={product.id} className="admin-product-card">
-                    <div className="relative">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="admin-product-image"
-                      />
-                      {product.featured && (
-                        <Badge className="absolute top-2 right-2 bg-accent text-xs">
-                          Vedette
-                        </Badge>
-                      )}
-                    </div>
-                    <CardContent className="admin-product-content">
-                      <h3 className="admin-product-title">{product.name}</h3>
-                      <p className="admin-product-meta">
-                        {product.subcategory} - {product.size}
+                        {product.category === "Accessoires" ? product.subcategory : product.category} - {product.size}
                       </p>
                       <p className="admin-product-price text-primary">
                         {parseFloat(product.price).toFixed(2)} €
@@ -568,41 +469,7 @@ export default function Admin() {
             )}
           </TabsContent>
 
-          {/* Product Images Tab */}
-          <TabsContent value="product-images" className="space-y-4 sm:space-y-6">
-            <div className="admin-section-header">
-              <h2 className="admin-section-title text-gray-900 dark:text-gray-100">Gestion des images de produits</h2>
-            </div>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-              {products?.map((product) => (
-                <Card key={product.id}>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Package className="h-5 w-5" />
-                      {product.name}
-                    </CardTitle>
-                    <div className="flex items-center gap-2">
-                      <Badge variant="secondary">{product.category}</Badge>
-                      {product.subcategory && <Badge variant="outline">{product.subcategory}</Badge>}
-                      <Badge variant="outline">{product.size}</Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <ProductImageManager productId={product.id} />
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-            
-            {!products || products.length === 0 && (
-              <div className="text-center py-16">
-                <Package className="h-24 w-24 mx-auto mb-6 text-gray-300" />
-                <h3 className="text-xl font-semibold mb-2">Aucun produit</h3>
-                <p className="text-gray-600">Créez des produits pour commencer à gérer leurs images.</p>
-              </div>
-            )}
-          </TabsContent>
+
 
           {/* Orders Tab */}
           <TabsContent value="orders" className="space-y-6">
@@ -673,52 +540,12 @@ export default function Admin() {
                         </div>
                       </div>
 
-                      {/* Standard Shipping Actions */}
-                      <div className="mt-4">
-                        <h4 className="font-semibold mb-2">{t("admin.dpd.title")}</h4>
-                        <div className="flex flex-wrap gap-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => generateLabelMutation.mutate({ 
-                              orderId: order.id, 
-                              shippingData: {
-                                customerName: order.customerName,
-                                customerAddress: order.customerAddress,
-                                customerCity: order.customerCity,
-                                customerPostalCode: order.customerPostalCode,
-                                customerCountry: order.customerCountry,
-                                weight: 4.0,
-                                value: parseFloat(order.totalAmount)
-                              }
-                            })}
-                            disabled={generateLabelMutation.isPending}
-                          >
-                            <FileText className="h-4 w-4 mr-2" />
-                            {generateLabelMutation.isPending ? t("shipping.dpd.generating") : t("admin.dpd.generateLabel")}
-                          </Button>
-                          
-                          {order.stripeSessionId && (
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => trackPackageMutation.mutate(order.stripeSessionId || "")}
-                              disabled={trackPackageMutation.isPending}
-                            >
-                              <Truck className="h-4 w-4 mr-2" />
-                              {trackPackageMutation.isPending ? t("shipping.dpd.tracking") : t("admin.dpd.trackPackage")}
-                            </Button>
-                          )}
-                          
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => window.open(`https://www.dpd.fr/suivi_colis`, '_blank')}
-                          >
-                            <MapPin className="h-4 w-4 mr-2" />
-                            {t("admin.dpd.openStandard")}
-                          </Button>
-                        </div>
+                      {/* Contact Info for Manual Processing */}
+                      <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                        <h4 className="font-semibold mb-2 text-blue-700 dark:text-blue-300">Action requise</h4>
+                        <p className="text-sm text-blue-600 dark:text-blue-400">
+                          Contactez le client pour organiser la livraison ou la récupération de la commande.
+                        </p>
                       </div>
                     </CardContent>
                   </Card>
@@ -812,13 +639,12 @@ export default function Admin() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div>
                   <Label htmlFor="size">Taille *</Label>
-                  {/* FIX: label for/id - Added id to SelectTrigger for accessibility */}
                   <Select
                     value={productForm.watch("size")}
                     onValueChange={(value) => productForm.setValue("size", value)}
                   >
                     <SelectTrigger id="size">
-                      <SelectValue placeholder={t("admin.selectSize")} />
+                      <SelectValue placeholder="Sélectionner une taille" />
                     </SelectTrigger>
                     <SelectContent>
                       {(productForm.watch("category") === "Accessoires" ? accessorySizes : saddleSizes).map((size) => (
@@ -836,17 +662,15 @@ export default function Admin() {
                     type="number"
                     step="0.01"
                     {...productForm.register("price")}
-                    placeholder={t("admin.price")}
+                    placeholder="Prix en euros"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="originalPrice">Prix original</Label>
+                  <Label htmlFor="location">Localisation</Label>
                   <Input
-                    id="originalPrice"
-                    type="number"
-                    step="0.01"
-                    {...productForm.register("originalPrice")}
-                    placeholder={t("admin.originalPrice")}
+                    id="location"
+                    {...productForm.register("location")}
+                    placeholder="Ville ou région"
                   />
                 </div>
               </div>
@@ -856,8 +680,17 @@ export default function Admin() {
                 <Textarea
                   id="description"
                   {...productForm.register("description")}
-                  placeholder={t("admin.productDescription")}
-                  rows={3}
+                  placeholder="Décrivez l'état, les caractéristiques et autres détails importants"
+                  rows={4}
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="sellerContact">Contact vendeur</Label>
+                <Input
+                  id="sellerContact"
+                  {...productForm.register("sellerContact")}
+                  placeholder="Téléphone ou email pour contact direct"
                 />
               </div>
 
@@ -873,19 +706,11 @@ export default function Admin() {
               <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
                 <div className="flex items-center space-x-2">
                   <Checkbox
-                    id="featured"
-                    checked={productForm.watch("featured") || false}
-                    onCheckedChange={(checked) => productForm.setValue("featured", !!checked)}
-                  />
-                  <Label htmlFor="featured">Produit vedette</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox
                     id="inStock"
-                    checked={productForm.watch("inStock") || false}
+                    checked={productForm.watch("inStock") !== false}
                     onCheckedChange={(checked) => productForm.setValue("inStock", !!checked)}
                   />
-                  <Label htmlFor="inStock">En stock</Label>
+                  <Label htmlFor="inStock">Annonce active (disponible à la vente)</Label>
                 </div>
               </div>
 
