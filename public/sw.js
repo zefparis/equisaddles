@@ -55,7 +55,12 @@ self.addEventListener('fetch', (event) => {
 
   // NEVER cache POST requests - they cause errors and are not cacheable
   if (event.request.method !== 'GET') {
-    console.log('[SW] Skipping non-GET request:', event.request.method, event.request.url);
+    // Skip non-GET requests but log Stripe 429 errors specifically
+    if (event.request.url.includes('stripe.com') || event.request.url.includes('errors.stripe.com')) {
+      console.log('[SW] Skipping Stripe API request (potential rate limit protection):', event.request.method, event.request.url);
+    } else {
+      console.log('[SW] Skipping non-GET request:', event.request.method, event.request.url);
+    }
     return;
   }
 

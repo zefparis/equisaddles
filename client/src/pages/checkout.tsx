@@ -19,6 +19,7 @@ import { z } from "zod";
 import { Link } from "wouter";
 import { ArrowLeft, CreditCard, Truck } from "lucide-react";
 import DPDShippingOptions from "../components/shipping/dpd-shipping-options";
+import { StripeErrorHandler } from "../utils/stripe-error-handler";
 
 if (!import.meta.env.VITE_STRIPE_PUBLIC_KEY) {
   throw new Error('Missing required Stripe key: VITE_STRIPE_PUBLIC_KEY');
@@ -473,36 +474,58 @@ export default function Checkout() {
   }, []);
 
   useEffect(() => {
-    if (items.length > 0 && !paymentIntentCreated) {
+    // Create PaymentIntent with anti-spam protection and iframe detection
+    if (items.length > 0 && !paymentIntentCreated && !clientSecret) {
       const totalAmount = items.reduce((sum, item) => sum + (parseFloat(item.price) * item.quantity), 0);
       if (totalAmount <= 0) {
         console.warn("[StripeFix] Invalid amount for payment intent:", totalAmount);
         return;
       }
 
-      apiRequest("POST", "/api/create-payment-intent", { amount: totalAmount })
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error(`HTTP ${res.status}: ${res.statusText}`);
-          }
-          return res.json();
-        })
-        .then((data) => {
-          if (data.clientSecret && typeof data.clientSecret === 'string') {
-            setClientSecret(data.clientSecret);
-            setPaymentIntentCreated(true);
-          } else {
-            console.error("[StripeFix] Invalid client_secret received:", data);
-          }
-        })
-        .catch((error) => {
-          console.error("[StripeFix] Error creating payment intent:", error);
-          if (!error.message.includes('429')) {
-            setPaymentIntentCreated(false);
-          }
-        });
+      // Check iframe and log Stripe configuration
+      StripeErrorHandler.checkIframeWarning();
+      StripeErrorHandler.logStripeConfig();
+
+      // Add delay to prevent rapid successive calls that cause 429 errors
+      const createPaymentIntent = setTimeout(() => {
+        console.log("[StripeFix] Creating payment intent for amount:", totalAmount);
+        
+        apiRequest("POST", "/api/create-payment-intent", { amount: totalAmount })
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+            }
+            return res.json();
+          })
+          .then((data) => {
+            if (data.clientSecret && typeof data.clientSecret === 'string') {
+              console.log("[StripeFix] Payment intent created successfully");
+              setClientSecret(data.clientSecret);
+              setPaymentIntentCreated(true);
+            } else {
+              console.error("[StripeFix] Invalid client_secret received:", data);
+            }
+          })
+          .catch((error) => {
+            console.error("[StripeFix] Error creating payment intent:", error);
+            
+            const errorInfo = StripeErrorHandler.handleApiError(error);
+            
+            if (errorInfo.shouldRetry) {
+              console.warn(`[StripeFix] ${errorInfo.userMessage} Retrying in ${errorInfo.retryDelay}ms`);
+              setTimeout(() => {
+                setPaymentIntentCreated(false);
+              }, errorInfo.retryDelay);
+            } else {
+              console.error(`[StripeFix] ${errorInfo.userMessage}`);
+              setPaymentIntentCreated(false);
+            }
+          });
+      }, 500); // 500ms delay to prevent rapid calls
+
+      return () => clearTimeout(createPaymentIntent);
     }
-  }, [items.length, paymentIntentCreated]);
+  }, [items.length, paymentIntentCreated, clientSecret]);
 
   if (items.length === 0) {
     return (

@@ -19,14 +19,14 @@
     },
     {
       "src": "/icons/icon-96.svg",
-      "sizes": "96x96", 
+      "sizes": "96x96",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
       "src": "/icons/icon-128.svg",
       "sizes": "128x128",
-      "type": "image/svg+xml", 
+      "type": "image/svg+xml",
       "purpose": "any"
     },
     {
@@ -36,7 +36,7 @@
       "purpose": "any"
     },
     {
-      "src": "/icons/icon-152.svg", 
+      "src": "/icons/icon-152.svg",
       "sizes": "152x152",
       "type": "image/svg+xml",
       "purpose": "any"
@@ -49,7 +49,7 @@
     },
     {
       "src": "/icons/icon-384.svg",
-      "sizes": "384x384", 
+      "sizes": "384x384",
       "type": "image/svg+xml",
       "purpose": "any"
     },
