@@ -57,23 +57,10 @@ function Router() {
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <LanguageProvider>
-        <CartProvider>
-          <AdminAuthProvider>
-            <div className="min-h-screen flex flex-col">
-              <Header />
-              <main className="flex-1">
-                <Router />
-              </main>
-              <Footer />
-            </div>
-            <ChatWidget />
-            <Toaster />
-          </AdminAuthProvider>
-        </CartProvider>
-      </LanguageProvider>
-    </QueryClientProvider>
+    <div style={{ background: 'red', color: 'white', padding: '20px' }}>
+      <h1>TEST - ERREURS TYPESCRIPT CORRIGÉES</h1>
+      <p>Si vous voyez ceci en rouge, React fonctionne</p>
+    </div>
   );
 }
 
