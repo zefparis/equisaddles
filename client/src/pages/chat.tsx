@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, MessageCircle } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { ArrowLeft, MessageCircle, Send } from "lucide-react";
 
 export default function ChatPage() {
   const [, setLocation] = useLocation();
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [debugInfo, setDebugInfo] = useState<string>("");
+  const [messages, setMessages] = useState<Array<{id: number, sender: string, text: string, time: string}>>([]);
+  const [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -47,6 +50,30 @@ Params toString: ${urlParams.toString()}
     
     return () => clearTimeout(timer);
   }, []);
+
+  const handleSendMessage = () => {
+    if (newMessage.trim() && userEmail) {
+      const message = {
+        id: Date.now(),
+        sender: userEmail,
+        text: newMessage,
+        time: new Date().toLocaleTimeString()
+      };
+      setMessages(prev => [...prev, message]);
+      setNewMessage("");
+      
+      // Simuler une réponse auto
+      setTimeout(() => {
+        const autoReply = {
+          id: Date.now() + 1,
+          sender: "Equi Saddles",
+          text: "Merci pour votre message ! Notre équipe vous répondra bientôt.",
+          time: new Date().toLocaleTimeString()
+        };
+        setMessages(prev => [...prev, autoReply]);
+      }, 1000);
+    }
+  };
 
   const handleBackToSite = () => {
     setLocation('/');
@@ -131,19 +158,68 @@ Params toString: ${urlParams.toString()}
           </div>
         </div>
 
-        {/* Chat Container - Version Simple */}
+        {/* Chat Container - Version Fonctionnelle */}
         <div className="flex justify-center">
           <div className="w-full max-w-2xl">
-            <div className="bg-card rounded-lg p-6 shadow-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <MessageCircle className="h-5 w-5" />
-                <h2 className="text-lg font-semibold">Chat avec {userEmail}</h2>
+            <div className="bg-card rounded-lg shadow-lg overflow-hidden">
+              {/* Header */}
+              <div className="bg-primary text-primary-foreground p-4">
+                <div className="flex items-center gap-2">
+                  <MessageCircle className="h-5 w-5" />
+                  <h2 className="text-lg font-semibold">Chat Support</h2>
+                  <span className="ml-auto text-sm opacity-80">{userEmail}</span>
+                </div>
               </div>
               
-              <div className="bg-muted/30 rounded p-4 h-64 flex items-center justify-center">
-                <p className="text-muted-foreground">
-                  Interface de chat simplifiée - Email: {userEmail}
-                </p>
+              {/* Messages */}
+              <div className="h-80 overflow-y-auto p-4 bg-muted/10">
+                {messages.length === 0 ? (
+                  <div className="text-center text-muted-foreground py-8">
+                    <MessageCircle className="h-12 w-12 mx-auto mb-2 opacity-50" />
+                    <p>Commencez votre conversation</p>
+                    <p className="text-sm">Notre équipe vous répondra rapidement</p>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    {messages.map((message) => (
+                      <div
+                        key={message.id}
+                        className={`flex ${message.sender === userEmail ? 'justify-end' : 'justify-start'}`}
+                      >
+                        <div
+                          className={`max-w-[70%] rounded-lg p-3 ${
+                            message.sender === userEmail
+                              ? 'bg-primary text-primary-foreground'
+                              : 'bg-background border'
+                          }`}
+                        >
+                          <p className="text-sm">{message.text}</p>
+                          <p className="text-xs opacity-70 mt-1">{message.time}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+              
+              {/* Input */}
+              <div className="border-t p-4 bg-background">
+                <div className="flex gap-2">
+                  <Input
+                    placeholder="Tapez votre message..."
+                    value={newMessage}
+                    onChange={(e) => setNewMessage(e.target.value)}
+                    onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                    className="flex-1"
+                  />
+                  <Button 
+                    onClick={handleSendMessage}
+                    disabled={!newMessage.trim()}
+                    size="icon"
+                  >
+                    <Send className="h-4 w-4" />
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -154,10 +230,10 @@ Params toString: ${urlParams.toString()}
           <div className="bg-muted/50 rounded-lg p-4 max-w-2xl mx-auto">
             <h3 className="font-semibold mb-2">💡 Comment ça marche ?</h3>
             <ul className="text-sm text-muted-foreground space-y-1">
-              <li>• Vos messages sont sauvegardés automatiquement</li>
-              <li>• Vous recevrez un email quand notre équipe vous répond</li>
-              <li>• Gardez ce lien pour revenir à tout moment</li>
-              <li>• Toutes vos conversations sont regroupées ici</li>
+              <li>• Interface de chat simplifiée (sans WebSocket pour éviter les erreurs)</li>
+              <li>• Vos messages seront transmis à notre équipe</li>
+              <li>• Vous recevrez une réponse par email</li>
+              <li>• Version de test fonctionnelle</li>
             </ul>
           </div>
         </div>
