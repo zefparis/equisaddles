@@ -10,17 +10,22 @@ export default function SimpleChatPage() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Extraire l'email de l'URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const emailParam = urlParams.get('email');
+    // Extraire l'email de l'URL avec délai pour s'assurer du chargement complet
+    const timer = setTimeout(() => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const emailParam = urlParams.get('email');
+      
+      console.log('Production URL:', window.location.href);
+      console.log('Search params:', window.location.search);
+      console.log('Email param:', emailParam);
+      
+      if (emailParam) {
+        setEmail(emailParam);
+      }
+      setIsLoaded(true);
+    }, 200);
     
-    console.log('URL:', window.location.href);
-    console.log('Email param:', emailParam);
-    
-    if (emailParam) {
-      setEmail(emailParam);
-    }
-    setIsLoaded(true);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleSendMessage = () => {
@@ -72,9 +77,14 @@ export default function SimpleChatPage() {
       </div>
 
       <div className="max-w-4xl mx-auto p-4">
-        {/* Info Debug */}
-        <div className="mb-4 p-3 bg-muted/50 rounded-lg text-sm">
-          <strong>Debug:</strong> URL = {window.location.href}, Email = {email || "Non trouvé"}
+        {/* Info Debug - Plus détaillé pour production */}
+        <div className="mb-4 p-3 bg-muted/50 rounded-lg text-sm space-y-1">
+          <div><strong>Debug Production:</strong></div>
+          <div>URL complète: {window.location.href}</div>
+          <div>Search: {window.location.search}</div>
+          <div>Email trouvé: {email || "❌ Non trouvé"}</div>
+          <div>Host: {window.location.host}</div>
+          <div>Pathname: {window.location.pathname}</div>
         </div>
 
         {/* Chat Container */}
@@ -84,8 +94,19 @@ export default function SimpleChatPage() {
             {messages.length === 0 ? (
               <div className="text-center text-muted-foreground py-12">
                 <MessageCircle className="h-16 w-16 mx-auto mb-4 opacity-30" />
-                <p className="text-lg font-medium">Bienvenue dans le support chat</p>
-                <p>Commencez la conversation en tapant votre message ci-dessous</p>
+                <p className="text-lg font-medium">
+                  {email ? `Bienvenue ${email}` : "Support Chat Equi Saddles"}
+                </p>
+                <p>
+                  {email 
+                    ? "Commencez la conversation en tapant votre message ci-dessous" 
+                    : "Email requis pour démarrer le chat"}
+                </p>
+                {!email && (
+                  <div className="mt-3 text-sm text-amber-600 dark:text-amber-400">
+                    URL correcte: /simple-chat?email=votre@email.com
+                  </div>
+                )}
               </div>
             ) : (
               messages.map((message) => (
@@ -113,16 +134,18 @@ export default function SimpleChatPage() {
           <div className="border-t p-4 bg-background">
             <div className="flex gap-2">
               <Input
-                placeholder="Tapez votre message..."
+                placeholder={email ? "Tapez votre message..." : "Email requis pour envoyer un message"}
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                onKeyPress={(e) => e.key === 'Enter' && email && handleSendMessage()}
                 className="flex-1"
+                disabled={!email}
               />
               <Button 
                 onClick={handleSendMessage}
-                disabled={!newMessage.trim()}
+                disabled={!newMessage.trim() || !email}
                 size="icon"
+                title={!email ? "Email requis" : "Envoyer le message"}
               >
                 <Send className="h-4 w-4" />
               </Button>
@@ -130,9 +153,16 @@ export default function SimpleChatPage() {
           </div>
         </div>
         
-        {/* Instructions */}
-        <div className="mt-4 text-center text-muted-foreground text-sm">
-          Cette page de chat fonctionne indépendamment. Testez avec: /simple-chat?email=test@example.com
+        {/* Instructions Production */}
+        <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-lg text-center text-sm">
+          <div className="font-medium text-blue-900 dark:text-blue-100 mb-2">
+            🌐 Interface Chat Production
+          </div>
+          <div className="text-blue-700 dark:text-blue-300 space-y-1">
+            <div>Cette page fonctionne sur {window.location.host}</div>
+            <div>Email détecté: {email ? `✅ ${email}` : "❌ Aucun email dans l'URL"}</div>
+            <div className="text-xs">Format attendu: ?email=votre@email.com</div>
+          </div>
         </div>
       </div>
     </div>
