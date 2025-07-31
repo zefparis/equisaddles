@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
-import ChatWidget from "@/components/chat/chat-widget";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, MessageCircle } from "lucide-react";
 
@@ -9,30 +7,46 @@ export default function ChatPage() {
   const [, setLocation] = useLocation();
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [debugInfo, setDebugInfo] = useState<string>("");
 
   useEffect(() => {
-    try {
-      console.log('Chat page loading...');
-      // Récupérer l'email depuis l'URL
-      const urlParams = new URLSearchParams(window.location.search);
-      const email = urlParams.get('email');
-      
-      console.log('Email from URL:', email);
-      console.log('Current URL:', window.location.href);
-      
-      if (email && email.includes('@')) {
-        setUserEmail(email);
+    const timer = setTimeout(() => {
+      try {
+        console.log('Chat page loading...');
+        
+        const currentUrl = window.location.href;
+        const search = window.location.search;
+        const urlParams = new URLSearchParams(search);
+        const email = urlParams.get('email');
+        
+        const debug = `
+URL complète: ${currentUrl}
+Search params: ${search}
+Email trouvé: ${email}
+Params toString: ${urlParams.toString()}
+        `.trim();
+        
+        setDebugInfo(debug);
+        console.log(debug);
+        
+        if (email && email.includes('@')) {
+          console.log('Email valide trouvé:', email);
+          setUserEmail(email);
+        } else {
+          console.log('Aucun email valide');
+          setUserEmail(null);
+        }
         setIsLoading(false);
-      } else {
-        console.log('No valid email, redirecting to contact');
-        // Si pas d'email dans l'URL, rediriger vers contact
-        setLocation('/contact');
+      } catch (error) {
+        console.error('Erreur:', error);
+        setDebugInfo(`Erreur: ${error}`);
+        setIsLoading(false);
+        setUserEmail(null);
       }
-    } catch (error) {
-      console.error('Error in chat page:', error);
-      setLocation('/contact');
-    }
-  }, [setLocation]);
+    }, 100); // Petit délai pour s'assurer que la page est chargée
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleBackToSite = () => {
     setLocation('/');
@@ -52,12 +66,23 @@ export default function ChatPage() {
   if (!userEmail) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="text-center">
+        <div className="text-center max-w-md mx-auto p-4">
           <h2 className="text-xl font-semibold mb-2">Email requis</h2>
-          <p className="text-muted-foreground mb-4">Veuillez utiliser le lien depuis votre email</p>
-          <Button onClick={handleBackToSite} variant="outline">
-            Retour au site
-          </Button>
+          <p className="text-muted-foreground mb-4">
+            Cette page nécessite un email valide dans l'URL.<br/>
+            Format attendu: /chat?email=votre@email.com
+          </p>
+          <div className="space-y-2">
+            <Button onClick={handleBackToSite} variant="outline" className="mr-2">
+              Retour au site
+            </Button>
+            <Button onClick={() => setLocation('/chat-test')} variant="default">
+              Page de test
+            </Button>
+          </div>
+          <div className="mt-4 text-xs text-muted-foreground">
+            URL actuelle: {window.location.href}
+          </div>
         </div>
       </div>
     );
@@ -96,33 +121,31 @@ export default function ChatPage() {
           </div>
         </div>
 
-        {/* Chat Container */}
+        {/* Debug Info */}
+        <div className="mb-6">
+          <div className="bg-muted/50 rounded-lg p-4 max-w-2xl mx-auto">
+            <h3 className="font-semibold mb-2">📋 Informations de Debug</h3>
+            <pre className="text-xs text-muted-foreground whitespace-pre-wrap">
+              {debugInfo}
+            </pre>
+          </div>
+        </div>
+
+        {/* Chat Container - Version Simple */}
         <div className="flex justify-center">
           <div className="w-full max-w-2xl">
-            <Card className="h-[600px] shadow-lg">
-              <CardHeader className="border-b">
-                <CardTitle className="flex items-center gap-2">
-                  <MessageCircle className="h-5 w-5" />
-                  Votre conversation
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-0">
-                <div className="h-[520px] relative">
-                  {userEmail ? (
-                    <ChatWidget 
-                      isAdmin={false}
-                      isOpen={true}
-                      userEmail={userEmail}
-                      showFullPage={true}
-                    />
-                  ) : (
-                    <div className="flex items-center justify-center h-full">
-                      <p className="text-muted-foreground">Chargement du chat...</p>
-                    </div>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
+            <div className="bg-card rounded-lg p-6 shadow-lg">
+              <div className="flex items-center gap-2 mb-4">
+                <MessageCircle className="h-5 w-5" />
+                <h2 className="text-lg font-semibold">Chat avec {userEmail}</h2>
+              </div>
+              
+              <div className="bg-muted/30 rounded p-4 h-64 flex items-center justify-center">
+                <p className="text-muted-foreground">
+                  Interface de chat simplifiée - Email: {userEmail}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
