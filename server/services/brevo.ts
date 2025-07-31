@@ -76,6 +76,7 @@ export async function sendEmail(emailData: EmailData): Promise<boolean> {
 
 export async function sendChatNotificationToAdmin(customerName: string, customerEmail: string, message: string, sessionId: string): Promise<boolean> {
   const adminEmail = "equisaddles@gmail.com"; // Email de l'admin vérifié dans Brevo
+  const domain = process.env.REPLIT_DOMAINS?.split(',')[0] || `${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co`;
   
   const emailData: EmailData = {
     to: adminEmail,
@@ -96,16 +97,16 @@ export async function sendChatNotificationToAdmin(customerName: string, customer
           <p style="margin: 0; line-height: 1.5;">${message}</p>
         </div>
         
-        <div style="text-align: center; margin-top: 30px;">
-          <a href="https://${process.env.REPLIT_DOMAINS?.split(',')[0] || process.env.REPL_SLUG + '.' + process.env.REPL_OWNER + '.repl.co'}/admin?tab=chat&session=${sessionId}" 
-             style="background-color: #8B5A3C; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
+        <div style="text-align: center; margin: 30px 0;">
+          <a href="https://${domain}/admin?tab=chat&session=${sessionId}" 
+             style="background-color: #8B5A3C; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
             🔗 Répondre directement à cette conversation
           </a>
         </div>
         
         <div style="text-align: center; margin-top: 15px;">
-          <a href="https://${process.env.REPLIT_DOMAINS?.split(',')[0] || process.env.REPL_SLUG + '.' + process.env.REPL_OWNER + '.repl.co'}/admin" 
-             style="background-color: #6c757d; color: white; padding: 8px 16px; text-decoration: none; border-radius: 3px; display: inline-block; font-size: 14px;">
+          <a href="https://${domain}/admin" 
+             style="background-color: #6c757d; color: white; padding: 8px 16px; text-decoration: none; border-radius: 3px; display: inline-block; font-size: 14px; font-weight: bold;">
             📊 Voir toutes les conversations
           </a>
         </div>
@@ -126,6 +127,8 @@ export async function sendChatNotificationToAdmin(customerName: string, customer
 }
 
 export async function sendChatResponseToCustomer(customerEmail: string, customerName: string, adminMessage: string): Promise<boolean> {
+  const domain = process.env.REPLIT_DOMAINS?.split(',')[0] || `${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co`;
+  
   const emailData: EmailData = {
     to: customerEmail,
     subject: `📩 Réponse de l'équipe Equi Saddles`,
@@ -141,10 +144,10 @@ export async function sendChatResponseToCustomer(customerEmail: string, customer
           <p style="margin: 0; line-height: 1.5; font-style: italic;">${adminMessage}</p>
         </div>
         
-        <div style="text-align: center; margin-top: 30px;">
-          <a href="https://${process.env.REPLIT_DOMAINS?.split(',')[0] || process.env.REPL_SLUG + '.' + process.env.REPL_OWNER + '.repl.co'}/contact" 
-             style="background-color: #8B5A3C; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
-            Continuer la conversation
+        <div style="text-align: center; margin: 30px 0;">
+          <a href="https://${domain}/contact" 
+             style="background-color: #8B5A3C; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
+            🔗 Continuer la conversation
           </a>
         </div>
         
