@@ -360,7 +360,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Email is required" });
       }
 
-      // Chercher une session existante pour cet email
+      // Chercher une session existante pour cet email dans chatStorage
       const existingSession = await chatStorage.getChatSessionByEmail(email);
       
       if (existingSession) {

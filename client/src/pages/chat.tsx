@@ -18,6 +18,7 @@ export default function ChatPage() {
       const email = urlParams.get('email');
       
       console.log('Email from URL:', email);
+      console.log('Current URL:', window.location.href);
       
       if (email && email.includes('@')) {
         setUserEmail(email);

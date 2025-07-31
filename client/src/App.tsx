@@ -66,6 +66,7 @@ function Router() {
                   <Route path="/gallery" component={Gallery} />
                   <Route path="/contact" component={Contact} />
                   <Route path="/chat" component={lazy(() => import("@/pages/chat"))} />
+                  <Route path="/chat-test" component={lazy(() => import("@/pages/chat-test"))} />
                   <Route path="/support" component={Support} />
                   <Route path="/privacy" component={Privacy} />
                   <Route path="/terms" component={Terms} />

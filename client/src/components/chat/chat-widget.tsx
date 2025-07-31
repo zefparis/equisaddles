@@ -86,10 +86,9 @@ export default function ChatWidget({ isAdmin = false, sessionId: adminSessionId,
 
   const connectWebSocket = () => {
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-    // Utiliser le port 5000 directement pour les WebSockets en développement
-    const host = window.location.hostname;
-    const port = window.location.hostname === 'localhost' ? '5000' : window.location.port;
-    const wsUrl = `${protocol}//${host}:${port}/ws/chat`;
+    // Pour Replit, utiliser l'host actuel sans port spécifique
+    const host = window.location.host; // Utilise host au lieu de hostname pour inclure le port
+    const wsUrl = `${protocol}//${host}/ws/chat`;
     
     wsRef.current = new WebSocket(wsUrl);
     
