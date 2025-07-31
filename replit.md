@@ -85,6 +85,7 @@ Preferred communication style: Simple, everyday language.
 - ✅ Service worker intelligent HTTPS avec cache optimisé
 - ✅ Application mobile installable sans écran blanc
 - ✅ Déploiement production stable et opérationnel
+- ✅ Liens email chat corrigés avec vrai domaine Replit
 
 ### Identifiants et Configuration
 - **Admin**: username `admin` / password `Justine1234!`

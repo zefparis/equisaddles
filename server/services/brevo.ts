@@ -97,14 +97,14 @@ export async function sendChatNotificationToAdmin(customerName: string, customer
         </div>
         
         <div style="text-align: center; margin-top: 30px;">
-          <a href="${process.env.REPLIT_DOMAIN || 'https://your-domain.replit.app'}/admin?tab=chat&session=${sessionId}" 
+          <a href="https://${process.env.REPLIT_DOMAINS?.split(',')[0] || process.env.REPL_SLUG + '.' + process.env.REPL_OWNER + '.repl.co'}/admin?tab=chat&session=${sessionId}" 
              style="background-color: #8B5A3C; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
             🔗 Répondre directement à cette conversation
           </a>
         </div>
         
         <div style="text-align: center; margin-top: 15px;">
-          <a href="${process.env.REPLIT_DOMAIN || 'https://your-domain.replit.app'}/admin" 
+          <a href="https://${process.env.REPLIT_DOMAINS?.split(',')[0] || process.env.REPL_SLUG + '.' + process.env.REPL_OWNER + '.repl.co'}/admin" 
              style="background-color: #6c757d; color: white; padding: 8px 16px; text-decoration: none; border-radius: 3px; display: inline-block; font-size: 14px;">
             📊 Voir toutes les conversations
           </a>
@@ -142,7 +142,7 @@ export async function sendChatResponseToCustomer(customerEmail: string, customer
         </div>
         
         <div style="text-align: center; margin-top: 30px;">
-          <a href="${process.env.REPLIT_DOMAIN || 'https://your-domain.replit.app'}" 
+          <a href="https://${process.env.REPLIT_DOMAINS?.split(',')[0] || process.env.REPL_SLUG + '.' + process.env.REPL_OWNER + '.repl.co'}/contact" 
              style="background-color: #8B5A3C; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
             Continuer la conversation
           </a>
