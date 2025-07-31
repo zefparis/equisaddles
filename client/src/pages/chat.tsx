@@ -4,22 +4,31 @@ import ChatWidget from "@/components/chat/chat-widget";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, MessageCircle } from "lucide-react";
-import { useLanguage } from "@/hooks/use-language";
 
 export default function ChatPage() {
-  const { t } = useLanguage();
   const [, setLocation] = useLocation();
   const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Récupérer l'email depuis l'URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const email = urlParams.get('email');
-    
-    if (email) {
-      setUserEmail(email);
-    } else {
-      // Si pas d'email dans l'URL, rediriger vers contact
+    try {
+      console.log('Chat page loading...');
+      // Récupérer l'email depuis l'URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const email = urlParams.get('email');
+      
+      console.log('Email from URL:', email);
+      
+      if (email && email.includes('@')) {
+        setUserEmail(email);
+        setIsLoading(false);
+      } else {
+        console.log('No valid email, redirecting to contact');
+        // Si pas d'email dans l'URL, rediriger vers contact
+        setLocation('/contact');
+      }
+    } catch (error) {
+      console.error('Error in chat page:', error);
       setLocation('/contact');
     }
   }, [setLocation]);
@@ -28,11 +37,26 @@ export default function ChatPage() {
     setLocation('/');
   };
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="text-center">
+          <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Chargement de votre conversation...</p>
+        </div>
+      </div>
+    );
+  }
+
   if (!userEmail) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
-          <p className="text-muted-foreground">Chargement de votre conversation...</p>
+          <h2 className="text-xl font-semibold mb-2">Email requis</h2>
+          <p className="text-muted-foreground mb-4">Veuillez utiliser le lien depuis votre email</p>
+          <Button onClick={handleBackToSite} variant="outline">
+            Retour au site
+          </Button>
         </div>
       </div>
     );
@@ -82,13 +106,19 @@ export default function ChatPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-0">
-                <div className="h-[520px]">
-                  <ChatWidget 
-                    isAdmin={false}
-                    isOpen={true}
-                    userEmail={userEmail}
-                    showFullPage={true}
-                  />
+                <div className="h-[520px] relative">
+                  {userEmail ? (
+                    <ChatWidget 
+                      isAdmin={false}
+                      isOpen={true}
+                      userEmail={userEmail}
+                      showFullPage={true}
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center h-full">
+                      <p className="text-muted-foreground">Chargement du chat...</p>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
