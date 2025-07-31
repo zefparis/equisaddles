@@ -5,7 +5,8 @@ import { storage } from "./storage";
 import { registerUploadRoutes } from "./routes/upload";
 import { setupChatWebSocket } from "./routes/chat";
 import { insertProductSchema, insertGalleryImageSchema, insertProductImageSchema, insertOrderSchema } from "@shared/schema";
-import { sendChatNotificationToAdmin } from "./services/brevo";
+import { sendChatNotificationToAdmin, sendChatResponseToCustomer } from "./services/brevo";
+import { chatStorage } from "./storage/chat";
 import { z } from "zod";
 
 if (!process.env.STRIPE_SECRET_KEY) {
@@ -347,6 +348,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     } catch (error: any) {
       res.status(500).json({ message: "Error sending test email: " + error.message });
+    }
+  });
+
+  // API pour récupérer la session d'un utilisateur par email
+  app.get("/api/chat/user-session", async (req, res) => {
+    try {
+      const { email } = req.query;
+      
+      if (!email || typeof email !== 'string') {
+        return res.status(400).json({ message: "Email is required" });
+      }
+
+      // Chercher une session existante pour cet email
+      const existingSession = await chatStorage.getChatSessionByEmail(email);
+      
+      if (existingSession) {
+        res.json({
+          sessionId: existingSession.sessionId,
+          customerName: existingSession.customerName,
+          customerEmail: email
+        });
+      } else {
+        // Pas de session trouvée pour cet email
+        res.status(404).json({ message: "No session found for this email" });
+      }
+    } catch (error: any) {
+      res.status(500).json({ message: "Error fetching user session: " + error.message });
     }
   });
 

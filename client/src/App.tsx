@@ -1,5 +1,6 @@
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Switch, Route, useLocation } from "wouter";
+import { lazy } from "react";
 import { LanguageProvider } from "./hooks/use-language";
 import { CartProvider } from "./hooks/use-cart";
 import { AdminAuthProvider } from "./contexts/AdminAuthContext";
@@ -64,6 +65,7 @@ function Router() {
                   <Route path="/confirmation" component={Confirmation} />
                   <Route path="/gallery" component={Gallery} />
                   <Route path="/contact" component={Contact} />
+                  <Route path="/chat" component={lazy(() => import("@/pages/chat"))} />
                   <Route path="/support" component={Support} />
                   <Route path="/privacy" component={Privacy} />
                   <Route path="/terms" component={Terms} />

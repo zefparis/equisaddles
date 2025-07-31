@@ -22,9 +22,11 @@ interface ChatWidgetProps {
   sessionId?: string;
   isOpen?: boolean;
   onToggle?: () => void;
+  userEmail?: string;
+  showFullPage?: boolean;
 }
 
-export default function ChatWidget({ isAdmin = false, sessionId: adminSessionId, isOpen: externalIsOpen, onToggle }: ChatWidgetProps) {
+export default function ChatWidget({ isAdmin = false, sessionId: adminSessionId, isOpen: externalIsOpen, onToggle, userEmail, showFullPage = false }: ChatWidgetProps) {
   const { t } = useLanguage();
   const { toast } = useToast();
   
@@ -37,7 +39,7 @@ export default function ChatWidget({ isAdmin = false, sessionId: adminSessionId,
   const [sessionId, setSessionId] = useState<string | null>(adminSessionId || null);
   const [isConnected, setIsConnected] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
-  const [showContactForm, setShowContactForm] = useState(!isAdmin);
+  const [showContactForm, setShowContactForm] = useState(!isAdmin && !userEmail);
   
   const wsRef = useRef<WebSocket | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -52,7 +54,10 @@ export default function ChatWidget({ isAdmin = false, sessionId: adminSessionId,
   }, [messages]);
 
   useEffect(() => {
-    if (isOpen && sessionId) {
+    // Si on a un email utilisateur, récupérer ou créer la session
+    if (userEmail && !sessionId) {
+      fetchUserSession();
+    } else if (isOpen && sessionId) {
       connectWebSocket();
     }
     
@@ -61,7 +66,23 @@ export default function ChatWidget({ isAdmin = false, sessionId: adminSessionId,
         wsRef.current.close();
       }
     };
-  }, [isOpen, sessionId]);
+  }, [isOpen, sessionId, userEmail]);
+
+  const fetchUserSession = async () => {
+    try {
+      const response = await fetch(`/api/chat/user-session?email=${encodeURIComponent(userEmail!)}`);
+      const data = await response.json();
+      
+      if (data.sessionId) {
+        setSessionId(data.sessionId);
+        setCustomerName(data.customerName || '');
+        setCustomerEmail(userEmail!);
+        setShowContactForm(false);
+      }
+    } catch (error) {
+      console.error('Error fetching user session:', error);
+    }
+  };
 
   const connectWebSocket = () => {
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
@@ -203,8 +224,14 @@ export default function ChatWidget({ isAdmin = false, sessionId: adminSessionId,
     return null;
   }
 
+  const getCardClasses = () => {
+    if (showFullPage) return 'w-full h-full border-0 shadow-none bg-transparent';
+    if (isAdmin) return 'w-full h-full';
+    return `fixed bottom-4 right-4 w-80 z-50 ${isMinimized ? 'h-auto' : 'h-96'}`;
+  };
+
   return (
-    <Card className={`${isAdmin ? 'w-full h-full' : 'fixed bottom-4 right-4 w-80 z-50'} ${isMinimized ? 'h-auto' : isAdmin ? 'h-full' : 'h-96'}`}>
+    <Card className={getCardClasses()}>
       <CardHeader className="flex flex-row items-center justify-between p-4 pb-2">
         <CardTitle className="text-lg flex items-center gap-2">
           <MessageCircle className="h-5 w-5" />

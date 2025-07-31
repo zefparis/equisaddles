@@ -8,6 +8,7 @@ export interface IChatStorage {
   getAllChatSessions(): Promise<ChatSession[]>;
   updateChatSessionActivity(sessionId: string): Promise<void>;
   updateChatSessionStatus(sessionId: string, status: string): Promise<void>;
+  getChatSessionByEmail(email: string): Promise<ChatSession | null>;
   
   // Messages
   createChatMessage(message: InsertChatMessage): Promise<ChatMessage>;
@@ -100,6 +101,12 @@ export class ChatMemStorage implements IChatStorage {
       messages = messages.filter(m => m.sessionId === sessionId);
     }
     return messages.length;
+  }
+
+  // Récupérer une session par email client
+  async getChatSessionByEmail(email: string): Promise<ChatSession | null> {
+    const session = this.sessions.find(s => s.customerEmail === email);
+    return session || null;
   }
 }
 
