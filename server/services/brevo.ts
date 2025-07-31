@@ -145,7 +145,7 @@ export async function sendChatResponseToCustomer(customerEmail: string, customer
         </div>
         
         <div style="text-align: center; margin: 30px 0;">
-          <a href="https://equisaddles.com/simple-chat?email=${encodeURIComponent(customerEmail)}" 
+          <a href="https://equisaddles.com/chat?email=${encodeURIComponent(customerEmail)}" 
              style="background-color: #8B5A3C; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
             🔗 Continuer la conversation
           </a>

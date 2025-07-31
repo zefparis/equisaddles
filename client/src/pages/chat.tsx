@@ -62,16 +62,16 @@ Params toString: ${urlParams.toString()}
       setMessages(prev => [...prev, message]);
       setNewMessage("");
       
-      // Simuler une réponse auto
+      // Simuler une réponse automatique pour le test
       setTimeout(() => {
         const autoReply = {
           id: Date.now() + 1,
-          sender: "Equi Saddles",
-          text: "Merci pour votre message ! Notre équipe vous répondra bientôt.",
+          sender: "Equi Saddles - Support",
+          text: "Message reçu ! Notre équipe vous contactera rapidement par email. Vous recevrez un lien personnalisé pour continuer cette conversation.",
           time: new Date().toLocaleTimeString()
         };
         setMessages(prev => [...prev, autoReply]);
-      }, 1000);
+      }, 1500);
     }
   };
 
